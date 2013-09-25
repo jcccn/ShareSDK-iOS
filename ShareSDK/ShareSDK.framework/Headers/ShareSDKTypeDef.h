@@ -17,35 +17,38 @@
  */
 typedef enum
 {
-	ShareTypeSinaWeibo = 1, /**< 新浪微博 */
-	ShareTypeTencentWeibo = 2, /**< 腾讯微博 */
-	ShareTypeSohuWeibo = 3, /**< 搜狐微博 */
-    ShareType163Weibo = 4, /**< 网易微博 */
-	ShareTypeDouBan = 5, /**< 豆瓣社区 */
-	ShareTypeQQSpace = 6, /**< QQ空间 */
-	ShareTypeRenren = 7, /**< 人人网 */
-	ShareTypeKaixin = 8, /**< 开心网 */
-	ShareTypePengyou = 9, /**< 朋友网 */
-	ShareTypeFacebook = 10, /**< Facebook */
-	ShareTypeTwitter = 11, /**< Twitter */
-	ShareTypeEvernote = 12, /**< 印象笔记 */
-	ShareTypeFoursquare = 13, /**< Foursquare */
-	ShareTypeGooglePlus = 14, /**< Google＋ */
-	ShareTypeInstagram = 15, /**< Instagram */
-	ShareTypeLinkedIn = 16, /**< LinkedIn */
-	ShareTypeTumbir = 17, /**< Tumbir */
-    ShareTypeMail = 18, /**< 邮件分享 */
-	ShareTypeSMS = 19, /**< 短信分享 */
-	ShareTypeAirPrint = 20, /**< 打印 */
-	ShareTypeCopy = 21, /**< 拷贝 */
-    ShareTypeWeixiSession = 22, /**< 微信好友 */
-	ShareTypeWeixiTimeline = 23, /**< 微信朋友圈 */
-    ShareTypeQQ = 24, /**< QQ */
-    ShareTypeInstapaper = 25, /**< Instapaper */
-    ShareTypePocket = 26, /**< Pocket */
-    ShareTypeYouDaoNote = 27,     /**< 有道云笔记 */
-    ShareTypeSohuKan = 28,        /**< 搜狐随身看 */
-    ShareTypeAny = 99   /**< 任意平台 */
+	ShareTypeSinaWeibo = 1,         /**< 新浪微博 */
+	ShareTypeTencentWeibo = 2,      /**< 腾讯微博 */
+	ShareTypeSohuWeibo = 3,         /**< 搜狐微博 */
+    ShareType163Weibo = 4,          /**< 网易微博 */
+	ShareTypeDouBan = 5,            /**< 豆瓣社区 */
+	ShareTypeQQSpace = 6,           /**< QQ空间 */
+	ShareTypeRenren = 7,            /**< 人人网 */
+	ShareTypeKaixin = 8,            /**< 开心网 */
+	ShareTypePengyou = 9,           /**< 朋友网 */
+	ShareTypeFacebook = 10,         /**< Facebook */
+	ShareTypeTwitter = 11,          /**< Twitter */
+	ShareTypeEvernote = 12,         /**< 印象笔记 */
+	ShareTypeFoursquare = 13,       /**< Foursquare */
+	ShareTypeGooglePlus = 14,       /**< Google＋ */
+	ShareTypeInstagram = 15,        /**< Instagram */
+	ShareTypeLinkedIn = 16,         /**< LinkedIn */
+	ShareTypeTumblr = 17,           /**< Tumbir */
+    ShareTypeMail = 18,             /**< 邮件分享 */
+	ShareTypeSMS = 19,              /**< 短信分享 */
+	ShareTypeAirPrint = 20,         /**< 打印 */
+	ShareTypeCopy = 21,             /**< 拷贝 */
+    ShareTypeWeixiSession = 22,     /**< 微信好友 */
+	ShareTypeWeixiTimeline = 23,    /**< 微信朋友圈 */
+    ShareTypeQQ = 24,               /**< QQ */
+    ShareTypeInstapaper = 25,       /**< Instapaper */
+    ShareTypePocket = 26,           /**< Pocket */
+    ShareTypeYouDaoNote = 27,       /**< 有道云笔记 */
+    ShareTypeSohuKan = 28,          /**< 搜狐随身看 */
+    ShareTypePinterest = 30,        /**< Pinterest */
+    ShareTypeFlickr = 34,           /**< Flickr */
+    ShareTypeDropbox = 35,          /**< Dropbox */
+    ShareTypeAny = 99               /**< 任意平台 */
 }
 ShareType;
 
@@ -54,9 +57,9 @@ ShareType;
  */
 typedef enum
 {
-	ShareSDKRequestMethodGet = 0, /**< HTTP Get方式 */
-	ShareSDKRequestMethodPost = 1, /**< HTTP Post方法 */
-	ShareSDKRequestMethodMultipartPost = 2 /**< HTTP Multipart POST方式，一般用于上传文件的api接口 */
+	ShareSDKRequestMethodGet = 0,           /**< HTTP Get方式 */
+	ShareSDKRequestMethodPost = 1,          /**< HTTP Post方法 */
+	ShareSDKRequestMethodMultipartPost = 2  /**< HTTP Multipart POST方式，一般用于上传文件的api接口 */
 }
 ShareSDKRequestMethod;
 

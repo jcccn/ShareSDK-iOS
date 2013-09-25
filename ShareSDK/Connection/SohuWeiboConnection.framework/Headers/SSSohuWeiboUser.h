@@ -169,6 +169,12 @@
 @property (nonatomic,readonly) BOOL contributorsEnabled;
 
 /**
+ *	@brief	性别,1 男  0  女。
+ */
+@property (nonatomic,readonly) NSInteger gender;
+
+
+/**
  *	@brief	创建搜狐微博用户信息
  *
  *	@param 	response 	回复对象

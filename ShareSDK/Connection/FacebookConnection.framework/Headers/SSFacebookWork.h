@@ -9,6 +9,8 @@
 
 #import <Foundation/Foundation.h>
 #import <ShareSDKCoreService/ShareSDKCoreService.h>
+#import "SSFacebookEmployer.h"
+#import "SSFacebookPosition.h"
 
 /**
  *	@brief	工作信息
@@ -28,7 +30,7 @@
 /**
  *	@brief	公司名称
  */
-@property (nonatomic,readonly) NSString *employer;
+@property (nonatomic,readonly) SSFacebookEmployer *employer;
 
 /**
  *	@brief	公司所在地
@@ -38,7 +40,7 @@
 /**
  *	@brief	职务
  */
-@property (nonatomic,readonly) NSString *position;
+@property (nonatomic,readonly) SSFacebookPosition *position;
 
 /**
  *	@brief	开始时间

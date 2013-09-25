@@ -220,9 +220,11 @@ SSTecentWeiboRequestMethod;
  *	@brief	发送普通微博信息
  *
  *	@param 	content 	内容
+ *  @param  locationCoordinate  地理位置
  *  @param  result  回调方法
  */
 - (void)addTweetWithContent:(NSString *)content
+         locationCoordinate:(SSCLocationCoordinate2D *)locationCoordinate
                      result:(void(^)(SSCShareSessionState state, SSTencentWeiboTweet *tweet, SSTencentWeiboErrorInfo *error))result;
 
 /**
@@ -230,11 +232,26 @@ SSTecentWeiboRequestMethod;
  *
  *	@param 	content 	内容
  *	@param 	pic 	图片
+ *  @param  locationCoordinate  地理位置
  *  @param  result  回调方法
  */
 - (void)addPicTweetWithContent:(NSString *)content
                            pic:(id<ISSCAttachment>)pic
+            locationCoordinate:(SSCLocationCoordinate2D *)locationCoordinate
                         result:(void(^)(SSCShareSessionState state, SSTencentWeiboTweet *tweet, SSTencentWeiboErrorInfo *error))result;
+
+/**
+ *	@brief	用图片URL发表带图片的微博
+ *
+ *	@param 	content 	微博内容
+ *	@param 	url 	图片的URL地址，必须以http开头。
+ *  @param  locationCoordinate  地理位置信息，可以为nil
+ *  @param  result  回调方法
+ */
+- (void)addPicUrlTweetWithContent:(NSString *)content
+                              url:(NSString *)url
+               locationCoordinate:(SSCLocationCoordinate2D *)locationCoordinate
+                           result:(void(^)(SSCShareSessionState state, SSTencentWeiboTweet *tweet, SSTencentWeiboErrorInfo *error))result;
 
 /**
  *	@brief	获取微博信息

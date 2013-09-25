@@ -24,6 +24,111 @@
 - (NSString *)uid;
 
 /**
+ *	@brief	获取昵称
+ *
+ *	@return	昵称
+ */
+- (NSString *)nickname;
+
+/**
+ *	@brief	获取用户头像
+ *
+ *	@return	用户头像
+ */
+- (NSString *)icon;
+
+/**
+ *	@brief	获取性别，0 男； 1 女； 2 未知
+ *
+ *	@return	性别
+ */
+- (NSInteger)gender;
+
+/**
+ *	@brief	获取用户个人主页
+ *
+ *	@return	个人主页
+ */
+- (NSString *)url;
+
+/**
+ *	@brief	获取个人简介
+ *
+ *	@return 个人简介
+ */
+- (NSString *)aboutMe;
+
+/**
+ *	@brief	获取认证类型：－1 未知； 0 未认证； 1 认证。
+ *
+ *	@return	认证类型
+ */
+- (NSInteger)verifyType;
+
+/**
+ *	@brief	获取认证信息
+ *
+ *	@return	认证信息
+ */
+- (NSString *)verifyReason;
+
+/**
+ *	@brief	获取生日
+ *
+ *	@return	生日
+ */
+- (NSString *)birthday;
+
+/**
+ *	@brief	获取粉丝数
+ *
+ *	@return	粉丝数
+ */
+- (NSInteger)followerCount;
+
+/**
+ *	@brief	获取关注数
+ *
+ *	@return	关注数
+ */
+- (NSInteger)friendCount;
+
+/**
+ *	@brief	获取分享数
+ *
+ *	@return	分享数
+ */
+- (NSInteger)shareCount;
+
+/**
+ *	@brief	获取注册时间
+ *
+ *	@return	注册时间（秒）
+ */
+- (NSTimeInterval)regAt;
+
+/**
+ *	@brief	获取用户等级
+ *
+ *	@return	用户等级
+ */
+- (NSInteger)level;
+
+/**
+ *	@brief	获取教育信息
+ *
+ *	@return	教育信息
+ */
+- (NSArray *)educations;
+
+/**
+ *	@brief	获取职业信息
+ *
+ *	@return	职业信息
+ */
+- (NSArray *)works;
+
+/**
  *	@brief	获取分享平台类型
  *
  *  @since  ver1.2.4

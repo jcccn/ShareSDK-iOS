@@ -21,6 +21,7 @@ typedef NS_ENUM(NSInteger, WeiboSDKResponseStatusCode)
 };
 
 @protocol WeiboSDKDelegate;
+@protocol WeiboSDKJSONDelegate;
 @class WBBaseRequest;
 @class WBBaseResponse;
 @class WBMessageObject;
@@ -54,7 +55,7 @@ typedef NS_ENUM(NSInteger, WeiboSDKResponseStatusCode)
  获取当前微博客户端程序所支持的SDK最高版本
  @return 当前微博客户端程序所支持的SDK最高版本号，返回 nil 表示未安装微博客户端
  */
-+ (NSString *)getWeiboAppSupportMaxSDKVersion;
++ (NSString *)getWeiboAppSupportMaxSDKVersion __attribute__((deprecated));
 
 /**
  获取当前微博SDK的版本号
@@ -109,6 +110,25 @@ typedef NS_ENUM(NSInteger, WeiboSDKResponseStatusCode)
  */
 + (void)enableDebugMode:(BOOL)enabled;
 
+/**
+ 取消授权，登出接口
+ 调用此接口后，token将失效
+ @param token 第三方应用之前申请的Token
+ @param delegate WeiboSDKJSONDelegate对象，用于接收微博SDK对于发起的接口请求的请求的响应
+
+ */
++ (void)logOutWithToken:(NSString *)token delegate:(id<WeiboSDKJSONDelegate>)delegate;
+
+/**
+ 邀请好友使用应用
+ 调用此接口后，将发送私信至好友，成功将返回微博标准私信结构
+ @param text 对好友邀请内容的文字描述
+ @param uid  好友的uid
+ @param access_token 第三方应用之前申请的Token
+ @param delegate WeiboSDKJSONDelegate对象，用于接收微博SDK对于发起的接口请求的请求的响应
+ */
++(void)inviteFriend:(NSString* )text withUid:(NSString *)uid withToken:(NSString *)access_token delegate:(id<WeiboSDKJSONDelegate>)delegate;
+
 @end
 
 /**
@@ -127,10 +147,27 @@ typedef NS_ENUM(NSInteger, WeiboSDKResponseStatusCode)
 /**
  收到一个来自微博客户端程序的响应
  
- 收到微博的响应后，第三方应用可以通过响应类型、响应的数据和 [WBBaseResponse userInfo] 中的数据完成自己的功能
+ 收到微博的响应后，第三方应用可以通过响应类型、响应的数据和 WBBaseResponse.userInfo 中的数据完成自己的功能
  @param response 具体的响应对象
  */
 - (void)didReceiveWeiboResponse:(WBBaseResponse *)response;
+
+@end
+
+/**
+ 接收并处理来自微博sdk对于网络请求接口的调用响应
+ 如inviteFriend、logOutWithToken的请求
+ */
+@protocol WeiboSDKJSONDelegate <NSObject>
+
+/**
+ 收到一个来自微博SDK的响应
+ 
+ 收到微博SDK对于发起的接口请求的请求的响应
+ @param JsonObject 具体的响应返回内容
+ @param error 当有网络错误时返回的NSError，无网络错误返回nil
+ */
+- (void)didReceiveWeiboSDKResponse:(id)JsonObject err:(NSError *)error;
 
 @end
 
@@ -195,7 +232,7 @@ typedef NS_ENUM(NSInteger, WeiboSDKResponseStatusCode)
  
  如果当前 response 是由微博客户端响应给第三方应用的，则 requestUserInfo 中会包含原 request.userInfo 中的所有数据
  
- @see [WBBaseRequest userInfo]
+ @see WBBaseRequest.userInfo
  */
 @property (nonatomic, readonly) NSDictionary *requestUserInfo;
 

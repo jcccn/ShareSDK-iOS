@@ -19,6 +19,7 @@
 #import "SSCKeyDef.h"
 #import "SSCTypeDef.h"
 #import "ISSCDataObject.h"
+#import "SSCLocationCoordinate2D.h"
 
 /**
  *	@brief	ShareSDK核心服务层

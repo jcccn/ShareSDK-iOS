@@ -139,6 +139,21 @@
  */
 - (void)setImage:(id<ISSCAttachment>)image;
 
+/**
+ *	@brief	获取地理位置
+ *
+ *	@return	地理位置
+ */
+- (SSCLocationCoordinate2D *)locationCoordinate;
+
+/**
+ *	@brief	设置地理位置
+ *
+ *	@param 	locationCoordinate 	地理位置
+ */
+- (void)setLocationCoordinate:(SSCLocationCoordinate2D *)locationCoordinate;
+
+
 #pragma mark ContentUnti
 
 /**
@@ -345,6 +360,19 @@
                               image:(id<ISSCAttachment>)image;
 
 /**
+ *	@brief	添加新浪微博内容单元
+ *
+ *  @since  ver2.4.1
+ *
+ *	@param 	content 	内容
+ *	@param 	image 	图片
+ *  @param  locationCoordinate 	地理位置
+ */
+- (void)addSinaWeiboUnitWithContent:(NSString *)content
+                              image:(id<ISSCAttachment>)image
+                          locationCoordinate:(SSCLocationCoordinate2D *)locationCoordinate;
+
+/**
  *	@brief	添加腾讯微博内容单元
  *
  *  @since  ver2.2.0
@@ -354,6 +382,19 @@
  */
 - (void)addTencentWeiboUnitWithContent:(NSString *)content
                                  image:(id<ISSCAttachment>)image;
+
+/**
+ *	@brief	添加腾讯微博内容单元
+ *
+ *  @since  ver2.4.1
+ *
+ *	@param 	aContent 	内容
+ *	@param 	aImage 	图片
+ *	@param 	locationCoordinate 	地理位置
+ */
+- (void)addTencentWeiboUnitWithContent:(NSString *)content
+                                 image:(id<ISSCAttachment>)image
+                    locationCoordinate:(SSCLocationCoordinate2D *)locationCoordinate;
 
 
 /**
@@ -434,6 +475,20 @@
                         image:(id<ISSCAttachment>)image;
 
 /**
+ *	@brief	添加Twitter内容单元
+ *
+ *  @since  ver2.4.1
+ *
+ *	@param 	content 	内容
+ *	@param 	image 	图片
+ *	@param 	locationCoordinate 	地理位置
+ */
+- (void)addTwitterWithContent:(NSString *)content
+                        image:(id<ISSCAttachment>)image
+           locationCoordinate:(SSCLocationCoordinate2D *)locationCoordinate;
+
+
+/**
  *	@brief	添加开心网内容单元
  *
  *  @since  ver2.2.0
@@ -481,6 +536,66 @@
                             title:(NSString *)title
                       description:(NSString *)description
                         thumbnail:(id<ISSCAttachment>)thumbnail;
+
+/**
+ *	@brief	添加Pinterest内容单元
+ *
+ *  @since  ver2.4.1
+ *
+ *	@param 	image 	图片
+ *	@param 	url 	链接
+ *	@param 	description 	描述
+ */
+- (void)addPinterestUnitWithImage:(id<ISSCAttachment>)image
+                              url:(NSString *)url
+                      description:(NSString *)description;
+
+/**
+ *	@brief	添加Flickr内容单元
+ *
+ *	@param 	photo 	图片对象
+ *	@param 	title 	标题
+ *	@param 	description 	相片描述。可能包含某受限的 HTML。
+ *	@param 	tags 	適用於相片的以空格分隔的標籤清單。
+ *	@param 	isPublic 	設定為 0 表示否，1 表示是。指定誰可以檢視相片。
+ *	@param 	isFriend 	設定為 0 表示否，1 表示是。指定誰可以檢視相片。
+ *	@param 	isFamily 	設定為 0 表示否，1 表示是。指定誰可以檢視相片。
+ *	@param 	safetyLevel 	設置 1 為「安全級」、2 為「輔導級」、3 為「限制級」。
+ *	@param 	contentType 	設置 1 為「相片」、2 為「螢幕截圖」、3 為「其他」。
+ *	@param 	hidden 	設置 1 為「相片」、2 為「螢幕截圖」、3 為「其他」。
+ */
+- (void)addFlickrUnitWithPhoto:(id<ISSCAttachment>)photo
+                         title:(NSString *)title
+                   description:(NSString *)description
+                          tags:(NSString *)tags
+                      isPublic:(NSNumber *)isPublic
+                      isFriend:(NSNumber *)isFriend
+                      isFamily:(NSNumber *)isFamily
+                   safetyLevel:(NSNumber *)safetyLevel
+                   contentType:(NSNumber *)contentType
+                        hidden:(NSNumber *)hidden;
+
+/**
+ *	@brief	添加Tumblr内容单元
+ *
+ *	@param 	text 	内容，可以带有HTML标签
+ *	@param 	title 	标题
+ *	@param 	image 	图片
+ *	@param 	url 	点击后跳转的链接
+ *	@param 	blogName 	博客名称，为nil时表示发去主博客
+ */
+- (void)addTumblrUnitWithText:(NSString *)text
+                        title:(NSString *)title
+                        image:(id<ISSCAttachment>)image
+                          url:(NSString *)url
+                     blogName:(NSString *)blogName;
+
+/**
+ *	@brief	添加Dropbox内容单元
+ *
+ *	@param 	file 	文件
+ */
+- (void)addDropboxUnitWithFile:(id<ISSCAttachment>)file;
 
 
 @end

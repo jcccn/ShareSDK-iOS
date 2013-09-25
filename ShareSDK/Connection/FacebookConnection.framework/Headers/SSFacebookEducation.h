@@ -10,6 +10,7 @@
 #import <Foundation/Foundation.h>
 #import "SSFacebookSchool.h"
 #import "SSFacebookYear.h"
+#import "SSFacebookDegree.h"
 #import <ShareSDKCoreService/ShareSDKCoreService.h>
 
 /**
@@ -36,6 +37,12 @@
  *	@brief	年份信息
  */
 @property (nonatomic,readonly) SSFacebookYear *year;
+
+/**
+ *	@brief	学历
+ */
+@property (nonatomic,readonly) SSFacebookDegree *degree;
+
 
 /**
  *	@brief	类型

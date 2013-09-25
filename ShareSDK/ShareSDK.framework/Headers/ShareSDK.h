@@ -381,7 +381,8 @@
 
 
 /**
- *	@brief	连接LinkedIn以使用相关功能，此应用需要引用LinkedInConnection.framework
+ *	@brief	连接LinkedIn以使用相关功能，此平台需要引用LinkedInConnection.framework
+ *          https://www.linkedin.com/secure/developer上注册应用，并将相关信息填写以下字段
  *
  *  @since  ver2.4.0
  *
@@ -394,7 +395,8 @@
                       redirectUri:(NSString *)redirectUri;
 
 /**
- *	@brief	链接Google+
+ *	@brief	链接Google+,此平台需要引用GooglePlusConnection.framework、GoogleOpenSource.frramework、GooglePlus.framework框架
+ *          https://code.google.com/apis/console上注册应用，并将相关信息填写以下字段
  *
  *  @since  ver2.4.0
  *
@@ -409,6 +411,49 @@
                           redirectUri:(NSString *)redirectUri
                             signInCls:(Class)signInCls
                              shareCls:(Class)shareCls;
+
+/**
+ *	@brief	链接Pinterest,此平台需要引用PinterestConnection.framework、Pinterest.framework框架。
+ *          http://developers.pinterest.com/上注册应用，并将相关信息填写以下字段。
+ *
+ *	@param 	clientId 	应用Key
+ *	@param 	pinterestCls 	Pinterest类型，应先导入Pinterest.framework，然后在此参数中传入
+ */
++ (void)connectPinterestWithClientId:(NSString *)clientId
+                        pinterestCls:(Class)pinterestCls;
+
+/**
+ *	@brief	链接Flickr,此平台需要引用FlickrConnection.framework框架。
+ *          http://www.flickr.com/services/apps/create/上注册应用，并将相关信息填写以下字段。
+ *
+ *	@param 	apiKey 	应用Key
+ *	@param 	apiSecret 	应用密钥
+ */
++ (void)connectFlickrWithApiKey:(NSString *)apiKey
+                      apiSecret:(NSString *)apiSecret;
+
+/**
+ *	@brief	链接Tumblr,此平台需要引用TumblrConnection.framework框架
+ *          http://www.tumblr.com/oauth/apps上注册应用，并将相关信息填写以下字段。
+ *
+ *	@param 	consumerKey 	应用Key
+ *	@param 	consumerSecret 	应用密钥
+ *	@param 	callbackUrl 	回调地址
+ */
++ (void)connectTumblrWithConsumerKey:(NSString *)consumerKey
+                      consumerSecret:(NSString *)consumerSecret
+                         callbackUrl:(NSString *)callbackUrl;
+
+/**
+ *	@brief	连接Dropbox，此平台需要引用DropboxConnection.framework框架
+ *          https://www.dropbox.com/developers/apps上注册应用，并将相关信息填写以下字段。
+ *
+ *	@param 	appKey 	应用Key
+ *	@param 	appSecret 	应用密钥
+ */
++ (void)connectDropboxWithAppKey:(NSString *)appKey
+                       appSecret:(NSString *)appSecret;
+
 
 /**
  *	@brief	处理请求打开链接,如果集成新浪微博(SSO)、Facebook(SSO)、微信、QQ分享功能需要加入此方法
@@ -477,6 +522,14 @@
 + (void)importGooglePlusClass:(Class)signInClass
                    shareClass:(Class)shareClass;
 
+/**
+ *	@brief	导入Pinterest所需要的类型，对于使用应用信息托管方式下（即registerApp中的useAppTrusteeship为YES）需要调用此方法，注：如果不使用Pinterest可以不调用
+ *
+ *  @since  ver2.4.1
+ *
+ *	@param 	pinterestClass 	Pinterest接口类型。引入Pinterest.framework后，将[Pinterest class]传入此参数
+ */
++ (void)importPinterestClass:(Class)pinterestClass;
 
 #pragma mark 辅助
 
@@ -586,6 +639,32 @@
                       url:(NSString *)url
               description:(NSString *)description
                 mediaType:(SSPublishContentMediaType)mediaType;
+
+/**
+ *	@brief	创建分享内容对象，根据一下每个字段适用平台说明来填充参数值
+ *
+ *  @since  ver2.4.1
+ *
+ *	@param 	content 	分享内容（新浪、腾讯、网易、搜狐、豆瓣、人人、开心、有道云笔记、facebook、twitter、邮件、打印、短信、微信、QQ、拷贝）
+ *	@param 	defaultContent 	默认分享内容（新浪、腾讯、网易、搜狐、豆瓣、人人、开心、有道云笔记、facebook、twitter、邮件、打印、短信、微信、QQ、拷贝）
+ *	@param 	image 	分享图片（新浪、腾讯、网易、搜狐、豆瓣、人人、开心、facebook、twitter、邮件、打印、微信、QQ、拷贝）
+ *	@param 	title 	标题（QQ空间、人人、微信、QQ）
+ *	@param 	url 	链接（QQ空间、人人、instapaper、微信、QQ）
+ *	@param 	description 	主体内容（人人）
+ *	@param 	mediaType 	分享类型（QQ、微信）
+ *	@param 	locationCoordinate 	地理位置 (新浪、腾讯、Twitter)
+ *
+ *	@return	分享内容对象
+ */
++ (id<ISSContent>)content:(NSString *)content
+           defaultContent:(NSString *)defaultContent
+                    image:(id<ISSCAttachment>)image
+                    title:(NSString *)title
+                      url:(NSString *)url
+              description:(NSString *)description
+                mediaType:(SSPublishContentMediaType)mediaType
+       locationCoordinate:(SSCLocationCoordinate2D *)locationCoordinate;
+
 
 /**
  *	@brief	获取图片信息
@@ -1050,7 +1129,7 @@
                                       shareViewDelegate:(id<ISSShareViewDelegate>)shareViewDelegate;
 
 /**
- *	@brief	分享内容
+ *	@brief	分享内容,此接口不需要弹出分享界面直接进行分享（除微信、QQ、Pinterest平台外，这些平台会调用客户端进行分享）。
  *
  *	@param 	content 	内容对象
  *	@param 	type 	平台类型
@@ -1065,7 +1144,7 @@
               result:(SSPublishContentEventHandler)result;
 
 /**
- *	@brief	分享内容
+ *	@brief	分享内容,此接口不需要弹出分享界面直接进行分享（除微信、QQ、Pinterest平台外，这些平台会调用客户端进行分享）。
  *
  *  @since  ver2.2.5
  *
@@ -1153,5 +1232,20 @@
                                     authOptions:(id<ISSAuthOptions>)authOptions
                                    shareOptions:(id<ISSShareOptions>)shareOptions
                                          result:(SSPublishContentEventHandler)result;
+
+/**
+ *	@brief	使用客户端进行内容分享（仅支持新浪微博、微信、QQ、Pinterest、Google+）
+ *
+ *  @since  ver2.4.1
+ *
+ *	@param 	content 	内容对象
+ *	@param 	type 	平台类型
+ *  @param  statusBarTips   状态栏提示
+ *	@param 	result 	返回事件
+ */
++ (void)clientShareContent:(id<ISSContent>)content
+                      type:(ShareType)type
+             statusBarTips:(BOOL)statusBarTips
+                    result:(SSPublishContentEventHandler)result;
 
 @end

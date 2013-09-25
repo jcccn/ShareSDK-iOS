@@ -228,9 +228,11 @@ SSSinaWeiboRequestMethod;
  *	@brief	发布一条新微博
  *
  *	@param 	status 	微博内容
+ *  @param  locationCoordinate  地理位置信息，可以为nil
  *  @param  result  回调方法
  */
 - (void)updateWithStatus:(NSString *)status
+      locationCoordinate:(SSCLocationCoordinate2D *)locationCoordinate
                   result:(void(^)(SSCShareSessionState result, SSSinaWeiboStatus *status, SSSinaWeiboErrorInfo *error))result;
 
 /**
@@ -238,10 +240,12 @@ SSSinaWeiboRequestMethod;
  *
  *	@param 	status 	微博内容
  *	@param 	pic 	图片数据
+ *  @param  locationCoordinate  地理位置信息，可以为nil
  *  @param  result  回调方法
  */
 - (void)uploadWithStatus:(NSString *)status
                      pic:(id<ISSCAttachment>)pic
+      locationCoordinate:(SSCLocationCoordinate2D *)locationCoordinate
                   result:(void(^)(SSCShareSessionState result, SSSinaWeiboStatus *status, SSSinaWeiboErrorInfo *error))result;
 
 /**
@@ -249,10 +253,12 @@ SSSinaWeiboRequestMethod;
  *
  *	@param 	status 	微博内容
  *	@param 	url 	图片的URL地址，必须以http开头。
+ *  @param  locationCoordinate  地理位置信息，可以为nil
  *  @param  result  回调方法
  */
 - (void)uploadWithStatus:(NSString *)status
                      url:(NSString *)url
+      locationCoordinate:(SSCLocationCoordinate2D *)locationCoordinate
                   result:(void(^)(SSCShareSessionState result, SSSinaWeiboStatus *status, SSSinaWeiboErrorInfo *error))result;
 
 /**

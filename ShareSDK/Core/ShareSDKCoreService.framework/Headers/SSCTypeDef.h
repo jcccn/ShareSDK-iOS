@@ -12,8 +12,6 @@
 #ifndef ShareSDKCoreService_SSCTypeDef_h
 #define ShareSDKCoreService_SSCTypeDef_h
 
-
-
 /**
  *	@brief	授权会话状态
  */
@@ -71,6 +69,7 @@ typedef enum
     SSCShareTypePocket = 26, /**< Pocket */
     SSCShareTypeYouDaoNote = 27,     /**< 有道云笔记 */
     SSCShareTypeSohuKan = 28,       /**< 搜狐随身看 */
+    SSCShareTYpePinterest = 30,     /**< Pinterest */
     SSCShareTypeAny = 99   /**< 任意平台 */
 }
 SSCShareType;

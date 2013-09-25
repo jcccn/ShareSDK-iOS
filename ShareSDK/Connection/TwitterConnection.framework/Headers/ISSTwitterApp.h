@@ -182,9 +182,11 @@ SSTwitterRequestMethod;
  *	@brief	更新状态信息
  *
  *	@param 	status 	状态信息
+ *  @param  locationCoordinate  地理位置
  *  @param  result  返回回调
  */
 - (void)updateWithStatus:(NSString *)status
+      locationCoordinate:(SSCLocationCoordinate2D *)locationCoordinate
                   result:(void(^)(SSCShareSessionState state, SSTwitterTweets *tweets, SSTwitterErrorInfo *error))result;
 
 /**
@@ -192,10 +194,12 @@ SSTwitterRequestMethod;
  *
  *	@param 	status 	状态信息
  *	@param 	media 	媒体信息
+ *  @param  locationCoordinate  地理位置
  *  @param  result  返回回调
  */
 - (void)updateWithStatus:(NSString *)status
                    media:(id<ISSCAttachment>)media
+      locationCoordinate:(SSCLocationCoordinate2D *)locationCoordinate
                   result:(void (^)(SSCShareSessionState state, SSTwitterTweets *tweets, SSTwitterErrorInfo *error))result;
 
 /**
