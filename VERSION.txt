@@ -1,3 +1,9 @@
+版本：V 2.5.1 2013-09-26
+1、	调整iPad版本中分享菜单、分享界面的部分样式。
+2、	修复设置allowCallback为NO时，腾讯微博仍然回调问题。
+3、	修复Facebook无法分享问题（2.5.0版本的bug）。
+4、	修复当分享图片采用pngImageWithImage进行构造时丢失问题（2.5.0版本的bug）。
+
 版本：V 2.5.0 2013-09-24
 1、	新增Pinterest、Flickr、Dropbox、Tumblr平台。
 2、	新增地理位置信息分享。

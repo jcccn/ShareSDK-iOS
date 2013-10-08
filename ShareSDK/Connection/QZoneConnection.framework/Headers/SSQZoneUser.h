@@ -44,19 +44,29 @@
 @property (nonatomic,readonly) NSString *nickname;
 
 /**
- *	@brief	大小为30×30像素的头像URL
+ *	@brief	大小为30×30像素的QQ空间头像URL。
  */
 @property (nonatomic,readonly) NSString *figureurl;
 
 /**
- *	@brief	大小为50×50像素的头像URL
+ *	@brief	大小为50×50像素的QQ空间头像URL。
  */
 @property (nonatomic,readonly) NSString *figureurl1;
 
 /**
- *	@brief	大小为100×100像素的头像URL
+ *	@brief	大小为100×100像素的QQ空间头像URL。
  */
 @property (nonatomic,readonly) NSString *figureurl2;
+
+/**
+ *	@brief	大小为40×40像素的QQ头像URL
+ */
+@property (nonatomic,readonly) NSString *figureurlQQ1;
+
+/**
+ *	@brief	大小为100×100像素的QQ头像URL。需要注意，不是所有的用户都拥有QQ的100x100的头像，但40x40像素则是一定会有。
+ */
+@property (nonatomic,readonly) NSString *figureurlQQ2;
 
 /**
  *	@brief	性别,如果获取不到则默认返回“男”
@@ -69,9 +79,20 @@
 @property (nonatomic,readonly) BOOL isYellowYearVip;
 
 /**
+ *	@brief	标识用户是否为黄钻用户（0：不是；1：是）。
+ */
+@property (nonatomic,readonly) BOOL isYellowVip;
+
+/**
  *	@brief	标识用户是否为黄钻用户（NO：不是；YES：是）
  */
 @property (nonatomic,readonly) BOOL vip;
+
+/**
+ *	@brief	黄钻等级
+ */
+@property (nonatomic,readonly) NSInteger yellowVipLevel;
+
 
 /**
  *	@brief	黄钻等级
