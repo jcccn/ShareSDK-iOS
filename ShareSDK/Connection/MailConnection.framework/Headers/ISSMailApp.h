@@ -10,32 +10,20 @@
 #import <Foundation/Foundation.h>
 #import <ShareSDKCoreService/ShareSDKCoreService.h>
 #import "SSMailErrorInfo.h"
+#import <ShareSDK/ShareSDK.h>
 
 /**
  *	@brief	邮件应用协议
  */
-@protocol ISSMailApp <ISSCOpenApp>
+@protocol ISSMailApp <ISSPlatformApp>
 
 /**
- *	@brief	登录帐户
+ *	@brief	设置邮件视图委托
  *
- *	@return	帐户信息
+ *	@param 	viewDelegate 	视图委托
  */
-- (id<ISSCAccount>)account;
+- (void)setViewDelegate:(id<ISSViewDelegate>)viewDelegate;
 
-/**
- *	@brief	获取是否转换链接标识
- *
- *	@return	YES 表示转换链接，NO 表示不转换链接
- */
-- (BOOL)convertUrlEnabled;
-
-/**
- *	@brief	设置是否转换链接标识
- *
- *	@param 	enabled 	YES 表示转换链接，NO 表示不转换链接
- */
-- (void)setConvertUrlEnabled:(BOOL)enabled;
 
 /**
  *	@brief	发送邮件
@@ -53,14 +41,14 @@
  */
 - (void)sendMailWithSubject:(NSString *)subject
                     content:(NSString *)content
-                     isHTML:(BOOL)isHTML
+                     isHTML:(NSNumber *)isHTML
                 attachments:(NSArray *)attachments
                          to:(NSArray *)to
                          cc:(NSArray *)cc
                         bcc:(NSArray *)bcc
                   container:(UIViewController *)container
-               viewDelegate:(id)viewDelegate
-                     result:(void(^)(SSCShareSessionState state, SSMailErrorInfo *error))result;
+               viewDelegate:(id<ISSViewDelegate>)viewDelegate
+                     result:(SSShareResultEvent)result;
 
 
 @end

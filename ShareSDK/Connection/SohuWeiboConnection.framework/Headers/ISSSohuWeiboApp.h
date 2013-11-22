@@ -9,10 +9,10 @@
 
 #import <Foundation/Foundation.h>
 #import <ShareSDKCoreService/ShareSDKCoreService.h>
-#import "ISSSohuWeiboAuthSession.h"
 #import "SSSohuWeiboUser.h"
 #import "SSSohuWeiboErrorInfo.h"
 #import "SSSohuWeiboStatus.h"
+#import <ShareSDK/ShareSDKPlugin.h>
 
 /**
  *	@brief	请求方式
@@ -29,14 +29,7 @@ SSSohuWeiboRequestMethod;
 /**
  *	@brief	搜狐微博应用
  */
-@protocol ISSSohuWeiboApp <ISSCOpenApp>
-
-/**
- *	@brief	获取授权帐号
- *
- *	@return	授权帐号
- */
-- (id<ISSCAccount>)account;
+@protocol ISSSohuWeiboApp <ISSPlatformApp>
 
 /**
  *	@brief	获取消费者Key
@@ -60,84 +53,6 @@ SSSohuWeiboRequestMethod;
 - (NSString *)redirectUri;
 
 /**
- *	@brief	获取是否转换链接标识
- *
- *	@return	YES 表示转换链接，NO 表示不转换链接
- */
-- (BOOL)convertUrlEnabled;
-
-/**
- *	@brief	设置是否转换链接标识
- *
- *	@param 	enabled 	YES 表示转换链接，NO 表示不转换链接
- */
-- (void)setConvertUrlEnabled:(BOOL)enabled;
-
-/**
- *	@brief	授权应用
- *
- *	@return	授权会话
- */
-- (id<ISSSohuWeiboAuthSession>)authorize;
-
-/**
- *	@brief	注册用户信息
- *
- *	@param 	user 	用户信息
- *
- *	@return	YES 表示注册成功， NO 表示注册失败
- */
-- (BOOL)registerUser:(SSSohuWeiboUser *)user;
-
-/**
- *	@brief	注销用户信息
- *
- *	@param 	user 	用户信息
- *
- *	@return	YES 表示注销成功， NO 表示注销失败
- */
-- (BOOL)unregisterUser:(SSSohuWeiboUser *)user;
-
-/**
- *	@brief	获取注册用户信息
- *
- *	@param 	uid 	用户ID
- *
- *	@return	返回用户信息，nil表示尚未注册
- */
-- (SSSohuWeiboUser *)getUser:(NSString *)uid;
-
-/**
- *	@brief	获取默认注册用户
- *
- *	@return	默认注册用户
- */
-- (SSSohuWeiboUser *)defaultUser;
-
-/**
- *	@brief	设置默认注册用户
- *
- *	@param 	defaultUser 	默认注册用户
- */
-- (void)setDefaultUser:(SSSohuWeiboUser *)defaultUser;
-
-/**
- *	@brief	检测用户是否已授权
- *
- *	@param 	error 	错误信息
- *
- *	@return	YES 表示没有授权，NO 表示已授权
- */
-- (BOOL)checkUnauthWithError:(SSSohuWeiboErrorInfo *)error;
-
-/**
- *	@brief	设置凭证
- *
- *	@param 	credential 	授权凭证信息
- */
-- (void)setCredential:(SSSohuWeiboCredential *)credential;
-
-/**
  *	@brief	调用开放平台API
  *
  *	@param 	path 	路径
@@ -149,16 +64,9 @@ SSSohuWeiboRequestMethod;
 - (void)api:(NSString *)path
      method:(SSSohuWeiboRequestMethod)method
      params:(id<ISSCParameters>)params
-       user:(SSSohuWeiboUser *)user
+       user:(id<ISSPlatformUser>)user
      result:(void(^)(id responder))result
-      fault:(void(^)(SSSohuWeiboErrorInfo *error))fault;
-
-/**
- *	@brief	获取当前授权用户信息
- *
- *  @param  result  返回回调
- */
-- (void)showMe:(void(^)(BOOL result, SSSohuWeiboUser *user, SSSohuWeiboErrorInfo *error))result;
+      fault:(void(^)(CMErrorInfo *error))fault;
 
 /**
  *	@brief	发布微博信息
@@ -167,7 +75,7 @@ SSSohuWeiboRequestMethod;
  *  @param  result  返回回调
  */
 - (void)updateWithStatus:(NSString *)status
-                  result:(void(^)(SSCShareSessionState state, SSSohuWeiboStatus *status, SSSohuWeiboErrorInfo *error))result;
+                  result:(SSShareResultEvent)result;
 
 /**
  *	@brief	发送微博并上传图片。
@@ -178,7 +86,7 @@ SSSohuWeiboRequestMethod;
  */
 - (void)uploadWithStatus:(NSString *)status
                      pic:(id<ISSCAttachment>)pic
-                  result:(void(^)(SSCShareSessionState state, SSSohuWeiboStatus *status, SSSohuWeiboErrorInfo *error))result;
+                  result:(SSShareResultEvent)result;
 
 
 @end

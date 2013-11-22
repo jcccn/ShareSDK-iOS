@@ -9,122 +9,61 @@
 
 #import <Foundation/Foundation.h>
 #import "SSDouBanUser.h"
-#import "SSDouBanEntity.h"
-#import "SSDouBanSource.h"
 #import <ShareSDKCoreService/ShareSDKCoreService.h>
+#import <ShareSDK/ShareSDKPlugin.h>
 
 /**
  *	@brief	广播信息
  */
-@interface SSDouBanStatus : NSObject <NSCoding,
+@interface SSDouBanStatus : NSObject <ISSPlatformShareInfo,
+                                      NSCoding,
                                       ISSCDataObject>
 {
 @private
-    NSMutableDictionary *_sourceData;
+    NSDictionary *_sourceData;
+    NSString *_sid;
+    NSString *_text;
+    NSArray *_urls;
+    NSArray *_imgs;
+    NSDictionary *_extInfo;
 }
 
 /**
- *	@brief	源数据
+ *	@brief	分享ID
+ */
+@property (nonatomic,copy) NSString *sid;
+
+/**
+ *	@brief	分享内容
+ */
+@property (nonatomic,copy) NSString *text;
+
+/**
+ *	@brief	分享的链接列表
+ */
+@property (nonatomic,retain) NSArray *urls;
+
+/**
+ *	@brief	分享的图片列表
+ */
+@property (nonatomic,retain) NSArray *imgs;
+
+/**
+ *	@brief	扩展信息
+ */
+@property (nonatomic,retain) NSDictionary *extInfo;
+
+/**
+ *	@brief	原始数据
  */
 @property (nonatomic,retain) NSDictionary *sourceData;
 
 /**
- *	@brief	是否可被回应
- */
-@property (nonatomic,readonly) BOOL canReply;
-
-/**
- *	@brief	attachments是一个json array格式的字符串， array里面的元素称为物,
- *          目前每条广播只支持单个物，物是每条广播表述的行为中的那个宾语，例如： xx推荐网址， 网址就是这个‘物’，
- */
-@property (nonatomic,readonly) NSArray *attachments;
-
-/**
- *	@brief	暂无
- */
-@property (nonatomic,readonly) NSString *category;
-
-/**
- *	@brief	回应数
- */
-@property (nonatomic,readonly) NSInteger commentsCount;
-
-/**
- *	@brief	发广播的时间
- */
-@property (nonatomic,readonly) NSString *createdAt;
-
-/**
- *	@brief	暂无
- */
-@property (nonatomic,retain) SSDouBanEntity *entities;
-
-/**
- *	@brief	暂无
- */
-@property (nonatomic,readonly) BOOL hasPhoto;
-
-/**
- *	@brief	广播id
- */
-@property (nonatomic,readonly) NSString *Id;
-
-/**
- *	@brief	暂无
- */
-@property (nonatomic,readonly) BOOL isFollow;
-
-/**
- *	@brief	赞的数量
- */
-@property (nonatomic,readonly) NSInteger likeCount;
-
-/**
- *	@brief	是否已经喜欢
- */
-@property (nonatomic,readonly) BOOL liked;
-
-/**
- *	@brief	暂无
- */
-@property (nonatomic,readonly) BOOL muted;
-
-/**
- *	@brief	转播数
- */
-@property (nonatomic,readonly) NSInteger resharedCount;
-
-/**
- *	@brief	app key对应的应用名和应用url
- */
-@property (nonatomic,readonly) SSDouBanSource *source;
-
-/**
- *	@brief	web段在引号内展示的一段文本, 一般为用户输入的内容
- */
-@property (nonatomic,readonly) NSString *text;
-
-/**
- *	@brief	广播的title
- */
-@property (nonatomic,readonly) NSString *title;
-
-/**
- *	@brief	暂无
- */
-@property (nonatomic,readonly) NSString *type;
-
-/**
- *	@brief	发广播者
- */
-@property (nonatomic,readonly) SSDouBanUser *user;
-
-/**
- *	@brief	创建用户信息
+ *	@brief	创建微博信息
  *
- *	@param 	response 	服务器返回数据
+ *	@param 	response 	服务器回复数据
  *
- *	@return	用户信息对象
+ *	@return	微博信息
  */
 + (SSDouBanStatus *)statusWithResponse:(NSDictionary *)response;
 

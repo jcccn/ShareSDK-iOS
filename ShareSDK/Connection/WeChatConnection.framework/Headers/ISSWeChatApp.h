@@ -11,19 +11,12 @@
 #import <ShareSDKCoreService/ShareSDKCoreService.h>
 #import "SSWeChatErrorInfo.h"
 #import "SSWeChatTypeDef.h"
+#import <ShareSDK/ShareSDKPlugin.h>
 
 /**
  *	@brief	微信应用协议
  */
-@protocol ISSWeChatApp <ISSCOpenApp>
-
-/**
- *	@brief	登录帐户
- *
- *	@return	帐户信息
- */
-- (id<ISSCAccount>)account;
-
+@protocol ISSWeChatApp <ISSPlatformApp>
 
 /**
  *	@brief	获取应用ID
@@ -33,41 +26,19 @@
 - (NSString *)appId;
 
 /**
- *	@brief	获取是否转换链接标识
+ *	@brief	获取分享场景
  *
- *	@return	YES 表示转换链接，NO 表示不转换链接
+ *	@return	分享场景
  */
-- (BOOL)convertUrlEnabled;
+- (SSWeChatScene)scene;
 
 /**
- *	@brief	设置是否转换链接标识
+ *	@brief	设置委托
  *
- *	@param 	enabled 	YES 表示转换链接，NO 表示不转换链接
+ *	@param 	delegate 	委托对象
  */
-- (void)setConvertUrlEnabled:(BOOL)enabled;
+- (void)setDelegate:(id)delegate;
 
-/**
- *	@brief	处理请求打开链接
- *
- *	@param 	url 	链接
- *  @param  wxDelegate  微信委托
- *
- *	@return	YES 表示接受请求 NO 表示不接受
- */
-- (BOOL)handleOpenURL:(NSURL *)url wxDelegate:(id)wxDelegate;
-
-
-/**
- *	@brief	处理请求打开链接
- *
- *	@param 	url 	链接
- *	@param 	sourceApplication 	源应用
- *	@param 	annotation 	源应用提供的信息
- *  @param  wxDelegate  微信委托
- *
- *	@return	YES 表示接受请求，NO 表示不接受请求
- */
-- (BOOL)handleOpenURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation wxDelegate:(id)wxDelegate;
 
 /**
  *	@brief	发送文本消息
@@ -77,8 +48,7 @@
  *  @param  result  返回回调
  */
 - (void)sendText:(NSString *)content
-           scene:(SSWeChatScene)scene
-          result:(void(^)(SSCShareSessionState state, SSWeChatScene scene, SSWeChatErrorInfo *error))result;
+          result:(SSShareResultEvent)result;
 
 /**
  *	@brief	发送图片消息
@@ -92,8 +62,7 @@
 - (void)sendPic:(NSString *)title
     description:(NSString *)description
             pic:(id<ISSCAttachment>)pic
-          scene:(SSWeChatScene)scene
-         result:(void(^)(SSCShareSessionState state, SSWeChatScene scene, SSWeChatErrorInfo *error))result;
+         result:(SSShareResultEvent)result;
 
 /**
  *	@brief	发送新闻消息
@@ -109,8 +78,7 @@
          content:(NSString *)content
              pic:(id<ISSCAttachment>)pic
              url:(NSString *)url
-           scene:(SSWeChatScene)scene
-          result:(void(^)(SSCShareSessionState state, SSWeChatScene scene, SSWeChatErrorInfo *error))result;
+          result:(SSShareResultEvent)result;
 
 /**
  *	@brief	发送音乐消息
@@ -128,8 +96,7 @@
               pic:(id<ISSCAttachment>)pic
               url:(NSString *)url
      musicFileUrl:(NSString *)musicFileUrl
-            scene:(SSWeChatScene)scene
-           result:(void(^)(SSCShareSessionState state, SSWeChatScene scene, SSWeChatErrorInfo *error))result;
+           result:(SSShareResultEvent)result;
 
 /**
  *	@brief	发送视频消息
@@ -145,8 +112,7 @@
           content:(NSString *)content
               pic:(id<ISSCAttachment>)pic
               url:(NSString *)url
-            scene:(SSWeChatScene)scene
-           result:(void(^)(SSCShareSessionState state, SSWeChatScene scene, SSWeChatErrorInfo *error))result;
+           result:(SSShareResultEvent)result;
 
 /**
  *	@brief	发送App信息
@@ -166,8 +132,7 @@
             url:(NSString *)url
         extInfo:(NSString *)extInfo
        fileData:(NSData *)fileData
-          scene:(SSWeChatScene)scene
-         result:(void(^)(SSCShareSessionState state, SSWeChatScene scene, SSWeChatErrorInfo *error))result;
+         result:(SSShareResultEvent)result;
 
 
 /**
@@ -175,34 +140,22 @@
  *
  *	@param 	pic 	预览图
  *	@param 	emoticonData 	图片数据
- *	@param 	scene 	类型
  *  @param  result  返回回调
  */
 - (void)sendNonGif:(id<ISSCAttachment>)pic
       emoticonData:(NSData *)emoticonData
-             scene:(SSWeChatScene)scene
-            result:(void(^)(SSCShareSessionState state, SSWeChatScene scene, SSWeChatErrorInfo *error))result;
+            result:(SSShareResultEvent)result;
 
 /**
  *	@brief	发送Gif图
  *
  *	@param 	pic 	预览图
  *	@param 	emoticonData 	图片数据
- *	@param 	scene 	类型
  *  @param  result  返回回调
  */
 - (void)sendGif:(id<ISSCAttachment>)pic
    emoticonData:(NSData *)emoticonData
-          scene:(SSWeChatScene)scene
-         result:(void(^)(SSCShareSessionState state, SSWeChatScene scene, SSWeChatErrorInfo *error))result;
-
-
-/**
- *	@brief	关注微信公众帐号
- *
- *	@param 	qrCodeData 	公众帐号的二维码数据
- */
-- (void)followUser:(NSString *)qrCodeData;
+         result:(SSShareResultEvent)result;
 
 
 @end

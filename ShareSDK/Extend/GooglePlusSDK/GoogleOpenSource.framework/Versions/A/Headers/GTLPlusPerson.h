@@ -26,10 +26,9 @@
 // Documentation:
 //   https://developers.google.com/+/api/
 // Classes:
-//   GTLPlusPerson (0 custom class methods, 28 custom properties)
+//   GTLPlusPerson (0 custom class methods, 26 custom properties)
 //   GTLPlusPersonAgeRange (0 custom class methods, 2 custom properties)
 //   GTLPlusPersonCover (0 custom class methods, 3 custom properties)
-//   GTLPlusPersonEmailsItem (0 custom class methods, 3 custom properties)
 //   GTLPlusPersonImage (0 custom class methods, 1 custom properties)
 //   GTLPlusPersonName (0 custom class methods, 6 custom properties)
 //   GTLPlusPersonOrganizationsItem (0 custom class methods, 9 custom properties)
@@ -48,7 +47,6 @@
 @class GTLPlusPersonCover;
 @class GTLPlusPersonCoverCoverInfo;
 @class GTLPlusPersonCoverCoverPhoto;
-@class GTLPlusPersonEmailsItem;
 @class GTLPlusPersonImage;
 @class GTLPlusPersonName;
 @class GTLPlusPersonOrganizationsItem;
@@ -84,26 +82,18 @@
 // The current location for this person.
 @property (copy) NSString *currentLocation;
 
-// The name of this person, suitable for display.
+// The name of this person, which is suitable for display.
 @property (copy) NSString *displayName;
-
-// A list of email addresses for this person.
-@property (retain) NSArray *emails;  // of GTLPlusPersonEmailsItem
 
 // ETag of this response for caching purposes.
 @property (copy) NSString *ETag;
 
-// The person's gender. Possible values are:
+// The person's gender. Possible values include, but are not limited to, the
+// following values:
 // - "male" - Male gender.
 // - "female" - Female gender.
 // - "other" - Other.
 @property (copy) NSString *gender;
-
-// If "true", indicates that the person has installed the app that is making the
-// request and has chosen to expose this install state to the caller. A value of
-// "false" indicates that the install state cannot be determined (it is either
-// not installed or the person has chosen to keep this information private).
-@property (retain) NSNumber *hasApp;  // boolValue
 
 // The ID of this person.
 // identifier property maps to 'id' in JSON (to avoid Objective C's 'id').
@@ -127,7 +117,8 @@
 // The nickname of this person.
 @property (copy) NSString *nickname;
 
-// Type of person within Google+. Possible values are:
+// Type of person within Google+. Possible values include, but are not limited
+// to, the following values:
 // - "person" - represents an actual person.
 // - "page" - represents a page.
 @property (copy) NSString *objectType;
@@ -138,10 +129,11 @@
 // A list of places where this person has lived.
 @property (retain) NSArray *placesLived;  // of GTLPlusPersonPlacesLivedItem
 
-// If a Google+ Page, the number of people who have +1'ed this page.
+// If a Google+ Page, the number of people who have +1'd this page.
 @property (retain) NSNumber *plusOneCount;  // intValue
 
-// The person's relationship status. Possible values are:
+// The person's relationship status. Possible values include, but are not
+// limited to, the following values:
 // - "single" - Person is single.
 // - "in_a_relationship" - Person is in a relationship.
 // - "engaged" - Person is engaged.
@@ -197,31 +189,10 @@
 // The person's primary cover image.
 @property (retain) GTLPlusPersonCoverCoverPhoto *coverPhoto;
 
-// The layout of the cover art. Possible values are:
+// The layout of the cover art. Possible values include, but are not limited to,
+// the following values:
 // - "banner" - One large image banner.
 @property (copy) NSString *layout;
-
-@end
-
-
-// ----------------------------------------------------------------------------
-//
-//   GTLPlusPersonEmailsItem
-//
-
-@interface GTLPlusPersonEmailsItem : GTLObject
-
-// If "true", indicates this email address is the person's primary one.
-@property (retain) NSNumber *primary;  // boolValue
-
-// The type of address. Possible values are:
-// - "home" - Home email address.
-// - "work" - Work email address.
-// - "other" - Other.
-@property (copy) NSString *type;
-
-// The email address.
-@property (copy) NSString *value;
 
 @end
 
@@ -233,7 +204,7 @@
 
 @interface GTLPlusPersonImage : GTLObject
 
-// The URL of the person's profile photo. To re-size the image and crop it to a
+// The URL of the person's profile photo. To resize the image and crop it to a
 // square, append the query string ?sz=x, where x is the dimension in pixels of
 // each side.
 @property (copy) NSString *url;
@@ -283,7 +254,7 @@
 // Remapped to 'descriptionProperty' to avoid NSObject's 'description'.
 @property (copy) NSString *descriptionProperty;
 
-// The date the person left this organization.
+// The date that the person left this organization.
 @property (copy) NSString *endDate;
 
 // The location of this organization. Deprecated.
@@ -292,17 +263,18 @@
 // The name of the organization.
 @property (copy) NSString *name;
 
-// If "true", indicates this organization is the person's primary one (typically
-// interpreted as current one).
+// If "true", indicates this organization is the person's primary one, which is
+// typically interpreted as the current one.
 @property (retain) NSNumber *primary;  // boolValue
 
-// The date the person joined this organization.
+// The date that the person joined this organization.
 @property (copy) NSString *startDate;
 
 // The person's job title or role within the organization.
 @property (copy) NSString *title;
 
-// The type of organization. Possible values are:
+// The type of organization. Possible values include, but are not limited to,
+// the following values:
 // - "work" - Work.
 // - "school" - School.
 @property (copy) NSString *type;
@@ -334,15 +306,15 @@
 
 @interface GTLPlusPersonUrlsItem : GTLObject
 
-// If "true", this URL is the person's primary URL.
-@property (retain) NSNumber *primary;  // boolValue
+// The label of the URL.
+@property (copy) NSString *label;
 
-// The type of URL. Possible values are:
-// - "home" - URL for home.
-// - "work" - URL for work.
-// - "blog" - URL for blog.
-// - "profile" - URL for profile.
-// - "other" - Other.
+// The type of URL. Possible values include, but are not limited to, the
+// following values:
+// - "otherProfile" - URL for another profile.
+// - "contributor" - URL to a site for which this person is a contributor.
+// - "website" - URL for this Google+ Page's primary website.
+// - "other" - Other URL.
 @property (copy) NSString *type;
 
 // The URL value.
@@ -358,12 +330,12 @@
 
 @interface GTLPlusPersonCoverCoverInfo : GTLObject
 
-// The difference between the left position of the image cover and the actual
-// displayed cover image. Only valid for BANNER layout.
+// The difference between the left position of the cover image and the actual
+// displayed cover image. Only valid for banner layout.
 @property (retain) NSNumber *leftImageOffset;  // intValue
 
-// The difference between the top position of the image cover and the actual
-// displayed cover image. Only valid for BANNER layout.
+// The difference between the top position of the cover image and the actual
+// displayed cover image. Only valid for banner layout.
 @property (retain) NSNumber *topImageOffset;  // intValue
 
 @end
@@ -376,13 +348,13 @@
 
 @interface GTLPlusPersonCoverCoverPhoto : GTLObject
 
-// The height to the image.
+// The height of the image.
 @property (retain) NSNumber *height;  // intValue
 
-// The url to the image.
+// The URL of the image.
 @property (copy) NSString *url;
 
-// The width to the image.
+// The width of the image.
 @property (retain) NSNumber *width;  // intValue
 
 @end

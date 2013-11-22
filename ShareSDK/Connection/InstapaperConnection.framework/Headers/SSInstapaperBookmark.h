@@ -9,69 +9,51 @@
 
 #import <Foundation/Foundation.h>
 #import <ShareSDKCoreService/ShareSDKCoreService.h>
+#import <ShareSDK/ShareSDKPlugin.h>
 
 /**
  *	@brief	书签信息
  */
-@interface SSInstapaperBookmark : NSObject <NSCoding,
+@interface SSInstapaperBookmark : NSObject <ISSPlatformShareInfo,
+                                            NSCoding,
                                             ISSCDataObject>
 {
 @private
-    NSMutableDictionary *_sourceData;
+    NSDictionary *_sourceData;
+    NSString *_sid;
+    NSString *_text;
+    NSArray *_urls;
+    NSArray *_imgs;
+    NSDictionary *_extInfo;
 }
 
 /**
- *	@brief	书签ID
+ *	@brief	分享ID
  */
-@property (nonatomic,readonly) long long bookmarkId;
+@property (nonatomic,copy) NSString *sid;
 
 /**
- *	@brief	地址
+ *	@brief	分享内容
  */
-@property (nonatomic,readonly) NSString *url;
+@property (nonatomic,copy) NSString *text;
 
 /**
- *	@brief	标题
+ *	@brief	分享的链接列表
  */
-@property (nonatomic,readonly) NSString *title;
+@property (nonatomic,retain) NSArray *urls;
 
 /**
- *	@brief	描述
+ *	@brief	分享的图片列表
  */
-@property (nonatomic,readonly) NSString *description;
+@property (nonatomic,retain) NSArray *imgs;
 
 /**
- *	@brief	创建时间
+ *	@brief	扩展信息
  */
-@property (nonatomic,readonly) long long time;
+@property (nonatomic,retain) NSDictionary *extInfo;
 
 /**
- *	@brief	未知
- */
-@property (nonatomic,readonly) BOOL starred;
-
-/**
- *	@brief	私有源路径
- */
-@property (nonatomic,readonly) NSString *privateSource;
-
-/**
- *	@brief	未知
- */
-@property (nonatomic,readonly) NSString *hash;
-
-/**
- *	@brief	未知
- */
-@property (nonatomic,readonly) NSInteger progress;
-
-/**
- *	@brief	未知
- */
-@property (nonatomic,readonly) long long progressTimestamp;
-
-/**
- *	@brief	源数据
+ *	@brief	原始数据
  */
 @property (nonatomic,retain) NSDictionary *sourceData;
 

@@ -10,202 +10,121 @@
 #import "SSGooglePlusCredential.h"
 #import <ShareSDKCoreService/SSCDataObject.h>
 #import <ShareSDKCoreService/ISSCUserDescriptor.h>
-#import "SSGooglePlusName.h"
-#import "SSGooglePlusImage.h"
-#import "SSGooglePlusAgeRange.h"
-#import "SSGooglePlusCover.h"
+#import <ShareSDK/ShareSDKPlugin.h>
 
 /**
  *	@brief	用户信息
  */
-@interface SSGooglePlusUser : SSCDataObject
-{
-@private
-    SSGooglePlusCredential *_credential;
-}
+@interface SSGooglePlusUser : NSObject <ISSPlatformUser,
+                                        NSCoding,
+                                        ISSCDataObject>
+/**
+ *	@brief	所属平台
+ */
+@property (nonatomic,readonly) id<ISSPlatformApp> app;
 
 /**
  *	@brief	授权信息，如果为nil则表示非当前应用授权用户
  */
-@property (nonatomic,retain) SSGooglePlusCredential *credential;
+@property (nonatomic,retain) id<ISSPlatformCredential> credential;
 
 /**
- *	@brief	Identifies this resource as a person. 
+ *	@brief	用户的原始数据信息，与各个平台定义的用户信息结构相同
  */
-@property (nonatomic,readonly) NSString *kind;
+@property (nonatomic,retain) NSDictionary *sourceData;
 
 /**
- *	@brief	ETag of this response for caching purposes.
+ *	@brief	平台类型
  */
-@property (nonatomic,readonly) id etag;
+@property (nonatomic,readonly) ShareType type;
 
 /**
- *	@brief	The nickname of this person.
+ *	@brief	用户ID
+ */
+@property (nonatomic,readonly) NSString *uid;
+
+/**
+ *	@brief	用户昵称
  */
 @property (nonatomic,readonly) NSString *nickname;
 
 /**
- *	@brief	The person's date of birth, represented as YYYY-MM-DD.
+ *	@brief	个人头像路径
  */
-@property (nonatomic,readonly) NSString *birthday;
+@property (nonatomic,readonly) NSString *profileImage;
 
 /**
- *	@brief	The person's gender. Possible values are:
- *          "male" - Male gender.
- *          "female" - Female gender.
- *          "other" - Other.
+ *	@brief	性别：0 男； 1 女； 2 未知
  */
-@property (nonatomic,readonly) NSString *gender;
-
+@property (nonatomic,readonly) NSInteger gender;
 
 /**
- *	@brief	A list of email addresses that this person has set to public on their Google+ profile. 
- *          You can also use the userinfo.email scope to retrieve an authenticated user's email address.
- */
-@property (nonatomic,readonly) NSArray *emails;
-
-/**
- *	@brief	A list of URLs for this person.
- */
-@property (nonatomic,readonly) NSArray *urls;
-
-/**
- *	@brief	Type of person within Google+. Possible values are:
- *          "person" - represents an actual person.
- *          "page" - represents a page.
- */
-@property (nonatomic,readonly) NSString *objectType;
-
-/**
- *	@brief	The ID of this person.
- */
-@property (nonatomic,readonly) NSString *Id;
-
-/**
- *	@brief	The name of this person, suitable for display.
- */
-@property (nonatomic,readonly) NSString *displayName;
-
-/**
- *	@brief	An object representation of the individual components of a person's name.
- */
-@property (nonatomic,readonly) SSGooglePlusName *name;
-
-/**
- *	@brief	The brief description (tagline) of this person.
- */
-@property (nonatomic,readonly) NSString *tagline;
-
-/**
- *	@brief	The "bragging rights" line of this person.
- */
-@property (nonatomic,readonly) NSString *braggingRights;
-
-/**
- *	@brief	A short biography for this person.
- */
-@property (nonatomic,readonly) NSString *aboutMe;
-
-/**
- *	@brief	The current location for this person.
- */
-@property (nonatomic,readonly) NSString *currentLocation;
-
-/**
- *	@brief	The person's relationship status. Possible values are:
- *          "single" - Person is single.
- *          "in_a_relationship" - Person is in a relationship.
- *          "engaged" - Person is engaged.
- *          "married" - Person is married.
- *          "its_complicated" - The relationship is complicated.
- *          "open_relationship" - Person is in an open relationship.
- *          "widowed" - Person is widowed.
- *          "in_domestic_partnership" - Person is in a domestic partnership.
- *          "in_civil_union" - Person is in a civil union.
- */
-@property (nonatomic,readonly) NSString *relationshipStatus;
-
-/**
- *	@brief	The URL of this person's profile.
+ *	@brief	个人主页地址
  */
 @property (nonatomic,readonly) NSString *url;
 
 /**
- *	@brief	The representation of the person's profile photo.
+ *	@brief	个人简介
  */
-@property (nonatomic,readonly) SSGooglePlusImage *image;
+@property (nonatomic,readonly) NSString *aboutMe;
 
 /**
- *	@brief	A list of current or past organizations with which this person is associated.
+ *	@brief	认证类型：－1 未知； 0 未认证； 1 认证
  */
-@property (nonatomic,readonly) NSArray *organizations;
+@property (nonatomic,readonly) NSInteger verifyType;
 
 /**
- *	@brief	A list of places where this person has lived.
+ *	@brief	认证信息
  */
-@property (nonatomic,readonly) NSArray *placesLived;
+@property (nonatomic,readonly) NSString *verifyReason;
 
 /**
- *	@brief	If "true", indicates that the person has installed the app that is making the request and 
- *          has chosen to expose this install state to the caller. 
- *          A value of "false" indicates that the install state cannot be determined 
- *          (it is either not installed or the person has chosen to keep this information private).
+ *	@brief	用户生日（单位：秒）
  */
-@property (nonatomic,readonly) BOOL hasApp;
+@property (nonatomic,readonly) NSString *birthday;
 
 /**
- *	@brief	Whether this user has signed up for Google+.
+ *	@brief	用户粉丝数
  */
-@property (nonatomic,readonly) BOOL isPlusUser;
+@property (nonatomic,readonly) NSInteger followerCount;
 
 /**
- *	@brief	The user's preferred language for rendering.
+ *	@brief	用户关注数
  */
-@property (nonatomic,readonly) NSString *language;
+@property (nonatomic,readonly) NSInteger friendCount;
 
 /**
- *	@brief	The age range of the person.
+ *	@brief	用户分享数
  */
-@property (nonatomic,readonly) SSGooglePlusAgeRange *ageRange;
+@property (nonatomic,readonly) NSInteger shareCount;
 
 /**
- *	@brief	If a Google+ Page, the number of people who have +1'ed this page.
+ *	@brief	用户的注册时间（单位：秒）
  */
-@property (nonatomic,readonly) NSInteger plusOneCount;
+@property (nonatomic,readonly) NSTimeInterval regAt;
 
 /**
- *	@brief	If a Google+ Page and for followers who are visible, the number of people who have added this page to a circle.
+ *	@brief	用户等级
  */
-@property (nonatomic,readonly) NSInteger circledByCount;
+@property (nonatomic,readonly) NSInteger level;
 
 /**
- *	@brief	Whether the person or Google+ Page has been verified. 
- *          This is used only for pages with a higher risk of being impersonated or similar.
- *          This flag will not be present on most profiles.
+ *	@brief	用户的教育信息列表
  */
-@property (nonatomic,readonly) BOOL verified;
+@property (nonatomic,readonly) NSArray *educations;
 
 /**
- *	@brief	The cover photo content.
+ *	@brief	用户的职业信息列表
  */
-@property (nonatomic,readonly) SSGooglePlusCover *cover;
-
-
+@property (nonatomic,readonly) NSArray *works;
 
 /**
- *	@brief	创建用户信息
+ *	@brief	初始化化用户信息
  *
- *	@param 	response 	服务器返回数据
+ *	@param 	app 	应用信息
  *
  *	@return	用户信息对象
  */
-+ (SSGooglePlusUser *)userWithResponse:(NSDictionary *)response;
-
-/**
- *	@brief	创建用户信息描述器
- *
- *	@return	描述器对象
- */
-- (id<ISSCUserDescriptor>)descriptor;
+- (id)initWithApp:(id<ISSPlatformApp>)app;
 
 @end

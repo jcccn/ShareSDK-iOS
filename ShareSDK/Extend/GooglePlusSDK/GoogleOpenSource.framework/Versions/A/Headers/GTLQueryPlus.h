@@ -121,6 +121,7 @@
 //     value of "nextPageToken" from the previous response. This token can be of
 //     any length.
 //  Authorization scope(s):
+//   kGTLAuthScopePlusLogin
 //   kGTLAuthScopePlusMe
 // Fetches a GTLPlusActivityFeed.
 + (id)queryForActivitiesSearchWithQuery:(NSString *)query;
@@ -134,6 +135,7 @@
 //  Required:
 //   commentId: The ID of the comment to get.
 //  Authorization scope(s):
+//   kGTLAuthScopePlusLogin
 //   kGTLAuthScopePlusMe
 // Fetches a GTLPlusComment.
 + (id)queryForCommentsGetWithCommentId:(NSString *)commentId;
@@ -154,6 +156,7 @@
 //      kGTLPlusSortOrderAscending: Sort oldest comments first.
 //      kGTLPlusSortOrderDescending: Sort newest comments first.
 //  Authorization scope(s):
+//   kGTLAuthScopePlusLogin
 //   kGTLAuthScopePlusMe
 // Fetches a GTLPlusCommentFeed.
 + (id)queryForCommentsListWithActivityId:(NSString *)activityId;
@@ -230,8 +233,8 @@
 // Method: plus.people.list
 // List all of the people in the specified collection.
 //  Required:
-//   userId: Get the collection of people for the person identified by the ID or
-//     use "me" to indiciated the authenticated user.
+//   userId: Get the collection of people for the person identified. Use "me" to
+//     indicate the authenticated user.
 //   collection: The collection of people to list.
 //      kGTLPlusCollectionVisible: The list of people who this user has added to
 //        one or more circles, limited to the circles visible to the requesting
@@ -269,6 +272,7 @@
 //     result sets. To get the next page of results, set this parameter to the
 //     value of "nextPageToken" from the previous response.
 //  Authorization scope(s):
+//   kGTLAuthScopePlusLogin
 //   kGTLAuthScopePlusMe
 // Fetches a GTLPlusPeopleFeed.
 + (id)queryForPeopleListByActivityWithActivityId:(NSString *)activityId
@@ -284,12 +288,13 @@
 //     language codes for available values. (Default en-US)
 //   maxResults: The maximum number of people to include in the response, which
 //     is used for paging. For any response, the actual number returned might be
-//     less than the specified maxResults. (1..20, default 10)
+//     less than the specified maxResults. (1..50, default 25)
 //   pageToken: The continuation token, which is used to page through large
 //     result sets. To get the next page of results, set this parameter to the
 //     value of "nextPageToken" from the previous response. This token can be of
 //     any length.
 //  Authorization scope(s):
+//   kGTLAuthScopePlusLogin
 //   kGTLAuthScopePlusMe
 // Fetches a GTLPlusPeopleFeed.
 + (id)queryForPeopleSearchWithQuery:(NSString *)query;

@@ -9,71 +9,24 @@
 
 #import <UIKit/UIKit.h>
 #import "ISSYouDaoNoteApp.h"
+#import <ShareSDK/ShareSDKPlugin.h>
 
 /**
  *	@brief	有道云笔记连接器
  */
-@interface YouDaoNoteConnection : NSObject
-
+@interface YouDaoNoteConnection : NSObject <ISSPlatform>
 
 /**
- *	@brief	注册应用,同一个AppKey只需要注册一次。
+ *	@brief	创建应用配置信息
  *
- *  @param  account 授权帐号，使用ShareSDK注册的应用Key换取。
- *	@param 	consumerKey 	消费者Key
- *	@param 	consumerSecret 	消费者密钥
+ *	@param 	consumerKey 	应用标识
+ *	@param 	consumerSecret 	应用密钥
  *	@param 	redirectUri 	回调地址
  *
- *	@return	应用对象,返回nil则表示应用注册失败。
+ *	@return	应用配置信息
  */
-+ (id<ISSYouDaoNoteApp>)registerApp:(id<ISSCAccount>)account
-                        consumerKey:(NSString *)consumerKey
-                     consumerSecret:(NSString *)consumerSecret
-                        redirectUri:(NSString *)redirectUri;
-
-/**
- *	@brief	注销应用
- *
- *	@param 	app 	应用对象
- *
- *	@return	YES表示注销成功，NO表示注销失败
- */
-+ (BOOL)unregisterApp:(id<ISSYouDaoNoteApp>)app;
-
-/**
- *	@brief	取的已注册新浪应用
- *
- *	@param 	appKey 	应用Key
- *
- *	@return	应用对象，返回nil则表示应用尚未注册
- */
-+ (id<ISSYouDaoNoteApp>)getApp:(NSString *)appKey;
-
-/**
- *	@brief	创建授权凭证
- *
- *	@param 	sourceData 	授权源数据
- *
- *	@return	授权凭证
- */
-+ (SSYouDaoNoteCredential *)credentialWithData:(NSDictionary *)sourceData;
-
-/**
- *	@brief	创建授权凭证
- *
- *	@param 	credentialData 	授权数据
- *
- *	@return	授权凭证
- */
-+ (SSYouDaoNoteCredential *)credentialWithCredentialData:(NSDictionary *)credentialData;
-
-/**
- *	@brief	根据新浪微博错误码返回错误描述
- *
- *	@param 	code 	错误码
- *
- *	@return	错误描述
- */
-+ (NSString *)getErrorDescriptionWithCode:(NSInteger)code;
+- (NSDictionary *)appInfoWithConsumerKey:(NSString *)consumerKey
+                          consumerSecret:(NSString *)consumerSecret
+                             redirectUri:(NSString *)redirectUri;
 
 @end

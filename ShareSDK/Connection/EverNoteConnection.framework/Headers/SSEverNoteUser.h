@@ -10,141 +10,123 @@
 #import <ShareSDKCoreService/SSCDataObject.h>
 #import "SSEverNoteCredential.h"
 #import "SSEverNoteTypeDef.h"
-#import "SSEverNoteUserAttributes.h"
-#import "SSEverNoteAccounting.h"
-#import "SSEverNotePremiumInfo.h"
 #import "ISSEverNoteDataOutput.h"
 #import <ShareSDKCoreService/ISSCUserDescriptor.h>
+#import <ShareSDK/ShareSDKPlugin.h>
 
 /**
  *	@brief	用户信息
  */
-@interface SSEverNoteUser : SSCDataObject
-{
-@private
-    SSEverNoteCredential *_credential;
-}
+@interface SSEverNoteUser : NSObject <ISSPlatformUser,
+                                      NSCoding,
+                                      ISSCDataObject>
+/**
+ *	@brief	所属平台
+ */
+@property (nonatomic,readonly) id<ISSPlatformApp> app;
 
 /**
  *	@brief	授权信息，如果为nil则表示非当前应用授权用户
  */
-@property (nonatomic,retain) SSEverNoteCredential *credential;
+@property (nonatomic,retain) id<ISSPlatformCredential> credential;
+
+/**
+ *	@brief	用户的原始数据信息，与各个平台定义的用户信息结构相同
+ */
+@property (nonatomic,retain) NSDictionary *sourceData;
+
+/**
+ *	@brief	平台类型
+ */
+@property (nonatomic,readonly) ShareType type;
 
 /**
  *	@brief	用户ID
- *          he unique numeric identifier for the account, which will not change for the lifetime of the account.
  */
-@property (nonatomic,readonly) NSInteger Id;
+@property (nonatomic,readonly) NSString *uid;
 
 /**
- *	@brief	用户名称
- *          The name that uniquely identifies a single user account.
- *          This name may be presented by the user, along with their password, to log into their account. 
- *          May only contain a-z, 0-9, or '-', and may not start or end with the '-'
+ *	@brief	用户昵称
  */
-@property (nonatomic,readonly) NSString *username;
+@property (nonatomic,readonly) NSString *nickname;
 
 /**
- *	@brief	电子邮箱
- *          The email address registered for the user. Must comply with RFC 2821 and RFC 2822.
- *          For privacy reasons, this field may not be populated when a User is retrieved via a call to UserStore.getUser().
+ *	@brief	个人头像路径
  */
-@property (nonatomic,readonly) NSString *email;
+@property (nonatomic,readonly) NSString *profileImage;
 
 /**
- *	@brief	名称
- *          The printable name of the user, which may be a combination of given and family names. 
- *          This is used instead of separate "first" and "last" names due to variations in international name format/order. 
- *          May not start or end with a whitespace character. 
- *          May contain any character but carriage return or newline (Unicode classes Zl and Zp).
+ *	@brief	性别：0 男； 1 女； 2 未知
  */
-@property (nonatomic,readonly) NSString *name;
+@property (nonatomic,readonly) NSInteger gender;
 
 /**
- *	@brief	时区
- *          The zone ID for the user's default location. If present, 
- *          this may be used to localize the display of any timestamp for which no other timezone is available.
- *          The format must be encoded as a standard zone ID such as "America/Los_Angeles" or "GMT+08:00"
- *          
+ *	@brief	个人主页地址
  */
-@property (nonatomic,readonly) NSString *timezone;
-
+@property (nonatomic,readonly) NSString *url;
 
 /**
- *	@brief	权限
- *          The level of access permitted for the user.
+ *	@brief	个人简介
  */
-@property (nonatomic,readonly) SSEverNotePrivilegeLevel privilege;
+@property (nonatomic,readonly) NSString *aboutMe;
 
 /**
- *	@brief	创建时间
- *          The date and time when this user account was created in the service.
+ *	@brief	认证类型：－1 未知； 0 未认证； 1 认证
  */
-@property (nonatomic,readonly) long long created;
+@property (nonatomic,readonly) NSInteger verifyType;
 
 /**
- *	@brief	最近一次修改时间
- *          The date and time when this user account was last modified in the service.
+ *	@brief	认证信息
  */
-@property (nonatomic,readonly) long long updated;
+@property (nonatomic,readonly) NSString *verifyReason;
 
 /**
- *	@brief	删除时间
- *          If the account has been deleted from the system (e.g. as the result of a legal request by the user),
- *          the date and time of the deletion will be represented here. If not, this value will not be set.
+ *	@brief	用户生日（单位：秒）
  */
-@property (nonatomic,readonly) long long deleted;
+@property (nonatomic,readonly) NSString *birthday;
 
 /**
- *	@brief	是否有效
- *          If the user account is available for login and synchronization, this flag will be set to true.
+ *	@brief	用户粉丝数
  */
-@property (nonatomic,readonly) BOOL active;
+@property (nonatomic,readonly) NSInteger followerCount;
 
 /**
- *	@brief	此字段已过时
+ *	@brief	用户关注数
  */
-@property (nonatomic,readonly) NSString *shardId;
+@property (nonatomic,readonly) NSInteger friendCount;
 
 /**
- *	@brief	用户属性对象
- *          If present, this will contain a list of the attributes for this user account.
+ *	@brief	用户分享数
  */
-@property (nonatomic,readonly) SSEverNoteUserAttributes *attributes;
+@property (nonatomic,readonly) NSInteger shareCount;
 
 /**
- *	@brief	簿记用户的订阅信息
- *          Bookkeeping information for the user's subscription.
+ *	@brief	用户的注册时间（单位：秒）
  */
-@property (nonatomic,readonly) SSEverNoteAccounting *accounting;
+@property (nonatomic,readonly) NSTimeInterval regAt;
 
 /**
- *	@brief	地价信息
- *          If present, this will contain a set of commerce information relating to the user's premium service level.
+ *	@brief	用户等级
  */
-@property (nonatomic,readonly) SSEverNotePremiumInfo *premiumInfo;
+@property (nonatomic,readonly) NSInteger level;
 
 /**
- *	@brief	创建用户信息
+ *	@brief	用户的教育信息列表
+ */
+@property (nonatomic,readonly) NSArray *educations;
+
+/**
+ *	@brief	用户的职业信息列表
+ */
+@property (nonatomic,readonly) NSArray *works;
+
+/**
+ *	@brief	初始化化用户信息
  *
- *	@param 	reader 	数据读取器
+ *	@param 	app 	应用信息
  *
  *	@return	用户信息对象
  */
-+ (SSEverNoteUser *)userWithResponse:(id<ISSEverNoteDataOutput>)reader;
-
-/**
- *	@brief	解析数据并转化为用户信息
- *
- *	@param 	reader 	数据读取器
- */
-- (void)parse:(id<ISSEverNoteDataOutput>)reader;
-
-/**
- *	@brief	创建用户信息描述器
- *
- *	@return	描述器对象
- */
-- (id<ISSCUserDescriptor>)descriptor;
+- (id)initWithApp:(id<ISSPlatformApp>)app;
 
 @end

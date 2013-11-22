@@ -8,134 +8,52 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SSSinaWeiboVisible.h"
-#import "SSSinaWeiboGeo.h"
 #import <ShareSDKCoreService/ShareSDKCoreService.h>
-
-@class SSSinaWeiboUser;
+#import <ShareSDK/ShareSDKPlugin.h>
 
 /**
  *	@brief	微博信息
  */
-@interface SSSinaWeiboStatus : NSObject <NSCoding,
+@interface SSSinaWeiboStatus : NSObject <ISSPlatformShareInfo,
+                                         NSCoding,
                                          ISSCDataObject>
 {
 @private
-    NSMutableDictionary *_sourceData;
+    NSDictionary *_sourceData;
+    NSString *_sid;
+    NSString *_text;
+    NSArray *_urls;
+    NSArray *_imgs;
+    NSDictionary *_extInfo;
 }
 
 /**
- *	@brief	微博创建时间
+ *	@brief	分享ID
  */
-@property (nonatomic,readonly) NSString *createdAt;
+@property (nonatomic,copy) NSString *sid;
 
 /**
- *	@brief	字符串型的微博ID
+ *	@brief	分享内容
  */
-@property (nonatomic,readonly) NSString *sidStr;
+@property (nonatomic,copy) NSString *text;
 
 /**
- *	@brief	微博ID
+ *	@brief	分享的链接列表
  */
-@property (nonatomic,readonly) long long sid;
+@property (nonatomic,retain) NSArray *urls;
 
 /**
- *	@brief	微博MID
+ *	@brief	分享的图片列表
  */
-@property (nonatomic,readonly) long long mid;
+@property (nonatomic,retain) NSArray *imgs;
 
 /**
- *	@brief	微博信息内容
+ *	@brief	扩展信息
  */
-@property (nonatomic,readonly) NSString *text;
+@property (nonatomic,retain) NSDictionary *extInfo;
 
 /**
- *	@brief	微博来源
- */
-@property (nonatomic,readonly) NSString *source;
-
-/**
- *	@brief	是否已收藏，true：是，false：否
- */
-@property (nonatomic,readonly) BOOL favorited;
-
-/**
- *	@brief	是否被截断，true：是，false：否
- */
-@property (nonatomic,readonly) BOOL truncated;
-
-/**
- *	@brief	回复ID
- */
-@property (nonatomic,readonly) NSString *inReplyToStatusId;
-
-/**
- *	@brief	回复人UID
- */
-@property (nonatomic,readonly) NSString *inReplyToUserId;
-
-/**
- *	@brief	回复人昵称
- */
-@property (nonatomic,readonly) NSString *inReplyToScreenName;
-
-/**
- *	@brief	缩略图片地址，没有时不返回此字段
- */
-@property (nonatomic,readonly) NSString *thumbnailPic;
-
-/**
- *	@brief	中等尺寸图片地址，没有时不返回此字段
- */
-@property (nonatomic,readonly) NSString *bmiddlePic;
-
-/**
- *	@brief	原始图片地址，没有时不返回此字段
- */
-@property (nonatomic,readonly) NSString *originalPic;
-
-/**
- *	@brief	地理信息字段
- */
-@property (nonatomic,readonly) SSSinaWeiboGeo *geo;
-
-/**
- *	@brief	微博作者的用户信息字段
- */
-@property (nonatomic,readonly) SSSinaWeiboUser *user;
-
-/**
- *	@brief	转发数
- */
-@property (nonatomic,readonly) NSInteger repostsCount;
-
-/**
- *	@brief	评论数
- */
-@property (nonatomic,readonly) NSInteger commentsCount;
-
-/**
- *	@brief	暂未支持
- */
-@property (nonatomic,readonly) NSInteger attitudesCount;
-
-/**
- *	@brief	暂未支持
- */
-@property (nonatomic,readonly) NSInteger mlevel;
-
-/**
- *	@brief	微博的可见性及指定可见分组信息
- */
-@property (nonatomic,readonly) SSSinaWeiboVisible *visible;
-
-/**
- *	@brief	被转发微博信息
- */
-@property (nonatomic,readonly) SSSinaWeiboStatus *retweetedStatus;
-
-/**
- *	@brief	源数据
+ *	@brief	原始数据
  */
 @property (nonatomic,retain) NSDictionary *sourceData;
 

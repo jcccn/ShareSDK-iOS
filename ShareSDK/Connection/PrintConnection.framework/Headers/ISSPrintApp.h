@@ -10,32 +10,12 @@
 #import <Foundation/Foundation.h>
 #import <ShareSDKCoreService/ShareSDKCoreService.h>
 #import "SSPrintErrorInfo.h"
+#import <ShareSDK/ShareSDKPlugin.h>
 
 /**
  *	@brief	打印应用协议
  */
-@protocol ISSPrintApp <ISSCOpenApp>
-
-/**
- *	@brief	登录帐户
- *
- *	@return	帐户信息
- */
-- (id<ISSCAccount>)account;
-
-/**
- *	@brief	获取是否转换链接标识
- *
- *	@return	YES 表示转换链接，NO 表示不转换链接
- */
-- (BOOL)convertUrlEnabled;
-
-/**
- *	@brief	设置是否转换链接标识
- *
- *	@param 	enabled 	YES 表示转换链接，NO 表示不转换链接
- */
-- (void)setConvertUrlEnabled:(BOOL)enabled;
+@protocol ISSPrintApp <ISSPlatformApp>
 
 /**
  *	@brief	打印
@@ -50,7 +30,7 @@
                     text:(NSString *)text
                      pic:(id<ISSCAttachment>)pic
                container:(UIViewController *)container
-                  result:(void(^)(SSCShareSessionState state, SSPrintErrorInfo *error))result;
+                  result:(SSShareResultEvent)result;
 
 
 @end

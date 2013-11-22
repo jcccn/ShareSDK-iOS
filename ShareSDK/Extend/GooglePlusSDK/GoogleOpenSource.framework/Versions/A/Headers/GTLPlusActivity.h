@@ -26,7 +26,7 @@
 // Documentation:
 //   https://developers.google.com/+/api/
 // Classes:
-//   GTLPlusActivity (0 custom class methods, 19 custom properties)
+//   GTLPlusActivity (0 custom class methods, 20 custom properties)
 //   GTLPlusActivityActor (0 custom class methods, 5 custom properties)
 //   GTLPlusActivityObject (0 custom class methods, 10 custom properties)
 //   GTLPlusActivityProvider (0 custom class methods, 1 custom properties)
@@ -67,6 +67,7 @@
 @class GTLPlusActivityObjectReplies;
 @class GTLPlusActivityObjectResharers;
 @class GTLPlusActivityProvider;
+@class GTLPlusPlace;
 
 // ----------------------------------------------------------------------------
 //
@@ -106,6 +107,9 @@
 // Identifies this resource as an activity. Value: "plus#activity".
 @property (copy) NSString *kind;
 
+// The location where this activity occurred.
+@property (retain) GTLPlusPlace *location;
+
 // The object of this activity.
 @property (retain) GTLPlusActivityObject *object;
 
@@ -136,8 +140,8 @@
 // The link to this activity.
 @property (copy) NSString *url;
 
-// This activity's verb, indicating what action was performed. Possible values
-// are:
+// This activity's verb, which indicates the action that was performed. Possible
+// values include, but are not limited to, the following values:
 // - "post" - Publish content to the stream.
 // - "share" - Reshare an activity.
 @property (copy) NSString *verb;
@@ -155,7 +159,7 @@
 // The name of the actor, suitable for display.
 @property (copy) NSString *displayName;
 
-// The ID of the actor's person resource.
+// The ID of the actor's Person resource.
 // identifier property maps to 'id' in JSON (to avoid Objective C's 'id').
 @property (copy) NSString *identifier;
 
@@ -178,29 +182,29 @@
 
 @interface GTLPlusActivityObject : GTLObject
 
-// If this activity's object is itself another activity (for example, when a
-// person reshares an activity), this property specifies the original activity's
-// actor.
+// If this activity's object is itself another activity, such as when a person
+// reshares an activity, this property specifies the original activity's actor.
 @property (retain) GTLPlusActivityObjectActor *actor;
 
 // The media objects attached to this activity.
 @property (retain) NSArray *attachments;  // of GTLPlusActivityObjectAttachmentsItem
 
-// The HTML-formatted content, suitable for display.
+// The HTML-formatted content, which is suitable for display.
 @property (copy) NSString *content;
 
 // The ID of the object. When resharing an activity, this is the ID of the
-// activity being reshared.
+// activity that is being reshared.
 // identifier property maps to 'id' in JSON (to avoid Objective C's 'id').
 @property (copy) NSString *identifier;
 
-// The type of the object. Possible values are:
+// The type of the object. Possible values include, but are not limited to, the
+// following values:
 // - "note" - Textual content.
 // - "activity" - A Google+ activity.
 @property (copy) NSString *objectType;
 
-// The content (text) as provided by the author, stored without any HTML
-// formatting. When creating or updating an activity, this value must be
+// The content (text) as provided by the author, which is stored without any
+// HTML formatting. When creating or updating an activity, this value must be
 // supplied as plain text in the request.
 @property (copy) NSString *originalContent;
 
@@ -239,7 +243,7 @@
 
 @interface GTLPlusActivityActorImage : GTLObject
 
-// The URL of the actor's profile photo. To re-size the image and crop it to a
+// The URL of the actor's profile photo. To resize the image and crop it to a
 // square, append the query string ?sz=x, where x is the dimension in pixels of
 // each side.
 @property (copy) NSString *url;
@@ -254,10 +258,10 @@
 
 @interface GTLPlusActivityActorName : GTLObject
 
-// The family name (last name) of the actor.
+// The family name ("last name") of the actor.
 @property (copy) NSString *familyName;
 
-// The given name (first name) of the actor.
+// The given name ("first name") of the actor.
 @property (copy) NSString *givenName;
 
 @end
@@ -270,7 +274,7 @@
 
 @interface GTLPlusActivityObjectActor : GTLObject
 
-// The original actor's name, suitable for display.
+// The original actor's name, which is suitable for display.
 @property (copy) NSString *displayName;
 
 // ID of the original actor.
@@ -297,7 +301,7 @@
 // from the article. It can also include descriptions for other types.
 @property (copy) NSString *content;
 
-// The title of the attachment (such as a photo caption or an article title).
+// The title of the attachment, such as a photo caption or an article title.
 @property (copy) NSString *displayName;
 
 // If the attachment is a video, the embeddable link.
@@ -313,18 +317,19 @@
 // The preview image for photos or videos.
 @property (retain) GTLPlusActivityObjectAttachmentsItemImage *image;
 
-// The type of media object. Possible values are:
+// The type of media object. Possible values include, but are not limited to,
+// the following values:
 // - "photo" - A photo.
 // - "album" - A photo album.
 // - "video" - A video.
 // - "article" - An article, specified by a link.
 @property (copy) NSString *objectType;
 
-// If the attachment is an album, potential additional thumbnails from the
-// album.
+// If the attachment is an album, this property is a list of potential
+// additional thumbnails from the album.
 @property (retain) NSArray *thumbnails;  // of GTLPlusActivityObjectAttachmentsItemThumbnailsItem
 
-// The link to the attachment, should be of type text/html.
+// The link to the attachment; should be of type text/html.
 @property (copy) NSString *url;
 
 @end
@@ -420,7 +425,7 @@
 // Media type of the link.
 @property (copy) NSString *type;
 
-// URL to the image.
+// URL of the image.
 @property (copy) NSString *url;
 
 // The width, in pixels, of the linked resource.
@@ -442,7 +447,7 @@
 // Media type of the link.
 @property (copy) NSString *type;
 
-// Image url.
+// Image URL.
 @property (copy) NSString *url;
 
 // The width, in pixels, of the linked resource.
@@ -465,7 +470,7 @@
 // Image resource.
 @property (retain) GTLPlusActivityObjectAttachmentsItemThumbnailsItemImage *image;
 
-// URL to the webpage containing the image.
+// URL of the webpage containing the image.
 @property (copy) NSString *url;
 
 @end

@@ -9,20 +9,12 @@
 
 #import <UIKit/UIKit.h>
 #import "ISSPrintApp.h"
+#import <ShareSDK/ShareSDKPlugin.h>
 
 /**
  *	@brief	打印链接器
  */
-@interface PrintConnection : NSObject
-
-/**
- *	@brief	注册应用
- *
- *	@param 	account 	帐号
- *
- *	@return	应用对象
- */
-+ (id<ISSPrintApp>)registerApp:(id<ISSCAccount>)account;
+@interface PrintConnection : NSObject <ISSPlatform>
 
 
 @end

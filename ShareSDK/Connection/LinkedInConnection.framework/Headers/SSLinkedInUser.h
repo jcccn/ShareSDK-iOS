@@ -10,157 +10,120 @@
 #import <ShareSDKCoreService/SSCDataObject.h>
 #import <ShareSDKCoreService/ISSCUserDescriptor.h>
 #import "SSLinkedInCredential.h"
-#import "SSLinkedInApiStandardProfileRequest.h"
-#import "SSLinkedInLocation.h"
-#import "SSLinkedInPositions.h"
-#import "SSLinkedInRelationToViewer.h"
-#import "SSLinkedInSiteStandardProfileRequest.h"
 
 /**
  *	@brief	用户信息
  */
-@interface SSLinkedInUser : SSCDataObject
-{
-@private
-    SSLinkedInCredential *_credential;
-}
+@interface SSLinkedInUser : NSObject <ISSPlatformUser,
+                                      NSCoding,
+                                      ISSCDataObject>
+/**
+ *	@brief	所属平台
+ */
+@property (nonatomic,readonly) id<ISSPlatformApp> app;
 
 /**
  *	@brief	授权信息，如果为nil则表示非当前应用授权用户
  */
-@property (nonatomic,retain) SSLinkedInCredential *credential;
+@property (nonatomic,retain) id<ISSPlatformCredential> credential;
 
 /**
- *	@brief	a unique identifier token for this member
+ *	@brief	用户的原始数据信息，与各个平台定义的用户信息结构相同
+ */
+@property (nonatomic,retain) NSDictionary *sourceData;
+
+/**
+ *	@brief	平台类型
+ */
+@property (nonatomic,readonly) ShareType type;
+
+/**
+ *	@brief	用户ID
  */
 @property (nonatomic,readonly) NSString *uid;
 
 /**
- *	@brief	the member's first name
+ *	@brief	用户昵称
  */
-@property (nonatomic,readonly) NSString *firstName;
+@property (nonatomic,readonly) NSString *nickname;
 
 /**
- *	@brief	the member's last name
+ *	@brief	个人头像路径
  */
-@property (nonatomic,readonly) NSString *lastName;
+@property (nonatomic,readonly) NSString *profileImage;
 
 /**
- *	@brief	the member's maiden name
+ *	@brief	性别：0 男； 1 女； 2 未知
  */
-@property (nonatomic,readonly) NSString *maidenName;
+@property (nonatomic,readonly) NSInteger gender;
 
 /**
- *	@brief	the member's name formatted based on language
+ *	@brief	个人主页地址
  */
-@property (nonatomic,readonly) NSString *formattedName;
+@property (nonatomic,readonly) NSString *url;
 
 /**
- *	@brief	the member's first name spelled phonetically
+ *	@brief	个人简介
  */
-@property (nonatomic,readonly) NSString *phoneticFirstName;
+@property (nonatomic,readonly) NSString *aboutMe;
 
 /**
- *	@brief	the member's last name spelled phonetically
+ *	@brief	认证类型：－1 未知； 0 未认证； 1 认证
  */
-@property (nonatomic,readonly) NSString *phoneticLastName;
+@property (nonatomic,readonly) NSInteger verifyType;
 
 /**
- *	@brief	the member's name spelled phonetically and formatted based on language
+ *	@brief	认证信息
  */
-@property (nonatomic,readonly) NSString *formattedPhoneticName;
+@property (nonatomic,readonly) NSString *verifyReason;
 
 /**
- *	@brief	the member's headline (often "Job Title at Company")
+ *	@brief	用户生日（单位：秒）
  */
-@property (nonatomic,readonly) NSString *headline;
+@property (nonatomic,readonly) NSString *birthday;
 
 /**
- *	@brief	the industry the LinkedIn member has indicated their profile belongs to (Industry Codes)
+ *	@brief	用户粉丝数
  */
-@property (nonatomic,readonly) NSString *industry;
+@property (nonatomic,readonly) NSInteger followerCount;
 
 /**
- *	@brief	the degree distance of the fetched profile from the member who fetched the profile
+ *	@brief	用户关注数
  */
-@property (nonatomic,readonly) NSInteger distance;
+@property (nonatomic,readonly) NSInteger friendCount;
 
 /**
- *	@brief	Overloaded to also return "current-status" (if there is no URL shared). (Status and share are the same.)
+ *	@brief	用户分享数
  */
-@property (nonatomic,readonly) NSString *currentShare;
+@property (nonatomic,readonly) NSInteger shareCount;
 
 /**
- *	@brief	the # of connections the member has
+ *	@brief	用户的注册时间（单位：秒）
  */
-@property (nonatomic,readonly) NSInteger numConnections;
+@property (nonatomic,readonly) NSTimeInterval regAt;
 
 /**
- *	@brief	true if the value of num-connections has been capped at 500. false otherwise.
+ *	@brief	用户等级
  */
-@property (nonatomic,readonly) BOOL numConnectionsCapped;
+@property (nonatomic,readonly) NSInteger level;
 
 /**
- *	@brief	A long-form text area where the member describes their professional profile
+ *	@brief	用户的教育信息列表
  */
-@property (nonatomic,readonly) NSString *summary;
+@property (nonatomic,readonly) NSArray *educations;
 
 /**
- *	@brief	A short-form text area where the member enumerates their specialties
+ *	@brief	用户的职业信息列表
  */
-@property (nonatomic,readonly) NSString *specialties;
+@property (nonatomic,readonly) NSArray *works;
 
 /**
- *	@brief	A collection of positions a member has had, the total indicated by a total attribute
- */
-@property (nonatomic,readonly) SSLinkedInPositions *positions;
-
-/**
- *	@brief	A URL to the profile picture, if the member has associated one with their profile and it is visible to the requestor
- */
-@property (nonatomic,readonly) NSString *pictureUrl;
-
-/**
- *	@brief	The URL to the member's authenticated profile on LinkedIn (requires a login to be viewed, unlike public profiles)
- */
-@property (nonatomic,readonly) SSLinkedInSiteStandardProfileRequest *siteStandardProfileRequest;
-
-/**
- *	@brief	A URL to the member's public profile, if enabled
- */
-@property (nonatomic,readonly) NSString *publicProfileUrl;
-
-/**
- *	@brief	
- */
-@property (nonatomic,readonly) SSLinkedInRelationToViewer *relationToViewer;
-
-
-/**
- *	@brief	标准个人信息请求信息
- */
-@property (nonatomic,readonly) SSLinkedInApiStandardProfileRequest *apiStandardProfileRequest;
-
-/**
- *	@brief	位置信息
- */
-@property (nonatomic,readonly) SSLinkedInLocation *location;
-
-
-/**
- *	@brief	创建用户信息
+ *	@brief	初始化化用户信息
  *
- *	@param 	response 	服务器返回数据
+ *	@param 	app 	应用信息
  *
  *	@return	用户信息对象
  */
-+ (SSLinkedInUser *)userWithResponse:(NSDictionary *)response;
-
-/**
- *	@brief	创建用户信息描述器
- *
- *	@return	描述器对象
- */
-- (id<ISSCUserDescriptor>)descriptor;
+- (id)initWithApp:(id<ISSPlatformApp>)app;
 
 @end

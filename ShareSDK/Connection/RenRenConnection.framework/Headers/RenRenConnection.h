@@ -9,73 +9,24 @@
 
 #import <UIKit/UIKit.h>
 #import "ISSRenRenApp.h"
+#import <ShareSDK/ShareSDKPlugin.h>
 
 /**
  *	@brief	人人连接器
  */
-@interface RenRenConnection : NSObject
+@interface RenRenConnection : NSObject <ISSPlatform>
 
 /**
- *	@brief	注册应用,同一个AppKey只需要注册一次。
+ *	@brief	创建应用配置信息
  *
- *  @param  account 授权帐号，使用ShareSDK注册的应用Key换取。
- *  @param  appId   应用ID
- *	@param 	appKey 	应用Key
+ *	@param 	appId 	应用标识
+ *  @param  appKey  应用key
  *	@param 	appSecret 	应用密钥
- *  @param  renrenClientClass   人人SDK客户端类型, 应传入[RennClient class];
  *
- *	@return	应用对象,返回nil则表示应用注册失败。
+ *	@return	应用配置信息
  */
-+ (id<ISSRenRenApp>)registerApp:(id<ISSCAccount>)account
-                          appId:(NSString *)appId
-                         appKey:(NSString *)appKey
-                      appSecret:(NSString *)appSecret
-              renrenClientClass:(Class)renrenClientClass;
-
-/**
- *	@brief	注销应用
- *
- *	@param 	app 	应用对象
- *
- *	@return	YES表示注销成功，NO表示注销失败
- */
-+ (BOOL)unregisterApp:(id<ISSRenRenApp>)app;
-
-
-/**
- *	@brief	取的已注册新浪应用
- *
- *	@param 	appKey 	应用Key
- *
- *	@return	应用对象，返回nil则表示应用尚未注册
- */
-+ (id<ISSRenRenApp>)getApp:(NSString *)appKey;
-
-/**
- *	@brief	创建授权凭证
- *
- *	@param 	sourceData 	源数据
- *
- *	@return	授权凭证
- */
-+ (SSRenRenCredential *)credentialWithData:(NSDictionary *)sourceData;
-
-/**
- *	@brief	创建授权凭证
- *
- *	@param 	credentialData 	授权数据
- *
- *	@return	授权凭证
- */
-+ (SSRenRenCredential *)credentialWithCredentialData:(NSDictionary *)credentialData;
-
-/**
- *	@brief	根据人人网错误码返回错误描述
- *
- *	@param 	code 	错误码
- *
- *	@return	错误描述
- */
-+ (NSString *)getErrorDescriptionWithCode:(NSInteger)code;
+- (NSDictionary *)appInfoWithAppId:(NSString *)appId
+                            appKey:(NSString *)appKey
+                         appSecret:(NSString *)appSecret;
 
 @end

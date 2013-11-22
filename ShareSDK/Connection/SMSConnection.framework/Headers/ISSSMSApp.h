@@ -10,32 +10,20 @@
 #import <Foundation/Foundation.h>
 #import <ShareSDKCoreService/ShareSDKCoreService.h>
 #import "SSSMSErrorInfo.h"
+#import <ShareSDK/ShareSDK.h>
 
 /**
  *	@brief	短信应用协议
  */
-@protocol ISSSMSApp <ISSCOpenApp>
+@protocol ISSSMSApp <ISSPlatformApp>
 
 /**
- *	@brief	登录帐户
+ *	@brief	设置视图委托
  *
- *	@return	帐户信息
+ *	@param 	viewDelegate 	视图委托
  */
-- (id<ISSCAccount>)account;
+- (void)setViewDelegate:(id<ISSViewDelegate>)viewDelegate;
 
-/**
- *	@brief	获取是否转换链接标识
- *
- *	@return	YES 表示转换链接，NO 表示不转换链接
- */
-- (BOOL)convertUrlEnabled;
-
-/**
- *	@brief	设置是否转换链接标识
- *
- *	@param 	enabled 	YES 表示转换链接，NO 表示不转换链接
- */
-- (void)setConvertUrlEnabled:(BOOL)enabled;
 
 /**
  *	@brief	发送短信息
@@ -47,8 +35,8 @@
  */
 - (void)sendText:(NSString *)text
        container:(UIViewController *)container
-    viewDelegate:(id)viewDelegate
-          result:(void(^)(SSCShareSessionState state, SSSMSErrorInfo *error))result;
+    viewDelegate:(id<ISSViewDelegate>)viewDelegate
+          result:(SSShareResultEvent)result;
 
 
 @end

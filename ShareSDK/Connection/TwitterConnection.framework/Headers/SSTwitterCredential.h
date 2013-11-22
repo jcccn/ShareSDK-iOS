@@ -8,58 +8,53 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <ShareSDK/ShareSDKPlugin.h>
 
 /**
  *	@brief	授权凭证
  */
-@interface SSTwitterCredential : NSObject <NSCoding>
+@interface SSTwitterCredential : NSObject <ISSPlatformCredential,
+                                           NSCoding>
 {
 @private
-    NSMutableDictionary *_sourceData;
+    NSString *_uid;
+    NSString *_token;
+    NSString *_secret;
+    NSDictionary *_extInfo;
 }
 
 /**
- *	@brief	源数据
+ *	@brief	扩展数据
  */
-@property (nonatomic,retain) NSDictionary *sourceData;
-
-/**
- *	@brief	OAuth令牌
- */
-@property (nonatomic,readonly) NSString *oauthToken;
-
-/**
- *	@brief	OAuth令牌密钥
- */
-@property (nonatomic,readonly) NSString *oauthTokenSecret;
+@property (nonatomic,retain) NSDictionary *extInfo;
 
 /**
  *	@brief	用户ID
  */
-@property (nonatomic,readonly) long long uid;
+@property (nonatomic,copy) NSString *uid;
 
 /**
- *	@brief	凭证有效性
+ *	@brief	Access Token
+ */
+@property (nonatomic,copy) NSString *token;
+
+/**
+ *	@brief	过期时间
+ */
+@property (nonatomic,retain) NSString *secret;
+
+/**
+ *	@brief	判断授权数据是否有效
  */
 @property (nonatomic,readonly) BOOL available;
 
-
 /**
- *	@brief	初始化授权信息
+ *	@brief	使用原始数据创建授权凭证
  *
- *	@param 	sourceData 	源授权数据
- *
- *	@return	授权信息
- */
-- (id)initWithData:(NSDictionary *)sourceData;
-
-/**
- *	@brief	初始化授权凭证
- *
- *	@param 	credentialData 	授权凭证数据
+ *	@param 	sourceData 	原始数据
  *
  *	@return	授权凭证
  */
-- (id)initWithCredentialData:(NSDictionary *)credentialData;
++ (SSTwitterCredential *)credentialWithSourceData:(NSDictionary *)sourceData;
 
 @end

@@ -9,11 +9,10 @@
 
 #import <Foundation/Foundation.h>
 #import <ShareSDKCoreService/ShareSDKCoreService.h>
-#import "ISSRenRenAuthSession.h"
 #import "SSRenRenUser.h"
 #import "SSRenRenErrorInfo.h"
-#import "SSRenRenPhoto.h"
 #import "SSRenRenPost.h"
+#import <ShareSDK/ShareSDKPlugin.h>
 
 /**
  *	@brief	新浪微博请求方式
@@ -29,14 +28,7 @@ SSRenRenRequestMethod;
 /**
  *	@brief	人人网应用协议
  */
-@protocol ISSRenRenApp <ISSCOpenApp>
-
-/**
- *	@brief	获取授权帐号
- *
- *	@return	授权帐号
- */
-- (id<ISSCAccount>)account;
+@protocol ISSRenRenApp <ISSPlatformApp>
 
 /**
  *	@brief	获取应用ID
@@ -68,115 +60,6 @@ SSRenRenRequestMethod;
 - (NSString *)ssoCallbackUrl;
 
 /**
- *	@brief	SSO登录使能状态
- */
-- (BOOL)ssoEnabled;
-
-/**
- *	@brief	设置SSO登录使能状态
- */
-- (void)setSsoEnabled:(BOOL)ssoEnabled;
-
-/**
- *	@brief	获取是否转换链接标识
- *
- *	@return	YES 表示转换链接，NO 表示不转换链接
- */
-- (BOOL)convertUrlEnabled;
-
-/**
- *	@brief	设置是否转换链接标识
- *
- *	@param 	enabled 	YES 表示转换链接，NO 表示不转换链接
- */
-- (void)setConvertUrlEnabled:(BOOL)enabled;
-
-/**
- *	@brief	处理请求打开链接
- *
- *	@param 	url 	链接
- *
- *	@return	YES 表示接受请求 NO 表示不接受
- */
-- (BOOL)handleOpenURL:(NSURL *)url;
-
-
-/**
- *	@brief	处理请求打开链接
- *
- *	@param 	url 	链接
- *	@param 	sourceApplication 	源应用
- *	@param 	annotation 	源应用提供的信息
- *
- *	@return	YES 表示接受请求，NO 表示不接受请求
- */
-- (BOOL)handleOpenURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation;
-
-/**
- *	@brief	授权应用
- *
- *	@return	授权会话
- */
-- (id<ISSRenRenAuthSession>)authorize;
-
-/**
- *	@brief	注册用户信息
- *
- *	@param 	user 	用户信息
- *
- *	@return	YES 表示注册成功， NO 表示注册失败
- */
-- (BOOL)registerUser:(SSRenRenUser *)user;
-
-/**
- *	@brief	注销用户信息
- *
- *	@param 	user 	用户信息
- *
- *	@return	YES 表示注销成功， NO 表示注销失败
- */
-- (BOOL)unregisterUser:(SSRenRenUser *)user;
-
-/**
- *	@brief	获取注册用户信息
- *
- *	@param 	uid 	用户ID
- *
- *	@return	返回用户信息，nil表示尚未注册
- */
-- (SSRenRenUser *)getUser:(long long)uid;
-
-/**
- *	@brief	获取默认注册用户
- *
- *	@return	默认注册用户
- */
-- (SSRenRenUser *)defaultUser;
-
-/**
- *	@brief	设置默认注册用户
- *
- *	@param 	defaultUser 	默认注册用户
- */
-- (void)setDefaultUser:(SSRenRenUser *)defaultUser;
-
-/**
- *	@brief	检测用户是否已授权
- *
- *	@param 	error 	错误信息
- *
- *	@return	YES 表示没有授权，NO 表示已授权
- */
-- (BOOL)checkUnauthWithError:(SSRenRenErrorInfo *)error;
-
-/**
- *	@brief	设置凭证
- *
- *	@param 	credential 	授权凭证信息
- */
-- (void)setCredential:(SSRenRenCredential *)credential;
-
-/**
  *	@brief	调用开放平台API
  *
  *	@param 	path 	方法
@@ -188,27 +71,9 @@ SSRenRenRequestMethod;
 - (void)api:(NSString *)path
      method:(SSRenRenRequestMethod)method
      params:(id<ISSCParameters>)params
-       user:(SSRenRenUser *)user
+       user:(id<ISSPlatformUser>)user
      result:(void(^)(id responder))result
-      fault:(void(^)(SSRenRenErrorInfo *error))fault;
-
-
-/**
- *	@brief	显示授权用户信息
- *
- *	@param 	user 	授权用户,为nil则为默认用户
- *  @param  result  返回回调
- */
-- (void)showMe:(void(^)(BOOL result, SSRenRenUser *userInfo, SSRenRenErrorInfo *error))result;
-
-/**
- *	@brief	获取用户信息
- *
- *	@param 	uid 	用户ID
- *  @param  result  返回回调
- */
-- (void)getUserInfoWithUid:(long long)uid
-                    result:(void(^)(BOOL result, SSRenRenUser *userInfo, SSRenRenErrorInfo *error))result;
+      fault:(void(^)(CMErrorInfo *error))fault;
 
 /**
  *	@brief	上传照片
@@ -219,8 +84,8 @@ SSRenRenRequestMethod;
  */
 - (void)uploadPhoto:(id<ISSCAttachment>)file
         description:(NSString *)description
-            albumId:(long)albumId
-             result:(void(^)(BOOL result, SSRenRenPhoto *photo, SSRenRenErrorInfo *error))result;
+            albumId:(NSNumber *)albumId
+             result:(void(^)(BOOL result, id photo, CMErrorInfo *error))result;
 
 /**
  *	@brief	发布新鲜事
@@ -238,6 +103,6 @@ SSRenRenRequestMethod;
                     message:(NSString *)message
                       image:(NSString *)image
                     caption:(NSString *)caption
-                     result:(void(^)(SSCShareSessionState state, SSRenRenPost *post, SSRenRenErrorInfo *error))result;
+                     result:(SSShareResultEvent)result;
 
 @end

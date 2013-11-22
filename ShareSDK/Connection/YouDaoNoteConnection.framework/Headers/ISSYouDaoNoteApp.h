@@ -12,8 +12,8 @@
 #import "ISSYouDaoNoteAuthSession.h"
 #import "SSYouDaoNoteUser.h"
 #import "SSYouDaoNoteErrorInfo.h"
-#import "SSYouDaoNoteResource.h"
 #import "SSYouDaoNoteNote.h"
+#import <ShareSDK/ShareSDKPlugin.h>
 
 /**
  *	@brief	请求方式
@@ -29,14 +29,7 @@ SSYouDaoNoteRequestMethod;
 /**
  *	@brief	有道云笔记应用
  */
-@protocol ISSYouDaoNoteApp <ISSCOpenApp>
-
-/**
- *	@brief	获取授权帐号
- *
- *	@return	授权帐号
- */
-- (id<ISSCAccount>)account;
+@protocol ISSYouDaoNoteApp <ISSPlatformApp>
 
 /**
  *	@brief	获取消费者Key
@@ -60,84 +53,6 @@ SSYouDaoNoteRequestMethod;
 - (NSString *)redirectUri;
 
 /**
- *	@brief	获取是否转换链接标识
- *
- *	@return	YES 表示转换链接，NO 表示不转换链接
- */
-- (BOOL)convertUrlEnabled;
-
-/**
- *	@brief	设置是否转换链接标识
- *
- *	@param 	enabled 	YES 表示转换链接，NO 表示不转换链接
- */
-- (void)setConvertUrlEnabled:(BOOL)enabled;
-
-/**
- *	@brief	授权应用
- *
- *	@return	授权会话
- */
-- (id<ISSYouDaoNoteAuthSession>)authorize;
-
-/**
- *	@brief	注册用户信息
- *
- *	@param 	user 	用户信息
- *
- *	@return	YES 表示注册成功， NO 表示注册失败
- */
-- (BOOL)registerUser:(SSYouDaoNoteUser *)user;
-
-/**
- *	@brief	注销用户信息
- *
- *	@param 	user 	用户信息
- *
- *	@return	YES 表示注销成功， NO 表示注销失败
- */
-- (BOOL)unregisterUser:(SSYouDaoNoteUser *)user;
-
-/**
- *	@brief	获取注册用户信息
- *
- *	@param 	uid 	用户ID
- *
- *	@return	返回用户信息，nil表示尚未注册
- */
-- (SSYouDaoNoteUser *)getUser:(NSString *)uid;
-
-/**
- *	@brief	获取默认注册用户
- *
- *	@return	默认注册用户
- */
-- (SSYouDaoNoteUser *)defaultUser;
-
-/**
- *	@brief	设置默认注册用户
- *
- *	@param 	defaultUser 	默认注册用户
- */
-- (void)setDefaultUser:(SSYouDaoNoteUser *)defaultUser;
-
-/**
- *	@brief	检测用户是否已授权
- *
- *	@param 	error 	错误信息
- *
- *	@return	YES 表示没有授权，NO 表示已授权
- */
-- (BOOL)checkUnauthWithError:(SSYouDaoNoteErrorInfo *)error;
-
-/**
- *	@brief	设置凭证
- *
- *	@param 	credential 	授权凭证信息
- */
-- (void)setCredential:(SSYouDaoNoteCredential *)credential;
-
-/**
  *	@brief	调用开放平台API
  *
  *	@param 	path 	路径
@@ -149,16 +64,9 @@ SSYouDaoNoteRequestMethod;
 - (void)api:(NSString *)path
      method:(SSYouDaoNoteRequestMethod)method
      params:(id<ISSCOAuthParameters>)params
-       user:(SSYouDaoNoteUser *)user
+       user:(id<ISSPlatformUser>)user
      result:(void(^)(id responder))result
-      fault:(void(^)(SSYouDaoNoteErrorInfo *error))fault;
-
-/**
- *	@brief	显示授权用户信息
- *
- *  @param  result  返回回调
- */
-- (void)showMe:(void(^)(BOOL result, SSYouDaoNoteUser *user, SSYouDaoNoteErrorInfo *error))result;
+      fault:(void(^)(CMErrorInfo *error))fault;
 
 /**
  *	@brief	上传附件
@@ -167,7 +75,7 @@ SSYouDaoNoteRequestMethod;
  *  @param  result  返回回调
  */
 - (void)uploadResource:(id<ISSCAttachment>)file
-                result:(void(^)(BOOL result, SSYouDaoNoteResource *resource, SSYouDaoNoteErrorInfo *error))result;
+                result:(void(^)(BOOL result, id resource, CMErrorInfo *error))result;
 
 
 /**
@@ -185,7 +93,7 @@ SSYouDaoNoteRequestMethod;
             author:(NSString *)author
              title:(NSString *)title
           notebook:(NSString *)notebook
-            result:(void(^)(SSCShareSessionState state, SSYouDaoNoteNote *note, SSYouDaoNoteErrorInfo *error))result;
+            result:(SSShareResultEvent)result;
 
 
 @end

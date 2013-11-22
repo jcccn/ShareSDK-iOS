@@ -8,9 +8,8 @@
 //
 
 #import "ShareSDKTypeDef.h"
-#import "ISSUserInfo.h"
 #import "ISSPage.h"
-#import "ISSStatusInfo.h"
+#import "ShareSDKPlugin.h"
 
 #ifndef ShareSDKInterface_ShareSDKEventHandlerDef_h
 #define ShareSDKInterface_ShareSDKEventHandlerDef_h
@@ -30,7 +29,7 @@ typedef void(^SSAuthEventHandler) (SSAuthState state, id<ICMErrorInfo> error);
  *  @param  userInfo     用户信息
  *  @param  error   获取失败的错误信息
  */
-typedef void(^SSGetUserInfoEventHandler) (BOOL result, id<ISSUserInfo> userInfo, id<ICMErrorInfo> error);
+typedef void(^SSGetUserInfoEventHandler) (BOOL result, id<ISSPlatformUser> userInfo, id<ICMErrorInfo> error);
 
 /**
  *	@brief	关注用户事件处理器
@@ -39,7 +38,7 @@ typedef void(^SSGetUserInfoEventHandler) (BOOL result, id<ISSUserInfo> userInfo,
  *  @param  userInfo  用户信息
  *  @param  error   关注失败的错误信息
  */
-typedef void(^SSFollowUserEventHandler) (SSResponseState state, id<ISSUserInfo> userInfo, id<ICMErrorInfo> error);
+typedef void(^SSFollowUserEventHandler) (SSResponseState state, id<ISSPlatformUser> userInfo, id<ICMErrorInfo> error);
 
 /**
  *	@brief	获取关注列表处理器
@@ -63,7 +62,7 @@ typedef void(^SSGetFriendsEventHandler) (BOOL result, NSArray *users, id<ISSPage
  *  @param  error   分享内容失败的错误信息
  *  @param  end     分享完毕标志，对于单个平台分享此值为YES，对于多个分享平台此值在最后一个平台分享完毕后为YES。
  */
-typedef void(^SSPublishContentEventHandler) (ShareType type, SSPublishContentState state, id<ISSStatusInfo> statusInfo, id<ICMErrorInfo> error, BOOL end);
+typedef void(^SSPublishContentEventHandler) (ShareType type, SSResponseState state, id<ISSPlatformShareInfo> statusInfo, id<ICMErrorInfo> error, BOOL end);
 
 /**
  *	@brief	分享菜单项点击事件处理器

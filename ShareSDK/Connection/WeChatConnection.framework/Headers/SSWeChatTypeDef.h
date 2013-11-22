@@ -15,8 +15,9 @@
  */
 typedef enum
 {
-	SSWeChatSceneSession = 0, /**< 好友 */
-	SSWeChatSceneTimeline = 1 /**< 朋友圈 */
+	SSWeChatSceneSession = 0,   /**< 好友 */
+	SSWeChatSceneTimeline = 1 , /**< 朋友圈 */
+    SSWeChatSceneFav = 2        /**< 收藏 */
 }
 SSWeChatScene;
 

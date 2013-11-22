@@ -11,9 +11,12 @@
 
 // GTM.
 #import "GTMDefines.h"
+#import "GTMGarbageCollection.h"
 #import "GTMHTTPFetcher.h"
+#import "GTMHTTPFetcherLogging.h"
 #import "GTMHTTPFetcherService.h"
 #import "GTMHTTPFetchHistory.h"
+#import "GTMHTTPUploadFetcher.h"
 #import "GTMLogger.h"
 #import "GTMMethodCheck.h"
 #import "GTMNSDictionary+URLArguments.h"
@@ -27,17 +30,19 @@
 #import "OpenInChromeController.h"
 
 // GTL.
-#import "GTLDefines.h"
+#import "GTLBase64.h"
 #import "GTLBatchQuery.h"
 #import "GTLBatchResult.h"
 #import "GTLDateTime.h"
+#import "GTLDefines.h"
 #import "GTLErrorObject.h"
+#import "GTLFramework.h"
+#import "GTLJSONParser.h"
 #import "GTLObject.h"
 #import "GTLQuery.h"
 #import "GTLRuntimeCommon.h"
 #import "GTLService.h"
-#import "GTLFramework.h"
-#import "GTLJSONParser.h"
+#import "GTLUploadParameters.h"
 #import "GTLUtilities.h"
 
 // GTLPlus.

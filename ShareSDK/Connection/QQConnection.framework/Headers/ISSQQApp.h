@@ -10,18 +10,12 @@
 #import <Foundation/Foundation.h>
 #import <ShareSDKCoreService/ShareSDKCoreService.h>
 #import "SSQQErrorInfo.h"
+#import <ShareSDK/ShareSDKPlugin.h>
 
 /**
  *	@brief	QQ应用协议
  */
-@protocol ISSQQApp <ISSCOpenApp>
-
-/**
- *	@brief	登录帐户
- *
- *	@return	帐户信息
- */
-- (id<ISSCAccount>)account;
+@protocol ISSQQApp <ISSPlatformApp>
 
 /**
  *	@brief	获取应用ID
@@ -29,41 +23,6 @@
  *	@return	应用ID
  */
 - (NSString *)appId;
-
-/**
- *	@brief	获取是否转换链接标识
- *
- *	@return	YES 表示转换链接，NO 表示不转换链接
- */
-- (BOOL)convertUrlEnabled;
-
-/**
- *	@brief	设置是否转换链接标识
- *
- *	@param 	enabled 	YES 表示转换链接，NO 表示不转换链接
- */
-- (void)setConvertUrlEnabled:(BOOL)enabled;
-
-/**
- *	@brief	处理请求打开链接
- *
- *	@param 	url 	链接
- *
- *	@return	YES 表示接受请求 NO 表示不接受
- */
-- (BOOL)handleOpenURL:(NSURL *)url;
-
-
-/**
- *	@brief	处理请求打开链接
- *
- *	@param 	url 	链接
- *	@param 	sourceApplication 	源应用
- *	@param 	annotation 	源应用提供的信息
- *
- *	@return	YES 表示接受请求，NO 表示不接受请求
- */
-- (BOOL)handleOpenURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation;
 
 
 /**
@@ -73,7 +32,7 @@
  *  @param  result  返回回调
  */
 - (void)sendText:(NSString *)text
-          result:(void(^)(SSCShareSessionState state, SSQQErrorInfo *error))result;
+          result:(SSShareResultEvent)result;
 
 /**
  *	@brief	分享图片信息
@@ -86,7 +45,7 @@
 - (void)sendPic:(NSString *)title
     description:(NSString *)description
             pic:(id<ISSCAttachment>)pic
-         result:(void(^)(SSCShareSessionState state, SSQQErrorInfo *error))result;
+         result:(SSShareResultEvent)result;
 
 
 /**
@@ -102,7 +61,7 @@
          content:(NSString *)content
              url:(NSString *)url
              pic:(id<ISSCAttachment>)pic
-          result:(void(^)(SSCShareSessionState state, SSQQErrorInfo *error))result;
+          result:(SSShareResultEvent)result;
 
 /**
  *	@brief	分享音乐信息
@@ -117,7 +76,7 @@
           content:(NSString *)content
               url:(NSString *)url
               pic:(id<ISSCAttachment>)pic
-           result:(void(^)(SSCShareSessionState state, SSQQErrorInfo *error))result;
+           result:(SSShareResultEvent)result;
 
 /**
  *	@brief	分享视频信息
@@ -132,7 +91,7 @@
           content:(NSString *)content
               url:(NSString *)url
               pic:(id<ISSCAttachment>)pic
-           result:(void(^)(SSCShareSessionState state, SSQQErrorInfo *error))result;
+           result:(SSShareResultEvent)result;
 
 
 @end

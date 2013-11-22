@@ -11,205 +11,125 @@
 #import "SSSinaWeiboCredential.h"
 #import <ShareSDKCoreService/ShareSDKCoreService.h>
 #import <ShareSDKCoreService/ISSCUserDescriptor.h>
+#import <ShareSDK/ShareSDKPlugin.h>
 
 @class SSSinaWeiboStatus;
 
 /**
  *	@brief	新浪微博用户信息
  */
-@interface SSSinaWeiboUser : NSObject <NSCoding,
+@interface SSSinaWeiboUser : NSObject <ISSPlatformUser,
+                                       NSCoding,
                                        ISSCDataObject>
-{
-@private
-    NSMutableDictionary *_sourceData;
-    SSSinaWeiboCredential *_credential;
-}
+
+/**
+ *	@brief	所属平台
+ */
+@property (nonatomic,readonly) id<ISSPlatformApp> app;
 
 /**
  *	@brief	授权信息，如果为nil则表示非当前应用授权用户
  */
-@property (nonatomic,retain) SSSinaWeiboCredential *credential;
+@property (nonatomic,retain) id<ISSPlatformCredential> credential;
 
 /**
- *	@brief	字符串型的用户UID
+ *	@brief	用户的原始数据信息，与各个平台定义的用户信息结构相同
+ */
+@property (nonatomic,retain) NSDictionary *sourceData;
+
+/**
+ *	@brief	平台类型
+ */
+@property (nonatomic,readonly) ShareType type;
+
+/**
+ *	@brief	用户ID
  */
 @property (nonatomic,readonly) NSString *uid;
 
 /**
  *	@brief	用户昵称
  */
-@property (nonatomic,readonly) NSString *screenName;
+@property (nonatomic,readonly) NSString *nickname;
 
 /**
- *	@brief	友好显示名称
+ *	@brief	个人头像路径
  */
-@property (nonatomic,readonly) NSString *name;
+@property (nonatomic,readonly) NSString *profileImage;
 
 /**
- *	@brief	用户所在省级ID
+ *	@brief	性别：0 男； 1 女； 2 未知
  */
-@property (nonatomic,readonly) NSInteger province;
+@property (nonatomic,readonly) NSInteger gender;
 
 /**
- *	@brief	用户所在城市ID
- */
-@property (nonatomic,readonly) NSInteger city;
-
-/**
- *	@brief	用户所在地
- */
-@property (nonatomic,readonly) NSString *location;
-
-/**
- *	@brief	用户个人描述
- */
-@property (nonatomic,readonly) NSString *description;
-
-/**
- *	@brief	用户博客地址
+ *	@brief	个人主页地址
  */
 @property (nonatomic,readonly) NSString *url;
 
 /**
- *	@brief	用户头像地址，50×50像素
+ *	@brief	个人简介
  */
-@property (nonatomic,readonly) NSString *profileImageUrl;
+@property (nonatomic,readonly) NSString *aboutMe;
 
 /**
- *	@brief	用户的微博统一URL地址
+ *	@brief	认证类型：－1 未知； 0 未认证； 1 认证
  */
-@property (nonatomic,readonly) NSString *profileUrl;
+@property (nonatomic,readonly) NSInteger verifyType;
 
 /**
- *	@brief	用户的个性化域名
+ *	@brief	认证信息
  */
-@property (nonatomic,readonly) NSString *domain;
+@property (nonatomic,readonly) NSString *verifyReason;
 
 /**
- *	@brief	用户的微号
+ *	@brief	用户生日（单位：秒）
  */
-@property (nonatomic,readonly) NSString *weihao;
+@property (nonatomic,readonly) NSString *birthday;
 
 /**
- *	@brief	性别，m：男、f：女、n：未知
+ *	@brief	用户粉丝数
  */
-@property (nonatomic,readonly) NSString *gender;
+@property (nonatomic,readonly) NSInteger followerCount;
 
 /**
- *	@brief	粉丝数
+ *	@brief	用户关注数
  */
-@property (nonatomic,readonly) NSInteger followersCount;
+@property (nonatomic,readonly) NSInteger friendCount;
 
 /**
- *	@brief	关注数
+ *	@brief	用户分享数
  */
-@property (nonatomic,readonly) NSInteger friendsCount;
+@property (nonatomic,readonly) NSInteger shareCount;
 
 /**
- *	@brief	微博数
+ *	@brief	用户的注册时间（单位：秒）
  */
-@property (nonatomic,readonly) NSInteger statusesCount;
+@property (nonatomic,readonly) NSTimeInterval regAt;
 
 /**
- *	@brief	收藏数
+ *	@brief	用户等级
  */
-@property (nonatomic,readonly) NSInteger favouritesCount;
+@property (nonatomic,readonly) NSInteger level;
 
 /**
- *	@brief	用户创建（注册）时间
+ *	@brief	用户的教育信息列表
  */
-@property (nonatomic,readonly) NSString *createdAt;
+@property (nonatomic,readonly) NSArray *educations;
 
 /**
- *	@brief	暂未支持
+ *	@brief	用户的职业信息列表
  */
-@property (nonatomic,readonly) BOOL following;
+@property (nonatomic,readonly) NSArray *works;
 
 /**
- *	@brief	是否允许所有人给我发私信，true：是，false：否
- */
-@property (nonatomic,readonly) BOOL allowAllActMsg;
-
-/**
- *	@brief	是否允许标识用户的地理位置，true：是，false：否
- */
-@property (nonatomic,readonly) BOOL geoEnabled;
-
-/**
- *	@brief	是否是微博认证用户，即加V用户，true：是，false：否
- */
-@property (nonatomic,readonly) BOOL verified;
-
-/**
- *	@brief	暂未支持
- */
-@property (nonatomic,readonly) NSInteger verifiedType;
-
-/**
- *	@brief	用户备注信息，只有在查询用户关系时才返回此字段
- */
-@property (nonatomic,readonly) NSString *remark;
-
-/**
- *	@brief	用户的最近一条微博信息字段
- */
-@property (nonatomic,readonly) SSSinaWeiboStatus *status;
-
-/**
- *	@brief	是否允许所有人对我的微博进行评论，true：是，false：否
- */
-@property (nonatomic,readonly) BOOL allowAllComment;
-
-/**
- *	@brief	用户大头像地址
- */
-@property (nonatomic,readonly) NSString *avatarLarge;
-
-/**
- *	@brief	认证原因
- */
-@property (nonatomic,readonly) NSString *verifiedReason;
-
-/**
- *	@brief	该用户是否关注当前登录用户，true：是，false：否
- */
-@property (nonatomic,readonly) BOOL followMe;
-
-/**
- *	@brief	用户的在线状态，0：不在线、1：在线
- */
-@property (nonatomic,readonly) NSInteger onlineStatus;
-
-/**
- *	@brief	用户的互粉数
- */
-@property (nonatomic,readonly) NSInteger biFollowersCount;
-
-/**
- *	@brief	用户当前的语言版本，zh-cn：简体中文，zh-tw：繁体中文，en：英语
- */
-@property (nonatomic,readonly) NSString *lang;
-
-/**
- *	@brief	源数据
- */
-@property (nonatomic,retain) NSDictionary *sourceData;
-
-
-/**
- *	@brief	创建用户信息
+ *	@brief	初始化化用户信息
  *
- *	@param 	response 	服务器返回数据
+ *	@param 	app 	应用信息
  *
  *	@return	用户信息对象
  */
-+ (SSSinaWeiboUser *)userWithResponse:(NSDictionary *)response;
+- (id)initWithApp:(id<ISSPlatformApp>)app;
 
-/**
- *	@brief	创建用户信息描述器
- *
- *	@return	描述器对象
- */
-- (id<ISSCUserDescriptor>)descriptor;
 
 @end

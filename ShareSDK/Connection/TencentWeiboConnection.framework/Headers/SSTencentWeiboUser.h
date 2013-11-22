@@ -15,18 +15,19 @@
 /**
  *	@brief	腾讯用户信息
  */
-@interface SSTencentWeiboUser : NSObject <NSCoding,
+@interface SSTencentWeiboUser : NSObject <ISSPlatformUser,
+                                          NSCoding,
                                           ISSCDataObject>
-{
-@private
-    NSMutableDictionary *_sourceData;
-    SSTencentWeiboCredential *_credential;
-}
+
+/**
+ *	@brief	所属平台
+ */
+@property (nonatomic,readonly) id<ISSPlatformApp> app;
 
 /**
  *	@brief	授权信息，如果为nil则表示非当前应用授权用户
  */
-@property (nonatomic,retain) SSTencentWeiboCredential *credential;
+@property (nonatomic,retain) id<ISSPlatformCredential> credential;
 
 /**
  *	@brief	源数据
@@ -34,219 +35,97 @@
 @property (nonatomic,retain) NSDictionary *sourceData;
 
 /**
- *	@brief	出生天
+ *	@brief	平台类型
  */
-@property (nonatomic,readonly) NSInteger birthDay;
+@property (nonatomic,readonly) ShareType type;
 
 /**
- *	@brief	出生月
+ *	@brief	用户ID
  */
-@property (nonatomic,readonly) NSInteger birthMonth;
-
-/**
- *	@brief	出生年
- */
-@property (nonatomic,readonly) NSInteger birthYear;
-
-/**
- *	@brief	城市id
- */
-@property (nonatomic,readonly) NSString *cityCode;
-
-/**
- *	@brief	职业信息
- */
-@property (nonatomic, readonly) NSArray *comp;
-
-/**
- *	@brief	国家id
- */
-@property (nonatomic,readonly) NSString *countryCode;
-
-/**
- *	@brief	教育信息
- */
-@property (nonatomic, readonly) NSArray *edu;
-
-/**
- *	@brief	邮箱
- */
-@property (nonatomic, readonly) NSString *email;
-
-/**
- *	@brief	经验值
- */
-@property (nonatomic,readonly) NSInteger exp;
-
-/**
- *	@brief	听众数
- */
-@property (nonatomic,readonly) NSInteger fansnum;
-
-/**
- *	@brief	收藏数
- */
-@property (nonatomic,readonly) NSInteger favnum;
-
-/**
- *	@brief	头像url
- */
-@property (nonatomic,readonly) NSString *head;
-
-/**
- *	@brief	家乡所在城市id
- */
-@property (nonatomic,readonly) NSString *homecityCode;
-
-/**
- *	@brief	家乡所在国家id
- */
-@property (nonatomic,readonly) NSString *homecountryCode;
-
-/**
- *	@brief	个人主页
- */
-@property (nonatomic,readonly) NSString *homepage;
-
-/**
- *	@brief	家乡所在省id
- */
-@property (nonatomic,readonly) NSString *homeprovinceCode;
-
-/**
- *	@brief	家乡所在城镇id
- */
-@property (nonatomic,readonly) NSString *hometownCode;
-
-/**
- *	@brief	收听的人数
- */
-@property (nonatomic,readonly) NSInteger idolnum;
-
-/**
- *	@brief	行业id
- */
-@property (nonatomic,readonly) NSInteger industryCode;
-
-/**
- *	@brief	个人介绍
- */
-@property (nonatomic,readonly) NSString *introduction;
-
-/**
- *	@brief	是否企业机构
- */
-@property (nonatomic,readonly) BOOL isent;
-
-/**
- *	@brief	是否在当前用户的黑名单中，0-不是，1-是
- */
-@property (nonatomic,readonly) BOOL ismyblack;
-
-/**
- *	@brief	是否是当前用户的听众，0-不是，1-是
- */
-@property (nonatomic,readonly) BOOL ismyfans;
-
-/**
- *	@brief	是否是当前用户的偶像，0-不是，1-是
- */
-@property (nonatomic,readonly) BOOL ismyidol;
-
-/**
- *	@brief	是否实名认证，1-已实名认证，2-未实名认证
- */
-@property (nonatomic,readonly) NSInteger isrealname;
-
-/**
- *	@brief	是否认证用户，0-不是，1-是
- */
-@property (nonatomic,readonly) BOOL isvip;
-
-/**
- *	@brief	微博等级
- */
-@property (nonatomic,readonly) NSInteger level;
-
-/**
- *	@brief	所在地
- */
-@property (nonatomic,readonly) NSString *location;
-
-/**
- *	@brief	互听好友数
- */
-@property (nonatomic,readonly) NSInteger mutualFansNum;
-
-/**
- *	@brief	用户帐户名
- */
-@property (nonatomic,readonly) NSString *name;
+@property (nonatomic,readonly) NSString *uid;
 
 /**
  *	@brief	用户昵称
  */
-@property (nonatomic,readonly) NSString *nick;
+@property (nonatomic,readonly) NSString *nickname;
 
 /**
- *	@brief	用户唯一id，与name相对应
+ *	@brief	个人头像路径
  */
-@property (nonatomic,readonly) NSString *openid;
+@property (nonatomic,readonly) NSString *profileImage;
 
 /**
- *	@brief	地区id
+ *	@brief	性别：0 男； 1 女； 2 未知
  */
-@property (nonatomic,readonly) NSString *provinceCode;
+@property (nonatomic,readonly) NSInteger gender;
 
 /**
- *	@brief	注册时间
+ *	@brief	个人主页地址
  */
-@property (nonatomic,readonly) NSTimeInterval regtime;
+@property (nonatomic,readonly) NSString *url;
 
 /**
- *	@brief	是否允许所有人给当前用户发私信，0-仅有偶像，1-名人+听众，2-所有人
+ *	@brief	个人简介
  */
-@property (nonatomic,readonly) NSInteger sendPrivateFlag;
+@property (nonatomic,readonly) NSString *aboutMe;
 
 /**
- *	@brief	用户性别，1-男，2-女，0-未填写
+ *	@brief	认证类型：－1 未知； 0 未认证； 1 认证
  */
-@property (nonatomic,readonly) NSInteger sex;
-
-/**
- *	@brief	标签
- */
-@property (nonatomic,readonly) NSArray *tag;
-
-/**
- *	@brief	最近的一条原创微博信息
- */
-@property (nonatomic,readonly) NSArray *tweetinfo;
-
-/**
- *	@brief	发表的微博数
- */
-@property (nonatomic,readonly) NSInteger tweetnum;
+@property (nonatomic,readonly) NSInteger verifyType;
 
 /**
  *	@brief	认证信息
  */
-@property (nonatomic,readonly) NSString *verifyinfo;
+@property (nonatomic,readonly) NSString *verifyReason;
 
 /**
- *	@brief	创建用户信息
+ *	@brief	用户生日（单位：秒）
+ */
+@property (nonatomic,readonly) NSString *birthday;
+
+/**
+ *	@brief	用户粉丝数
+ */
+@property (nonatomic,readonly) NSInteger followerCount;
+
+/**
+ *	@brief	用户关注数
+ */
+@property (nonatomic,readonly) NSInteger friendCount;
+
+/**
+ *	@brief	用户分享数
+ */
+@property (nonatomic,readonly) NSInteger shareCount;
+
+/**
+ *	@brief	用户的注册时间（单位：秒）
+ */
+@property (nonatomic,readonly) NSTimeInterval regAt;
+
+/**
+ *	@brief	用户等级
+ */
+@property (nonatomic,readonly) NSInteger level;
+
+/**
+ *	@brief	用户的教育信息列表
+ */
+@property (nonatomic,readonly) NSArray *educations;
+
+/**
+ *	@brief	用户的职业信息列表
+ */
+@property (nonatomic,readonly) NSArray *works;
+
+/**
+ *	@brief	初始化化用户信息
  *
- *	@param 	response 	服务器返回数据
+ *	@param 	app 	应用信息
  *
  *	@return	用户信息对象
  */
-+ (SSTencentWeiboUser *)userWithResponse:(NSDictionary *)response;
-
-/**
- *	@brief	创建用户信息描述器
- *
- *	@return	描述器对象
- */
-- (id<ISSCUserDescriptor>)descriptor;
+- (id)initWithApp:(id<ISSPlatformApp>)app;
 
 @end

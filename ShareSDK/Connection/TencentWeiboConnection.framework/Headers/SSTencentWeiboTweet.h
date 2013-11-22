@@ -8,135 +8,59 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SSTencentWeiboMusic.h"
-#import "SSTencentWeiboVideo.h"
 #import <ShareSDKCoreService/ShareSDKCoreService.h>
+#import <ShareSDK/ShareSDKPlugin.h>
 
 /**
  *	@brief	微博信息
  */
-@interface SSTencentWeiboTweet : NSObject <NSCoding,
+@interface SSTencentWeiboTweet : NSObject <ISSPlatformShareInfo,
+                                           NSCoding,
                                            ISSCDataObject>
 {
 @private
-    NSMutableDictionary *_sourceData;
+    NSDictionary *_sourceData;
+    NSString *_sid;
+    NSString *_text;
+    NSArray *_urls;
+    NSArray *_imgs;
+    NSDictionary *_extInfo;
 }
 
 /**
- *	@brief	源数据
+ *	@brief	分享ID
+ */
+@property (nonatomic,copy) NSString *sid;
+
+/**
+ *	@brief	分享内容
+ */
+@property (nonatomic,copy) NSString *text;
+
+/**
+ *	@brief	分享的链接列表
+ */
+@property (nonatomic,retain) NSArray *urls;
+
+/**
+ *	@brief	分享的图片列表
+ */
+@property (nonatomic,retain) NSArray *imgs;
+
+/**
+ *	@brief	扩展信息
+ */
+@property (nonatomic,retain) NSDictionary *extInfo;
+
+/**
+ *	@brief	原始数据
  */
 @property (nonatomic,retain) NSDictionary *sourceData;
 
 /**
- *	@brief	微博ID
- */
-@property (nonatomic,readonly) NSString *Id;
-
-/**
- *	@brief	发表时间
- */
-@property (nonatomic,readonly) CGFloat timestamp;
-
-/**
- *	@brief	城市码
- */
-@property (nonatomic,readonly) NSString *cityCode;
-
-/**
- *	@brief	国家码
- */
-@property (nonatomic,readonly) NSString *countryCode;
-
-/**
- *	@brief	心情类型
- */
-@property (nonatomic,readonly) NSInteger emotiontype;
-
-/**
- *	@brief	心情图片url
- */
-@property (nonatomic,readonly) NSString *emotionurl;
-
-/**
- *	@brief	来源
- */
-@property (nonatomic,readonly) NSString *from;
-
-/**
- *	@brief	来源url
- */
-@property (nonatomic,readonly) NSString *fromurl;
-
-/**
- *	@brief	地理位置信息
- */
-@property (nonatomic,readonly) NSString *geo;
-
-/**
- *	@brief	图片url列表
- */
-@property (nonatomic,readonly) NSArray *image;
-
-/**
- *	@brief	纬度
- */
-@property (nonatomic,readonly) NSString *latitude;
-
-/**
- *	@brief	发表者所在地
- */
-@property (nonatomic,readonly) NSString *location;
-
-/**
- *	@brief	经度
- */
-@property (nonatomic,readonly) NSString *longitude;
-
-/**
- *	@brief	音频信息
- */
-@property (nonatomic,readonly) SSTencentWeiboMusic *music;
-
-/**
- *	@brief	原始内容
- */
-@property (nonatomic,readonly) NSString *origtext;
-
-/**
- *	@brief	省份码
- */
-@property (nonatomic,readonly) NSString *provinceCode;
-
-/**
- *	@brief	是否自已发的的微博，0-不是，1-是
- */
-@property (nonatomic,readonly) BOOL isSelf;
-
-/**
- *	@brief	微博状态，0-正常，1-系统删除，2-审核中，3-用户删除，4-根删除
- */
-@property (nonatomic,readonly) NSInteger status;
-
-/**
- *	@brief	微博内容
- */
-@property (nonatomic,readonly) NSString *text;
-
-/**
- *	@brief	微博类型，1-原创发表，2-转载，3-私信，4-回复，5-空回，6-提及，7-评论
- */
-@property (nonatomic,readonly) NSInteger type;
-
-/**
- *	@brief	视频信息
- */
-@property (nonatomic,readonly) SSTencentWeiboVideo *video;
-
-
-/**
  *	@brief	创建微博信息
  *
- *	@param 	response 	回复数据
+ *	@param 	response 	服务器回复数据
  *
  *	@return	微博信息
  */

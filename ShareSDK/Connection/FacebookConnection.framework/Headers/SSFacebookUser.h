@@ -8,29 +8,37 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SSFacebookAgeRange.h"
-#import "SSFacebookCurrency.h"
-#import "SSFacebookHometown.h"
-#import "SSFacebookLocation.h"
-#import "SSFacebookPaymentPricePoint.h"
-#import "SSFacebookSecuritySetting.h"
-#import "SSFacebookSignficantOther.h"
-#import "SSFacebookVideoUploadLimits.h"
 #import "SSFacebookCredential.h"
-#import "SSFacebookCover.h"
 #import <ShareSDKCoreService/ISSCUserDescriptor.h>
 #import <ShareSDKCoreService/ShareSDKCoreService.h>
+#import <ShareSDK/ShareSDK.h>
+#import "SSFacebookUserReader.h"
 
 /**
  *	@brief	用户信息
  */
-@interface SSFacebookUser : NSObject <NSCoding,
+@interface SSFacebookUser : NSObject <ISSPlatformUser,
+                                      NSCoding,
                                       ISSCDataObject>
-{
-@private
-    NSMutableDictionary *_sourceData;
-    SSFacebookCredential *_credential;
-}
+/**
+ *	@brief	所属平台
+ */
+@property (nonatomic,readonly) id<ISSPlatformApp> app;
+
+/**
+ *	@brief	授权信息，如果为nil则表示非当前应用授权用户
+ */
+@property (nonatomic,retain) id<ISSPlatformCredential> credential;
+
+/**
+ *	@brief	用户的原始数据信息，与各个平台定义的用户信息结构相同
+ */
+@property (nonatomic,retain) NSDictionary *sourceData;
+
+/**
+ *	@brief	平台类型
+ */
+@property (nonatomic,readonly) ShareType type;
 
 /**
  *	@brief	用户ID
@@ -38,221 +46,87 @@
 @property (nonatomic,readonly) NSString *uid;
 
 /**
- *	@brief	用户姓名
+ *	@brief	用户昵称
  */
-@property (nonatomic,readonly) NSString *name;
+@property (nonatomic,readonly) NSString *nickname;
 
 /**
- *	@brief	名字
+ *	@brief	个人头像路径
  */
-@property (nonatomic,readonly) NSString *firstName;
+@property (nonatomic,readonly) NSString *profileImage;
 
 /**
- *	@brief	中间名字
+ *	@brief	性别：0 男； 1 女； 2 未知
  */
-@property (nonatomic,readonly) NSString *middleName;
+@property (nonatomic,readonly) NSInteger gender;
 
 /**
- *	@brief	姓
+ *	@brief	个人主页地址
  */
-@property (nonatomic,readonly) NSString *lastName;
+@property (nonatomic,readonly) NSString *url;
 
 /**
- *	@brief	性别
+ *	@brief	个人简介
  */
-@property (nonatomic,readonly) NSString *gender;
+@property (nonatomic,readonly) NSString *aboutMe;
 
 /**
- *	@brief	语言环境
+ *	@brief	认证类型：－1 未知； 0 未认证； 1 认证
  */
-@property (nonatomic,readonly) NSString *locale;
+@property (nonatomic,readonly) NSInteger verifyType;
 
 /**
- *	@brief	语言
+ *	@brief	认证信息
  */
-@property (nonatomic,readonly) NSArray *languages;
+@property (nonatomic,readonly) NSString *verifyReason;
 
 /**
- *	@brief	个人主页链接
- */
-@property (nonatomic,readonly) NSString *link;
-
-/**
- *	@brief	注册用户名称
- */
-@property (nonatomic,readonly) NSString *username;
-
-/**
- *	@brief	年龄范围
- */
-@property (nonatomic,readonly) SSFacebookAgeRange *ageRange;
-
-/**
- *	@brief	匿名用户标识
- */
-@property (nonatomic,readonly) NSString *thirdPartyId;
-
-/**
- *	@brief	按照应用标识
- */
-@property (nonatomic,readonly) BOOL installed;
-
-/**
- *	@brief	时区偏移值
- */
-@property (nonatomic,readonly) NSNumber *timezone;
-
-/**
- *	@brief	更新时间
- */
-@property (nonatomic,readonly) NSString *updatedTime;
-
-/**
- *	@brief	认证状态
- */
-@property (nonatomic,readonly) BOOL verified;
-
-/**
- *	@brief	用户描述
- */
-@property (nonatomic,readonly) NSString *bio;
-
-/**
- *	@brief	生日
+ *	@brief	用户生日（单位：秒）
  */
 @property (nonatomic,readonly) NSString *birthday;
 
 /**
- *	@brief	照片封面
+ *	@brief	用户粉丝数
  */
-@property (nonatomic,readonly) SSFacebookCover *cover;
+@property (nonatomic,readonly) NSInteger followerCount;
 
 /**
- *	@brief	货币设置信息
+ *	@brief	用户关注数
  */
-@property (nonatomic,readonly) SSFacebookCurrency *currency;
+@property (nonatomic,readonly) NSInteger friendCount;
 
 /**
- *	@brief	设备信息
+ *	@brief	用户分享数
  */
-@property (nonatomic,readonly) NSArray *devices;
+@property (nonatomic,readonly) NSInteger shareCount;
 
 /**
- *	@brief	教育信息
+ *	@brief	用户的注册时间（单位：秒）
  */
-@property (nonatomic,readonly) NSArray *education;
+@property (nonatomic,readonly) NSTimeInterval regAt;
 
 /**
- *	@brief	电子邮件
+ *	@brief	用户等级
  */
-@property (nonatomic,readonly) NSString *email;
+@property (nonatomic,readonly) NSInteger level;
 
 /**
- *	@brief	家乡
+ *	@brief	用户的教育信息列表
  */
-@property (nonatomic,readonly) SSFacebookHometown *hometown;
-
+@property (nonatomic,readonly) NSArray *educations;
 
 /**
- *	@brief	 性取向
+ *	@brief	用户的职业信息列表
  */
-@property (nonatomic,readonly) NSArray *interestedIn;
+@property (nonatomic,readonly) NSArray *works;
 
 /**
- *	@brief	所在城市
- */
-@property (nonatomic,readonly) SSFacebookLocation *location;
-
-/**
- *	@brief	政治观点
- */
-@property (nonatomic,readonly) NSString *political;
-
-/**
- *	@brief	支付价格点
- */
-@property (nonatomic,readonly) SSFacebookPaymentPricePoint *paymentPricepoints;
-
-/**
- *	@brief	喜欢的运动员
- */
-@property (nonatomic,readonly) NSArray *favoriteAthletes;
-
-/**
- *	@brief	喜欢的球队
- */
-@property (nonatomic,readonly) NSArray *favoriteTeams;
-
-/**
- *	@brief	用户头像
- */
-@property (nonatomic,readonly) id picture;
-
-/**
- *	@brief	座右铭
- */
-@property (nonatomic,readonly) NSString *quotes;
-
-/**
- *	@brief	婚恋状态
- */
-@property (nonatomic,readonly) NSString *relationshipStatus;
-
-/**
- *	@brief	宗教
- */
-@property (nonatomic,readonly) NSString *religion;
-
-/**
- *	@brief	安全设置
- */
-@property (nonatomic,readonly) SSFacebookSecuritySetting *securitySettings;
-
-/**
- *	@brief	The user's significant other
- */
-@property (nonatomic,readonly) SSFacebookSignficantOther *significantOther;
-
-/**
- *	@brief	视频上传限制
- */
-@property (nonatomic,readonly) SSFacebookVideoUploadLimits *videoUploadLimits;
-
-/**
- *	@brief	个人主页
- */
-@property (nonatomic,readonly) NSString *website;
-
-/**
- *	@brief	职业信息
- */
-@property (nonatomic,readonly) NSArray *work;
-
-/**
- *	@brief	源数据
- */
-@property (nonatomic,retain) NSDictionary *sourceData;
-
-/**
- *	@brief	授权凭证
- */
-@property (nonatomic,retain) SSFacebookCredential *credential;
-
-
-/**
- *	@brief	创建用户信息
+ *	@brief	初始化化用户信息
  *
- *	@param 	response 	回复信息
+ *	@param 	app 	应用信息
  *
- *	@return	用户信息
+ *	@return	用户信息对象
  */
-+ (SSFacebookUser *)userWithResponse:(NSDictionary *)response;
-
-/**
- *	@brief	创建用户信息描述器
- *
- *	@return	描述器对象
- */
-- (id<ISSCUserDescriptor>)descriptor;
+- (id)initWithApp:(id<ISSPlatformApp>)app;
 
 @end

@@ -9,41 +9,40 @@
 
 #import <Foundation/Foundation.h>
 #import <ShareSDKCoreService/ShareSDKCoreService.h>
+#import <ShareSDK/ShareSDKPlugin.h>
 
 /**
  *	@brief	授权凭证
  */
-@interface SSTencentWeiboCredential : NSObject <NSCoding,
-                                                ISSCDataObject>
+@interface SSTencentWeiboCredential : NSObject <ISSPlatformCredential,
+                                                NSCoding>
 {
 @private
-    NSMutableDictionary *_sourceData;
+    NSString *_uid;
+    NSString *_token;
+    NSDate *_expired;
+    NSDictionary *_extInfo;
 }
 
 /**
- *	@brief	源数据
+ *	@brief	扩展数据
  */
-@property (nonatomic,retain) NSDictionary *sourceData;
+@property (nonatomic,retain) NSDictionary *extInfo;
 
 /**
- *	@brief	用户统一标识，可以唯一标识一个用户
+ *	@brief	用户ID
  */
-@property (nonatomic,readonly) NSString *openId;
+@property (nonatomic,copy) NSString *uid;
 
 /**
- *	@brief	与openid对应的用户key，是验证openid身份的验证密钥
+ *	@brief	Access Token
  */
-@property (nonatomic,readonly) NSString *openKey;
+@property (nonatomic,copy) NSString *token;
 
 /**
- *	@brief	访问第三方资源的凭证
+ *	@brief	过期时间
  */
-@property (nonatomic,readonly) NSString *accessToken;
-
-/**
- *	@brief	accesstoken过期时间，以返回的时间的准，单位为秒，注意过期时提醒用户重新授权
- */
-@property (nonatomic,readonly) NSDate *expiresIn;
+@property (nonatomic,retain) NSDate *expired;
 
 /**
  *	@brief	判断授权数据是否有效
@@ -51,38 +50,13 @@
 @property (nonatomic,readonly) BOOL available;
 
 /**
- *	@brief	用户名称
- */
-@property (nonatomic,readonly) NSString *name;
-
-/**
- *	@brief	用户昵称
- */
-@property (nonatomic,readonly) NSString *nick;
-
-/**
- *	@brief	刷新令牌
- */
-@property (nonatomic,readonly) NSString *refreshToken;
-
-
-/**
- *	@brief	初始化授权信息
+ *	@brief	使用原始数据创建授权凭证
  *
- *	@param 	sourceData 	源授权数据
- *
- *	@return	授权信息
- */
-- (id)initWithData:(NSDictionary *)sourceData;
-
-/**
- *	@brief	初始化授权凭证
- *
- *	@param 	credentialData 	授权凭证数据
+ *	@param 	sourceData 	原始数据
  *
  *	@return	授权凭证
  */
-- (id)initWithCredentialData:(NSDictionary *)credentialData;
++ (SSTencentWeiboCredential *)credentialWithSourceData:(NSDictionary *)sourceData;
 
 
 @end

@@ -10,6 +10,7 @@
 #import <Foundation/Foundation.h>
 #import "ShareSDKTypeDef.h"
 #import <ShareSDKCoreService/ShareSDKCoreService.h>
+#import "ISSPlatformShareContentEntity.h"
 
 /**
  *	@brief	分享内容协议
@@ -152,6 +153,39 @@
  *	@param 	locationCoordinate 	地理位置
  */
 - (void)setLocationCoordinate:(SSCLocationCoordinate2D *)locationCoordinate;
+
+/**
+ *	@brief	获取分组标识
+ *
+ *	@return	分组标识
+ */
+- (NSString *)groupId;
+
+/**
+ *	@brief	设置分组标识
+ *
+ *	@param 	groupId 	分组标识
+ */
+- (void)setGroupId:(NSString *)groupId;
+
+/**
+ *	@brief	获取分享内容实体
+ *
+ *	@param 	type 	平台类型
+ *
+ *	@return	分享内容实体
+ */
+- (id<ISSPlatformShareContentEntity>)shareContentEntityWithType:(ShareType)type;
+
+
+/**
+ *	@brief	设置分享内容实体
+ *
+ *	@param 	shareContentEntity 	分享内容实体
+ *	@param 	type 	平台类型
+ */
+- (void)setShareContentEntity:(id<ISSPlatformShareContentEntity>)shareContentEntity
+                         type:(ShareType)type;
 
 
 #pragma mark ContentUnti
@@ -524,6 +558,7 @@
  *  @since  ver2.4.0
  *
  *	@param 	text 	分享内容
+ *  @param  image   分享图片，如果设置此参数，则跟链接相关参数将无效（包括：url、deepLinkId、title、description、thumbnail）。
  *	@param 	url 	链接
  *	@param 	deepLinkId 	深链接ID
  *	@param 	title 	深链接标题
@@ -531,11 +566,12 @@
  *	@param 	thumbnail   缩略图
  */
 - (void)addGooglePlusUnitWithText:(NSString *)text
+                            image:(id<ISSCAttachment>)image
                               url:(NSString *)url
                        deepLinkId:(NSString *)deepLinkId
                             title:(NSString *)title
                       description:(NSString *)description
-                        thumbnail:(id<ISSCAttachment>)thumbnail;
+                        thumbnail:(NSString *)thumbnail;
 
 /**
  *	@brief	添加Pinterest内容单元
@@ -596,6 +632,32 @@
  *	@param 	file 	文件
  */
 - (void)addDropboxUnitWithFile:(id<ISSCAttachment>)file;
+
+/**
+ *	@brief	添加VKontakte内容单元
+ *
+ *	@param 	message 	消息
+ *	@param 	attachments 	附件列表
+ *	@param 	url 	链接地址
+ *	@param 	groupId 	分组标识
+ *	@param 	friendsOnly 	是否仅允许好友查看
+ *	@param 	locationCoordinate 	地理位置信息
+ */
+- (void)addVKontakteUnitWithMessage:(NSString *)message
+                        attachments:(NSArray *)attachments
+                                url:(NSString *)url
+                            groupId:(NSString *)groupId
+                        friendsOnly:(NSNumber *)friendsOnly
+                 locationCoordinate:(SSCLocationCoordinate2D *)locationCoordinate;
+
+/**
+ *	@brief	添加Instagram内容单元
+ *
+ *	@param 	title 	标题
+ *	@param 	image 	图片
+ */
+- (void)addInstagramUnitWithTitle:(NSString *)title
+                            image:(id<ISSCAttachment>)image;
 
 
 @end

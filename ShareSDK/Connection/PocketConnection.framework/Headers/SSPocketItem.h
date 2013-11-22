@@ -9,155 +9,54 @@
 
 #import <Foundation/Foundation.h>
 #import <ShareSDKCoreService/SSCDataObject.h>
+#import <ShareSDK/ShareSDKPlugin.h>
 
 /**
  *	@brief	项目对象
  */
-@interface SSPocketItem : SSCDataObject
+@interface SSPocketItem : NSObject <ISSPlatformShareInfo,
+                                    NSCoding,
+                                    ISSCDataObject>
 
-
-/**
- *	@brief	项目ID
- */
-@property (nonatomic,readonly) NSString *itemId;
-
-/**
- *	@brief	原始链接地址
- */
-@property (nonatomic,readonly) NSString *normalUrl;
-
-
-/**
- *	@brief	解决项ID
- */
-@property (nonatomic,readonly) NSString *resolvedId;
-
+{
+@private
+    NSDictionary *_sourceData;
+    NSString *_sid;
+    NSString *_text;
+    NSArray *_urls;
+    NSArray *_imgs;
+    NSDictionary *_extInfo;
+}
 
 /**
- *	@brief	解决项URL
+ *	@brief	分享ID
  */
-@property (nonatomic,readonly) NSString *resolvedUrl;
-
-
-/**
- *	@brief	解决项URL域名ID
- */
-@property (nonatomic,readonly) NSString *domainId;
+@property (nonatomic,copy) NSString *sid;
 
 /**
- *	@brief	原始URL域名ID
+ *	@brief	分享内容
  */
-@property (nonatomic,readonly) NSString *originDomainId;
+@property (nonatomic,copy) NSString *text;
 
 /**
- *	@brief	Pocket解析器尝试访问项目的回复状态
+ *	@brief	分享的链接列表
  */
-@property (nonatomic,readonly) NSInteger responseCode;
+@property (nonatomic,retain) NSArray *urls;
 
 /**
- *	@brief	项目的MIME类型
+ *	@brief	分享的图片列表
  */
-@property (nonatomic,readonly) NSString *mimeType;
+@property (nonatomic,retain) NSArray *imgs;
 
 /**
- *	@brief	项目的内容长度
+ *	@brief	扩展信息
  */
-@property (nonatomic,readonly) NSInteger contentLength;
+@property (nonatomic,retain) NSDictionary *extInfo;
 
 /**
- *	@brief	项目的编码
+ *	@brief	原始数据
  */
-@property (nonatomic,readonly) NSString *encoding;
-
-/**
- *	@brief	解决项目生成时间
- */
-@property (nonatomic,readonly) NSString *dateResolved;
-
-/**
- *	@brief	发布时间
- */
-@property (nonatomic,readonly) NSString *datePublished;
-
-/**
- *	@brief	解决项URL的标题
- */
-@property (nonatomic,readonly) NSString *title;
-
-/**
- *	@brief	解决项URL的摘要
- */
-@property (nonatomic,readonly) NSString *excerpt;
-
-/**
- *	@brief	文章字数
- */
-@property (nonatomic,readonly) NSInteger wordCount;
-
-/**
- *	@brief	是否包含图片:0 无图片； 1 图文； 2 纯图片
- */
-@property (nonatomic,readonly) NSInteger hasImage;
-
-/**
- *	@brief	是否包含视频：0 无视频，1 文章中包含视频；2 纯视频
- */
-@property (nonatomic,readonly) NSInteger hasVideo;
-
-/**
- *	@brief	是否为首页，0 不是； 1 是
- */
-@property (nonatomic,readonly) NSInteger isIndex;
-
-/**
- *	@brief	是否为文章，0 不是； 1 是
- */
-@property (nonatomic,readonly) NSInteger isArticle;
-
-/**
- *	@brief	文章的作者列表
- */
-@property (nonatomic,readonly) NSArray *authors;
-
-/**
- *	@brief	图片列表
- */
-@property (nonatomic,readonly) NSArray *images;
-
-/**
- *	@brief	视频列表
- */
-@property (nonatomic,readonly) NSArray *videos;
-
-/**
- *	@brief	暂无
- */
-@property (nonatomic,readonly) NSString *extendedItemId;
-
-/**
- *	@brief	暂无
- */
-@property (nonatomic,readonly) NSString *givenUrl;
-
-/**
- *	@brief	暂无
- */
-@property (nonatomic,readonly) NSInteger innerdomainRedirect;
-
-/**
- *	@brief	暂无
- */
-@property (nonatomic,readonly) NSInteger loginRequired;
-
-/**
- *	@brief	暂无
- */
-@property (nonatomic,readonly) NSString *resolvedNormalUrl;
-
-/**
- *	@brief	暂无
- */
-@property (nonatomic,readonly) NSInteger usedFallback;
+@property (nonatomic,retain) NSDictionary *sourceData;
 
 /**
  *	@brief	创建item

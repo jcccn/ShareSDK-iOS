@@ -10,13 +10,16 @@
 #import "ISSLinkedInApp.h"
 #import "SSLinkedInUserManager.h"
 #import "SSLinkedInAuthSession.h"
+#import <ShareSDK/ShareSDKPlugin.h>
 
 /**
  *	@brief	LinkedIn应用对象
  */
-@interface SSLinkedInApp : NSObject <ISSLinkedInApp, SSLinkedInAuthSessionDelegate>
+@interface SSLinkedInApp : NSObject <ISSLinkedInApp,
+                                     SSLinkedInAuthSessionDelegate>
 {
 @private
+    id<ISSPlatform> _platform;
     NSString *_apiKey;
     NSString *_secretKey;
     NSString *_redirectUri;
@@ -49,6 +52,11 @@
 @property (nonatomic,retain) id<ISSCAccount> account;
 
 /**
+ *	@brief	所属平台
+ */
+@property (nonatomic,readonly) id<ISSPlatform> platform;
+
+/**
  *	@brief	转换URL标识
  */
 @property (nonatomic) BOOL convertUrlEnabled;
@@ -56,12 +64,13 @@
 /**
  *	@brief	默认注册用户
  */
-@property (nonatomic,retain) SSLinkedInUser *defaultUser;
+@property (nonatomic,retain) id<ISSPlatformUser> currentUser;
 
 
 /**
  *	@brief	初始化应用
  *
+ *  @param  platform    平台
  *  @param  account 帐号
  *	@param 	appKey 	应用Key
  *	@param 	appSecret 	应用密钥
@@ -69,9 +78,10 @@
  *
  *	@return	应用对象
  */
-- (id)initWithAccount:(id<ISSCAccount>)account
-               apiKey:(NSString *)apiKey
-            secretKey:(NSString *)secretKey
-          redirectUri:(NSString *)redirectUri;
+- (id)initWithPlatform:(id<ISSPlatform>)platform
+               account:(id<ISSCAccount>)account
+                apiKey:(NSString *)apiKey
+             secretKey:(NSString *)secretKey
+           redirectUri:(NSString *)redirectUri;
 
 @end

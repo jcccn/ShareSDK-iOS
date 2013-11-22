@@ -18,20 +18,6 @@
 @protocol ISSFacebookAddFriendDialog <NSObject>
 
 /**
- *	@brief	会话中的视图
- *
- *	@return	视图
- */
-- (UIView *)view;
-
-/**
- *	@brief	打开对话
- *
- *  @param  result  返回回调 
- */
-- (void)show:(void(^)(SSFacebookFriendsDialogResult result, SSFacebookUser *user, SSFacebookErrorInfo *error))result;
-
-/**
  *	@brief	取消会话
  */
 - (void)cancel;

@@ -10,26 +10,33 @@
 #import <Foundation/Foundation.h>
 #import "SSYouDaoNoteCredential.h"
 #import <ShareSDKCoreService/ISSCUserDescriptor.h>
+#import <ShareSDK/ShareSDKPlugin.h>
 
 /**
  *	@brief	用户信息
  */
-@interface SSYouDaoNoteUser : NSObject <NSCoding>
-{
-@private
-    NSMutableDictionary *_sourceData;
-    SSYouDaoNoteCredential *_credential;
-}
+@interface SSYouDaoNoteUser : NSObject <ISSPlatformUser,
+                                        NSCoding,
+                                        ISSCDataObject>
+/**
+ *	@brief	所属平台
+ */
+@property (nonatomic,readonly) id<ISSPlatformApp> app;
 
 /**
- *	@brief	源数据
+ *	@brief	授权信息，如果为nil则表示非当前应用授权用户
+ */
+@property (nonatomic,retain) id<ISSPlatformCredential> credential;
+
+/**
+ *	@brief	用户的原始数据信息，与各个平台定义的用户信息结构相同
  */
 @property (nonatomic,retain) NSDictionary *sourceData;
 
 /**
- *	@brief	授权凭证
+ *	@brief	平台类型
  */
-@property (nonatomic,retain) SSYouDaoNoteCredential *credential;
+@property (nonatomic,readonly) ShareType type;
 
 /**
  *	@brief	用户ID
@@ -37,54 +44,87 @@
 @property (nonatomic,readonly) NSString *uid;
 
 /**
- *	@brief	用户注册时间，单位毫秒
+ *	@brief	用户昵称
  */
-@property (nonatomic,readonly) CGFloat registerTime;
+@property (nonatomic,readonly) NSString *nickname;
 
 /**
- *	@brief	用户已经使用了的空间大小，单位字节
+ *	@brief	个人头像路径
  */
-@property (nonatomic,readonly) long usedSize;
+@property (nonatomic,readonly) NSString *profileImage;
 
 /**
- *	@brief	用户总的空间大小，单位字节
+ *	@brief	性别：0 男； 1 女； 2 未知
  */
-@property (nonatomic,readonly) long totalSize;
+@property (nonatomic,readonly) NSInteger gender;
 
 /**
- *	@brief	用户最后登录时间，单位毫秒
+ *	@brief	个人主页地址
  */
-@property (nonatomic,readonly) CGFloat lastLoginTime;
+@property (nonatomic,readonly) NSString *url;
 
 /**
- *	@brief	用户最后修改时间，单位毫秒
+ *	@brief	个人简介
  */
-@property (nonatomic,readonly) CGFloat lastModifyTime;
+@property (nonatomic,readonly) NSString *aboutMe;
 
 /**
- *	@brief	该应用的默认笔记本
+ *	@brief	认证类型：－1 未知； 0 未认证； 1 认证
  */
-@property (nonatomic,readonly) NSString *defaultNotebook;
+@property (nonatomic,readonly) NSInteger verifyType;
 
 /**
- *	@brief	用户ID
+ *	@brief	认证信息
  */
-@property (nonatomic,readonly) NSString *user;
+@property (nonatomic,readonly) NSString *verifyReason;
 
 /**
- *	@brief	创建用户信息
+ *	@brief	用户生日（单位：秒）
+ */
+@property (nonatomic,readonly) NSString *birthday;
+
+/**
+ *	@brief	用户粉丝数
+ */
+@property (nonatomic,readonly) NSInteger followerCount;
+
+/**
+ *	@brief	用户关注数
+ */
+@property (nonatomic,readonly) NSInteger friendCount;
+
+/**
+ *	@brief	用户分享数
+ */
+@property (nonatomic,readonly) NSInteger shareCount;
+
+/**
+ *	@brief	用户的注册时间（单位：秒）
+ */
+@property (nonatomic,readonly) NSTimeInterval regAt;
+
+/**
+ *	@brief	用户等级
+ */
+@property (nonatomic,readonly) NSInteger level;
+
+/**
+ *	@brief	用户的教育信息列表
+ */
+@property (nonatomic,readonly) NSArray *educations;
+
+/**
+ *	@brief	用户的职业信息列表
+ */
+@property (nonatomic,readonly) NSArray *works;
+
+/**
+ *	@brief	初始化化用户信息
  *
- *	@param 	response 	回复数据
+ *	@param 	app 	应用信息
  *
- *	@return	用户信息
+ *	@return	用户信息对象
  */
-+ (SSYouDaoNoteUser *)userWithResponse:(NSDictionary *)response;
-
-/**
- *	@brief	创建用户信息描述器
- *
- *	@return	描述器对象
- */
-- (id<ISSCUserDescriptor>)descriptor;
+- (id)initWithApp:(id<ISSPlatformApp>)app;
 
 @end

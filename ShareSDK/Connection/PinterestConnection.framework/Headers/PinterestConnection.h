@@ -8,24 +8,21 @@
 
 #import <UIKit/UIKit.h>
 #import "ISSPinterestApp.h"
+#import <ShareSDK/ShareSDKPlugin.h>
 
 /**
  *	@brief	Pinterest连接器
  */
-@interface PinterestConnection : NSObject
+@interface PinterestConnection : NSObject <ISSPlatform>
 
 /**
- *	@brief	注册微信应用
+ *	@brief	创建应用配置信息
  *
- *  @param  account 帐号
- *	@param 	clientId 	应用ID
- *  @param  pinterestCls   微信API类型
+ *	@param 	clientId 	应用标识
  *
- *	@return	应用对象
+ *	@return	应用配置信息
  */
-+ (id<ISSPinterestApp>)registerApp:(id<ISSCAccount>)account
-                          clientId:(NSString *)clientId
-                      pinterestCls:(Class)pinterestCls;
+- (NSDictionary *)appInfoWithClientId:(NSString *)clientId;
 
 
 @end

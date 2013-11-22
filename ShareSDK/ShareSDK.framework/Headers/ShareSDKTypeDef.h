@@ -48,6 +48,8 @@ typedef enum
     ShareTypePinterest = 30,        /**< Pinterest */
     ShareTypeFlickr = 34,           /**< Flickr */
     ShareTypeDropbox = 35,          /**< Dropbox */
+    ShareTypeVKontakte = 36,        /**< VKontakte */
+    ShareTypeWeixiFav = 37,         /**< 微信收藏 */
     ShareTypeAny = 99               /**< 任意平台 */
 }
 ShareType;

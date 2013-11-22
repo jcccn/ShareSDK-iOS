@@ -9,34 +9,51 @@
 
 #import <Foundation/Foundation.h>
 #import <ShareSDKCoreService/ShareSDKCoreService.h>
+#import <ShareSDK/ShareSDKPlugin.h>
 
 /**
  *	@brief	搜狐书签
  */
-@interface SSSohuBookmark : NSObject <NSCoding,
+@interface SSSohuBookmark : NSObject <ISSPlatformShareInfo,
+                                      NSCoding,
                                       ISSCDataObject>
 {
 @private
-    NSMutableDictionary *_sourceData;
+    NSDictionary *_sourceData;
+    NSString *_sid;
+    NSString *_text;
+    NSArray *_urls;
+    NSArray *_imgs;
+    NSDictionary *_extInfo;
 }
 
 /**
- *	@brief	书签id，对单个用户此id具有唯一性
+ *	@brief	分享ID
  */
-@property (nonatomic,readonly) NSString *Id;
+@property (nonatomic,copy) NSString *sid;
 
 /**
- *	@brief	书签来源url
+ *	@brief	分享内容
  */
-@property (nonatomic,readonly) NSString *url;
+@property (nonatomic,copy) NSString *text;
 
 /**
- *	@brief	书签标题
+ *	@brief	分享的链接列表
  */
-@property (nonatomic,readonly) NSString *title;
+@property (nonatomic,retain) NSArray *urls;
 
 /**
- *	@brief	源数据
+ *	@brief	分享的图片列表
+ */
+@property (nonatomic,retain) NSArray *imgs;
+
+/**
+ *	@brief	扩展信息
+ */
+@property (nonatomic,retain) NSDictionary *extInfo;
+
+/**
+ *	@brief	原始数据
  */
 @property (nonatomic,retain) NSDictionary *sourceData;
 

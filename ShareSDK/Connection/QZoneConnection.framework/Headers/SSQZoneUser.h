@@ -11,108 +11,121 @@
 #import "SSQZoneCredential.h"
 #import <ShareSDKCoreService/ISSCUserDescriptor.h>
 #import <ShareSDKCoreService/ShareSDKCoreService.h>
+#import <ShareSDK/ShareSDKPlugin.h>
 
 /**
  *	@brief	QQ空间用户
  */
-@interface SSQZoneUser : NSObject <NSCoding,
+@interface SSQZoneUser : NSObject <ISSPlatformUser,
+                                   NSCoding,
                                    ISSCDataObject>
-{
-@private
-    NSMutableDictionary *_sourceData;
-    SSQZoneCredential *_credential;
-}
+/**
+ *	@brief	所属平台
+ */
+@property (nonatomic,readonly) id<ISSPlatformApp> app;
 
 /**
- *	@brief	源数据结构
+ *	@brief	授权信息，如果为nil则表示非当前应用授权用户
+ */
+@property (nonatomic,retain) id<ISSPlatformCredential> credential;
+
+/**
+ *	@brief	用户的原始数据信息，与各个平台定义的用户信息结构相同
  */
 @property (nonatomic,retain) NSDictionary *sourceData;
 
 /**
- *	@brief	授权凭证
+ *	@brief	平台类型
  */
-@property (nonatomic,retain) SSQZoneCredential *credential;
+@property (nonatomic,readonly) ShareType type;
 
 /**
  *	@brief	用户ID
  */
-@property (nonatomic,readonly) NSString *openId;
+@property (nonatomic,readonly) NSString *uid;
 
 /**
- *	@brief	昵称
+ *	@brief	用户昵称
  */
 @property (nonatomic,readonly) NSString *nickname;
 
 /**
- *	@brief	大小为30×30像素的QQ空间头像URL。
+ *	@brief	个人头像路径
  */
-@property (nonatomic,readonly) NSString *figureurl;
+@property (nonatomic,readonly) NSString *profileImage;
 
 /**
- *	@brief	大小为50×50像素的QQ空间头像URL。
+ *	@brief	性别：0 男； 1 女； 2 未知
  */
-@property (nonatomic,readonly) NSString *figureurl1;
+@property (nonatomic,readonly) NSInteger gender;
 
 /**
- *	@brief	大小为100×100像素的QQ空间头像URL。
+ *	@brief	个人主页地址
  */
-@property (nonatomic,readonly) NSString *figureurl2;
+@property (nonatomic,readonly) NSString *url;
 
 /**
- *	@brief	大小为40×40像素的QQ头像URL
+ *	@brief	个人简介
  */
-@property (nonatomic,readonly) NSString *figureurlQQ1;
+@property (nonatomic,readonly) NSString *aboutMe;
 
 /**
- *	@brief	大小为100×100像素的QQ头像URL。需要注意，不是所有的用户都拥有QQ的100x100的头像，但40x40像素则是一定会有。
+ *	@brief	认证类型：－1 未知； 0 未认证； 1 认证
  */
-@property (nonatomic,readonly) NSString *figureurlQQ2;
+@property (nonatomic,readonly) NSInteger verifyType;
 
 /**
- *	@brief	性别,如果获取不到则默认返回“男”
+ *	@brief	认证信息
  */
-@property (nonatomic,readonly) NSString *gender;
+@property (nonatomic,readonly) NSString *verifyReason;
 
 /**
- *	@brief	标识是否为年费黄钻用户（NO：不是； YES：是）
+ *	@brief	用户生日（单位：秒）
  */
-@property (nonatomic,readonly) BOOL isYellowYearVip;
+@property (nonatomic,readonly) NSString *birthday;
 
 /**
- *	@brief	标识用户是否为黄钻用户（0：不是；1：是）。
+ *	@brief	用户粉丝数
  */
-@property (nonatomic,readonly) BOOL isYellowVip;
+@property (nonatomic,readonly) NSInteger followerCount;
 
 /**
- *	@brief	标识用户是否为黄钻用户（NO：不是；YES：是）
+ *	@brief	用户关注数
  */
-@property (nonatomic,readonly) BOOL vip;
+@property (nonatomic,readonly) NSInteger friendCount;
 
 /**
- *	@brief	黄钻等级
+ *	@brief	用户分享数
  */
-@property (nonatomic,readonly) NSInteger yellowVipLevel;
-
+@property (nonatomic,readonly) NSInteger shareCount;
 
 /**
- *	@brief	黄钻等级
+ *	@brief	用户的注册时间（单位：秒）
+ */
+@property (nonatomic,readonly) NSTimeInterval regAt;
+
+/**
+ *	@brief	用户等级
  */
 @property (nonatomic,readonly) NSInteger level;
 
 /**
- *	@brief	创建用户信息
+ *	@brief	用户的教育信息列表
+ */
+@property (nonatomic,readonly) NSArray *educations;
+
+/**
+ *	@brief	用户的职业信息列表
+ */
+@property (nonatomic,readonly) NSArray *works;
+
+/**
+ *	@brief	初始化化用户信息
  *
- *	@param 	response 	服务器返回数据
+ *	@param 	app 	应用信息
  *
  *	@return	用户信息对象
  */
-+ (SSQZoneUser *)userWithResponse:(NSDictionary *)response;
-
-/**
- *	@brief	创建用户信息描述器
- *
- *	@return	描述器对象
- */
-- (id<ISSCUserDescriptor>)descriptor;
+- (id)initWithApp:(id<ISSPlatformApp>)app;
 
 @end

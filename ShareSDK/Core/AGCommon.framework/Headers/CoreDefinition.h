@@ -19,10 +19,10 @@
 
 #import "CMDebugLog.h"
 
-#define __DEBUG_LOG(text) [DebugLog writeInfo:(text)]
-#define __DEBUG_WARNING(text) [DebugLog writeWarning:(text)]
-#define __DEBUG_ERROR(text) [DebugLog writeError:(text)]
-#define __DEBUG_CONTENT(content) [DebugLog writeContentWithDictionary:(content)]
+#define __DEBUG_LOG(text) [CMDebugLog writeInfo:(text)]
+#define __DEBUG_WARNING(text) [CMDebugLog writeWarning:(text)]
+#define __DEBUG_ERROR(text) [CMDebugLog writeError:(text)]
+#define __DEBUG_CONTENT(content) [CMDebugLog writeContentWithDictionary:(content)]
 
 #else
 

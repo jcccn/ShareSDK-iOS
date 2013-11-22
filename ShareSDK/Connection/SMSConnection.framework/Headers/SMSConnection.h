@@ -9,11 +9,12 @@
 
 #import <UIKit/UIKit.h>
 #import "ISSSMSApp.h"
+#import <ShareSDK/ShareSDKPlugin.h>
 
 /**
  *	@brief	短信链接器
  */
-@interface SMSConnection : NSObject
+@interface SMSConnection : NSObject <ISSPlatform>
 
 /**
  *	@brief	注册应用
@@ -22,7 +23,7 @@
  *
  *	@return	应用对象
  */
-+ (id<ISSSMSApp>)registerApp:(id<ISSCAccount>)account;
+//+ (id<ISSSMSApp>)registerApp:(id<ISSCAccount>)account;
 
 
 @end

@@ -263,33 +263,27 @@
   #define GTM_BACKGROUND_FETCHING 1
 #endif
 
-#undef _EXTERN
-#undef _INITIALIZE_AS
-#ifdef GTMHTTPFETCHER_DEFINE_GLOBALS
-  #define _EXTERN
-  #define _INITIALIZE_AS(x) =x
-#else
-  #if defined(__cplusplus)
-    #define _EXTERN extern "C"
-  #else
-    #define _EXTERN extern
-  #endif
-  #define _INITIALIZE_AS(x)
+#ifdef __cplusplus
+extern "C" {
 #endif
 
 // notifications
 //
 // fetch started and stopped, and fetch retry delay started and stopped
-_EXTERN NSString* const kGTMHTTPFetcherStartedNotification           _INITIALIZE_AS(@"kGTMHTTPFetcherStartedNotification");
-_EXTERN NSString* const kGTMHTTPFetcherStoppedNotification           _INITIALIZE_AS(@"kGTMHTTPFetcherStoppedNotification");
-_EXTERN NSString* const kGTMHTTPFetcherRetryDelayStartedNotification _INITIALIZE_AS(@"kGTMHTTPFetcherRetryDelayStartedNotification");
-_EXTERN NSString* const kGTMHTTPFetcherRetryDelayStoppedNotification _INITIALIZE_AS(@"kGTMHTTPFetcherRetryDelayStoppedNotification");
+extern NSString *const kGTMHTTPFetcherStartedNotification;
+extern NSString *const kGTMHTTPFetcherStoppedNotification;
+extern NSString *const kGTMHTTPFetcherRetryDelayStartedNotification;
+extern NSString *const kGTMHTTPFetcherRetryDelayStoppedNotification;
 
 // callback constants
-_EXTERN NSString* const kGTMHTTPFetcherErrorDomain       _INITIALIZE_AS(@"com.google.GTMHTTPFetcher");
-_EXTERN NSString* const kGTMHTTPFetcherStatusDomain      _INITIALIZE_AS(@"com.google.HTTPStatus");
-_EXTERN NSString* const kGTMHTTPFetcherErrorChallengeKey _INITIALIZE_AS(@"challenge");
-_EXTERN NSString* const kGTMHTTPFetcherStatusDataKey     _INITIALIZE_AS(@"data");  // data returned with a kGTMHTTPFetcherStatusDomain error
+extern NSString *const kGTMHTTPFetcherErrorDomain;
+extern NSString *const kGTMHTTPFetcherStatusDomain;
+extern NSString *const kGTMHTTPFetcherErrorChallengeKey;
+extern NSString *const kGTMHTTPFetcherStatusDataKey;  // data returned with a kGTMHTTPFetcherStatusDomain error
+
+#ifdef __cplusplus
+}
+#endif
 
 enum {
   kGTMHTTPFetcherErrorDownloadFailed = -1,
@@ -487,13 +481,16 @@ NSString *GTMApplicationIdentifier(NSBundle *bundle);
   NSTimeInterval minRetryInterval_; // random between 1 and 2 seconds
   NSTimeInterval retryFactor_;      // default interval multiplier is 2
   NSTimeInterval lastRetryInterval_;
+  NSDate *initialRequestDate_;
   BOOL hasAttemptedAuthRefresh_;
 
   NSString *comment_;               // comment for log
   NSString *log_;
 #if !STRIP_GTM_FETCH_LOGGING
+  NSURL *redirectedFromURL_;
   NSString *logRequestBody_;
   NSString *logResponseBody_;
+  BOOL hasLoggedError_;
   BOOL shouldDeferResponseBodyLogging_;
 #endif
 }

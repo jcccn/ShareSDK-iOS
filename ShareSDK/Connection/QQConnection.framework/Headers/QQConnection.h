@@ -9,41 +9,21 @@
 
 #import <UIKit/UIKit.h>
 #import "ISSQQApp.h"
+#import <ShareSDK/ShareSDKPlugin.h>
 
 /**
  *	@brief	QQ链接器
  */
-@interface QQConnection : NSObject
+@interface QQConnection : NSObject <ISSPlatform>
 
 /**
- *	@brief	注册QQ应用
+ *	@brief	创建应用配置信息
  *
- *  @param  account 帐号
- *	@param 	appId 	应用ID
- *  @param  qqApiCls    QQ接口类型
+ *	@param 	appId 	应用标识
+ *	@param 	scene 	分享场景
  *
- *	@return	应用对象
+ *	@return	应用配置信息
  */
-+ (id<ISSQQApp>)registerApp:(id<ISSCAccount>)account
-                      appId:(NSString *)appId
-                   qqApiCls:(Class)qqApiCls;
-
-/**
- *	@brief	注册QQ应用
- *
- *  @since  ver1.0.3    用于整合后的QQ互联接口
- *
- *	@param 	account 	帐号
- *	@param 	qzoneAppKey 	QQ空间应用ID
- *	@param 	qqApiInterfaceCls   QQ接口类型
- *  @param  tencentOAuthCls     腾讯OAuth类型 
- *
- *	@return	应用对象
- */
-+ (id<ISSQQApp>)registerApp:(id<ISSCAccount>)account
-                qzoneAppKey:(NSString *)qzoneAppKey
-          qqApiInterfaceCls:(Class)qqApiInterfaceCls
-            tencentOAuthCls:(Class)tencentOAuthCls;
-
+- (NSDictionary *)appInfoWithAppId:(NSString *)appId;
 
 @end

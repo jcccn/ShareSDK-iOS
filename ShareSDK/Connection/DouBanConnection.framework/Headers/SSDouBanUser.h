@@ -11,32 +11,32 @@
 #import "SSDouBanCredential.h"
 #import <ShareSDKCoreService/ISSCUserDescriptor.h>
 #import <ShareSDKCoreService/ShareSDKCoreService.h>
+#import <ShareSDK/ShareSDKPlugin.h>
 
 /**
  *	@brief	用户信息
  */
-@interface SSDouBanUser : NSObject <NSCoding,
-                                    ISSCDataObject>
-{
-@private
-    NSMutableDictionary *_sourceData;
-    SSDouBanCredential *_credential;
-}
+@interface SSDouBanUser : NSObject <ISSPlatformUser,
+                                    NSCoding>
+/**
+ *	@brief	所属平台
+ */
+@property (nonatomic,readonly) id<ISSPlatformApp> app;
 
 /**
- *	@brief	源数据
+ *	@brief	授权信息，如果为nil则表示非当前应用授权用户
+ */
+@property (nonatomic,retain) id<ISSPlatformCredential> credential;
+
+/**
+ *	@brief	用户的原始数据信息，与各个平台定义的用户信息结构相同
  */
 @property (nonatomic,retain) NSDictionary *sourceData;
 
 /**
- *	@brief	授权凭证
+ *	@brief	平台类型
  */
-@property (nonatomic,retain) SSDouBanCredential *credential;
-
-/**
- *	@brief	用户ID
- */
-@property (nonatomic,readonly) NSString *Id;
+@property (nonatomic,readonly) ShareType type;
 
 /**
  *	@brief	用户ID
@@ -46,78 +46,86 @@
 /**
  *	@brief	用户昵称
  */
-@property (nonatomic,readonly) NSString *name;
+@property (nonatomic,readonly) NSString *nickname;
 
 /**
- *	@brief	头像小图
+ *	@brief	个人头像路径
  */
-@property (nonatomic,readonly) NSString *avatar;
+@property (nonatomic,readonly) NSString *profileImage;
 
 /**
- *	@brief	暂无
+ *	@brief	性别：0 男； 1 女； 2 未知
  */
-@property (nonatomic,readonly) NSString *alt;
+@property (nonatomic,readonly) NSInteger gender;
 
 /**
- *	@brief	注册时间
+ *	@brief	个人主页地址
  */
-@property (nonatomic,readonly) NSString *created;
+@property (nonatomic,readonly) NSString *url;
 
 /**
- *	@brief	城市id
+ *	@brief	个人简介
  */
-@property (nonatomic,readonly) NSString *locId;
+@property (nonatomic,readonly) NSString *aboutMe;
 
 /**
- *	@brief	所在地全称
+ *	@brief	认证类型：－1 未知； 0 未认证； 1 认证
  */
-@property (nonatomic,readonly) NSString *locName;
+@property (nonatomic,readonly) NSInteger verifyType;
 
 /**
- *	@brief	描述
+ *	@brief	认证信息
  */
-@property (nonatomic,readonly) NSString *desc;
+@property (nonatomic,readonly) NSString *verifyReason;
 
 /**
- *	@brief	大头像
+ *	@brief	用户生日（单位：秒）
  */
-@property (nonatomic,readonly) NSString *largeAvatar;
+@property (nonatomic,readonly) NSString *birthday;
 
 /**
- *	@brief	小头像
+ *	@brief	用户粉丝数
  */
-@property (nonatomic,readonly) NSString *smallAvatar;
+@property (nonatomic,readonly) NSInteger followerCount;
 
 /**
- *	@brief	用户名号
+ *	@brief	用户关注数
  */
-@property (nonatomic,readonly) NSString *screenName;
+@property (nonatomic,readonly) NSInteger friendCount;
 
 /**
- *	@brief	类型
+ *	@brief	用户分享数
  */
-@property (nonatomic,readonly) NSString *type;
+@property (nonatomic,readonly) NSInteger shareCount;
 
 /**
- *	@brief	暂无
+ *	@brief	用户的注册时间（单位：秒）
  */
-@property (nonatomic,readonly) NSString *signature;
+@property (nonatomic,readonly) NSTimeInterval regAt;
 
 /**
- *	@brief	创建用户信息
+ *	@brief	用户等级
+ */
+@property (nonatomic,readonly) NSInteger level;
+
+/**
+ *	@brief	用户的教育信息列表
+ */
+@property (nonatomic,readonly) NSArray *educations;
+
+/**
+ *	@brief	用户的职业信息列表
+ */
+@property (nonatomic,readonly) NSArray *works;
+
+/**
+ *	@brief	初始化化用户信息
  *
- *	@param 	response 	服务器返回数据
+ *	@param 	app 	应用信息
  *
  *	@return	用户信息对象
  */
-+ (SSDouBanUser *)userWithResponse:(NSDictionary *)response;
-
-/**
- *	@brief	创建用户信息描述器
- *
- *	@return	描述器对象
- */
-- (id<ISSCUserDescriptor>)descriptor;
+- (id)initWithApp:(id<ISSPlatformApp>)app;
 
 
 @end

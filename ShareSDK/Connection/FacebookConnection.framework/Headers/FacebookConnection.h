@@ -9,69 +9,23 @@
 
 #import <UIKit/UIKit.h>
 #import "ISSFacebookApp.h"
+#import <ShareSDK/ShareSDKPlugin.h>
 
 /**
  *	@brief	Facebook链接器
  */
-@interface FacebookConnection : NSObject
+@interface FacebookConnection : NSObject <ISSPlatform>
 
 /**
- *	@brief	注册应用,同一个AppKey只需要注册一次。
+ *	@brief	创建应用配置信息
  *
- *  @param  account 授权帐号，使用ShareSDK注册的应用Key换取。
- *	@param 	appKey 	应用Key
+ *	@param 	apiKey 	应用标识
  *	@param 	appSecret 	应用密钥
  *
- *	@return	应用对象,返回nil则表示应用注册失败。
+ *	@return	应用配置信息
  */
-+ (id<ISSFacebookApp>)registerApp:(id<ISSCAccount>)account
-                           appKey:(NSString *)appKey
-                        appSecret:(NSString *)appSecret;
+- (NSDictionary *)appInfoWithApiKey:(NSString *)apiKey
+                          appSecret:(NSString *)appSecret;
 
-/**
- *	@brief	注销应用
- *
- *	@param 	app 	应用对象
- *
- *	@return	YES表示注销成功，NO表示注销失败
- */
-+ (BOOL)unregisterApp:(id<ISSFacebookApp>)app;
-
-
-/**
- *	@brief	取的已注册新浪应用
- *
- *	@param 	appKey 	应用Key
- *
- *	@return	应用对象，返回nil则表示应用尚未注册
- */
-+ (id<ISSFacebookApp>)getApp:(NSString *)appKey;
-
-/**
- *	@brief	获取授权凭证
- *
- *	@param 	sourceData 	源数据
- *
- *	@return	授权凭证
- */
-+ (SSFacebookCredential *)credentialWithData:(NSDictionary *)sourceData;
-
-/**
- *	@brief	创建授权凭证
- *
- *	@param 	credentialData 	授权数据
- *
- *	@return	授权凭证
- */
-+ (SSFacebookCredential *)credentialWithCredentialData:(NSDictionary *)credentialData;
-
-/**
- *	@brief	根据新浪微博错误码返回错误描述
- *
- *	@param 	code 	错误码
- *
- *	@return	错误描述
- */
-+ (NSString *)getErrorDescriptionWithCode:(NSInteger)code;
 
 @end

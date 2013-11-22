@@ -13,7 +13,6 @@
 #import "ShareSDKTypeDef.h"
 #import "ShareSDKEventHandlerDef.h"
 #import "ShareSDKDef.h"
-#import "ISSAuthController.h"
 #import "ISSAuthOptions.h"
 #import "ISSViewDelegate.h"
 #import "ISSPage.h"
@@ -22,8 +21,6 @@
 #import "ISSShareOptions.h"
 #import "ISSShareViewDelegate.h"
 #import "ISSShareActionSheetItem.h"
-#import "ISSOAuth2Credential.h"
-#import "ISSOAuthCredential.h"
 #import "ISSUserField.h"
 
 /**
@@ -103,6 +100,19 @@
 
 
 #pragma mark 初始化
+
+/**
+ *	@brief	链接平台应用以使用相关功能
+ *
+ *  @since  ver2.6.0
+ *
+ *	@param 	type 	平台类型
+ *	@param 	appInfo 	应用信息
+ */
++ (void)connectPlatformWithType:(ShareType)type
+                       platform:(id<ISSPlatform>)platform
+                        appInfo:(NSDictionary *)appInfo;
+
 
 /**
  *	@brief	连接新浪微博开放平台应用以使用相关功能，此应用需要引用SinaWeiboConnection.framework
@@ -454,6 +464,89 @@
 + (void)connectDropboxWithAppKey:(NSString *)appKey
                        appSecret:(NSString *)appSecret;
 
+/**
+ *	@brief	连接Instagram,此平台需要引用InstagramConnection.framework框架
+ *          http://instagram.com/developer/clients/register/上注册应用，并将相关信息填写以下字段
+ *
+ *	@param 	clientId 	应用Key
+ *	@param 	clientSecret 	应用密钥
+ *	@param 	redirectUri 	回调地址
+ */
++ (void)connectInstagramWithClientId:(NSString *)clientId
+                        clientSecret:(NSString *)clientSecret
+                         redirectUri:(NSString *)redirectUri;
+
+/**
+ *	@brief	链接VKontakte，此平台需要引用VKontakteConnection.framework框架
+ *          http://vk.com/editapp?act=create上注册应用，并将相关信息填写以下字段
+ *
+ *	@param 	appKey 	应用Key
+ *	@param 	secretKey 	应用密钥
+ */
++ (void)connectVKontakteWithAppKey:(NSString *)appKey
+                         secretKey:(NSString *)secretKey;
+
+/**
+ *	@brief	连接邮件分享
+ *  
+ *  @since  ver2.6.0
+ */
++ (void)connectMail;
+
+/**
+ *	@brief	连接短信分享
+ *  
+ *  @since  ver2.6.0
+ */
++ (void)connectSMS;
+
+/**
+ *	@brief	连接打印
+ *
+ *  @since  ver2.6.0
+ */
++ (void)connectAirPrint;
+
+/**
+ *	@brief	连接拷贝
+ *
+ *  @since  ver2.6.0
+ */
++ (void)connectCopy;
+
+/**
+ *	@brief	连接微信好友
+ *
+ *  @since  ver2.6.0
+ *
+ *	@param 	appId 	应用ID，必须要和朋友圈传入ID一致
+ *	@param 	wechatCls 	微信Api类型，引入WXApi.h后，将[WXApi class]传入此参数
+ */
++ (void)connectWeChatSessionWithAppId:(NSString *)appId
+                            wechatCls:(Class)wechatCls;
+
+
+/**
+ *	@brief	连接微信朋友圈
+ *
+ *  @since  ver2.6.0
+ *
+ *	@param 	appId 	应用ID，必须要和好友传入ID一致
+ *	@param 	wechatCls 	微信Api类型，引入WXApi.h后，将[WXApi class]传入此参数
+ */
++ (void)connectWeChatTimelineWithAppId:(NSString *)appId
+                             wechatCls:(Class)wechatCls;
+
+/**
+ *	@brief	连接微信收藏
+ *
+ *	@param 	appId 	应用ID，必须要和好友、朋友圈传入ID一致。
+ *	@param 	wechatCls 	微信Api类型，引入WXApi.h后，将[WXApi class]传入此参数
+ */
++ (void)connectWeChatFavWithAppId:(NSString *)appId
+                        wechatCls:(Class)wechatCls;
+
+
 
 /**
  *	@brief	处理请求打开链接,如果集成新浪微博(SSO)、Facebook(SSO)、微信、QQ分享功能需要加入此方法
@@ -562,7 +655,7 @@
  *
  *	@return	平台客户端
  */
-+ (id<ISSCOpenApp>)getClientWithType:(ShareType)type;
++ (id<ISSPlatformApp>)getClientWithType:(ShareType)type;
 
 /**
  *	@brief	获取分享列表
@@ -664,6 +757,33 @@
               description:(NSString *)description
                 mediaType:(SSPublishContentMediaType)mediaType
        locationCoordinate:(SSCLocationCoordinate2D *)locationCoordinate;
+
+/**
+ *	@brief	创建分享内容对象，根据一下每个字段适用平台说明来填充参数值
+ *
+ *  @since  ver2.6.0
+ *
+ *	@param 	content 	分享内容（新浪、腾讯、网易、搜狐、豆瓣、人人、开心、有道云笔记、facebook、twitter、邮件、打印、短信、微信、QQ、拷贝）
+ *	@param 	defaultContent 	默认分享内容（新浪、腾讯、网易、搜狐、豆瓣、人人、开心、有道云笔记、facebook、twitter、邮件、打印、短信、微信、QQ、拷贝）
+ *	@param 	image 	分享图片（新浪、腾讯、网易、搜狐、豆瓣、人人、开心、facebook、twitter、邮件、打印、微信、QQ、拷贝）
+ *	@param 	title 	标题（QQ空间、人人、微信、QQ）
+ *	@param 	url 	链接（QQ空间、人人、instapaper、微信、QQ）
+ *	@param 	description 	主体内容（人人）
+ *	@param 	mediaType 	分享类型（QQ、微信）
+ *	@param 	locationCoordinate 	地理位置 (新浪、腾讯、Twitter)
+ *  @param  groupId     分组标识
+ *
+ *	@return	分享内容对象
+ */
++ (id<ISSContent>)content:(NSString *)content
+           defaultContent:(NSString *)defaultContent
+                    image:(id<ISSCAttachment>)image
+                    title:(NSString *)title
+                      url:(NSString *)url
+              description:(NSString *)description
+                mediaType:(SSPublishContentMediaType)mediaType
+       locationCoordinate:(SSCLocationCoordinate2D *)locationCoordinate
+                  groupId:(NSString *)groupId;
 
 
 /**
@@ -768,68 +888,39 @@
 /**
  *	@brief	将授权凭证进行序列化
  *
+ *  @since  ver2.6.0    修复返回的类型
+ *
  *	@param 	credential 	序列化凭证
  *
  *	@return	序列化后的数据
  */
-+ (NSData *)dataWithCredential:(id<ISSCredential>)credential;
-
-/**
- *	@brief	反序列化数据为授权凭证
- *
- *	@param 	data 	授权凭证序列化后的数据
- *	@param 	type 	类型
- *
- *	@return	授权凭证
- */
-+ (id<ISSCredential>)credentialWithData:(NSData *)data type:(ShareType)type;
-
-/**
- *	@brief	将授权源数据转换为授权凭证，通过其他途径获取到的授权数据通过此接口转换为凭证对象传入SDK
- *
- *	@param 	sourceData 	源数据
- *	@param 	type 	类型
- *
- *	@return	授权凭证
- */
-+ (id<ISSCredential>)credentialWithSourceData:(NSDictionary *)sourceData type:(ShareType)type;
-
-/**
- *	@brief	将授权凭证数据转换为授权凭证，此方法可以实现从一个授权凭证中将数据转移到另外一个授权凭证中。
- *
- *  @since  ver2.2.1
- *
- *	@param 	sourceData 	凭证数据
- *	@param 	type 	类型
- *
- *	@return	授权凭证
- */
-+ (id<ISSCredential>)credentialWithCredentialData:(NSDictionary *)sourceData type:(ShareType)type;
-
++ (NSData *)dataWithCredential:(id<ISSPlatformCredential>)credential;
 
 /**
  *	@brief	创建用户信息
  *
  *  @since  ver2.0.1
+ *  @since  ver2.6.0    修复返回类型
  *
  *	@param 	localUser 	平台相关用户信息
  *	@param 	type 	平台类型
  *
  *	@return	用户信息
  */
-+ (id<ISSUserInfo>)userWithLocalUser:(id)localUser type:(ShareType)type;
++ (id<ISSPlatformUser>)userWithLocalUser:(id)localUser type:(ShareType)type;
 
 /**
  *	@brief	创建状态信息
  *
  *  @since  ver2.0.1
+ *  @since  ver2.6.0    修复返回类型
  *
  *	@param 	localStatus 	平台相关的状态信息
  *	@param 	type 	平台类型
  *
  *	@return	状态信息
  */
-+ (id<ISSStatusInfo>)statusWithLocalStatus:(id)localStatus type:(ShareType)type;
++ (id<ISSPlatformShareInfo>)statusWithLocalStatus:(id)localStatus type:(ShareType)type;
 
 /**
  *	@brief	创建用户信息字段
@@ -879,25 +970,82 @@
  */
 + (void)waitAppSettingComplete:(void(^)())completeHandler;
 
+/**
+ *	@brief	获取已连接的平台类型列表
+ *
+ *  @since  ver2.6.0
+ *
+ *	@return	已连接平台列表，其元素为包含ShareType的NSNumber对象
+ */
++ (NSArray *)connectedPlatformTypes;
+
+
+/**
+ *	@brief	获取当前SDK版本号
+ *
+ *  @since  ver2.6.0
+ *
+ *	@return	版本号
+ */
++ (NSString *)version;
+
+
 
 #pragma mark 授权
 
 /**
+ *	@brief	反序列化数据为授权凭证
+ *
+ *  @since  ver2.6.0    调整返回的类型
+ *
+ *	@param 	data 	授权凭证序列化后的数据
+ *	@param 	type 	类型
+ *
+ *	@return	授权凭证
+ */
++ (id<ISSPlatformCredential>)credentialWithData:(NSData *)data type:(ShareType)type;
+
+/**
+ *	@brief	创建授权凭证,通过其他途径获取到的授权数据通过此接口转换为凭证对象传入SDK
+ *
+ *  @since  ver2.6.0
+ *
+ *  @param  type    平台类型
+ *	@param 	uid 	授权用户标识
+ *	@param 	token 	访问令牌，在OAuth中为oauth_token，在OAuth2中为access_token
+ *	@param 	secret 	访问令牌密钥，仅用于OAuth授权中，为oauth_token_secret。
+ *	@param 	expired 	过期时间，仅用于OAuth2授权中，需要将返回的秒数转换为时间。
+ *	@param 	extInfo 	扩展信息。用于存放除上述信息外的其它信息。
+ *
+ *	@return	授权凭证
+ */
++ (id<ISSPlatformCredential>)credentialWithType:(ShareType)type
+                                            uid:(NSString *)uid
+                                          token:(NSString *)token
+                                         secret:(NSString *)secret
+                                        expired:(NSDate *)expired
+                                        extInfo:(NSDictionary *)extInfo;
+
+/**
  *	@brief	获取授权凭证,凭证中包含accessToken或oauthToken、过期时间等信息
+ *
+ *  @since  ver2.6.0    修改返回类型
  *
  *	@param 	type 	平台类型
  *
  *	@return	授权凭证
  */
-+ (id<ISSCredential>)getCredentialWithType:(ShareType)type;
++ (id<ISSPlatformCredential>)getCredentialWithType:(ShareType)type;
 
 /**
  *	@brief	设置授权凭证
  *
+ *  @since  ver2.6.0    修复凭证类型
+ *
  *	@param 	credential 	授权凭证
  *	@param 	type 	平台类型
  */
-+ (void)setCredential:(id<ISSCredential>)credential type:(ShareType)type;
++ (void)setCredential:(id<ISSPlatformCredential>)credential type:(ShareType)type;
 
 /**
  *	@brief	创建授权选项
@@ -944,11 +1092,13 @@
 /**
  *	@brief	创建授权控制器，此方法用于自定义授权页面时使用,可以自由控制授权UI及过程。(注：微信、QQ、邮件、短信、打印、拷贝类型不支持授权功能。)
  *
+ *  @since  ver2.6.0    修改返回类型
+ *
  *	@param 	type 	平台类型
  *
  *	@return	授权会话
  */
-+ (id<ISSAuthController>)authorizeController:(ShareType)type;
++ (id<ISSPlatformAuthSession>)authorizeController:(ShareType)type;
 
 /**
  *	@brief	显示授权界面，(注：微信、QQ、邮件、短信、打印、拷贝类型不支持授权功能。)
@@ -976,6 +1126,42 @@
  *	@param 	type 	社会化平台类型
  */
 + (void)cancelAuthWithType:(ShareType)type;
+
+/**
+ *	@brief	获取当前授权用户
+ *
+ *  @since  ver2.6.0
+ *
+ *	@param 	type 	平台类型
+ *
+ *	@return	用户信息
+ */
++ (id<ISSPlatformUser>)currentAuthUserWithType:(ShareType)type;
+
+/**
+ *	@brief	设置当前授权用户，当有多个授权用户的时候可以使用此方法进行切换。
+ *
+ *  @since  ver2.6.0
+ *
+ *	@param 	user 	用户信息，注：此用户信息必须已经包含授权凭证，否则设置后无法进行相关功能接口调用，会要求重新进行授权。
+ *	@param 	type 	平台类型
+ *
+ */
++ (void)setCurrentAuthUser:(id<ISSPlatformUser>)user type:(ShareType)type;
+
+
+/**
+ *	@brief	获取授权用户列表
+ *
+ *  @since  ver2.6.0
+ *
+ *	@param 	type 	平台类型
+ *
+ *	@return	用户信息列表
+ */
++ (NSArray *)authorizedUsersWithType:(ShareType)type;
+
+
 
 #pragma mark 用户信息
 
@@ -1025,13 +1211,6 @@
                     result:(SSFollowUserEventHandler)result;
 
 /**
- *	@brief	关注微信号
- *
- *	@param 	userData 	二维码数据
- */
-+ (void)followWeixinUser:(NSString *)qrCode;
-
-/**
  *	@brief	获取授权用户的关注用户列表
  *
  *	@param 	type 	社会化平台类型
@@ -1042,7 +1221,7 @@
 + (void)getFriendsWithType:(ShareType)type
                       page:(id<ISSPage>)page
                authOptions:(id<ISSAuthOptions>)authOptions
-                    result:(SSGetFriendsEventHandler)result;
+                    result:(SSFriendsResultEvent)result;
 
 
 #pragma mark 分享

@@ -9,26 +9,53 @@
 
 #import <Foundation/Foundation.h>
 #import <ShareSDKCoreService/ShareSDKCoreService.h>
+#import <ShareSDK/ShareSDKPlugin.h>
 
 /**
  *	@brief	文章信息
  */
-@interface SSRenRenPost : NSObject <NSCoding,
+@interface SSRenRenPost : NSObject <ISSPlatformShareInfo,
+                                    NSCoding,
                                     ISSCDataObject>
 {
 @private
-    NSMutableDictionary *_sourceData;
+    NSDictionary *_sourceData;
+    NSString *_sid;
+    NSString *_text;
+    NSArray *_urls;
+    NSArray *_imgs;
+    NSDictionary *_extInfo;
 }
 
 /**
- *	@brief	源数据
+ *	@brief	分享ID
  */
-@property (nonatomic,retain) NSDictionary *sourceData;
+@property (nonatomic,copy) NSString *sid;
 
 /**
- *	@brief	文章ID
+ *	@brief	分享内容
  */
-@property (nonatomic,readonly) long long postId;
+@property (nonatomic,copy) NSString *text;
+
+/**
+ *	@brief	分享的链接列表
+ */
+@property (nonatomic,retain) NSArray *urls;
+
+/**
+ *	@brief	分享的图片列表
+ */
+@property (nonatomic,retain) NSArray *imgs;
+
+/**
+ *	@brief	扩展信息
+ */
+@property (nonatomic,retain) NSDictionary *extInfo;
+
+/**
+ *	@brief	原始数据
+ */
+@property (nonatomic,retain) NSDictionary *sourceData;
 
 /**
  *	@brief	创建文章信息

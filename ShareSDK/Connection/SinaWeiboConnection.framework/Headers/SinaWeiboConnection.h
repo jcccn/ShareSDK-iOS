@@ -10,72 +10,25 @@
 #import <UIKit/UIKit.h>
 #import "ISSSinaWeiboApp.h"
 #import <ShareSDKCoreService/ShareSDKCoreService.h>
+#import <ShareSDK/ShareSDKPlugin.h>
 
 /**
  *	@brief	新浪微博连接器
  */
-@interface SinaWeiboConnection : NSObject
+@interface SinaWeiboConnection : NSObject <ISSPlatform>
 
 /**
- *	@brief	注册应用,同一个AppKey只需要注册一次。
+ *	@brief	创建应用配置信息
  *
- *  @param  account 授权帐号，使用ShareSDK注册的应用Key换取。
- *	@param 	appKey 	应用Key
+ *	@param 	appKey 	应用标识
  *	@param 	appSecret 	应用密钥
  *	@param 	redirectUri 	回调地址
  *
- *	@return	应用对象,返回nil则表示应用注册失败。
+ *	@return	应用配置信息
  */
-+ (id<ISSSinaWeiboApp>)registerApp:(id<ISSCAccount>)account
-                            appKey:(NSString *)appKey
-                         appSecret:(NSString *)appSecret
-                       redirectUri:(NSString *)redirectUri;
-
-/**
- *	@brief	注销应用
- *
- *	@param 	app 	应用对象
- *
- *	@return	YES表示注销成功，NO表示注销失败
- */
-+ (BOOL)unregisterApp:(id<ISSSinaWeiboApp>)app;
-
-
-/**
- *	@brief	取得已注册新浪应用
- *
- *	@param 	appKey 	应用Key
- *
- *	@return	应用对象，返回nil则表示应用尚未注册
- */
-+ (id<ISSSinaWeiboApp>)getApp:(NSString *)appKey;
-    
-/**
- *	@brief	创建授权凭证
- *
- *	@param 	sourceData 	源数据
- *
- *	@return	授权凭证
- */
-+ (SSSinaWeiboCredential *)credentialWithData:(NSDictionary *)sourceData;
-
-/**
- *	@brief	创建授权凭证
- *
- *	@param 	credentialData 	授权数据
- *
- *	@return	授权凭证
- */
-+ (SSSinaWeiboCredential *)credentialWithCredentialData:(NSDictionary *)credentialData;
-
-/**
- *	@brief	根据新浪微博错误码返回错误描述
- *
- *	@param 	code 	错误码
- *
- *	@return	错误描述
- */
-+ (NSString *)getErrorDescriptionWithCode:(NSInteger)code;
+- (NSDictionary *)appInfoWithAppKey:(NSString *)appKey
+                          appSecret:(NSString *)appSecret
+                        redirectUri:(NSString *)redirectUri;
 
 
 @end

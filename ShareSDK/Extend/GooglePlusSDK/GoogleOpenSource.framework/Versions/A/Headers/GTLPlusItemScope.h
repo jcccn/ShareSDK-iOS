@@ -73,10 +73,13 @@
 // From http://schema.org/MusicRecording, the audio file.
 @property (retain) GTLPlusItemScope *audio;
 
-// The person who created this scope.
+// The person or persons who created this result. In the example of restaurant
+// reviews, this might be the reviewer's name.
 @property (retain) NSArray *author;  // of GTLPlusItemScope
 
-// Best possible rating value.
+// Best possible rating value that a result might obtain. This property defines
+// the upper bound for the ratingValue. For example, you might have a 5 star
+// rating scale, you would provide 5 as the value for this property.
 @property (copy) NSString *bestRating;
 
 // Date of birth.
@@ -95,19 +98,24 @@
 // Actual bytes of the media object, for example the image file or video file.
 @property (copy) NSString *contentUrl;
 
-// The list of contributors for this scope.
+// A list of contributors to this result.
 @property (retain) NSArray *contributor;  // of GTLPlusItemScope
 
-// The date this scope was created.
+// The date the result was created such as the date that a review was first
+// created.
 @property (copy) NSString *dateCreated;
 
-// The date this scope was last modified.
+// The date the result was last modified such as the date that a review was last
+// edited.
 @property (copy) NSString *dateModified;
 
-// The initial date this scope was published.
+// The initial date that the result was published. For example, a user writes a
+// comment on a blog, which has a result.dateCreated of when they submit it. If
+// the blog users comment moderation, the result.datePublished value would match
+// the date when the owner approved the message.
 @property (copy) NSString *datePublished;
 
-// The string describing the content of this scope.
+// The string that describes the content of the result.
 // Remapped to 'descriptionProperty' to avoid NSObject's 'description'.
 @property (copy) NSString *descriptionProperty;
 
@@ -123,8 +131,8 @@
 // The end date and time of the event (in ISO 8601 date format).
 @property (copy) NSString *endDate;
 
-// Family name. In the U.S., the last name of an Person. This can be used along
-// with givenName instead of the Name property.
+// Family name. This property can be used with givenName instead of the name
+// property.
 @property (copy) NSString *familyName;
 
 // Gender of the person.
@@ -133,18 +141,22 @@
 // Geo coordinates.
 @property (retain) GTLPlusItemScope *geo;
 
-// Given name. In the U.S., the first name of a Person. This can be used along
-// with familyName instead of the Name property.
+// Given name. This property can be used with familyName instead of the name
+// property.
 @property (copy) NSString *givenName;
 
 // The height of the media object.
 @property (copy) NSString *height;
 
-// The id for this item scope.
+// An identifier for the target. Your app can choose how to identify targets.
+// The target.id is required if you are writing an activity that does not have a
+// corresponding web page or target.url property.
 // identifier property maps to 'id' in JSON (to avoid Objective C's 'id').
 @property (copy) NSString *identifier;
 
-// A url to the image for this scope.
+// A URL to the image that represents this result. For example, if a user writes
+// a review of a restaurant and attaches a photo of their meal, you might use
+// that photo as the result.image.
 @property (copy) NSString *image;
 
 // From http://schema.org/MusicRecording, which album a song is in.
@@ -162,7 +174,9 @@
 // Longitude.
 @property (retain) NSNumber *longitude;  // doubleValue
 
-// The name of this scope.
+// The name of the result. In the example of a restaurant review, this might be
+// the summary the user gave their review such as "Great ambiance, but
+// overpriced."
 @property (copy) NSString *name;
 
 // Property of http://schema.org/TVEpisode indicating which series the episode
@@ -173,7 +187,7 @@
 // musician, or actor.
 @property (retain) NSArray *performers;  // of GTLPlusItemScope
 
-// Player type required-for example, Flash or Silverlight.
+// Player type that is required. For example: Flash or Silverlight.
 @property (copy) NSString *playerType;
 
 // Postal code.
@@ -194,13 +208,14 @@
 // Street address.
 @property (copy) NSString *streetAddress;
 
-// Comment text, review text, etc.
+// The text that is the result of the app activity. For example, if a user
+// leaves a review of a restaurant, this might be the text of the review.
 @property (copy) NSString *text;
 
 // Thumbnail image for an image or video.
 @property (retain) GTLPlusItemScope *thumbnail;
 
-// A url to a thumbnail image for this scope.
+// A URL to a thumbnail image that represents this result.
 @property (copy) NSString *thumbnailUrl;
 
 // The exchange traded instrument associated with a Corporation object. The
@@ -210,16 +225,19 @@
 // specified in ISO15022.
 @property (copy) NSString *tickerSymbol;
 
-// The item type.
+// The schema.org URL that best describes the referenced target and matches the
+// type of moment.
 @property (copy) NSString *type;
 
-// A URL for the item upon which the action was performed.
+// The URL that points to the result object. For example, a permalink directly
+// to a restaurant reviewer's comment.
 @property (copy) NSString *url;
 
 // The width of the media object.
 @property (copy) NSString *width;
 
-// Worst possible rating value.
+// Worst possible rating value that a result might obtain. This property defines
+// the lower bound for the ratingValue.
 @property (copy) NSString *worstRating;
 
 @end

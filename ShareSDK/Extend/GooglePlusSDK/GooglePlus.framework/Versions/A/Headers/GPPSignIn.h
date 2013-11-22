@@ -10,9 +10,9 @@
 
 #import <Foundation/Foundation.h>
 
+@class GTLPlusPerson;
 @class GTLServicePlus;
 @class GTMOAuth2Authentication;
-@class GTMOAuth2ViewControllerTouch;
 
 // A protocol implemented by the client of |GPPSignIn| to receive a refresh
 // token or an error.
@@ -50,48 +50,63 @@
 
 // The authentication object for the current user, or |nil| if there is
 // currently no logged in user.
-@property (nonatomic, readonly) GTMOAuth2Authentication *authentication;
+@property(nonatomic, strong, readonly) GTMOAuth2Authentication *authentication;
+
+// A JSON Web Token identifying the user. Send this token to your server to
+// authenticate the user on the server. For more information on JWTs, see
+// http://tools.ietf.org/html/draft-ietf-oauth-json-web-token-05
+@property(nonatomic, strong, readonly) NSString *idToken;
 
 // The Google user ID. It is only available if |shouldFetchGoogleUserID| is set
 // and either |trySilentAuthentication| or |authenticate| has been completed
 // successfully.
-@property (nonatomic, readonly) NSString *userID;
+@property(nonatomic, strong, readonly) NSString *userID;
 
 // The Google user's email. It is only available if |shouldFetchGoogleUserEmail|
 // is set and either |trySilentAuthentication| or |authenticate| has been
 // completed successfully.
-@property (nonatomic, readonly) NSString *userEmail;
+@property(nonatomic, strong, readonly) NSString *userEmail;
+
+// The Google+ user profile. It is only available if |shouldFetchGooglePlusUser|
+// is set and either |trySilentAuthentication| or |authenticate| has been
+// completed successfully.
+@property(nonatomic, strong, readonly) GTLPlusPerson *googlePlusUser;
 
 // The object to be notified when authentication is finished.
-@property (nonatomic, assign) id<GPPSignInDelegate> delegate;
+@property(nonatomic, weak) id<GPPSignInDelegate> delegate;
 
 // All properties below are optional parameters. If they need to be set, set
 // before calling |authenticate|.
 
 // The client ID of the app from the Google APIs console.
 // Must set for sign-in to work.
-@property (nonatomic, copy) NSString *clientID;
+@property(nonatomic, copy) NSString *clientID;
+
+// The client ID of the home web server.  This will be returned as the
+// |audience| property of the JWT ID token.  For more info on the ID token:
+// https://developers.google.com/accounts/docs/OAuth2Login#obtainuserinfo
+@property(nonatomic, copy) NSString *homeServerClientID;
 
 // The API scopes requested by the app in an array of |NSString|s.
 // The default value is |@[@"https://www.googleapis.com/auth/plus.login"]|.
-@property (nonatomic, copy) NSArray *scopes;
+@property(nonatomic, copy) NSArray *scopes;
 
 // Whether or not to attempt Single-Sign-On when signing in.
 // If |attemptSSO| is true, the sign-in button tries to authenticate with the
 // Google+ application if it is installed. If false, it always uses Google+ via
 // Chrome for iOS, if installed, or Mobile Safari for authentication.
 // The default value is |YES|.
-@property (nonatomic, assign) BOOL attemptSSO;
+@property(nonatomic, assign) BOOL attemptSSO;
 
 // The language for sign-in, in the form of ISO 639-1 language code
 // optionally followed by a dash and ISO 3166-1 alpha-2 region code,
 // such as |@"it"| or |@"pt-PT"|.
 // Only set if different from system default.
-@property (nonatomic, copy) NSString *language;
+@property(nonatomic, copy) NSString *language;
 
 // Name of the keychain to save the sign-in state.
 // Only set if a custom name needs to be used.
-@property (nonatomic, copy) NSString *keychainName;
+@property(nonatomic, copy) NSString *keychainName;
 
 // An |NSString| array of moment types used by your app. Use values from the
 // full list at
@@ -99,19 +114,24 @@
 // such as "http://schemas.google.com/AddActivity".
 // This property is required only for writing moments, with
 // "https://www.googleapis.com/auth/plus.login" as a scope.
-@property (nonatomic, copy) NSArray *actions;
+@property(nonatomic, copy) NSArray *actions;
 
 // Whether or not to fetch user email after signing in. The email is saved in
 // the |GTMOAuth2Authentication| object. Note that using this flag automatically
 // adds "https://www.googleapis.com/auth/userinfo.email" scope to the request.
-@property (nonatomic, assign) BOOL shouldFetchGoogleUserEmail;
+@property(nonatomic, assign) BOOL shouldFetchGoogleUserEmail;
 
 // Whether or not to fetch user ID after signing in. The ID can be retrieved
-// by |googleUserID| after user has been authenticated.
-// Note, a scope, such as "https://www.googleapis.com/auth/plus.login" or
-// "https://www.googleapis.com/auth/plus.me", that provides user ID must be
-// included in |scopes| for this flag to work.
-@property (nonatomic, assign) BOOL shouldFetchGoogleUserID;
+// by |googleUserID| after user has been authenticated. Note that using this
+// flag automatically adds "https://www.googleapis.com/auth/userinfo.profile"
+// scope to the request if a scope that provides user ID is not already present.
+@property(nonatomic, assign) BOOL shouldFetchGoogleUserID;
+
+// Whether or not to fetch Google+ user profile after signing in. The user
+// profile object can be retrieved by |googlePlusUser| after user has been
+// authenticated. Note that using this flag automatically adds
+// "https://www.googleapis.com/auth/plus.me" scope to the request if needed.
+@property(nonatomic, assign) BOOL shouldFetchGooglePlusUser;
 
 // Returns a shared |GPPSignIn| instance.
 + (GPPSignIn *)sharedInstance;
@@ -132,6 +152,9 @@
 // If |attemptSSO| is true, try to authenticate with the Google+ app, if
 // installed. If false, always use Google+ via Chrome or Mobile Safari for
 // authentication. The delegate will be called at the end of this process.
+// Note that this method should not be called when the app is starting up,
+// (e.g in application:didFinishLaunchingWithOptions:). Instead use the
+// |trySilentAuthentication| method.
 - (void)authenticate;
 
 // This method should be called from your |UIApplicationDelegate|'s
@@ -151,8 +174,9 @@
 // to be called.
 - (void)disconnect;
 
-// Gets a service object which can execute "queries", for example,
-// to get list of people that is visible to this app.
+// Gets a service object authenticated as the current user. The service object
+// can execute queries, for example, to get list of people that is visible to
+// this app. The user must be signed in for this method to work.
 - (GTLServicePlus *)plusService;
 
 @end

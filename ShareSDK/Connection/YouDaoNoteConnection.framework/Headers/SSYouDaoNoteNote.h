@@ -9,68 +9,60 @@
 
 #import <Foundation/Foundation.h>
 #import <ShareSDKCoreService/ShareSDKCoreService.h>
+#import <ShareSDK/ShareSDKPlugin.h>
 
 /**
  *	@brief	笔记信息
  */
-@interface SSYouDaoNoteNote : NSObject <NSCoding,
+@interface SSYouDaoNoteNote : NSObject <ISSPlatformShareInfo,
+                                        NSCoding,
                                         ISSCDataObject>
 {
 @private
-    NSMutableDictionary *_sourceData;
+    NSDictionary *_sourceData;
+    NSString *_sid;
+    NSString *_text;
+    NSArray *_urls;
+    NSArray *_imgs;
+    NSDictionary *_extInfo;
 }
 
 /**
- *	@brief	源数据
+ *	@brief	分享ID
+ */
+@property (nonatomic,copy) NSString *sid;
+
+/**
+ *	@brief	分享内容
+ */
+@property (nonatomic,copy) NSString *text;
+
+/**
+ *	@brief	分享的链接列表
+ */
+@property (nonatomic,retain) NSArray *urls;
+
+/**
+ *	@brief	分享的图片列表
+ */
+@property (nonatomic,retain) NSArray *imgs;
+
+/**
+ *	@brief	扩展信息
+ */
+@property (nonatomic,retain) NSDictionary *extInfo;
+
+/**
+ *	@brief	原始数据
  */
 @property (nonatomic,retain) NSDictionary *sourceData;
 
 /**
- *	@brief	笔记路径
- */
-@property (nonatomic,readonly) NSString *path;
-
-/**
- *	@brief	笔记标题
- */
-@property (nonatomic,readonly) NSString *title;
-
-/**
- *	@brief	笔记作者
- */
-@property (nonatomic,readonly) NSString *author;
-
-/**
- *	@brief	笔记来源URL
- */
-@property (nonatomic,readonly) NSString *source;
-
-/**
- *	@brief	笔记大小，包括笔记正文及附件
- */
-@property (nonatomic,readonly) NSInteger size;
-
-/**
- *	@brief	笔记的创建时间，单位秒
- */
-@property (nonatomic,readonly) NSTimeInterval createTime;
-
-/**
- *	@brief	笔记的最后修改时间，单位秒
- */
-@property (nonatomic,readonly) NSTimeInterval modifyTime;
-
-/**
- *	@brief	笔记正文
- */
-@property (nonatomic,readonly) NSString *content;
-
-/**
- *	@brief	创建笔记信息
+ *	@brief	创建微博信息
  *
- *	@param 	response 	回复数据
+ *	@param 	response 	服务器回复数据
  *
- *	@return	笔记信息
+ *	@return	微博信息
  */
 + (SSYouDaoNoteNote *)noteWithResponse:(NSDictionary *)response;
 

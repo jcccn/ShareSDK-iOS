@@ -8,44 +8,55 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SSKaiXinMain.h"
 #import "SSKaiXinUser.h"
 #import <ShareSDKCoreService/ShareSDKCoreService.h>
+#import <ShareSDK/ShareSDKPlugin.h>
 
 /**
  *	@brief	记录信息
  */
-@interface SSKaiXinRecord : NSObject <NSCoding,
+@interface SSKaiXinRecord : NSObject <ISSPlatformShareInfo,
+                                      NSCoding,
                                       ISSCDataObject>
 {
 @private
-    NSMutableDictionary *_sourceData;
+    NSDictionary *_sourceData;
+    NSString *_sid;
+    NSString *_text;
+    NSArray *_urls;
+    NSArray *_imgs;
+    NSDictionary *_extInfo;
 }
 
 /**
- *	@brief	源数据
+ *	@brief	分享ID
+ */
+@property (nonatomic,copy) NSString *sid;
+
+/**
+ *	@brief	分享内容
+ */
+@property (nonatomic,copy) NSString *text;
+
+/**
+ *	@brief	分享的链接列表
+ */
+@property (nonatomic,retain) NSArray *urls;
+
+/**
+ *	@brief	分享的图片列表
+ */
+@property (nonatomic,retain) NSArray *imgs;
+
+/**
+ *	@brief	扩展信息
+ */
+@property (nonatomic,retain) NSDictionary *extInfo;
+
+/**
+ *	@brief	原始数据
  */
 @property (nonatomic,retain) NSDictionary *sourceData;
-
-/**
- *	@brief	状态ID
- */
-@property (nonatomic,readonly) NSString *rid;
-
-/**
- *	@brief	创建时间
- */
-@property (nonatomic,readonly) NSString *ctime;
-
-/**
- *	@brief	内容信息
- */
-@property (nonatomic,readonly) SSKaiXinMain *main;
-
-/**
- *	@brief	用户信息
- */
-@property (nonatomic,readonly) SSKaiXinUser *user;
 
 
 /**

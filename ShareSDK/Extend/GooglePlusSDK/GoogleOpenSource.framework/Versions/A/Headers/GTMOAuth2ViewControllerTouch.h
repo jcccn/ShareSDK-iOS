@@ -33,17 +33,15 @@
 
 #import "GTMOAuth2Authentication.h"
 
-#undef _EXTERN
-#undef _INITIALIZE_AS
-#ifdef GTMOAUTH2VIEWCONTROLLERTOUCH_DEFINE_GLOBALS
-#define _EXTERN
-#define _INITIALIZE_AS(x) =x
-#else
-#define _EXTERN extern
-#define _INITIALIZE_AS(x)
+#ifdef __cplusplus
+extern "C" {
 #endif
 
-_EXTERN NSString* const kGTMOAuth2KeychainErrorDomain       _INITIALIZE_AS(@"com.google.GTMOAuthKeychain");
+extern NSString *const kGTMOAuth2KeychainErrorDomain;
+
+#ifdef __cplusplus
+}
+#endif
 
 @class GTMOAuth2SignIn;
 @class GTMOAuth2ViewControllerTouch;
@@ -123,6 +121,9 @@ typedef void (^GTMOAuth2ViewControllerCompletionHandler)(GTMOAuth2ViewController
   // viewWillDisappear indicates that some external change of the view
   // has stopped the sign-in.
   BOOL didDismissSelf_;
+
+  // Work around default cookie policy bug in iOS 7; see comments in viewWillAppear.
+  NSHTTPCookieAcceptPolicy savedCookiePolicy_;
 }
 
 // the application and service name to use for saving the auth tokens
@@ -293,8 +294,13 @@ typedef void (^GTMOAuth2ViewControllerCompletionHandler)(GTMOAuth2ViewController
 
 // create an authentication object for Google services from the access
 // token and secret stored in the keychain; if no token is available, return
-// an unauthorized auth object
+// an unauthorized auth object. OK to pass NULL for the error parameter.
 #if !GTM_OAUTH2_SKIP_GOOGLE_SUPPORT
++ (GTMOAuth2Authentication *)authForGoogleFromKeychainForName:(NSString *)keychainItemName
+                                                     clientID:(NSString *)clientID
+                                                 clientSecret:(NSString *)clientSecret
+                                                        error:(NSError **)error;
+// Equivalent to calling the method above with a NULL error parameter.
 + (GTMOAuth2Authentication *)authForGoogleFromKeychainForName:(NSString *)keychainItemName
                                                      clientID:(NSString *)clientID
                                                  clientSecret:(NSString *)clientSecret;
@@ -304,16 +310,21 @@ typedef void (^GTMOAuth2ViewControllerCompletionHandler)(GTMOAuth2ViewController
 //
 // returns YES if the authentication object was authorized from the keychain
 + (BOOL)authorizeFromKeychainForName:(NSString *)keychainItemName
-                      authentication:(GTMOAuth2Authentication *)auth;
+                      authentication:(GTMOAuth2Authentication *)auth
+                               error:(NSError **)error;
 
 // method for deleting the stored access token and secret, useful for "signing
 // out"
 + (BOOL)removeAuthFromKeychainForName:(NSString *)keychainItemName;
 
 // method for saving the stored access token and secret
+//
+// returns YES if the save was successful.  OK to pass NULL for the error
+// parameter.
 + (BOOL)saveParamsToKeychainForName:(NSString *)keychainItemName
                       accessibility:(CFTypeRef)accessibility
-                     authentication:(GTMOAuth2Authentication *)auth;
+                     authentication:(GTMOAuth2Authentication *)auth
+                              error:(NSError **)error;
 
 // older version, defaults to kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly
 + (BOOL)saveParamsToKeychainForName:(NSString *)keychainItemName

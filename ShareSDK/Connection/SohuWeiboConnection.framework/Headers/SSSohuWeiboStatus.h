@@ -10,97 +10,58 @@
 #import <Foundation/Foundation.h>
 #import "SSSohuWeiboUser.h"
 #import <ShareSDKCoreService/ShareSDKCoreService.h>
+#import <ShareSDK/ShareSDKPlugin.h>
 
 /**
  *	@brief	微博信息
  */
-@interface SSSohuWeiboStatus : NSObject <NSCoding,
+@interface SSSohuWeiboStatus : NSObject <ISSPlatformShareInfo,
+                                         NSCoding,
                                          ISSCDataObject>
 {
 @private
     NSMutableDictionary *_sourceData;
+    NSString *_sid;
+    NSString *_text;
+    NSArray *_urls;
+    NSArray *_imgs;
+    NSDictionary *_extInfo;
 }
 
 /**
- *	@brief	创建时间
+ *	@brief	分享ID
  */
-@property (nonatomic,readonly) NSDate *createAt;
+@property (nonatomic,copy) NSString *sid;
 
 /**
- *	@brief	微博id
+ *	@brief	分享内容
  */
-@property (nonatomic,readonly) NSString *sid;
+@property (nonatomic,copy) NSString *text;
 
 /**
- *	@brief	内容
+ *	@brief	分享的链接列表
  */
-@property (nonatomic,readonly) NSString *text;
+@property (nonatomic,retain) NSArray *urls;
 
 /**
- *	@brief	来源
+ *	@brief	分享的图片列表
  */
-@property (nonatomic,readonly) NSString *source;
+@property (nonatomic,retain) NSArray *imgs;
 
 /**
- *	@brief	是否收藏
+ *	@brief	扩展信息
  */
-@property (nonatomic,readonly) BOOL favorited;
+@property (nonatomic,retain) NSDictionary *extInfo;
 
 /**
- *	@brief	暂无
- */
-@property (nonatomic,readonly) BOOL truncated;
-
-/**
- *	@brief	转发微博id
- */
-@property (nonatomic,readonly) NSString *inReplyToStatusId;
-
-/**
- *	@brief	转发微博作者id
- */
-@property (nonatomic,readonly) NSString *inReplyToUserId;
-
-/**
- *	@brief	转发微博作者昵称
- */
-@property (nonatomic,readonly) NSString *inReplyToScreenName;
-
-/**
- *	@brief	转发微博内容
- */
-@property (nonatomic,readonly) NSString *inReplyToStatusText;
-
-/**
- *	@brief	小图
- */
-@property (nonatomic,readonly) NSString *smallPic;
-
-/**
- *	@brief	中图
- */
-@property (nonatomic,readonly) NSString *middlePic;
-
-/**
- *	@brief	原图
- */
-@property (nonatomic,readonly) NSString *originalPic;
-
-/**
- *	@brief	用户信息
- */
-@property (nonatomic,readonly) SSSohuWeiboUser *userInfo;
-
-/**
- *	@brief	源数据
+ *	@brief	原始数据
  */
 @property (nonatomic,retain) NSDictionary *sourceData;
 
-
 /**
- *	@brief	创建搜狐微博信息
+ *	@brief	创建微博信息
  *
- *	@param 	response 	回复信息
+ *	@param 	response 	服务器回复数据
  *
  *	@return	微博信息
  */

@@ -8,41 +8,53 @@
 
 #import <Foundation/Foundation.h>
 #import <ShareSDKCoreService/SSCDataObject.h>
+#import <ShareSDK/ShareSDKPlugin.h>
 
 /**
  *	@brief	分享信息
  */
-@interface SSGooglePlusShareInfo : SSCDataObject
+@interface SSGooglePlusShareInfo : NSObject <ISSPlatformShareInfo,
+                                             NSCoding,
+                                             ISSCDataObject>
+{
+@private
+    NSDictionary *_sourceData;
+    NSString *_sid;
+    NSString *_text;
+    NSArray *_urls;
+    NSArray *_imgs;
+    NSDictionary *_extInfo;
+}
 
 /**
- *	@brief	链接
+ *	@brief	分享ID
  */
-@property (nonatomic,readonly) NSString *url;
+@property (nonatomic,copy) NSString *sid;
 
 /**
- *	@brief	内容
+ *	@brief	分享内容
  */
-@property (nonatomic,readonly) NSString *text;
+@property (nonatomic,copy) NSString *text;
 
 /**
- *	@brief	深链接ID
+ *	@brief	分享的链接列表
  */
-@property (nonatomic,readonly) NSString *deepLinkId;
+@property (nonatomic,retain) NSArray *urls;
 
 /**
- *	@brief	深链接标题
+ *	@brief	分享的图片列表
  */
-@property (nonatomic,readonly) NSString *title;
+@property (nonatomic,retain) NSArray *imgs;
 
 /**
- *	@brief	深链接描述
+ *	@brief	扩展信息
  */
-@property (nonatomic,readonly) NSString *description;
+@property (nonatomic,retain) NSDictionary *extInfo;
 
 /**
- *	@brief	缩略图
+ *	@brief	原始数据
  */
-@property (nonatomic,readonly) NSString *thumbnail;
+@property (nonatomic,retain) NSDictionary *sourceData;
 
 /**
  *	@brief	创建分享信息

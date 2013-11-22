@@ -53,8 +53,9 @@
 // - "person" - Access to an individual.
 // - "circle" - Access to members of a circle.
 // - "myCircles" - Access to members of all the person's circles.
-// - "extendedCircles" - Access to members of everyone in a person's circles,
-// plus all of the people in their circles.
+// - "extendedCircles" - Access to members of all the person's circles, plus all
+// of the people in their circles.
+// - "domain" - Access to members of the person's Google Apps domain.
 // - "public" - Access to anyone on the web.
 @property (copy) NSString *type;
 

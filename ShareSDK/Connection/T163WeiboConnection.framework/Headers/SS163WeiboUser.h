@@ -11,84 +11,35 @@
 #import "SS163WeiboCredential.h"
 #import <ShareSDKCoreService/ISSCUserDescriptor.h>
 #import <ShareSDKCoreService/ShareSDKCoreService.h>
+#import <ShareSDK/ShareSDKPlugin.h>
 
 @class SS163WeiboStatus;
 
 /**
  *	@brief	用户信息
  */
-@interface SS163WeiboUser : NSObject <NSCoding,
+@interface SS163WeiboUser : NSObject <ISSPlatformUser,
+                                      NSCoding,
                                       ISSCDataObject>
-{
-@private
-    NSMutableDictionary *_sourceData;
-    SS163WeiboCredential *_credential;
-}
+/**
+ *	@brief	所属平台
+ */
+@property (nonatomic,readonly) id<ISSPlatformApp> app;
 
 /**
- *	@brief	源数据
+ *	@brief	授权信息，如果为nil则表示非当前应用授权用户
+ */
+@property (nonatomic,retain) id<ISSPlatformCredential> credential;
+
+/**
+ *	@brief	用户的原始数据信息，与各个平台定义的用户信息结构相同
  */
 @property (nonatomic,retain) NSDictionary *sourceData;
 
 /**
- *	@brief	授权凭证
+ *	@brief	平台类型
  */
-@property (nonatomic,retain) SS163WeiboCredential *credential;
-
-/**
- *	@brief	暂无
- */
-@property (nonatomic,readonly) NSInteger columnIdNameWithCounts;
-
-/**
- *	@brief	用户注册时间
- */
-@property (nonatomic,readonly) NSDate *createdAt;
-
-/**
- *	@brief	暂无
- */
-@property (nonatomic,readonly) NSString *darenRec;
-
-/**
- *	@brief	用户描述
- */
-@property (nonatomic,readonly) NSString *description;
-
-/**
- *	@brief	邮箱地址
- */
-@property (nonatomic,readonly) NSString *email;
-
-/**
- *	@brief	收藏数
- */
-@property (nonatomic,readonly) NSInteger favouritesCount;
-
-/**
- *	@brief	被关注数
- */
-@property (nonatomic,readonly) NSInteger followersCount;
-
-/**
- *	@brief	关注数
- */
-@property (nonatomic,readonly) NSInteger friendsCount;
-
-/**
- *	@brief	性别，0为保密，1为男性，2为女性
- */
-@property (nonatomic,readonly) NSInteger gender;
-
-/**
- *	@brief	暂无
- */
-@property (nonatomic,readonly) BOOL geoEnable;
-
-/**
- *	@brief	暂无
- */
-@property (nonatomic,readonly) NSInteger icorp;
+@property (nonatomic,readonly) ShareType type;
 
 /**
  *	@brief	用户ID
@@ -96,79 +47,87 @@
 @property (nonatomic,readonly) NSString *uid;
 
 /**
- *	@brief	暂无
+ *	@brief	用户昵称
  */
-@property (nonatomic,readonly) NSArray *inGroups;
+@property (nonatomic,readonly) NSString *nickname;
 
 /**
- *	@brief	用户地址
+ *	@brief	个人头像路径
  */
-@property (nonatomic,readonly) NSString *location;
+@property (nonatomic,readonly) NSString *profileImage;
 
 /**
- *	@brief	用户名称
+ *	@brief	性别：0 男； 1 女； 2 未知
  */
-@property (nonatomic,readonly) NSString *name;
+@property (nonatomic,readonly) NSInteger gender;
 
 /**
- *	@brief	用户头像URL，最大长度为255
- */
-@property (nonatomic,readonly) NSString *profileImageUrl;
-
-/**
- *	@brief	暂无
- */
-@property (nonatomic,readonly) NSString *realName;
-
-/**
- *	@brief	个性网址
- */
-@property (nonatomic,readonly) NSString *screenName;
-
-/**
- *	@brief	发微博数
- */
-@property (nonatomic,readonly) NSInteger statusesCount;
-
-/**
- *	@brief	暂无
- */
-@property (nonatomic,readonly) NSString *sysTag;
-
-/**
- *	@brief	个人博客地址
+ *	@brief	个人主页地址
  */
 @property (nonatomic,readonly) NSString *url;
 
 /**
- *	@brief	暂无
+ *	@brief	个人简介
  */
-@property (nonatomic,readonly) NSString *userTag;
+@property (nonatomic,readonly) NSString *aboutMe;
 
 /**
- *	@brief	暂无
+ *	@brief	认证类型：－1 未知； 0 未认证； 1 认证
  */
-@property (nonatomic,readonly) BOOL verified;
+@property (nonatomic,readonly) NSInteger verifyType;
 
 /**
- *	@brief	最新一条微博
+ *	@brief	认证信息
  */
-@property (nonatomic,readonly) SS163WeiboStatus *status;
+@property (nonatomic,readonly) NSString *verifyReason;
 
 /**
- *	@brief	创建用户信息
+ *	@brief	用户生日（单位：秒）
+ */
+@property (nonatomic,readonly) NSString *birthday;
+
+/**
+ *	@brief	用户粉丝数
+ */
+@property (nonatomic,readonly) NSInteger followerCount;
+
+/**
+ *	@brief	用户关注数
+ */
+@property (nonatomic,readonly) NSInteger friendCount;
+
+/**
+ *	@brief	用户分享数
+ */
+@property (nonatomic,readonly) NSInteger shareCount;
+
+/**
+ *	@brief	用户的注册时间（单位：秒）
+ */
+@property (nonatomic,readonly) NSTimeInterval regAt;
+
+/**
+ *	@brief	用户等级
+ */
+@property (nonatomic,readonly) NSInteger level;
+
+/**
+ *	@brief	用户的教育信息列表
+ */
+@property (nonatomic,readonly) NSArray *educations;
+
+/**
+ *	@brief	用户的职业信息列表
+ */
+@property (nonatomic,readonly) NSArray *works;
+
+/**
+ *	@brief	初始化化用户信息
  *
- *	@param 	response 	回复数据
+ *	@param 	app 	应用信息
  *
- *	@return	用户信息
+ *	@return	用户信息对象
  */
-+ (SS163WeiboUser *)userInfoWithResponse:(NSDictionary *)response;
-
-/**
- *	@brief	创建用户信息描述器
- *
- *	@return	描述器对象
- */
-- (id<ISSCUserDescriptor>)descriptor;
+- (id)initWithApp:(id<ISSPlatformApp>)app;
 
 @end

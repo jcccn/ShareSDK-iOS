@@ -9,11 +9,11 @@
 
 #import <Foundation/Foundation.h>
 #import <ShareSDKCoreService/ShareSDKCoreService.h>
-#import "ISSFacebookAuthSession.h"
 #import "SSFacebookUser.h"
 #import "SSFacebookErrorInfo.h"
 #import "SSFacebookPost.h"
 #import "ISSFacebookAddFriendDialog.h"
+#import <ShareSDK/ShareSDKPlugin.h>
 
 /**
  *	@brief	新浪微博请求方式
@@ -28,16 +28,19 @@ typedef enum
 SSFacebookRequestMethod;
 
 /**
- *	@brief	Facebook应用协议
+ *	@brief	显示添加好友对话框
  */
-@protocol ISSFacebookApp <ISSCOpenApp>
+typedef void(^SSFacebookShowAddFriendDialog) (UIViewController *viewController);
 
 /**
- *	@brief	获取授权帐号
- *
- *	@return	授权帐号
+ *	@brief	关闭添加好友对话框
  */
-- (id<ISSCAccount>)account;
+typedef void(^SSFacebookCloseAddFriendDialog) (UIViewController *viewController);
+
+/**
+ *	@brief	Facebook应用协议
+ */
+@protocol ISSFacebookApp <ISSPlatformApp>
 
 /**
  *	@brief	获取应用Key
@@ -61,112 +64,21 @@ SSFacebookRequestMethod;
 - (NSString *)ssoCallbackUrl;
 
 /**
- *	@brief	SSO登录使能状态
+ *	@brief	设置添加好友对话框处理器
+ *
+ *	@param 	showHandler 	显示处理器
+ *  @param  closeHandler    关闭处理器
  */
-- (BOOL)ssoEnabled;
+- (void)setAddFriendDialogWithShowHandler:(SSFacebookShowAddFriendDialog)showHandler
+                             closeHandler:(SSFacebookCloseAddFriendDialog)closeHandler;
 
 /**
- *	@brief	设置SSO登录使能状态
+ *	@brief	设置添加好友对话框委托
+ *
+ *	@param 	delegate 	委托
  */
-- (void)setSsoEnabled:(BOOL)ssoEnabled;
+- (void)setAddFriendDialogDelegate:(id<ISSViewDelegate>)delegate;
 
-/**
- *	@brief	获取是否转换链接标识
- *
- *	@return	YES 表示转换链接，NO 表示不转换链接
- */
-- (BOOL)convertUrlEnabled;
-
-/**
- *	@brief	设置是否转换链接标识
- *
- *	@param 	enabled 	YES 表示转换链接，NO 表示不转换链接
- */
-- (void)setConvertUrlEnabled:(BOOL)enabled;
-
-/**
- *	@brief	授权应用
- *
- *	@return	授权会话
- */
-- (id<ISSFacebookAuthSession>)authorize;
-
-/**
- *	@brief	注册用户信息
- *
- *	@param 	user 	用户信息
- *
- *	@return	YES 表示注册成功， NO 表示注册失败
- */
-- (BOOL)registerUser:(SSFacebookUser *)user;
-
-/**
- *	@brief	注销用户信息
- *
- *	@param 	user 	用户信息
- *
- *	@return	YES 表示注销成功， NO 表示注销失败
- */
-- (BOOL)unregisterUser:(SSFacebookUser *)user;
-
-/**
- *	@brief	获取注册用户信息
- *
- *	@param 	uid 	用户ID
- *
- *	@return	返回用户信息，nil表示尚未注册
- */
-- (SSFacebookUser *)getUser:(NSString *)uid;
-
-/**
- *	@brief	获取默认注册用户
- *
- *	@return	默认注册用户
- */
-- (SSFacebookUser *)defaultUser;
-
-/**
- *	@brief	设置默认注册用户
- *
- *	@param 	defaultUser 	默认注册用户
- */
-- (void)setDefaultUser:(SSFacebookUser *)defaultUser;
-
-/**
- *	@brief	处理请求打开链接
- *
- *	@param 	url 	链接
- *
- *	@return	YES 表示接受请求 NO 表示不接受
- */
-- (BOOL)handleOpenURL:(NSURL *)url;
-
-/**
- *	@brief	处理请求打开链接
- *
- *	@param 	url 	链接
- *	@param 	sourceApplication 	源应用
- *	@param 	annotation 	源应用提供的信息
- *
- *	@return	YES 表示接受请求，NO 表示不接受请求
- */
-- (BOOL)handleOpenURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation;
-
-/**
- *	@brief	检测用户是否已授权
- *
- *	@param 	error 	错误信息
- *
- *	@return	YES 表示没有授权，NO 表示已授权
- */
-- (BOOL)checkUnauthWithError:(SSFacebookErrorInfo *)error;
-
-/**
- *	@brief	设置凭证
- *
- *	@param 	credential 	授权凭证信息
- */
-- (void)setCredential:(SSFacebookCredential *)credential;
 
 /**
  *	@brief	调用开放平台API
@@ -180,25 +92,9 @@ SSFacebookRequestMethod;
 - (void)api:(NSString *)path
      method:(SSFacebookRequestMethod)method
      params:(id<ISSCParameters>)params
-       user:(SSFacebookUser *)user
+       user:(id<ISSPlatformUser>)user
      result:(void(^)(id responder))result
-      fault:(void(^)(SSFacebookErrorInfo *error))fault;
-
-/**
- *	@brief	显示默认授权用户信息
- *
- *  @param  result  返回回调
- */
-- (void)showMe:(void(^)(BOOL result, SSFacebookUser *user, SSFacebookErrorInfo *error))result;
-
-/**
- *	@brief	获取其他用户信息
- *
- *	@param 	uid 	用户ID
- *  @param  result  返回回调
- */
-- (void)getUserInfoWithUid:(NSString *)uid
-                    result:(void(^)(BOOL result, SSFacebookUser *user, SSFacebookErrorInfo *error))result;
+      fault:(void(^)(CMErrorInfo *error))fault;
 
 
 /**
@@ -208,7 +104,7 @@ SSFacebookRequestMethod;
  *  @param  result      返回回调
  */
 - (void)feedWithMessage:(NSString *)message
-                 result:(void(^)(SSCShareSessionState state, SSFacebookPost *post, SSFacebookErrorInfo *error))result;
+                 result:(SSShareResultEvent)result;
 
 /**
  *	@brief	发布消息
@@ -219,7 +115,7 @@ SSFacebookRequestMethod;
  */
 - (void)feedWithMessage:(NSString *)message
                  source:(id<ISSCAttachment>)source
-                 result:(void(^)(SSCShareSessionState state, SSFacebookPost *post, SSFacebookErrorInfo *error))result;
+                 result:(SSShareResultEvent)result;
 
 /**
  *	@brief	获取文章信息
@@ -227,28 +123,7 @@ SSFacebookRequestMethod;
  *	@param 	postId 	文章ID
  */
 - (void)getPostWithId:(NSString *)postId
-               result:(void(^)(BOOL result, SSFacebookPost *post, SSFacebookErrorInfo *error))result;
-
-
-/**
- *	@brief	添加好友
- *
- *	@param 	uid 	用户ID
- *
- *	@return	添加好友对话框对象
- */
-- (id<ISSFacebookAddFriendDialog>)addFriendWithUid:(NSString *)uid;
-
-/**
- *	@brief	获取好友列表
- *
- *	@param 	offset 	相对起始位置的偏移量
- *	@param 	limit 	最多获取的数量
- *  @param  result  返回回调
- */
-- (void)friendsWithOffset:(NSInteger)offset
-                    limit:(NSInteger)limit
-                   result:(void(^)(BOOL result, NSArray *users, SSFacebookErrorInfo *error))result;
+               result:(void(^)(BOOL result, id post, CMErrorInfo *error))result;
 
 
 @end

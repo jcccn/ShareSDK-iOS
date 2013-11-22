@@ -9,20 +9,12 @@
 
 #import <UIKit/UIKit.h>
 #import "ISSMailApp.h"
+#import <ShareSDK/ShareSDKPlugin.h>
 
 /**
  *	@brief	邮件连接器
  */
-@interface MailConnection : NSObject
-
-/**
- *	@brief	注册应用
- *
- *	@param 	account 	帐户
- *
- *	@return	应用对象
- */
-+ (id<ISSMailApp>)registerApp:(id<ISSCAccount>)account;
+@interface MailConnection : NSObject <ISSPlatform>
 
 
 @end

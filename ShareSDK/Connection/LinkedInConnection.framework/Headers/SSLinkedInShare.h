@@ -8,21 +8,53 @@
 
 #import <Foundation/Foundation.h>
 #import <ShareSDKCoreService/SSCDataObject.h>
+#import <ShareSDK/ShareSDKPlugin.h>
 
 /**
  *	@brief	分享信息
  */
-@interface SSLinkedInShare : SSCDataObject
+@interface SSLinkedInShare : NSObject <ISSPlatformShareInfo,
+                                       NSCoding,
+                                       ISSCDataObject>
+{
+@private
+    NSDictionary *_sourceData;
+    NSString *_sid;
+    NSString *_text;
+    NSArray *_urls;
+    NSArray *_imgs;
+    NSDictionary *_extInfo;
+}
 
 /**
- *	@brief	分享标识
+ *	@brief	分享ID
  */
-@property (nonatomic,readonly) NSString *updateKey;
+@property (nonatomic,copy) NSString *sid;
 
 /**
- *	@brief	分享路径
+ *	@brief	分享内容
  */
-@property (nonatomic,readonly) NSString *updateUrl;
+@property (nonatomic,copy) NSString *text;
+
+/**
+ *	@brief	分享的链接列表
+ */
+@property (nonatomic,retain) NSArray *urls;
+
+/**
+ *	@brief	分享的图片列表
+ */
+@property (nonatomic,retain) NSArray *imgs;
+
+/**
+ *	@brief	扩展信息
+ */
+@property (nonatomic,retain) NSDictionary *extInfo;
+
+/**
+ *	@brief	原始数据
+ */
+@property (nonatomic,retain) NSDictionary *sourceData;
 
 /**
  *	@brief	创建用户信息

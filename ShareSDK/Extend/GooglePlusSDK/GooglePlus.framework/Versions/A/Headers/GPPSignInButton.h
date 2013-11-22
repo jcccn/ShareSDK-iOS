@@ -35,10 +35,10 @@ typedef enum {
 // view hierarchy.
 @interface GPPSignInButton : UIButton
 
-// Sets the sign-in button layout style. The default style is standard.
-- (void)setStyle:(GPPSignInButtonStyle)style;
+// The layout style for the sign-in button. The default style is standard.
+@property(nonatomic, assign) GPPSignInButtonStyle style;
 
-// Sets the sign-in button color scheme. The default scheme is dark.
-- (void)setColorScheme:(GPPSignInButtonColorScheme)colorScheme;
+// The color scheme for the sign-in. The default scheme is dark.
+@property(nonatomic, assign) GPPSignInButtonColorScheme colorScheme;
 
 @end

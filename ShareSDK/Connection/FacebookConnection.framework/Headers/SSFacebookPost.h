@@ -10,91 +10,53 @@
 #import <Foundation/Foundation.h>
 #import <ShareSDKCoreService/ShareSDKCoreService.h>
 #import "SSFacebookUser.h"
+#import <ShareSDK/ShareSDKPlugin.h>
 
 /**
  *	@brief	文章信息
  */
-@interface SSFacebookPost : NSObject <NSCoding,
+@interface SSFacebookPost : NSObject <ISSPlatformShareInfo,
+                                      NSCoding,
                                       ISSCDataObject>
 {
 @private
-    NSMutableDictionary *_sourceData;
+    NSDictionary *_sourceData;
+    NSString *_sid;
+    NSString *_text;
+    NSArray *_urls;
+    NSArray *_imgs;
+    NSDictionary *_extInfo;
 }
 
 /**
- *	@brief	源数据
+ *	@brief	分享ID
+ */
+@property (nonatomic,copy) NSString *sid;
+
+/**
+ *	@brief	分享内容
+ */
+@property (nonatomic,copy) NSString *text;
+
+/**
+ *	@brief	分享的链接列表
+ */
+@property (nonatomic,retain) NSArray *urls;
+
+/**
+ *	@brief	分享的图片列表
+ */
+@property (nonatomic,retain) NSArray *imgs;
+
+/**
+ *	@brief	扩展信息
+ */
+@property (nonatomic,retain) NSDictionary *extInfo;
+
+/**
+ *	@brief	原始数据
  */
 @property (nonatomic,retain) NSDictionary *sourceData;
-
-/**
- *	@brief	ID
- */
-@property (nonatomic,readonly) NSString *Id;
-
-/**
- *	@brief	文章ID
- */
-@property (nonatomic,readonly) NSString *postId;
-
-/**
- *	@brief	发送用户
- */
-@property (nonatomic,readonly) SSFacebookUser *from;
-
-/**
- *	@brief	消息
- */
-@property (nonatomic,readonly) NSString *message;
-
-/**
- *	@brief	更新时间
- */
-@property (nonatomic,readonly) NSString *updatedTime;
-
-/**
- *	@brief	创建时间
- */
-@property (nonatomic,readonly) NSString *createdTime;
-
-/**
- *	@brief	图标
- */
-@property (nonatomic,readonly) NSString *icon;
-
-/**
- *	@brief	链接
- */
-@property (nonatomic,readonly) NSString *link;
-
-/**
- *	@brief	照片名称
- */
-@property (nonatomic,readonly) NSString *name;
-
-/**
- *	@brief	缩略图路径
- */
-@property (nonatomic,readonly) NSString *picture;
-
-/**
- *	@brief	源图路径
- */
-@property (nonatomic,readonly) NSString *source;
-
-/**
- *	@brief	高度
- */
-@property (nonatomic,readonly) NSInteger height;
-
-/**
- *	@brief	宽度
- */
-@property (nonatomic,readonly) NSInteger width;
-
-/**
- *	@brief	图片信息
- */
-@property (nonatomic,readonly) NSArray *images;
 
 
 /**

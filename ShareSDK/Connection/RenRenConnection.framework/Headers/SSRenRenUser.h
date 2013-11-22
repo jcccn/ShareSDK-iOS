@@ -8,96 +8,125 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SSRenRenHometown.h"
-#import "SSRenRenWork.h"
-#import "SSRenRenSchool.h"
 #import "SSRenRenCredential.h"
 #import <ShareSDKCoreService/ISSCUserDescriptor.h>
 #import <ShareSDKCoreService/ShareSDKCoreService.h>
 #import <ShareSDKCoreService/SSCDataObject.h>
-#import "SSRenRenBasicInformation.h"
+#import <ShareSDK/ShareSDKPlugin.h>
 
 /**
  *	@brief	用户信息
  */
-@interface SSRenRenUser : SSCDataObject
-{
-@private
-    SSRenRenCredential *_credential;
-}
-
+@interface SSRenRenUser : NSObject <ISSPlatformUser,
+                                    NSCoding,
+                                    ISSCDataObject>
 /**
- *	@brief	表示用户id
+ *	@brief	所属平台
  */
-@property (nonatomic,readonly) long long Id;
+@property (nonatomic,readonly) id<ISSPlatformApp> app;
 
 /**
- *	@brief	表示用户名
+ *	@brief	授权信息，如果为nil则表示非当前应用授权用户
  */
-@property (nonatomic,readonly) NSString *name;
+@property (nonatomic,retain) id<ISSPlatformCredential> credential;
 
 /**
- *	@brief	用户头像列表
+ *	@brief	用户的原始数据信息，与各个平台定义的用户信息结构相同
  */
-@property (nonatomic,readonly) NSArray *avatar;
+@property (nonatomic,retain) NSDictionary *sourceData;
 
 /**
- *	@brief	表示是否为星级用户，值“1”表示“是”；值“0”表示“不是”
+ *	@brief	平台类型
  */
-@property (nonatomic,readonly) NSInteger star;
+@property (nonatomic,readonly) ShareType type;
 
 /**
- *	@brief	用户基本信息
+ *	@brief	用户ID
  */
-@property (nonatomic,readonly) SSRenRenBasicInformation *basicInformation;
+@property (nonatomic,readonly) NSString *uid;
 
 /**
- *	@brief	用户学校信息
+ *	@brief	用户昵称
  */
-@property (nonatomic,readonly) NSArray *education;
+@property (nonatomic,readonly) NSString *nickname;
 
 /**
- *	@brief	工作信息
+ *	@brief	个人头像路径
  */
-@property (nonatomic,readonly) NSArray *work;
+@property (nonatomic,readonly) NSString *profileImage;
 
 /**
- *	@brief	喜欢
+ *	@brief	性别：0 男； 1 女； 2 未知
  */
-@property (nonatomic,readonly) NSArray *like;
+@property (nonatomic,readonly) NSInteger gender;
 
 /**
- *	@brief	感情状态
- *  INLOVE          恋爱中
- *  OTHER           其他
- *  SINGLE          单身
- *  MARRIED         已婚
- *  UNOBVIOUSLOVE	暗恋
- *  DIVORCE         离异
- *  ENGAGE          订婚
- *  OUTLOVE         失恋
+ *	@brief	个人主页地址
  */
-@property (nonatomic,readonly) NSString *emotionalState;
+@property (nonatomic,readonly) NSString *url;
 
 /**
- *	@brief	授权凭证
+ *	@brief	个人简介
  */
-@property (nonatomic,retain) SSRenRenCredential *credential;
+@property (nonatomic,readonly) NSString *aboutMe;
 
 /**
- *	@brief	创建用户信息
+ *	@brief	认证类型：－1 未知； 0 未认证； 1 认证
+ */
+@property (nonatomic,readonly) NSInteger verifyType;
+
+/**
+ *	@brief	认证信息
+ */
+@property (nonatomic,readonly) NSString *verifyReason;
+
+/**
+ *	@brief	用户生日（单位：秒）
+ */
+@property (nonatomic,readonly) NSString *birthday;
+
+/**
+ *	@brief	用户粉丝数
+ */
+@property (nonatomic,readonly) NSInteger followerCount;
+
+/**
+ *	@brief	用户关注数
+ */
+@property (nonatomic,readonly) NSInteger friendCount;
+
+/**
+ *	@brief	用户分享数
+ */
+@property (nonatomic,readonly) NSInteger shareCount;
+
+/**
+ *	@brief	用户的注册时间（单位：秒）
+ */
+@property (nonatomic,readonly) NSTimeInterval regAt;
+
+/**
+ *	@brief	用户等级
+ */
+@property (nonatomic,readonly) NSInteger level;
+
+/**
+ *	@brief	用户的教育信息列表
+ */
+@property (nonatomic,readonly) NSArray *educations;
+
+/**
+ *	@brief	用户的职业信息列表
+ */
+@property (nonatomic,readonly) NSArray *works;
+
+/**
+ *	@brief	初始化化用户信息
  *
- *	@param 	response 	回复数据
+ *	@param 	app 	应用信息
  *
- *	@return	用户信息
+ *	@return	用户信息对象
  */
-+ (SSRenRenUser *)userWithResponse:(NSDictionary *)response;
-
-/**
- *	@brief	创建用户信息描述器
- *
- *	@return	描述器对象
- */
-- (id<ISSCUserDescriptor>)descriptor;
+- (id)initWithApp:(id<ISSPlatformApp>)app;
 
 @end
