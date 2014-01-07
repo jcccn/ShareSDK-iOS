@@ -48,6 +48,12 @@
 "ERROR_DESC_DROPBOX_UPLOAD_FILE_FAIL" = "Failed to upload file";
 "ERROR_DESC_INSTAGRAM_NOT_INSTALL" = "Instagram is not installed";
 "ERROR_DESC_INSTAGRAM_SEND_FAIL" = "Failed to send";
+"ERROR_DESC_YIXIN_NOT_INTEGRATED" = "Not yet integrated YiXin SDK";
+"ERROR_DESC_YIXIN_UNKNOWN_MEDIA_TYPE" = "Unknown media type";
+"ERROR_DESC_YIXIN_NOT_INSTALL" = "YiXin is not installed";
+"ERROR_DESC_YIXIN_API_IS_NOT_SUPPORT" = "The current version does not support this api of YiXin";
+"ERROR_DESC_YIXIN_SEND_REQUEST_ERROR" = "YiXin OpenApi Request failed";
+"ERROR_DESC_YIXIN_NOT_SET_URL_SCHEME" = "YiXin's URL Scheme has not been set";
 
 "ShareType_1" = "Sina Weibo";
 "ShareType_2" = "腾讯微博";
@@ -82,6 +88,8 @@
 "ShareType_35" = "Dropbox";
 "ShareType_36" = "VKontakte";
 "ShareType_37" = "微信收藏";
+"ShareType_38" = "易信好友";
+"ShareType_39" = "易信朋友圈";
 
 "ALTER_VIEW_TITLE" = "Message";
 "ALTER_VIEW_I_KNOWN_BUTTON" = "I know";

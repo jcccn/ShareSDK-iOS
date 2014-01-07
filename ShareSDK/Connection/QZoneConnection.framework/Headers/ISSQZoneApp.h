@@ -109,4 +109,27 @@ SSQZoneRequestMethod;
                    result:(SSShareResultEvent)result;
 
 
+/**
+ *	@brief	定向分享
+ *
+ *	@param 	title 	标题
+ *	@param 	description 	分享的内容描述
+ *	@param 	shareUrl 	分享连接
+ *	@param 	pics 	分享图片
+ *	@param 	summary 	分享的摘要内容
+ *	@param 	url 	分享的来源网站对应的网站地址url
+ *	@param 	act 	默认为“进入应用”
+ *	@param 	result 	返回回调
+ */
+- (void)sendStoryWithTitle:(NSString *)title
+               description:(NSString *)description
+                  shareUrl:(NSString *)shareUrl
+                      pics:(NSArray *)pics
+                   summary:(NSString *)summary
+                       url:(NSString *)url
+                       act:(NSString *)act
+                    result:(SSShareResultEvent)result;
+
+
+
 @end

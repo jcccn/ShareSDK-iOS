@@ -25,6 +25,11 @@
  */
 - (void)onResp:(QQBaseResp *)resp;
 
+/**
+ 处理QQ在线状态的回调
+ */
+- (void)isOnlineResponse:(NSDictionary *)response;
+
 @end
 
 /**
@@ -42,10 +47,19 @@
 
 /**
  向手Q发起分享请求
+ \note  QQ好友分享只支持单张图片的分享 H5分享只支持网络图片的传递
  \param req 分享内容的请求
  \return 请求发送结果码
  */
 + (QQApiSendResultCode)sendReq:(QQBaseReq *)req;
+
+/**
+ 向手Q QZone结合版发起分享请求
+ \note H5分享只支持单张网络图片的传递
+ \param req 分享内容的请求
+ \return 请求发送结果码
+ */
++ (QQApiSendResultCode)SendReqToQZone:(QQBaseReq *)req;
 
 /**
  向手Q发送应答消息
@@ -59,6 +73,11 @@
  \return 如果QQ已安装则返回YES，否则返回NO
  */
 + (BOOL)isQQInstalled;
+
+/**
+ 批量检测QQ号码是否在线
+ */
++ (void)getQQUinOnlineStatues:(NSArray *)QQUins delegate:(id<QQApiInterfaceDelegate>)delegate;
 
 /**
  检测QQ是否支持API调用

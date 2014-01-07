@@ -50,6 +50,9 @@ typedef enum
     ShareTypeDropbox = 35,          /**< Dropbox */
     ShareTypeVKontakte = 36,        /**< VKontakte */
     ShareTypeWeixiFav = 37,         /**< 微信收藏 */
+    ShareTypeYiXinSession = 38,     /**< 易信好友 */
+    ShareTypeYiXinTimeline = 39,    /**< 易信朋友圈 */
+    ShareTypeYiXinFav = 40,         /**< 易信收藏 */
     ShareTypeAny = 99               /**< 任意平台 */
 }
 ShareType;

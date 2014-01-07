@@ -167,6 +167,16 @@
 - (NSTimeInterval)currentTimeInterval;
 
 /**
+ *	@brief	将客户端时间转换成服务器时间
+ *
+ *	@param 	clientTimeInterval 	客户端时间
+ *
+ *	@return	服务器时间
+ */
+- (NSTimeInterval)serverTimeIntervalWithClientTimeInterval:(NSTimeInterval)clientTimeInterval;
+
+
+/**
  *	@brief	更新平台配置信息
  *
  *  @param  completeHandler     完成事件

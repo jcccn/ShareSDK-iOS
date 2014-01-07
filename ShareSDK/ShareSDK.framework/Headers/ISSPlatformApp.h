@@ -112,13 +112,6 @@ typedef void(^SSShareResultEvent) (SSResponseState state, id<ISSPlatformShareInf
 - (BOOL)convertUrlEnabled;
 
 /**
- *	@brief	设置是否转换链接使能状态
- *
- *	@param 	enabled     YES 表示在分享前需要转换链接，NO 表示不转换链接
- */
-- (void)setConvertUrlEnabled:(BOOL)enabled;
-
-/**
  *	@brief	获取SSO授权使能状态
  *
  *	@return	YES 表示允许优先使用SSO进行授权，NO 表示不允许SSO授权

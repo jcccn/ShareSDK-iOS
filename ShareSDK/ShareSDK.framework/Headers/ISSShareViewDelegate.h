@@ -23,7 +23,7 @@
  *
  *  @since  ver2.2.0    已过时
  *
- *  @deprecated     已过时，推荐使用- (void)view:willPublishContent:shareList:;方法代替
+ *  @deprecated     已过时，推荐使用- (id<ISSContent>)view:willPublishContent:shareList:;方法代替
  *
  *	@param 	viewController 	视图控制器
  *	@param 	content 	内容

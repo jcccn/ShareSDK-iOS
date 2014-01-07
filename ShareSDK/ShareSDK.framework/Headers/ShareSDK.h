@@ -56,13 +56,6 @@
 + (void)ssoEnabled:(BOOL)ssoEnabled;
 
 /**
- *	@brief	转换URL链接，YES：表示转换链接。NO：表示不转换链接，设置不转换链接后分享内容中的链接将不纳入回流统计中。
- *
- *	@param 	convertUrlEnabled 	YES表示转换短链，NO表示不转换，默认为YES
- */
-+ (void)convertUrlEnabled:(BOOL)convertUrlEnabled;
-
-/**
  *	@brief	设置统计策略,在3G环境以下可以通过设置该策略来减少网络请求的流量。
  *
  *	@param 	policy 	统计策略
@@ -546,7 +539,38 @@
 + (void)connectWeChatFavWithAppId:(NSString *)appId
                         wechatCls:(Class)wechatCls;
 
+/**
+ *	@brief	链接易信好友
+ *
+ *  @since  ver2.7.0
+ *
+ *	@param 	appId 	应用ID，必须要和朋友圈传入ID一致
+ *	@param 	yixinCls 	易信Api类型，引入YXApi.h后，将[YXApi class]传入此参数
+ */
++ (void)connectYiXinSessionWithAppId:(NSString *)appId
+                            yixinCls:(Class)yixinCls;
 
+/**
+ *	@brief	链接易信好友
+ *
+ *  @since  ver2.7.0
+ *
+ *	@param 	appId 	应用ID，必须和易信好友传入ID一致
+ *	@param 	yixinCls 	易信Api类型，引入YXApi.h后，将[YXApi class]传入此参数
+ */
++ (void)connectYiXinTimelineWithAppId:(NSString *)appId
+                             yixinCls:(Class)yixinCls;
+
+
+/**
+ *	@brief	连接易信应用以使用相关功能，此应用需要引用YiXinConnection.framework和易信官方SDK
+ *          http://open.yixin.im/上注册应用，并将相关信息填写以下字段
+ *
+ *	@param 	appId 	应用ID
+ *	@param 	yixinCls 	易信Api类型，引入YXApi.h后，将[YXApi class]传入此参数
+ */
++ (void)connectYiXinWithAppId:(NSString *)appId
+                     yixinCls:(Class)yixinCls;
 
 /**
  *	@brief	处理请求打开链接,如果集成新浪微博(SSO)、Facebook(SSO)、微信、QQ分享功能需要加入此方法
@@ -623,6 +647,14 @@
  *	@param 	pinterestClass 	Pinterest接口类型。引入Pinterest.framework后，将[Pinterest class]传入此参数
  */
 + (void)importPinterestClass:(Class)pinterestClass;
+
+/**
+ *	@brief	导入易信所需要的类型，对于应用信息托管方式下（即registerApp中的useAppTrusteeship为YES）需要调用此方法，注：如果不使用易信可以不调用
+ *
+ *	@param 	yixinClass 	易信接口类型。引入libYixinSDK.a后，将[YXApi class]传入此参数
+ */
++ (void)importYiXinClass:(Class)yixinClass;
+
 
 #pragma mark 辅助
 

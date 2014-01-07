@@ -55,12 +55,14 @@
  *
  *  @param  title   标题
  *  @param  description 描述
+ *  @param  thumbPic    缩略图
  *	@param 	pic 	图片
  *	@param 	scene 	类型
  *  @param  result  返回回调
  */
 - (void)sendPic:(NSString *)title
     description:(NSString *)description
+       thumbPic:(id<ISSCAttachment>)thumbPic
             pic:(id<ISSCAttachment>)pic
          result:(SSShareResultEvent)result;
 

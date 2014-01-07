@@ -659,5 +659,109 @@
 - (void)addInstagramUnitWithTitle:(NSString *)title
                             image:(id<ISSCAttachment>)image;
 
+/**
+ *	@brief	添加易信好友内容单元，制定微信分享时的内容使用此参数，如果参数设置为INHERIT_VALUE则默认使用父级类型相关参数
+ *
+ *  @since ver2.7.0
+ *
+ *	@param 	type 	分享类型,请参考SSPublishContentMediaType
+ *	@param 	content 	分享内容
+ *	@param 	title 	标题
+ *	@param 	url 	URL地址
+ *  @param  thumbImage  缩略图
+ *	@param 	image 	分享图片
+ *  @param  musicFileUrl    音乐文件路径
+ *  @param  extInfo     扩展信息
+ *  @param  fileData    文件数据
+ */
+- (void)addYiXinSessionUnitWithType:(NSNumber *)type
+                            content:(NSString *)content
+                              title:(NSString *)title
+                                url:(NSString *)url
+                         thumbImage:(id<ISSCAttachment>)thumbImage
+                              image:(id<ISSCAttachment>)image
+                       musicFileUrl:(NSString *)musicFileUrl
+                            extInfo:(NSString *)extInfo
+                           fileData:(NSData *)fileData;
+
+/**
+ *	@brief	添加易信朋友圈内容单元，制定微信分享时的内容使用此参数，如果参数设置为INHERIT_VALUE则默认使用父级类型相关参数
+ *
+ *  @since ver2.7.0
+ *
+ *	@param 	type 	分享类型,请参考SSPublishContentMediaType
+ *	@param 	content 	分享内容
+ *	@param 	title 	标题
+ *	@param 	url 	URL地址
+ *  @param  thumbImage  缩略图
+ *	@param 	image 	分享图片
+ *  @param  musicFileUrl    音乐文件路径
+ *  @param  extInfo     扩展信息
+ *  @param  fileData    文件数据
+ */
+- (void)addYiXinTimelineUnitWithType:(NSNumber *)type
+                             content:(NSString *)content
+                               title:(NSString *)title
+                                 url:(NSString *)url
+                          thumbImage:(id<ISSCAttachment>)thumbImage
+                               image:(id<ISSCAttachment>)image
+                        musicFileUrl:(NSString *)musicFileUrl
+                             extInfo:(NSString *)extInfo
+                            fileData:(NSData *)fileData;
+
+/**
+ *	@brief	添加微信好友内容单元，制定微信分享时的内容使用此参数，如果参数设置为INHERIT_VALUE则默认使用父级类型相关参数
+ *
+ *  @since  ver2.7.0    增加缩略图参数
+ *
+ *	@param 	type 	分享类型,请参考SSPublishContentMediaType
+ *	@param 	content 	分享内容
+ *	@param 	title 	标题
+ *	@param 	url 	URL地址
+ *  @param  thumbImage  缩略图
+ *	@param 	image 	分享图片
+ *  @param  musicFileUrl    音乐文件路径
+ *  @param  extInfo     扩展信息
+ *  @param  fileData    文件数据
+ *  @param  emoticonData    表情数据，用于存放Gif和非Gif图片数据
+ */
+- (void)addWeixinSessionUnitWithType:(NSNumber *)type
+                             content:(NSString *)content
+                               title:(NSString *)title
+                                 url:(NSString *)url
+                          thumbImage:(id<ISSCAttachment>)thumbImage
+                               image:(id<ISSCAttachment>)image
+                        musicFileUrl:(NSString *)musicFileUrl
+                             extInfo:(NSString *)extInfo
+                            fileData:(NSData *)fileData
+                        emoticonData:(NSData *)emoticonData;
+
+/**
+ *	@brief	添加微信朋友圈内容单元，制定微信分享时的内容使用此参数，如果参数设置为INHERIT_VALUE则默认使用父级类型相关参数
+ *
+ *  @since  ver2.7.0    增加缩略图参数
+ *
+ *	@param 	type 	分享类型,请参考SSPublishContentMediaType
+ *	@param 	content 	分享内容
+ *	@param 	title 	标题
+ *	@param 	url 	URL地址
+ *  @param  thumbImage  缩略图
+ *	@param 	image 	分享图片
+ *  @param  musicFileUrl    音乐文件路径
+ *  @param  extInfo     扩展信息
+ *  @param  fileData    文件数据
+ *  @param  emoticonData    表情数据，用于存放Gif和非Gif图片数据
+ */
+- (void)addWeixinTimelineUnitWithType:(NSNumber *)type
+                              content:(NSString *)content
+                                title:(NSString *)title
+                                  url:(NSString *)url
+                           thumbImage:(id<ISSCAttachment>)thumbImage
+                                image:(id<ISSCAttachment>)image
+                         musicFileUrl:(NSString *)musicFileUrl
+                              extInfo:(NSString *)extInfo
+                             fileData:(NSData *)fileData
+                         emoticonData:(NSData *)emoticonData;
+
 
 @end

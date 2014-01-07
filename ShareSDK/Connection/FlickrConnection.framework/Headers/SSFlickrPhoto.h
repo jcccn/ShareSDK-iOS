@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SSFlickrXMLNode.h"
 #import <ShareSDKCoreService/SSCDataObject.h>
 #import <ShareSDK/ShareSDKPlugin.h>
 

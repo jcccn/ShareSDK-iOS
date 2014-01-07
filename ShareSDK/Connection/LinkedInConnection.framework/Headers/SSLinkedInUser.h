@@ -20,7 +20,7 @@
 /**
  *	@brief	所属平台
  */
-@property (nonatomic,readonly) id<ISSPlatformApp> app;
+@property (nonatomic,assign) id<ISSPlatformApp> app;
 
 /**
  *	@brief	授权信息，如果为nil则表示非当前应用授权用户

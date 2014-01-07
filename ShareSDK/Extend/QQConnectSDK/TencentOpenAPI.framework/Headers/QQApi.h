@@ -41,10 +41,9 @@ typedef enum
  向QQ App发送消息
  @param message 待发送的消息对象
  
- @return
- 成功将消息发送给QQ是返回TRUE,否则返回FALSE
+ @return 发送结果错误码
  */
-+ (int)sendMessage:(QQApiMessage *)message;
++ (QQApiSendResultCode)sendMessage:(QQApiMessage *)message;
 
 /**
  把URL反序列化成<code>QQApiMessage</code>对象，在AppDelegate的handleOpenURL中调用
@@ -67,12 +66,22 @@ typedef enum
  */
 + (NSArray*)getAdItemArray;
 
+
+
 /**
  检测是否已安装QQ
  @return
      如果QQ已安装则返回TRUE，否则返回FALSE
  */
 + (BOOL)isQQInstalled;
+
+
+//edit by peter
++(BOOL)appCanOpenURL:(NSDictionary *)params;
+/**
+ 批量检测QQ号码是否在线
+ */
++ (void)getQQUinOnlineStatues:(NSArray *)QQUins delegate:(id)target;
 
 /**
  检测QQ是否支持API调用
@@ -96,6 +105,9 @@ typedef enum
      成功返回TRUE，否则返回FALSE
  */
 + (BOOL)openQQApp;
+
++ (BOOL)isQQSupportApiForWallet;
++ (BOOL) checkQQApiURLMessage:(QQApiMessage *)message;
 @end
 
 
@@ -120,6 +132,9 @@ enum
     QQApiMessageTypeSendMessageToQQRequest    = 0x05,
     // Message from QQ to Plugin app.
     QQApiMessageTypeSendMessageToQQResponse   = 0x06,
+    
+    // Message from Plugin app to QZone,
+    QQApiMessageTypeSendMessageToQQQZoneRequest = 0x07,
     
 	QQApiMessageTypeReserved   = 0xF0
 };
@@ -161,12 +176,22 @@ typedef NSUInteger QQApiMessageType;
 // Payload object definition
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// QQApiObject control flags
+enum
+{
+    kQQAPICtrlFlagQZoneShareOnStart = 0x01,
+    kQQAPICtrlFlagQZoneShareForbid = 0x02,
+};
+
 // QQApiObject
 /** \brief 所有在QQ及插件间发送的数据对象的根类。
  */
 @interface QQApiObject : NSObject
 @property(nonatomic,retain) NSString* title; ///< 标题，最长128个字符
 @property(nonatomic,retain) NSString* description; ///<简要描述，最长512个字符
+
+@property (nonatomic, assign) uint64_t cflag;
+
 @end
 
 // QQApiResultObject
@@ -219,18 +244,28 @@ typedef enum QQApiURLTargetType{
 
 @property(nonatomic,retain)NSURL* url; ///<URL地址,必填，最长512个字符
 @property(nonatomic,retain)NSData* previewImageData;///<预览图像数据，最大1M字节
-@property(nonatomic, retain) NSURL *previewImageURL;    ///<预览图像URL **预览图像数据与预览图像URL可二选一
+@property(nonatomic,retain)NSURL *previewImageURL;    ///<预览图像URL **预览图像数据与预览图像URL可二选一
+@property(nonatomic,retain)NSArray *imageDataArray;    ///多张本地图片数据,最大不能超过10M
+@property(nonatomic,retain)NSArray *imageUrlArray;     ///多张url图片url列表，**预览图像数据列表与预览图像URL列表可二选一
 
 /**
  初始化方法
  */
 -(id)initWithURL:(NSURL*)url title:(NSString*)title description:(NSString*)description previewImageData:(NSData*)data targetContentType:(QQApiURLTargetType)targetContentType;
 -(id)initWithURL:(NSURL*)url title:(NSString*)title description:(NSString*)description previewImageURL:(NSURL*)previewURL targetContentType:(QQApiURLTargetType)targetContentType;
+
+
+-(id)initWithURL:(NSURL*)url title:(NSString*)title description:(NSString*)description previewImageData:(NSData*)data imageDataArray:(NSArray*)imageDataArray targetContentType:(QQApiURLTargetType)targetContentType;
+-(id)initWithURL:(NSURL*)url title:(NSString*)title description:(NSString*)description previewImageURL:(NSURL*)previewURL imageUrlArray:(NSArray*)imageUrlArray targetContentType:(QQApiURLTargetType)targetContentType;
+
 /**
  工厂方法,获取一个QQApiURLObject对象
  */
 +(id)objectWithURL:(NSURL*)url title:(NSString*)title description:(NSString*)description previewImageData:(NSData*)data targetContentType:(QQApiURLTargetType)targetContentType;
 +(id)objectWithURL:(NSURL*)url title:(NSString*)title description:(NSString*)description previewImageURL:(NSURL*)previewURL targetContentType:(QQApiURLTargetType)targetContentType;
+
++(id)objectWithURL:(NSURL*)url title:(NSString*)title description:(NSString*)description imageDataArray:(NSArray*)imageDataArray targetContentType:(QQApiURLTargetType)targetContentType;
++(id)objectWithURL:(NSURL*)url title:(NSString*)title description:(NSString*)description imageUrlArray:(NSArray*)imageUrlArray targetContentType:(QQApiURLTargetType)targetContentType;
 @end
 
 // QQApiExtendObject
@@ -239,6 +274,7 @@ typedef enum QQApiURLTargetType{
 @interface QQApiExtendObject : QQApiObject
 @property(nonatomic,retain) NSData* data;///<具体数据内容，必填，最大5M字节
 @property(nonatomic,retain) NSData* previewImageData;///<预览图像，最大1M字节
+@property(nonatomic,retain) NSArray *imageDataArray;    ///多张本地图片数据,最大不能超过10M
 
 /**
  初始化方法
@@ -248,6 +284,17 @@ typedef enum QQApiURLTargetType{
  @param description 此对象，分享的描述
  */
 - (id)initWithData:(NSData*)data previewImageData:(NSData*)previewImageData title:(NSString*)title description:(NSString*)description;
+
+
+/**
+ 初始化方法
+ @param data 数据内容
+ @param previewImageData 用于预览的图片
+ @param title 标题
+ @param description 此对象，分享的描述
+ @param imageDataArray 发送的多张图片队列
+ */
+- (id)initWithData:(NSData*)data previewImageData:(NSData*)previewImageData title:(NSString*)title description:(NSString*)description imageDataArray:(NSArray*)imageDataArray;
 
 /**
  helper方法获取一个autorelease的<code>QQApiExtendObject</code>对象
@@ -260,6 +307,20 @@ typedef enum QQApiURLTargetType{
  */
 + (id)objectWithData:(NSData*)data previewImageData:(NSData*)previewImageData title:(NSString*)title description:(NSString*)description;
 
+
+/**
+ helper方法获取一个autorelease的<code>QQApiExtendObject</code>对象
+ @param data 数据内容
+ @param previewImageData 用于预览的图片
+ @param title 标题
+ @param description 此对象，分享的描述
+ @param imageDataArray 发送的多张图片队列
+ @return
+ 一个自动释放的<code>QQApiExtendObject</code>实例
+ */
++ (id)objectWithData:(NSData*)data previewImageData:(NSData*)previewImageData title:(NSString*)title description:(NSString*)description imageDataArray:(NSArray*)imageDataArray;
+
+
 @end
 
 // QQApiImageObject
@@ -267,6 +328,7 @@ typedef enum QQApiURLTargetType{
      用于分享图片内容的对象，是一个指定为图片类型的<code>QQApiExtendObject</code>
  */
 @interface QQApiImageObject : QQApiExtendObject
+
 @end
 
 // QQApiAudioObject
@@ -274,6 +336,9 @@ typedef enum QQApiURLTargetType{
      用于分享目标内容为音频的URL的对象
  */
 @interface QQApiAudioObject : QQApiURLObject
+
+@property (nonatomic, retain) NSURL *flashURL;      ///<音频URL地址，最长512个字符
+
 /**
  获取一个autorelease的<code>QQApiAudioObject</code>
  @param url 音频内容的目标URL
@@ -293,6 +358,28 @@ typedef enum QQApiURLTargetType{
  @note 如果url为空，调用<code>QQApi#sendMessage:</code>时将返回FALSE
  */
 +(id)objectWithURL:(NSURL*)url title:(NSString*)title description:(NSString*)description previewImageURL:(NSURL*)previewURL;
+
+/**
+ 获取一个autorelease的<code>QQApiAudioObject</code>
+ @param url 音频内容的目标URL
+ @param title 分享内容的标题
+ @param description 分享内容的描述
+ @param data 分享内容的预览图像
+ @param imageDataArray 分享内容的预览图像列表
+ @note 如果url为空，调用<code>QQApi#sendMessage:</code>时将返回FALSE
+ */
++(id)objectWithURL:(NSURL*)url title:(NSString*)title description:(NSString*)description previewImageData:(NSData*)data imageDataArray:(NSArray*)imageDataArray;
+
+/**
+ 获取一个autorelease的<code>QQApiAudioObject</code>
+ @param url 音频内容的目标URL
+ @param title 分享内容的标题
+ @param description 分享内容的描述
+ @param previewURL 分享内容的预览图像URL
+ @param imageUrlArray 分享内容的预览图像URL列表
+ @note 如果url为空，调用<code>QQApi#sendMessage:</code>时将返回FALSE
+ */
++(id)objectWithURL:(NSURL*)url title:(NSString*)title description:(NSString*)description previewImageURL:(NSURL*)previewURL imageUrlArray:(NSArray*)imageUrlArray;
 
 @end
 
@@ -301,6 +388,9 @@ typedef enum QQApiURLTargetType{
      用于分享目标内容为视频的URL的对象
  */
 @interface QQApiVideoObject : QQApiURLObject
+
+@property (nonatomic, retain) NSURL *flashURL;      ///<视频URL地址，最长512个字符
+
 /**
  获取一个autorelease的<code>QQApiVideoObject</code>
  @param url 视频内容的目标URL
@@ -320,6 +410,28 @@ typedef enum QQApiURLTargetType{
  @note 如果url为空，调用<code>QQApi#sendMessage:</code>时将返回FALSE
  */
 +(id)objectWithURL:(NSURL*)url title:(NSString*)title description:(NSString*)description previewImageURL:(NSURL*)previewURL;
+
+/**
+ 获取一个autorelease的<code>QQApiVideoObject</code>
+ @param url 视频内容的目标URL
+ @param title 分享内容的标题
+ @param description 分享内容的描述
+ @param data 分享内容的预览图像
+ @param imageDataArray 分享内容的预览图像列表
+ @note 如果url为空，调用<code>QQApi#sendMessage:</code>时将返回FALSE
+ */
++(id)objectWithURL:(NSURL*)url title:(NSString*)title description:(NSString*)description previewImageData:(NSData*)data imageDataArray:(NSArray*)imageDataArray;
+
+/**
+ 获取一个autorelease的<code>QQApiVideoObject</code>
+ @param url 视频内容的目标URL
+ @param title 分享内容的标题
+ @param description 分享内容的描述
+ @param previewURL 分享内容的预览图像URL
+ @param previewURL 分享内容的预览图像URL列表
+ @note 如果url为空，调用<code>QQApi#sendMessage:</code>时将返回FALSE
+ */
++(id)objectWithURL:(NSURL*)url title:(NSString*)title description:(NSString*)description previewImageURL:(NSURL*)previewURL imageUrlArray:(NSArray*)imageUrlArray;
 
 @end
 
@@ -347,6 +459,29 @@ typedef enum QQApiURLTargetType{
  @note 如果url为空，调用<code>QQApi#sendMessage:</code>时将返回FALSE
  */
 +(id)objectWithURL:(NSURL*)url title:(NSString*)title description:(NSString*)description previewImageURL:(NSURL*)previewURL;
+
+/**
+ 获取一个autorelease的<code>QQApiNewsObject</code>
+ @param url 视频内容的目标URL
+ @param title 分享内容的标题
+ @param description 分享内容的描述
+ @param data 分享内容的预览图像
+ @param imageDataArray 分享内容的预览图像列表
+ @note 如果url为空，调用<code>QQApi#sendMessage:</code>时将返回FALSE
+ */
++(id)objectWithURL:(NSURL*)url title:(NSString*)title description:(NSString*)description previewImageData:(NSData*)data imageDataArray:(NSArray*)imageDataArray;
+
+
+/**
+ 获取一个autorelease的<code>QQApiNewsObject</code>
+ @param url 视频内容的目标URL
+ @param title 分享内容的标题
+ @param description 分享内容的描述
+ @param previewURL 分享内容的预览图像URL
+ @param imageUrlArray 分享内容的预览图url列表
+ @note 如果url为空，调用<code>QQApi#sendMessage:</code>时将返回FALSE
+ */
++(id)objectWithURL:(NSURL*)url title:(NSString*)title description:(NSString*)description previewImageURL:(NSURL*)previewURL imageUrlArray:(NSArray*)imageUrlArray;
 
 @end
 
@@ -391,4 +526,14 @@ typedef enum QQApiURLTargetType{
 @property(nonatomic,retain) NSString* description;///<描述
 @property(nonatomic,retain) NSData* imageData;///<广告图片
 @property(nonatomic,retain) NSURL* target;///<广告目标链接
+@end
+
+// QQApiWPAObject
+/** \brief 发起WPA对象
+ */
+@interface QQApiWPAObject : QQApiObject
+@property(nonatomic,retain)NSString* uin; ///<想要对话的QQ号
+
+-(id)initWithUin:(NSString*)uin; ///<初始化方法
++(id)objectWithUin:(NSString*)uin;///<工厂方法，获取一个QQApiWPAObject对象.
 @end
