@@ -1,3 +1,4 @@
+///#begin zh-cn
 //
 //  Created by ShareSDK.cn on 13-1-14.
 //  官网地址:http://www.ShareSDK.cn
@@ -6,17 +7,37 @@
 //  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
+///#end
+///#begin en
+//
+//  Created by ShareSDK.cn on 13-1-14.
+//  Website:http://www.ShareSDK.cn
+//  Support E-mail:support@sharesdk.cn
+//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
+//  Business QQ:4006852216
+//  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
+//
+///#end
+
 #import <Foundation/Foundation.h>
 #import "ISSViewDelegate.h"
 #import "ISSContent.h"
 
+///#begin zh-cn
 /**
  *	@brief	分享视图委托
  */
+///#end
+///#begin en
+/**
+ *	@brief	Share view delegate protocol
+ */
+///#end
 @protocol ISSShareViewDelegate <ISSViewDelegate>
 
 @optional
 
+///#begin zh-cn
 /**
  *	@brief	将要分享内容
  *
@@ -30,9 +51,26 @@
  *
  *	@return	实际发送的内容
  */
+///#end
+///#begin en
+/**
+ *	@brief	Will publish content
+ *
+ *  @since  ver2.2.0    deprecated
+ *
+ *  @deprecated     Deprecated.Recommended use - (id <ISSContent>) view: willPublishContent: shareList:; method instead.
+ *
+ *	@param 	viewController 	View controller.
+ *	@param 	content 	Share content object.
+ *  @param  shareList   Platform list.
+ *
+ *	@return	The actual transmission of the content object.
+ */
+///#end
 - (id<ISSContent>)view:(UIViewController *)viewController
     willPublishContent:(id<ISSContent>)content;
 
+///#begin zh-cn
 /**
  *	@brief	将要分享内容
  *
@@ -44,15 +82,38 @@
  *
  *	@return	实际发送的内容
  */
+///#end
+///#begin en
+/**
+ *	@brief	Will publish content
+ *
+ *  @since  ver2.2.0
+ *
+ *	@param 	viewController 	View controller
+ *	@param 	content 	Share content object.
+ *  @param  shareList   Platform list.
+ *
+ *	@return	The actual transmission of the content object.
+ */
+///#end
 - (id<ISSContent>)view:(UIViewController *)viewController
     willPublishContent:(id<ISSContent>)content
              shareList:(NSArray *)shareList;
 
+///#begin zh-cn
 /**
  *	@brief	视图取消发布
  *
  *	@param 	viewController 	视图控制器
  */
+///#end
+///#begin en
+/**
+ *	@brief	Cancel publish
+ *
+ *	@param 	viewController 	View controller.
+ */
+///#end
 - (void)viewOnCancelPublish:(UIViewController *)viewController;
 
 @end

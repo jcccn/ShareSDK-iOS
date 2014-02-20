@@ -1,3 +1,4 @@
+///#begin zh-cn
 //
 //  Created by ShareSDK.cn on 13-1-14.
 //  官网地址:http://www.ShareSDK.cn
@@ -6,22 +7,51 @@
 //  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
+///#end
+///#begin en
+//
+//  Created by ShareSDK.cn on 13-1-14.
+//  Website:http://www.ShareSDK.cn
+//  Support E-mail:support@sharesdk.cn
+//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
+//  Business QQ:4006852216
+//  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
+//
+///#end
+
 #import <Foundation/Foundation.h>
 
+///#begin zh-cn
 /**
  *	@brief	开放应用分享内容
  */
+///#end
+///#begin en
+/**
+ *	@brief	Sharing content
+ */
+///#end
 @protocol ISSCContentDescriptor <NSObject>
 
 @required
 
+///#begin zh-cn
 /**
  *	@brief	获取微博ID
  *
  *	@return	微博ID
  */
+///#end
+///#begin en
+/**
+ *	@brief	Get Share information id.
+ *
+ *	@return	Share information id.
+ */
+///#end
 - (NSString *)sid;
 
+///#begin zh-cn
 /**
  *	@brief	获取分享平台类型
  *
@@ -29,13 +59,32 @@
  *
  *	@return	分享平台类型
  */
+///#end
+///#begin en
+/**
+ *	@brief	Get platform type.
+ *
+ *  @since  ver1.2.4
+ *
+ *	@return	Platform type.
+ */
+///#end
 - (SSCShareType)type;
 
+///#begin zh-cn
 /**
  *	@brief	获取源数据
  *
  *	@return 源数据
  */
+///#end
+///#begin en
+/**
+ *	@brief	Get raw data.
+ *
+ *	@return Raw data.
+ */
+///#end
 - (NSDictionary *)sourceData;
 
 @end

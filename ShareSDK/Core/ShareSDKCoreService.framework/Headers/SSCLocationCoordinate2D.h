@@ -1,3 +1,4 @@
+///#begin zh-cn
 //
 //  Created by ShareSDK.cn on 13-1-14.
 //  官网地址:http://www.ShareSDK.cn
@@ -6,11 +7,30 @@
 //  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
+///#end
+///#begin en
+//
+//  Created by ShareSDK.cn on 13-1-14.
+//  Website:http://www.ShareSDK.cn
+//  Support E-mail:support@sharesdk.cn
+//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
+//  Business QQ:4006852216
+//  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
+//
+///#end
+
 #import <Foundation/Foundation.h>
 
+///#begin zh-cn
 /**
  *	@brief	地理位置信息
  */
+///#end
+///#begin en
+/**
+ *	@brief	Location information
+ */
+///#end
 @interface SSCLocationCoordinate2D : NSObject
 {
 @private
@@ -18,16 +38,31 @@
     double _longitude;
 }
 
+///#begin zh-cn
 /**
  *	@brief	纬度
  */
+///#end
+///#begin en
+/**
+ *	@brief	Latitude.
+ */
+///#end
 @property (nonatomic) double latitude;
 
+///#begin zh-cn
 /**
  *	@brief	经度
  */
+///#end
+///#begin en
+/**
+ *	@brief	Longitude.
+ */
+///#end
 @property (nonatomic) double longitude;
 
+///#begin zh-cn
 /**
  *	@brief	地理位置信息
  *
@@ -36,6 +71,17 @@
  *
  *	@return	地理位置信息
  */
+///#end
+///#begin en
+/**
+ *	@brief	Location information.
+ *
+ *	@param 	latitude 	Latitude
+ *	@param 	longitude 	Longitude
+ *
+ *	@return	Location information.
+ */
+///#end
 + (SSCLocationCoordinate2D *)locationCoordinate2DWithLatitude:(double)latitude
                                                     longitude:(double)longitude;
 

@@ -1,3 +1,4 @@
+///#begin zh-cn
 //
 //  Created by ShareSDK.cn on 13-1-14.
 //  官网地址:http://www.ShareSDK.cn
@@ -6,24 +7,59 @@
 //  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
+///#end
+///#begin en
+//
+//  Created by ShareSDK.cn on 13-1-14.
+//  Website:http://www.ShareSDK.cn
+//  Support E-mail:support@sharesdk.cn
+//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
+//  Business QQ:4006852216
+//  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
+//
+///#end
+
 #import <Foundation/Foundation.h>
 #import "ISSContainer.h"
 
+///#begin zh-cn
 /**
  *	@brief	分享菜单协议
  */
+///#end
+///#begin en
+/**
+ *	@brief	Share menu protocol
+ */
+///#end
 @protocol ISSShareActionSheet <NSObject>
 
+///#begin zh-cn
 /**
  *	@brief	显示到容器中
  *
  *	@param 	container 	容器
  */
+///#end
+///#begin en
+/**
+ *	@brief	Show in container
+ *
+ *	@param 	container 	Container object.
+ */
+///#end
 - (void)showInContainer:(id<ISSContainer>)container;
 
+///#begin zh-cn
 /**
  *	@brief	关闭菜单
  */
+///#end
+///#begin en
+/**
+ *	@brief	Dismiss menu.
+ */
+///#end
 - (void)dismiss;
 
 @end

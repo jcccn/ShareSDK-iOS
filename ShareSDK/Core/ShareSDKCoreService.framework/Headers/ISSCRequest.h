@@ -1,3 +1,4 @@
+///#begin zh-cn
 //
 //  Created by ShareSDK.cn on 13-1-14.
 //  官网地址:http://www.ShareSDK.cn
@@ -6,30 +7,69 @@
 //  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
+///#end
+///#begin en
+//
+//  Created by ShareSDK.cn on 13-1-14.
+//  Website:http://www.ShareSDK.cn
+//  Support E-mail:support@sharesdk.cn
+//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
+//  Business QQ:4006852216
+//  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
+//
+///#end
+
 #import <Foundation/Foundation.h>
 #import "ISSCAccount.h"
 #import "ISSCParameters.h"
 
+///#begin zh-cn
 /**
  *	@brief	请求协议
  */
+///#end
+///#begin en
+/**
+ *	@brief	Request protocol
+ */
+///#end
 @protocol ISSCRequest <NSObject>
 
+///#begin zh-cn
 /**
  *	@brief	获取登录帐号
  *
  *	@return	登录帐号
  */
+///#end
+///#begin en
+/**
+ *	@brief	Get account.
+ *
+ *	@return	Account object.
+ */
+///#end
 - (id<ISSCAccount>)account;
 
+///#begin zh-cn
 /**
  *	@brief	添加请求头参数
  *
  *	@param 	header  参数头名称
  *	@param 	value   参数值
  */
+///#end
+///#begin en
+/**
+ *	@brief	Add request header
+ *
+ *	@param 	header  Header name.
+ *	@param 	value   Header value.
+ */
+///#end
 - (void)addHeader:(NSString *)header value:(NSString *)value;
 
+///#begin zh-cn
 /**
  *	@brief	以GET方式进行数据提交
  *
@@ -39,12 +79,25 @@
  *  @param  result  返回回调方法
  *  @param  fault   错误回调方法
  */
+///#end
+///#begin en
+/**
+ *	@brief	Send request by GET mehtod
+ *
+ *	@param 	path 	Request path.
+ *  @param  parameters  Parameters object.
+ *  @param  userData    User data.
+ *  @param  result  Result handler.
+ *  @param  fault   Fault handler.
+ */
+///#end
 - (void)get:(NSString *)path
  parameters:(id<ISSCParameters>)parameters
    userData:(id)userData
      result:(void(^)(NSHTTPURLResponse *response, NSData *responseData))result
       fault:(void(^)(NSError *error))fault;
 
+///#begin zh-cn
 /**
  *	@brief	以POST方式进行数据提交
  *
@@ -54,12 +107,25 @@
  *  @param  result  返回回调方法
  *  @param  fault   错误回调方法
  */
+///#end
+///#begin en
+/**
+ *	@brief	Send request by POST mehtod
+ *
+ *	@param 	path 	Request path.
+ *  @param  parameters  Parameters object.
+ *  @param  userData    User data.
+ *  @param  result  Result handler.
+ *  @param  fault   Fault handler.
+ */
+///#end
 - (void)post:(NSString *)path
   parameters:(id<ISSCParameters>)parameters
     userData:(id)userData
       result:(void(^)(NSHTTPURLResponse *response, NSData *responseData))result
        fault:(void(^)(NSError *error))fault;
 
+///#begin zh-cn
 /**
  *	@brief	以POST方式并以multipart形式进行数据提交
  *
@@ -69,12 +135,25 @@
  *  @param  result  返回回调方法
  *  @param  fault   错误回调方法
  */
+///#end
+///#begin en
+/**
+ *	@brief	Send request by POST mehtod and multipart form data submitted
+ *
+ *	@param 	path 	Request path.
+ *  @param  parameters  Parameters object.
+ *  @param  userData    User data.
+ *  @param  result  Result handler.
+ *  @param  fault   Fault handler.
+ */
+///#end
 - (void)multipartPost:(NSString *)path
            parameters:(id<ISSCParameters>)parameters
              userData:(id)userData
                result:(void(^)(NSHTTPURLResponse *response, NSData *responseData))result
                 fault:(void(^)(NSError *error))fault;
 
+///#begin zh-cn
 /**
  *	@brief	以DELETE方式进行数据提交
  *
@@ -84,12 +163,25 @@
  *  @param  result      返回回调方式
  *  @param  fault       错误回调方法
  */
+///#end
+///#begin en
+/**
+ *	@brief	Send request by DELETE method
+ *
+ *	@param 	path 	Request path.
+ *	@param 	parameters 	Parameters object.
+ *	@param 	userData 	User data.
+ *  @param  result      Result handler.
+ *  @param  fault       Fault handler.
+ */
+///#end
 - (void)del:(NSString *)path
  parameters:(id<ISSCParameters>)parameters
    userData:(id)userData
      result:(void(^)(NSHTTPURLResponse *response, NSData *responseData))result
       fault:(void(^)(NSError *error))fault;
 
+///#begin zh-cn
 /**
  *	@brief	发送请求
  *
@@ -98,14 +190,32 @@
  *  @param  result      返回回调方式
  *  @param  fault       错误回调方法
  */
+///#end
+///#begin en
+/**
+ *	@brief	Send request.
+ *
+ *	@param 	request 	Request object.
+ *	@param 	userData 	User data.
+ *  @param  result      Result handler.
+ *  @param  fault       Fault handler.
+ */
+///#end
 - (void)sendRequest:(NSMutableURLRequest *)request
            userData:(id)userData
              result:(void(^)(NSHTTPURLResponse *response, NSData *responseData))result
               fault:(void(^)(NSError *error))fault;
 
+///#begin zh-cn
 /**
  *	@brief	取消请求
  */
+///#end
+///#begin en
+/**
+ *	@brief	Cancel request.
+ */
+///#end
 - (void)cancel;
 
 @end

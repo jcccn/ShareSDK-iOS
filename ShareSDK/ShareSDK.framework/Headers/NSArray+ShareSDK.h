@@ -1,3 +1,4 @@
+///#begin zh-cn
 //
 //  Created by ShareSDK.cn on 13-1-14.
 //  官网地址:http://www.ShareSDK.cn
@@ -6,25 +7,62 @@
 //  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
+///#end
+///#begin en
+//
+//  Created by ShareSDK.cn on 13-1-14.
+//  Website:http://www.ShareSDK.cn
+//  Support E-mail:support@sharesdk.cn
+//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
+//  Business QQ:4006852216
+//  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
+//
+///#end
+
 #import <Foundation/Foundation.h>
 
+///#begin zh-cn
 /**
  *	@brief	ShareSDK的数组扩展
  */
+///#end
+///#begin en
+/**
+ *	@brief	ShareSDK Array category
+ */
+///#end
 @interface NSArray (ShareSDK)
 
+///#begin zh-cn
 /**
  *	@brief	默认一键分享列表
  *
  *	@return	一键分享列表数组
  */
+///#end
+///#begin en
+/**
+ *	@brief	Get default one key share list.
+ *
+ *	@return	One key share list array.
+ */
+///#end
 + (NSArray *)defaultOneKeyShareList;
 
+///#begin zh-cn
 /**
  *	@brief	不包含新浪微博的一键分享列表
  *
  *	@return	一键分享列表数组
  */
+///#end
+///#begin en
+/**
+ *	@brief	Get one key share list without Sina Weibo.
+ *
+ *	@return	One key share list array.
+ */
+///#end
 + (NSArray *)oneKeyShareListWithoutSinaWeibo;
 
 @end
