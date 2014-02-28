@@ -1,14 +1,3 @@
-///#begin zh-cn
-//
-//  Created by ShareSDK.cn on 13-1-14.
-//  官网地址:http://www.ShareSDK.cn
-//  技术支持邮箱:support@sharesdk.cn
-//  官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
-//  商务QQ:4006852216
-//  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
-//
-///#end
-///#begin en
 //
 //  Created by ShareSDK.cn on 13-1-14.
 //  Website:http://www.ShareSDK.cn
@@ -17,23 +6,14 @@
 //  Business QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
-///#end
-
 #import <AGCommon/ICMErrorInfo.h>
 
 #ifndef ShareSDKInterface_ShareSDKTypeDef_h
 #define ShareSDKInterface_ShareSDKTypeDef_h
 
-///#begin zh-cn
-/**
- *	@brief	分享类型
- */
-///#end
-///#begin en
 /**
  *	@brief	Platform type.
  */
-///#end
 typedef enum
 {
 	ShareTypeSinaWeibo = 1,         /**< 新浪微博 */
@@ -76,16 +56,9 @@ typedef enum
 }
 ShareType;
 
-///#begin zh-cn
-/**
- *	@brief	请求方式
- */
-///#end
-///#begin en
 /**
  *	@brief	Request method.
  */
-///#end
 typedef enum
 {
 	ShareSDKRequestMethodGet = 0,           /**< HTTP Get方式 */
@@ -94,16 +67,9 @@ typedef enum
 }
 ShareSDKRequestMethod;
 
-///#begin zh-cn
-/**
- *	@brief	微信分享场景
- */
-///#end
-///#begin en
 /**
  *	@brief	WeChat scene.
  */
-///#end
 typedef enum
 {
 	ShareSDKWeChatSceneSession = 0, /**< 好友 */
@@ -111,16 +77,9 @@ typedef enum
 }
 ShareSDKWeChatScene;
 
-///#begin zh-cn
-/**
- *	@brief	授权状态
- */
-///#end
-///#begin en
 /**
  *	@brief	Authorized state.
  */
-///#end
 typedef enum
 {
     SSAuthStateBegan = 0, /**< 开始 */
@@ -130,16 +89,9 @@ typedef enum
 }
 SSAuthState;
 
-///#begin zh-cn
-/**
- *	@brief	发布内容状态
- */
-///#end
-///#begin en
 /**
  *	@brief	Publish content state.
  */
-///#end
 typedef enum
 {
 	SSPublishContentStateBegan = 0, /**< 开始 */
@@ -149,16 +101,9 @@ typedef enum
 }
 SSPublishContentState;
 
-///#begin zh-cn
-/**
- *	@brief	响应状态
- */
-///#end
-///#begin en
 /**
  *	@brief	Response state.
  */
-///#end
 typedef enum
 {
 	SSResponseStateBegan = 0, /**< 开始 */
@@ -168,16 +113,9 @@ typedef enum
 }
 SSResponseState;
 
-///#begin zh-cn
-/**
- *	@brief	授权视图样式
- */
-///#end
-///#begin en
 /**
  *	@brief	Authorize view style.
  */
-///#end
 typedef enum
 {
 	SSAuthViewStylePopup = 0, /**< 弹出式窗口 */
@@ -186,16 +124,9 @@ typedef enum
 }
 SSAuthViewStyle;
 
-///#begin zh-cn
-/**
- *	@brief	视图方向
- */
-///#end
-///#begin en
 /**
  *	@brief	Interface orientation.
  */
-///#end
 typedef enum {
     SSInterfaceOrientationMaskPortrait = (1 << UIInterfaceOrientationPortrait),
     SSInterfaceOrientationMaskLandscapeLeft = (1 << UIInterfaceOrientationLandscapeLeft),
@@ -217,16 +148,9 @@ typedef enum
 }
 SSRectEdge;
 
-///#begin zh-cn
-/**
- *	@brief	用户字段类型
- */
-///#end
-///#begin en
 /**
  *	@brief	User field type.
  */
-///#end
 typedef enum
 {
 	SSUserFieldTypeUid = 0,     /**< 用户ID */
@@ -235,16 +159,9 @@ typedef enum
 }
 SSUserFieldType;
 
-///#begin zh-cn
-/**
- *	@brief	分享内容的消息类型，仅对微信、QQApi有效
- */
-///#end
-///#begin en
 /**
  *	@brief	Share meida type，Only for WeChat QQ.
  */
-///#end
 typedef enum
 {
 	SSPublishContentMediaTypeText = 0, /**< 文本 */
@@ -258,16 +175,9 @@ typedef enum
 }
 SSPublishContentMediaType;
 
-///#begin zh-cn
-/**
- *	@brief	分享视图样式
- */
-///#end
-///#begin en
 /**
  *	@brief	Share view style.
  */
-///#end
 typedef enum
 {
 	SSShareViewStyleDefault = 0, /**< 默认 */
@@ -276,16 +186,9 @@ typedef enum
 }
 SSShareViewStyle;
 
-///#begin zh-cn
-/**
- *	@brief	印象笔记类型
- */
-///#end
-///#begin en
 /**
  *	@brief	Evernote type.
  */
-///#end
 typedef enum
 {
 	SSEverNoteTypeSandbox = 0, /**< 沙箱 */
@@ -293,6 +196,27 @@ typedef enum
 	SSEverNoteTypeUS = 2 /**< Evernote International */
 }
 SSEverNoteType;
+
+/**
+ *	@brief	Obtain coins
+ */
+typedef enum
+{
+	SSObtainCoinsActionInitalActivation = 1, /**< 首次激活 */
+	SSObtainCoinsActionDailyActivation = 2, /**< 每日激活 */
+	SSObtainCoinsActionShare = 3 /**< 分享 */
+}
+SSObtainCoinsAction;
+
+/**
+ *	@brief	UI Style
+ */
+typedef enum
+{
+	SSUIStyleiOS7 = 0, /**< iOS7风格 */
+	SSUIStyleiOS7Below = 1 /**< iOS7系统版本以下风格 */
+}
+SSUIStyle;
 
 
 #endif

@@ -1,14 +1,3 @@
-///#begin zh-cn
-//
-//  Created by ShareSDK.cn on 13-1-14.
-//  官网地址:http://www.ShareSDK.cn
-//  技术支持邮箱:support@sharesdk.cn
-//  官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
-//  商务QQ:4006852216
-//  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
-//
-///#end
-///#begin en
 //
 //  Created by ShareSDK.cn on 13-1-14.
 //  Website:http://www.ShareSDK.cn
@@ -17,56 +6,49 @@
 //  Business QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
-///#end
-
 #import "SSInheritValue.h"
 
 #ifndef ShareSDKInterface_ShareSDKDef_h
 #define ShareSDKInterface_ShareSDKDef_h
 
-///#begin zh-cn
-/**
- *	@brief	将ShareType转换为NSNumber类型
- *
- *	@param 	type 	分享平台类型
- */
-///#end
-///#begin en
 /**
  *	@brief	The ShareType convert NSNumber type
  *
  *	@param 	type 	Platform type.
  */
-///#end
 #define SHARE_TYPE_NUMBER(type) [NSNumber numberWithInteger:type]
 
-///#begin zh-cn
-/**
- *	@brief	继承值
- */
-///#end
-///#begin en
 /**
  *	@brief	Inherit value object.
  */
-///#end
 #define INHERIT_VALUE [SSInheritValue inherit]
 
-///#begin zh-cn
-/**
- *	@brief	映射分享内容对象的某个属性值
- *
- *	@param 	name 	属性名称
- */
-///#end
-///#begin en
 /**
  *	@brief	Mapping a share content object Property values
  *
  *	@param 	name 	Property name.
  */
-///#end
 #define MAPPING_VALUE(name) [SSInheritValue inheritWithName:name]
+
+/**
+ *	@brief	Get Coins Notification.
+ */
+#define SS_AWARD_NOTIF_GET_COINS @"get_coins"
+
+/**
+ *	@brief	Buy item notification
+ */
+#define SS_AWARD_NOTIF_BUY_ITEM @"buy_item"
+
+/**
+ *	@brief	Coins Key
+ */
+#define SS_AWARD_KEY_COINS @"coins"
+
+/**
+ *	@brief	Action Key
+ */
+#define SS_AWARD_KEY_ACTION @"action"
 
 
 #endif
