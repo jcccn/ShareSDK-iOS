@@ -1,9 +1,9 @@
 //
 //  Created by ShareSDK.cn on 13-1-14.
-//  website:http://www.ShareSDK.cn
-//  Support E-mail:support@sharesdk.cn
-//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
-//  Business QQ:4006852216
+//  官网地址:http://www.ShareSDK.cn
+//  技术支持邮箱:support@sharesdk.cn
+//  官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
+//  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
 #import <Foundation/Foundation.h>
@@ -14,7 +14,7 @@
 #import <ShareSDK/ShareSDKPlugin.h>
 
 /**
- *	@brief	Request method.
+ *	@brief	请求方式
  */
 typedef enum
 {
@@ -25,47 +25,47 @@ typedef enum
 SSRenRenRequestMethod;
 
 /**
- *	@brief	RenRen App
+ *	@brief	人人网应用协议
  */
 @protocol ISSRenRenApp <ISSPlatformApp>
 
 /**
- *	@brief	Get app id.
+ *	@brief	获取应用ID
  *
- *	@return	App id.
+ *	@return	应用ID
  */
 - (NSString *)appId;
 
 /**
- *	@brief	Get app key.
+ *	@brief	获取应用Key
  *
- *	@return	App key.
+ *	@return	应用Key
  */
 - (NSString *)appKey;
 
 /**
- *	@brief	Get app secret.
+ *	@brief	获取应用密钥
  *
- *	@return	App secret.
+ *	@return	应用密钥
  */
 - (NSString *)appSecret;
 
 /**
- *	@brief	Get SSO callback URL.
+ *	@brief	获取SSO回调地址
  *
- *	@return	SSO callback URL.
+ *	@return	SSO回调地址
  */
 - (NSString *)ssoCallbackUrl;
 
 /**
- *	@brief	Call API
+ *	@brief	调用开放平台API
  *
- *	@param 	path 	API path string.
- *  @param  method  Request method.
- *	@param 	params 	Request parameters.
- *  @param  user    Authorized users, it means that if the incoming nil default authorized users
- *  @param  result  Result handler.
- *  @param  fault   Fault handler.
+ *	@param 	path 	方法
+ *  @param  method  请求方法
+ *	@param 	params 	请求参数
+ *  @param  user    授权用户,如果传入nil则表示默认的授权用户
+ *  @param  result  返回回调
+ *  @param  fault   失败回调
  */
 - (void)api:(NSString *)path
      method:(SSRenRenRequestMethod)method
@@ -75,11 +75,11 @@ SSRenRenRequestMethod;
       fault:(void(^)(CMErrorInfo *error))fault;
 
 /**
- *	@brief	Upload image
+ *	@brief	上传照片
  *
- *	@param 	file 	File attachment.
- *	@param 	description 	image description。Can not exceed 200 characters
- *	@param 	albumId 	Album ID, albumId omitted when the meeting reached the application album
+ *	@param 	file 	文件
+ *	@param 	description 	照片描述。不能超过200个字符
+ *	@param 	albumId 	相册ID,albumId省略时会上传到应用相册
  */
 - (void)uploadPhoto:(id<ISSCAttachment>)file
         description:(NSString *)description
@@ -87,10 +87,10 @@ SSRenRenRequestMethod;
              result:(void(^)(BOOL result, id photo, CMErrorInfo *error))result;
 
 /**
- *	@brief	Publish feed.
+ *	@brief	发布新鲜事
  *
- *	@param 	name 	Title. Up to 30 characters
- *	@param 	description 	New to main content。 Note: Up to 200 characters.
+ *	@param 	name 	标题，最多30个字符
+ *	@param 	description 	新鲜事主体内容 注意：最多200个字符。
  *	@param 	url 	新鲜事标题和图片指向的链接。
  *	@param 	message 	用户输入的自定义内容。注意：最多200个字符。
  *	@param 	image 	新鲜事图片地址

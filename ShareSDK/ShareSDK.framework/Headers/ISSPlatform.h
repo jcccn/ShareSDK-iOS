@@ -1,9 +1,9 @@
 //
 //  Created by ShareSDK.cn on 13-1-14.
-//  Website:http://www.ShareSDK.cn
-//  Support E-mail:support@sharesdk.cn
-//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
-//  Business QQ:4006852216
+//  官网地址:http://www.ShareSDK.cn
+//  技术支持邮箱:support@sharesdk.cn
+//  官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
+//  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
 #import <Foundation/Foundation.h>
@@ -13,90 +13,90 @@
 @protocol ISSPlatformApp;
 
 /**
- *	@brief	Platform protocol
+ *	@brief	平台协议
  */
 @protocol ISSPlatform <NSObject>
 
 @required
 
 /**
- *	@brief	Initialize platform
+ *	@brief	初始化平台
  *
- *	@param 	type 	Platform type
+ *	@param 	type 	平台类型
  *
- *	@return	Platform object
+ *	@return	平台对象
  */
 - (id)initWithType:(ShareType)type;
 
 /**
- *	@brief	Get platform name
+ *	@brief	获取平台名称
  *
- *	@return	Name
+ *	@return	名称
  */
 - (NSString *)name;
 
 /**
- *	@brief	Get platform type
+ *	@brief	获取平台类型
  *
- *	@return	Platform type
+ *	@return	平台类型
  */
 - (ShareType)type;
 
 /**
- *	@brief	Get current app.
+ *	@brief	获取当前应用
  *
- *	@return	Current app object.
+ *	@return	当前应用
  */
 - (id<ISSPlatformApp>)currentApp;
 
 /**
- *	@brief	Set current app.
+ *	@brief	设置当前应用
  *
- *	@param 	app 	app object.
+ *	@param 	app 	当前应用
  */
 - (void)setCurrentApp:(id<ISSPlatformApp>)app;
 
 /**
- *	@brief	Register app.
+ *	@brief	注册应用
  *
- *	@param 	account     ShareSDK registered app information object.
- *	@param 	appInfo 	App information, you need to be registered in each platform app to get
+ *	@param 	account     ShareSDK注册账户信息
+ *	@param 	appInfo 	应用信息，需要到各个平台中进行注册应用得到
  *
- *	@return	App object
+ *	@return	应用对象
  */
 - (id<ISSPlatformApp>)registerAppWithAccount:(id<ISSCAccount>)account
                                      appInfo:(NSDictionary *)appInfo;
 
 /**
- *	@brief	Unregister app
+ *	@brief	注销应用
  *
- *	@param 	app 	App object
+ *	@param 	app 	应用对象
  *
  */
 - (void)unregisterApp:(id<ISSPlatformApp>)app;
 
 /**
- *	@brief	Determine whether the application has been registered
+ *	@brief	判断是否已经注册应用
  *
- *	@param 	appInfo 	Application information
+ *	@param 	appInfo 	应用信息
  *
- *	@return	YES said it had registered, NO indicates not registered
+ *	@return	YES 表示已经注册，NO 表示尚未注册
  */
 - (BOOL)hasRegisteredWithAppInfo:(NSDictionary *)appInfo;
 
 /**
- *	@brief	Get registered application
+ *	@brief	获取已注册应用
  *
- *	@param 	key 	App key.
+ *	@param 	key 	应用Key
  *
- *	@return	App object, returns nil indicates the app has not been registered
+ *	@return	应用对象，返回nil则表示应用尚未注册
  */
 - (id<ISSPlatformApp>)appForKey:(NSString *)key;
 
 /**
- *	@brief	Get a list of registered applications
+ *	@brief	获取已注册的应用列表
  *
- *	@return	App list array, whose elements are the object id<ISSPlatformApp>
+ *	@return	应用列表数组，其元素为id<ISSPlatformApp>对象
  */
 - (NSArray *)registeredApps;
 

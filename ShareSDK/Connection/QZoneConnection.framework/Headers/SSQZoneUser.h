@@ -1,9 +1,9 @@
 //
 //  Created by ShareSDK.cn on 13-1-14.
-//  website:http://www.ShareSDK.cn
-//  Support E-mail:support@sharesdk.cn
-//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
-//  Business QQ:4006852216
+//  官网地址:http://www.ShareSDK.cn
+//  技术支持邮箱:support@sharesdk.cn
+//  官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
+//  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
 #import <Foundation/Foundation.h>
@@ -13,118 +13,118 @@
 #import <ShareSDK/ShareSDKPlugin.h>
 
 /**
- *	@brief	QZone User.
+ *	@brief	QQ空间用户
  */
 @interface SSQZoneUser : NSObject <ISSPlatformUser,
                                    NSCoding,
                                    ISSCDataObject>
 
 /**
- *	@brief	The app object.
+ *	@brief	所属平台
  */
 @property (nonatomic,assign) id<ISSPlatformApp> app;
 
 /**
- *	@brief	Authorization information, if it is nil, said non-current authorized users
+ *	@brief	授权信息，如果为nil则表示非当前应用授权用户
  */
 @property (nonatomic,retain) id<ISSPlatformCredential> credential;
 
 /**
- *	@brief	Raw data，Information structure with the same user-defined for each platform
+ *	@brief	用户的原始数据信息，与各个平台定义的用户信息结构相同
  */
 @property (nonatomic,retain) NSDictionary *sourceData;
 
 /**
- *	@brief	Platform type.
+ *	@brief	平台类型
  */
 @property (nonatomic,readonly) ShareType type;
 
 /**
- *	@brief	User id.
+ *	@brief	用户ID
  */
 @property (nonatomic,readonly) NSString *uid;
 
 /**
- *	@brief	Nickname.
+ *	@brief	用户昵称
  */
 @property (nonatomic,readonly) NSString *nickname;
 
 /**
- *	@brief	Avatar path.
+ *	@brief	个人头像路径
  */
 @property (nonatomic,readonly) NSString *profileImage;
 
 /**
- *	@brief	Gender：0 Male； 1 Female； 2 Unknown.
+ *	@brief	性别：0 男； 1 女； 2 未知
  */
 @property (nonatomic,readonly) NSInteger gender;
 
 /**
- *	@brief	Personal homepage.
+ *	@brief	个人主页地址
  */
 @property (nonatomic,readonly) NSString *url;
 
 /**
- *	@brief	Profile.
+ *	@brief	个人简介
  */
 @property (nonatomic,readonly) NSString *aboutMe;
 
 /**
- *	@brief	Verify type：－1 Unknown； 0 Not certified； 1 Certified
+ *	@brief	认证类型：－1 未知； 0 未认证； 1 认证
  */
 @property (nonatomic,readonly) NSInteger verifyType;
 
 /**
- *	@brief	Verify reason.
+ *	@brief	认证信息
  */
 @property (nonatomic,readonly) NSString *verifyReason;
 
 /**
- *	@brief	Birthday (unit: seconds)
+ *	@brief	用户生日（单位：秒）
  */
 @property (nonatomic,readonly) NSString *birthday;
 
 /**
- *	@brief	Fans count.
+ *	@brief	用户粉丝数
  */
 @property (nonatomic,readonly) NSInteger followerCount;
 
 /**
- *	@brief	Friends count.
+ *	@brief	用户关注数
  */
 @property (nonatomic,readonly) NSInteger friendCount;
 
 /**
- *	@brief	The number of user to share.
+ *	@brief	用户分享数
  */
 @property (nonatomic,readonly) NSInteger shareCount;
 
 /**
- *	@brief	User registration time (unit: seconds)
+ *	@brief	用户的注册时间（单位：秒）
  */
 @property (nonatomic,readonly) NSTimeInterval regAt;
 
 /**
- *	@brief	User level.
+ *	@brief	用户等级
  */
 @property (nonatomic,readonly) NSInteger level;
 
 /**
- *	@brief	Education information list of user
+ *	@brief	用户的教育信息列表
  */
 @property (nonatomic,readonly) NSArray *educations;
 
 /**
- *	@brief	Career information list of user
+ *	@brief	用户的职业信息列表
  */
 @property (nonatomic,readonly) NSArray *works;
 
 /**
- *	@brief	Initialize user information.
+ *	@brief	初始化化用户信息
  *
- *	@param 	app 	The app object.
+ *	@param 	app 	应用信息
  *
- *	@return	User object.
+ *	@return	用户信息对象
  */
 - (id)initWithApp:(id<ISSPlatformApp>)app;
 

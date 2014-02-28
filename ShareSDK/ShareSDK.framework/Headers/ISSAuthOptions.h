@@ -1,136 +1,136 @@
 //
 //  Created by ShareSDK.cn on 13-1-14.
-//  website:http://www.ShareSDK.cn
-//  Support E-mail:support@sharesdk.cn
-//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
-//  Business QQ:4006852216
+//  官网地址:http://www.ShareSDK.cn
+//  技术支持邮箱:support@sharesdk.cn
+//  官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
+//  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
 #import <Foundation/Foundation.h>
 #import "ISSViewDelegate.h"
 
 /**
- *	@brief	Authorize options
+ *	@brief	授权选项
  */
 @protocol ISSAuthOptions <NSObject,
                           NSCopying>
 
 /**
- *	@brief	Get view style
+ *	@brief	获取视图样式
  *
- *  @return View style
+ *  @return 视图样式
  */
 - (SSAuthViewStyle)viewStyle;
 
 /**
- *	@brief	Set view style
+ *	@brief	设置视图样式
  *
- *	@param 	viewStyle 	View style
+ *	@param 	viewStyle 	视图样式
  */
 - (void)setViewStyle:(SSAuthViewStyle)viewStyle;
 
 /**
- *	@brief	Get automatic authorization flag,When authorized expired, Whether SDK has automatic show authorized view let user to completed authorized.
+ *	@brief	自动授权标志，当分享内容时发现授权过期是否委托SDK处理授权问题，YES：表示委托授权， NO：表示不委托授权，需要自己根据返回值进行判断和处理
  *
- *  @return Automatic authorization flag. YES indicate enabled. NO indicate disabled.
+ *  @return 自动授权标识
  */
 - (BOOL)autoAuth;
 
 /**
- *	@brief	Set automatic authorization flag,When authorized expired, Whether SDK has automatic show authorized view let user to completed authorized.
+ *	@brief	设置自动授权标识,当分享内容时发现授权过期是否委托SDK处理授权问题，YES：表示委托授权， NO：表示不委托授权，需要自己根据返回值进行判断和处理
  *
- *  @param  autoAuth    Automatic authorization flag. YES indicate enabled. NO indicate disabled.
+ *	@param 	autoAuth 	自动授权标识
  */
 - (void)setAutoAuth:(BOOL)autoAuth;
 
 /**
- *	@brief	Whether to allow authorized after the callback to the server, the default is YES, for there is no server or application server does not require a callback can be set to NO
+ *	@brief	是否允许授权后回调到服务器，默认为YES，对于没有服务器或者不需要回调服务器的应用可以设置为NO
  *
- *  @return YES indicate enabled callback. NO indicate disabled callback.
+ *  @return YES表示回调服务器，NO表示不回调服务器
  */
 - (BOOL)allowCallback;
 
 /**
- *	@brief	Whether to allow authorized after the callback to the server.
+ *	@brief	设置是否允许授权后回调服务器
  *
- *	@param 	allowCallback 	YES indicate enabled callback. NO indicate disabled callback.
+ *	@param 	allowCallback 	YES表示回调服务器，NO表示不回调服务器
  */
 - (void)setAllowCallback:(BOOL)allowCallback;
 
 /**
- *	@brief	Get authorized view delegate.
- *
- *  @return delegate object.
+ *	@brief	获取授权视图协议委托
+ *  
+ *  @return 协议委托
  */
 - (id<ISSViewDelegate>)viewDelegate;
 
 /**
- *	@brief	Set authorized view delegate.
+ *	@brief	设置授权视图协议委托
  *
- *	@param 	viewDelegate 	delegate object.
+ *	@param 	viewDelegate 	协议委托
  */
 - (void)setViewDelegate:(id<ISSViewDelegate>)viewDelegate;
 
 /**
- *	@brief	Get authroized manager view delegate.
+ *	@brief	授权管理视图协议委托
  *
- *  @return delegate object.
+ *  @return 协议委托
  */
 - (id<ISSViewDelegate>)authManagerViewDelegate;
 
 /**
- *	@brief	Set authroized manager view delegate.
+ *	@brief	设置授权管理视图协议委托
  *
- *	@param 	authManagerViewDelegate 	delegate object.
+ *	@param 	authManagerViewDelegate 	协议委托
  */
 - (void)setAuthManagerViewDelegate:(id<ISSViewDelegate>)authManagerViewDelegate;
 
 /**
- *	@brief	Get authorized scopes.
+ *	@brief	获取授权权限
  *
- *	@return	scopes dictionary. key is platform type number. value is contain scope string's array.
+ *	@return	授权权限
  */
 - (NSDictionary *)scopes;
 
 /**
- *	@brief	Set authorized scopes.
+ *	@brief	设置授权权限
  *
- *	@param 	scopes 	scopes dictionary. key is platform type number. value is contain scope string's array.
+ *	@param 	scopes 	授权权限
  */
 - (void)setScopes:(NSDictionary *)scopes;
 
 /**
- *	@brief	Get powered by hidden flag.
+ *	@brief	获取版权隐藏标识
  *
- *	@return	YES indicate hidden， NO indicate show.
+ *	@return	YES 表示隐藏， NO 表示不隐藏
  */
 - (BOOL)powerByHidden;
 
 /**
- *	@brief	Set powered by hidden flag.
+ *	@brief	设置版本信息隐藏标识
  *
- *	@param 	powerByHidden 	YES indicate hidden， NO indicate show.
+ *	@param 	powerByHidden 	YES 表示隐藏， NO 表示不隐藏
  */
 - (void)setPowerByHidden:(BOOL)powerByHidden;
 
 /**
- *	@brief	Get follower accounts.
+ *	@brief	获取关注帐号
  *
- *	@return	follower accounts dicationary. key is platform type number. value is ISSUserField's protocol object.
+ *	@return	关注帐号的字典结构
  */
 - (NSDictionary *)followAccounts;
 
 /**
- *	@brief	Set follower accounts.
+ *	@brief	设置关注帐号
  *
- *	@param 	followAccounts 	follower accounts dicationary. key is platform type number. value is ISSUserField's protocol object.
+ *	@param 	followAccounts 	关注帐号的字典结构
  */
 - (void)setFollowAccounts:(NSDictionary *)followAccounts;
 
 /**
- *	@brief	Clone current authorized options object and return the new object.
+ *	@brief	拷贝授权选项对象
  *
- *	@return	The new authorized options object.
+ *	@return	授权选项对象
  */
 - (id<ISSAuthOptions>)clone;
 

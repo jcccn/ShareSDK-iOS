@@ -1,9 +1,9 @@
 //
 //  Created by ShareSDK.cn on 13-1-14.
-//  website:http://www.ShareSDK.cn
-//  Support E-mail:support@sharesdk.cn
-//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
-//  Business QQ:4006852216
+//  官网地址:http://www.ShareSDK.cn
+//  技术支持邮箱:support@sharesdk.cn
+//  官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
+//  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
 #import <Foundation/Foundation.h>
@@ -11,7 +11,7 @@
 @class SSSinaWeiboStatusInfoReader;
 
 /**
- *	@brief	User information reader.
+ *	@brief	用户信息读取器
  */
 @interface SSSinaWeiboUserInfoReader : NSObject
 {
@@ -20,185 +20,185 @@
 }
 
 /**
- *	@brief	Raw data.
+ *	@brief	源数据
  */
 @property (nonatomic,readonly) NSDictionary *sourceData;
 
 /**
- *	@brief	User id string.
+ *	@brief	字符串型的用户UID
  */
 @property (nonatomic,readonly) NSString *idstr;
 
 /**
- *	@brief	Screen name.
+ *	@brief	用户昵称
  */
 @property (nonatomic,readonly) NSString *screenName;
 
 /**
- *	@brief	User name.
+ *	@brief	友好显示名称
  */
 @property (nonatomic,readonly) NSString *name;
 
 /**
- *	@brief	Province id.
+ *	@brief	用户所在省级ID
  */
 @property (nonatomic,readonly) NSInteger province;
 
 /**
- *	@brief	City id.
+ *	@brief	用户所在城市ID
  */
 @property (nonatomic,readonly) NSInteger city;
 
 /**
- *	@brief	Location information.
+ *	@brief	用户所在地
  */
 @property (nonatomic,readonly) NSString *location;
 
 /**
- *	@brief	Description of this person.
+ *	@brief	用户个人描述
  */
 @property (nonatomic,readonly) NSString *description;
 
 /**
- *	@brief	blog URL of this person.
+ *	@brief	用户博客地址
  */
 @property (nonatomic,readonly) NSString *url;
 
 /**
- *	@brief	User avatar address, 50 × 50 pixels
+ *	@brief	用户头像地址，50×50像素
  */
 @property (nonatomic,readonly) NSString *profileImageUrl;
 
 /**
- *	@brief	Profile url.
+ *	@brief	用户的微博统一URL地址
  */
 @property (nonatomic,readonly) NSString *profileUrl;
 
 /**
- *	@brief	User's personalized domain
+ *	@brief	用户的个性化域名
  */
 @property (nonatomic,readonly) NSString *domain;
 
 /**
- *	@brief	Wei hao.
+ *	@brief	用户的微号
  */
 @property (nonatomic,readonly) NSString *weihao;
 
 /**
- *	@brief	Gender，m：Male、f：Female、n：Unknown
+ *	@brief	性别，m：男、f：女、n：未知
  */
 @property (nonatomic,readonly) NSString *gender;
 
 /**
- *	@brief	Followers count.
+ *	@brief	粉丝数
  */
 @property (nonatomic,readonly) NSInteger followersCount;
 
 /**
- *	@brief	Friends count.
+ *	@brief	关注数
  */
 @property (nonatomic,readonly) NSInteger friendsCount;
 
 /**
- *	@brief	Statuses count.
+ *	@brief	微博数
  */
 @property (nonatomic,readonly) NSInteger statusesCount;
 
 /**
- *	@brief	Favorites count.
+ *	@brief	收藏数
  */
 @property (nonatomic,readonly) NSInteger favouritesCount;
 
 /**
- *	@brief	User-created (registered) time
+ *	@brief	用户创建（注册）时间
  */
 @property (nonatomic,readonly) NSString *createdAt;
 
 /**
- *	@brief	Not support.
+ *	@brief	暂未支持
  */
 @property (nonatomic,readonly) BOOL following;
 
 /**
- *	@brief	Whether to allow everyone to send me a private letter, true: YES, false: No
+ *	@brief	是否允许所有人给我发私信，true：是，false：否
  */
 @property (nonatomic,readonly) BOOL allowAllActMsg;
 
 /**
- *	@brief	Whether to allow the user to identify the location, true: YES, false: No
+ *	@brief	是否允许标识用户的地理位置，true：是，false：否
  */
 @property (nonatomic,readonly) BOOL geoEnabled;
 
 /**
- *	@brief	Whether Weibo authenticate the user, that user plus V, true: YES, false: No
+ *	@brief	是否是微博认证用户，即加V用户，true：是，false：否
  */
 @property (nonatomic,readonly) BOOL verified;
 
 /**
- *	@brief	Not support.
+ *	@brief	暂未支持
  */
 @property (nonatomic,readonly) NSInteger verifiedType;
 
 /**
- *	@brief	Remarks user, the user only when the query relationship returns this field
+ *	@brief	用户备注信息，只有在查询用户关系时才返回此字段
  */
 @property (nonatomic,readonly) NSString *remark;
 
 /**
- *	@brief	Recently a status information.
+ *	@brief	用户的最近一条微博信息字段
  */
 @property (nonatomic,readonly) SSSinaWeiboStatusInfoReader *status;
 
 /**
- *	@brief	Whether to allow everyone on my status comment, true: YES, false: No
+ *	@brief	是否允许所有人对我的微博进行评论，true：是，false：否
  */
 @property (nonatomic,readonly) BOOL allowAllComment;
 
 /**
- *	@brief	Large image path of avatar
+ *	@brief	用户大头像地址
  */
 @property (nonatomic,readonly) NSString *avatarLarge;
 
 /**
- *	@brief	Verified reason.
+ *	@brief	认证原因
  */
 @property (nonatomic,readonly) NSString *verifiedReason;
 
 /**
- *	@brief	Whether the user is follow me, true: YES, false: No
+ *	@brief	该用户是否关注当前登录用户，true：是，false：否
  */
 @property (nonatomic,readonly) BOOL followMe;
 
 /**
- *	@brief	online status，0：offline、1：online
+ *	@brief	用户的在线状态，0：不在线、1：在线
  */
 @property (nonatomic,readonly) NSInteger onlineStatus;
 
 /**
- *	@brief	bi followers count.
+ *	@brief	用户的互粉数
  */
 @property (nonatomic,readonly) NSInteger biFollowersCount;
 
 /**
- *	@brief	The current language, zh-cn: Simplified Chinese, zh-tw: Traditional Chinese, en: English
+ *	@brief	用户当前的语言版本，zh-cn：简体中文，zh-tw：繁体中文，en：英语
  */
 @property (nonatomic,readonly) NSString *lang;
 
 /**
- *	@brief	Initialize reader.
+ *	@brief	初始化读取器
  *
- *	@param 	sourceData 	Raw data.
+ *	@param 	sourceData 	原数据
  *
- *	@return	Reader object.
+ *	@return	读取器实例对象
  */
 - (id)initWithSourceData:(NSDictionary *)sourceData;
 
 /**
- *	@brief	Create a user information reader.
+ *	@brief	创建用户信息读取器
  *
- *	@param 	sourceData 	Raw data.
+ *	@param 	sourceData 	原数据
  *
- *	@return	Reader object.
+ *	@return	读取器实例对象
  */
 + (SSSinaWeiboUserInfoReader *)readerWithSourceData:(NSDictionary *)sourceData;
 

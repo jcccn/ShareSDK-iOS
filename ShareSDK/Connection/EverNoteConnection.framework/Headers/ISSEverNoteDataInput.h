@@ -1,174 +1,174 @@
 //
 //  Created by ShareSDK.cn on 13-1-14.
-//  website:http://www.ShareSDK.cn
-//  Support E-mail:support@sharesdk.cn
-//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
-//  Business QQ:4006852216
+//  官网地址:http://www.ShareSDK.cn
+//  技术支持邮箱:support@sharesdk.cn
+//  官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
+//  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
 #import <Foundation/Foundation.h>
 
 /**
- *	@brief	Data input protocol.
+ *	@brief	数据写入协议
  */
 @protocol ISSEverNoteDataInput <NSObject>
 
 /**
- *	@brief	Write bytes.
+ *	@brief	写入字节数组
  *
- *	@param 	buf 	bytes buffer.
- *	@param 	offset 	Offset，Specify the starting position of the buffer to read.
- *	@param 	len 	Read length.
+ *	@param 	buf 	缓存区
+ *	@param 	offset 	偏移位置，从缓存区的指定位置开始读取位置
+ *	@param 	len 	读入长度
  */
 - (void)writeBytes:(const uint8_t *)buf
             offset:(NSInteger)offset
                len:(NSInteger)len;
 
 /**
- *	@brief	Begin write message.
+ *	@brief	开始写入消息
  *
- *	@param 	name 	Message name.
- *	@param 	messageType 	Message type.
- *	@param 	sequenceID 	Message id.
+ *	@param 	name 	消息名称
+ *	@param 	messageType 	消息类型
+ *	@param 	sequenceID 	序列ID
  */
 - (void)beginWriteMessage:(NSString *)name
                      type:(int)messageType
                sequenceID:(int)sequenceID;
 
 /**
- *	@brief	End write message.
+ *	@brief	结束写入消息
  */
 - (void)endWriteMessage;
 
 /**
- *	@brief	Begin write structure
+ *	@brief	开始写入结构
  *
- *	@param 	name 	Structure name.
+ *	@param 	name 	结构名称
  */
 - (void)beginWriteStruct:(NSString *)name;
 
 /**
- *	@brief	End write structure.
+ *	@brief	结束写入结构
  */
 - (void)endWriteStruct;
 
 /**
- *	@brief	Begin write field.
+ *	@brief	开始写入字段
  *
- *	@param 	name 	Field name.
- *	@param 	type 	Field type.
- *	@param 	fieldID 	Field id.
+ *	@param 	name 	字段名称
+ *	@param 	type 	字段类型
+ *	@param 	fieldID 	字段ID
  */
 - (void)beginWriteField:(NSString *)name
                    type:(int)type
                 fieldID:(int)fieldID;
 
 /**
- *	@brief	Write field stop flag.
+ *	@brief	写入字段结束标识
  */
 - (void)writeFieldStop;
 
 /**
- *	@brief	End write field.
+ *	@brief	结束写入字段
  */
 - (void)endWriteField;
 
 /**
- *	@brief	Write 32-bit integer.
+ *	@brief	写入一个整型值
  *
- *	@param 	value 	32-bit integer.
+ *	@param 	value 	整型值
  */
 - (void)writeInt32:(int32_t)value;
 
 /**
- *	@brief	Write 64-bit Integer.
+ *	@brief	写入一个长整型值
  *
- *	@param 	value   64-bit Integer.
+ *	@param 	value   长整型值
  */
 - (void)writeInt64:(int64_t)value;
 
 /**
- *	@brief	Write short integer.
+ *	@brief	写入一个短整型指
  *
- *	@param 	value 	Short integer.
+ *	@param 	value 	短整型值
  */
 - (void)writeShort:(short)value;
 
 /**
- *	@brief	Write byte
+ *	@brief	写入一个字节
  *
- *	@param 	value 	byte.
+ *	@param 	value 	字节
  */
 - (void)writeByte:(uint8_t)value;
 
 /**
- *	@brief	Write string.
+ *	@brief	写入一个字符串
  *
- *	@param 	value 	string.
+ *	@param 	value 	字符串
  */
 - (void)writeString:(NSString *)value;
 
 /**
- *	@brief	Write double.
+ *	@brief	写入一个双精度浮点型
  *
- *	@param 	value 	Double value.
+ *	@param 	value 	浮点型数值
  */
 - (void)writeDouble:(double)value;
 
 /**
- *	@brief	Write boolean.
+ *	@brief	写入一个布尔值
  *
- *	@param 	value 	Boolean value.
+ *	@param 	value 	布尔值
  */
 - (void)writeBool:(BOOL)value;
 
 /**
- *	@brief	Write binary.
+ *	@brief	写入一个字节流
  *
- *	@param 	data 	binary data.
+ *	@param 	data 	二进制流
  */
 - (void)writeBinary:(NSData *)data;
 
 /**
- *	@brief	Start write map.
+ *	@brief	开始写入图
  *
- *	@param 	keyType 	Key type.
- *	@param 	valueType 	Value type.
- *	@param 	size 	Size
+ *	@param 	keyType 	Key类型
+ *	@param 	valueType 	Value类型
+ *	@param 	size 	长度
  */
 - (void)beginWriteMap:(int)keyType
             valueType:(int)valueType
                  size:(int)size;
 				 
 /**
- *	@brief	End write map.
+ *	@brief	结束写入图
  */
 - (void)endWriteMap;
 
 /**
- *	@brief	Start write set.
+ *	@brief	开始写入集合
  *
- *	@param 	elementType 	Element type.
- *	@param 	size 	Size
+ *	@param 	elementType 	元素类型
+ *	@param 	size 	长度
  */
 - (void)beginWriteSet:(int)elementType
                  size:(int)size;
 
 /**
- *	@brief	End write set.
+ *	@brief	结束写入集合
  */
 - (void)endWriteSet;
 
 /**
- *	@brief	Start write list.
+ *	@brief	开始写入列表
  *
- *	@param 	elementType 	Element type.
- *	@param 	size 	Size.
+ *	@param 	elementType 	元素类型
+ *	@param 	size 	长度
  */
 - (void)beginWriteList:(int)elementType size:(int)size;
 
 /**
- *	@brief	End write list.
+ *	@brief	结束写入列表
  */
 - (void)endWriteList;
 

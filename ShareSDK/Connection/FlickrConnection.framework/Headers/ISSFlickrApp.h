@@ -1,9 +1,9 @@
 //
 //  Created by ShareSDK.cn on 13-1-14.
-//  website:http://www.ShareSDK.cn
-//  Support E-mail:support@sharesdk.cn
-//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
-//  Business QQ:4006852216
+//  官网地址:http://www.ShareSDK.cn
+//  技术支持邮箱:support@sharesdk.cn
+//  官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
+//  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
 #import <Foundation/Foundation.h>
@@ -15,7 +15,7 @@
 #import <ShareSDK/ShareSDKPlugin.h>
 
 /**
- *	@brief	Request method
+ *	@brief	请求方式
  */
 typedef enum
 {
@@ -26,33 +26,33 @@ typedef enum
 SSFlickrRequestMethod;
 
 /**
- *	@brief	Flickr App Protocol.
+ *	@brief	Flickr应用协议
  */
 @protocol ISSFlickrApp <ISSPlatformApp>
 
 /**
- *	@brief	Get consumer key.
+ *	@brief	获取消费者Key
  *
- *	@return	Consumer key.
+ *	@return	消费者Key
  */
 - (NSString *)consumerKey;
 
 /**
- *	@brief	Get consumer secret.
+ *	@brief	获取消费者密钥
  *
- *	@return	Consuemr secret.
+ *	@return	消费者密钥
  */
 - (NSString *)consumerSecret;
 
 /**
- *	@brief	Call api.
+ *	@brief	调用开放平台API
  *
- *	@param 	path 	API path string.
- *  @param  restMethod  REST API method name，If you specify this parameter can be ignored path, path will default to point http://ycpi.api.flickr.com/services/rest
- *	@param 	params 	Request parameters
- *  @param  user    Authorized users, it means that if the incoming nil default authorized users
- *  @param  result  Result handler.
- *  @param  fault   Fault handler.
+ *	@param 	path 	接口路径
+ *  @param  restMethod  REST API的方法名称，如果指定此参数可以忽略path，path会默认指向http://ycpi.api.flickr.com/services/rest
+ *	@param 	params 	请求参数
+ *  @param  user    授权用户,如果传入nil则表示默认的授权用户
+ *  @param  result  返回回调
+ *  @param  fault   失败回调
  */
 - (void)api:(NSString *)path
  restMethod:(NSString *)restMethod
@@ -63,19 +63,19 @@ SSFlickrRequestMethod;
       fault:(void(^)(CMErrorInfo *error))fault;
 
 /**
- *	@brief	Upload image.
+ *	@brief	上传图片
  *
- *	@param 	photo 	Image object.
- *	@param 	title 	Title string.
- *	@param 	description 	Image description。Contains restricted HTML。
- *	@param 	tags 	Apply to the photo space-separated list of labels。
- *	@param 	isPublic 	Set to 0 for no, 1 means yes. Specify who can view photos。
- *	@param 	isFriend 	Set to 0 for no, 1 means yes. Specify who can view photos。
- *	@param 	isFamily 	Set to 0 for no, 1 means yes. Specify who can view photos。
- *	@param 	safetyLevel 	Set to 1 "safe level", 2 "PG", 3 "X-rated"
- *	@param 	contentType 	Set to 1 is the "Photo", 2 "screen shots", 3 "Other."
- *	@param 	hidden 	Set to 1 is the "Photo", 2 "screen shots", 3 "Other."
- *  @param  result  Result handler.
+ *	@param 	photo 	图片对象
+ *	@param 	title 	标题
+ *	@param 	description 	相片描述。可能包含某受限的 HTML。
+ *	@param 	tags 	適用於相片的以空格分隔的標籤清單。
+ *	@param 	isPublic 	設定為 0 表示否，1 表示是。指定誰可以檢視相片。
+ *	@param 	isFriend 	設定為 0 表示否，1 表示是。指定誰可以檢視相片。
+ *	@param 	isFamily 	設定為 0 表示否，1 表示是。指定誰可以檢視相片。
+ *	@param 	safetyLevel 	設置 1 為「安全級」、2 為「輔導級」、3 為「限制級」。
+ *	@param 	contentType 	設置 1 為「相片」、2 為「螢幕截圖」、3 為「其他」。
+ *	@param 	hidden 	設置 1 為「相片」、2 為「螢幕截圖」、3 為「其他」。
+ *  @param  result  返回回调
  */
 - (void)uploadPhoto:(id<ISSCAttachment>)photo
               title:(NSString *)title

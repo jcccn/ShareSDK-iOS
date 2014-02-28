@@ -1,61 +1,61 @@
 //
 //  Created by ShareSDK.cn on 13-1-14.
-//  Website:http://www.ShareSDK.cn
-//  Support E-mail:support@sharesdk.cn
-//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
-//  Business QQ:4006852216
+//  官网地址:http://www.ShareSDK.cn
+//  技术支持邮箱:support@sharesdk.cn
+//  官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
+//  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
 #import <Foundation/Foundation.h>
 #import "CMEventDispatcher.h"
 
 /**
- *	@brief	Loader error domain.
+ *	@brief	加载器错误域
  */
 #define CMERROR_DOMAIN_LOADER @"LoaderErrorDomain"
 
 /**
- *	@brief	Load file fail error code.
+ *	@brief	加载文件失败
  */
 #define CMERROR_LOAD_FILE_FAIL 1000
 
 /**
- *	@brief	Load complete notification.
+ *	@brief	加载成功
  */
 #define CMNOTIF_LOAD_COMPLETE @"loadComplete"
 
 /**
- *	@brief	Load error notification.
+ *	@brief	加载异常
  */
 #define CMNOTIF_LOAD_ERROR @"loadError"
 
 /**
- *	@brief	Load progress notification.
+ *	@brief	加载进度
  */
 #define CMNOTIF_LOAD_PROGRESS @"loadProgress"
 
 /**
- *	@brief	Data key notification.
+ *	@brief	图片数据
  */
 #define CMNOTIF_KEY_DATA @"data"
 
 /**
- *	@brief	Error key.
+ *	@brief	异常
  */
 #define CMNOTIF_KEY_ERROR @"error"
 
 /**
- *	@brief	Total bytes key.
+ *	@brief	总字节数
  */
 #define CMNOTIF_KEY_TOTAL_BYTES @"totalBytes"
 
 /**
- *	@brief	Loaded bytes key.
+ *	@brief	加载字节数
  */
 #define CMNOTIF_KEY_LOADED_BYTES @"loadedBytes"
 
 /**
- *	@brief	Loader state.
+ *	@brief	加载器状态
  */
 typedef enum
 {
@@ -66,7 +66,7 @@ typedef enum
 CMLoaderState;
 
 /**
- *	@brief	Loader source type.
+ *	@brief	图片来源
  */
 typedef enum
 {
@@ -77,7 +77,7 @@ typedef enum
 CMLoaderSourceType;
 
 /**
- *	@brief	Loader
+ *	@brief	加载器
  */
 @interface CMLoader : CMEventDispatcher <NSURLConnectionDelegate,
                                          NSURLConnectionDataDelegate>
@@ -95,52 +95,52 @@ CMLoaderSourceType;
 }
 
 /**
- *	@brief	Loader status.
+ *	@brief	加载状态
  */
 @property (nonatomic,readonly) CMLoaderState state;
 
 /**
- *	@brief	Source type.
+ *	@brief	来源类型
  */
 @property (nonatomic,readonly) CMLoaderSourceType sourceType;
 
 /**
- *	@brief	Data object.
+ *	@brief	加载数据
  */
 @property (nonatomic,readonly) NSData *data;
 
 /**
- *	@brief	Loader key，Uniquely identifies a resource
+ *	@brief	加载器标识，唯一标识一个资源
  */
 @property (nonatomic,readonly) NSString *key;
 
 /**
- *	@brief	Initialize Loader.
+ *	@brief	初始化加载器
  *
- *	@param 	key 	Key string.
+ *	@param 	key 	加载标识
  *
- *	@return	Loader object.
+ *	@return	加载器实例
  */
 - (id)initWithKey:(NSString *)key;
 
 /**
- *	@brief	Load data by URL.
+ *	@brief	加载网络数据对象
  *
- *	@param 	url 	URL string.
+ *	@param 	url 	URL
  */
 - (void)loadByUrl:(NSURL *)url;
 
 /**
- *	@brief	Load data by path.
+ *	@brief	加载本地图片对象
  *
- *	@param 	path 	Path string.
+ *	@param 	path 	路径
  */
 - (void)loadByPath:(NSString *)path;
 
 /**
- *	@brief	Load data by cache.
+ *	@brief	加载缓存数据对象
  *
- *	@param 	data 	Data object
+ *	@param 	data 	数据对象
  */
 - (void)loadByCache:(NSData *)data;
 

@@ -1,16 +1,16 @@
 //
 //  Created by ShareSDK.cn on 13-1-14.
-//  website:http://www.ShareSDK.cn
-//  Support E-mail:support@sharesdk.cn
-//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
-//  Business QQ:4006852216
+//  官网地址:http://www.ShareSDK.cn
+//  技术支持邮箱:support@sharesdk.cn
+//  官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
+//  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
 #import <Foundation/Foundation.h>
 #import "SSSohuWeiboUserReader.h"
 
 /**
- *	@brief	Status Reader.
+ *	@brief	微博信息读取器
  */
 @interface SSSohuWeiboStatusReader : NSObject
 {
@@ -19,95 +19,95 @@
 }
 
 /**
- *	@brief	Raw data.
+ *	@brief	源数据
  */
 @property (nonatomic,readonly) NSDictionary *sourceData;
 
 /**
- *	@brief	Created time.
+ *	@brief	创建时间
  */
 @property (nonatomic,readonly) NSString *createAt;
 
 /**
- *	@brief	Status id.
+ *	@brief	微博id
  */
 @property (nonatomic,readonly) NSString *Id;
 
 /**
- *	@brief	Content string.
+ *	@brief	内容
  */
 @property (nonatomic,readonly) NSString *text;
 
 /**
- *	@brief	Source
+ *	@brief	来源
  */
 @property (nonatomic,readonly) NSString *source;
 
 /**
- *	@brief	Whether favorited.
+ *	@brief	是否收藏
  */
 @property (nonatomic,readonly) BOOL favorited;
 
 /**
- *	@brief	None
+ *	@brief	暂无
  */
 @property (nonatomic,readonly) BOOL truncated;
 
 /**
- *	@brief	in reply to status id.
+ *	@brief	转发微博id
  */
 @property (nonatomic,readonly) NSString *inReplyToStatusId;
 
 /**
- *	@brief	in reply to user id.
+ *	@brief	转发微博作者id
  */
 @property (nonatomic,readonly) NSString *inReplyToUserId;
 
 /**
- *	@brief	in reply to screen name.
+ *	@brief	转发微博作者昵称
  */
 @property (nonatomic,readonly) NSString *inReplyToScreenName;
 
 /**
- *	@brief	in reply to status text.
+ *	@brief	转发微博内容
  */
 @property (nonatomic,readonly) NSString *inReplyToStatusText;
 
 /**
- *	@brief	Small picture.
+ *	@brief	小图
  */
 @property (nonatomic,readonly) NSString *smallPic;
 
 /**
- *	@brief	Middle picture.
+ *	@brief	中图
  */
 @property (nonatomic,readonly) NSString *middlePic;
 
 /**
- *	@brief	Original picture.
+ *	@brief	原图
  */
 @property (nonatomic,readonly) NSString *originalPic;
 
 /**
- *	@brief	User information.
+ *	@brief	用户信息
  */
 @property (nonatomic,readonly) SSSohuWeiboUserReader *userInfo;
 
 /**
- *	@brief	Initialize reader.
+ *	@brief	初始化读取器
  *
- *	@param 	sourceData 	Raw data.
+ *	@param 	sourceData 	原数据
  *
- *	@return	Reader object.
+ *	@return	读取器实例对象
  */
 - (id)initWithSourceData:(NSDictionary *)sourceData;
 
 /**
- *	@brief	Create a status reader.
+ *	@brief	创建用户信息读取器
  *
- *	@param 	sourceData 	Raw data.
+ *	@param 	sourceData 	原数据
  *
- *	@return	Reader object.
+ *	@return	读取器实例对象
  */
 + (SSSohuWeiboStatusReader *)readerWithSourceData:(NSDictionary *)sourceData;
 

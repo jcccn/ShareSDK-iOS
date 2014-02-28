@@ -1,9 +1,9 @@
 //
 //  Created by ShareSDK.cn on 13-1-14.
-//  Website:http://www.ShareSDK.cn
-//  Support E-mail:support@sharesdk.cn
-//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
-//  Business QQ:4006852216
+//  官网地址:http://www.ShareSDK.cn
+//  技术支持邮箱:support@sharesdk.cn
+//  官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
+//  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
 #import <UIKit/UIKit.h>
@@ -12,61 +12,61 @@
 @class CMQuiltView;
 
 /**
- *	@brief	Quilt View Data Source.
+ *	@brief	瀑布流视图数据源
  */
 @protocol QuiltViewDataSource <NSObject>
 
 @required
 
 /**
- *	@brief	Return number of item.
+ *	@brief	返回子项数量
  *
- *	@param 	quiltView 	Quilt View object.
+ *	@param 	quiltView 	瀑布流视图
  *
- *	@return	Items number.
+ *	@return	子项数量
  */
 - (NSInteger)quiltViewNumberOfItem:(CMQuiltView *)quiltView;
 
 /**
- *	@brief	Return item view.
+ *	@brief	返回子项内容
  *
- *	@param 	QuiltView 	Quilt View object.
- *	@param 	indexPath 	Index path.
+ *	@param 	QuiltView 	瀑布流视图
+ *	@param 	indexPath 	索引位置
  *
- *	@return	Item view.
+ *	@return	子项对象
  */
 - (UIView<ICMQuiltItemView> *)quiltView:(CMQuiltView *)quiltView itemForIndexPath:(NSIndexPath *)indexPath;
 
 @end
 
 /**
- *	@brief	Quilt View Delegate.
+ *	@brief	瀑布流视图协议
  */
 @protocol QuiltViewDelegate <NSObject>
 
 @optional
 
 /**
- *	@brief	Will display item view.
+ *	@brief	子项视图将要显示
  *
- *	@param 	quiltView 	Quilt View object.
- *	@param 	itemView 	Item view.
- *	@param 	indexPath 	Index path.
+ *	@param 	quiltView 	瀑布流视图
+ *	@param 	itemView 	子项视图
+ *	@param 	indexPath 	索引位置
  */
 - (void)quiltView:(CMQuiltView *)quiltView willDisplayItemView:(UIView<ICMQuiltItemView> *)itemView indexPath:(NSIndexPath *)indexPath;
 
 /**
- *	@brief	Did scroll.
+ *	@brief	瀑布流视图滚动
  *
- *	@param 	quiltView 	Quilt View object.
+ *	@param 	quiltView 	瀑布流视图
  */
 - (void)quiltViewDidScroll:(CMQuiltView *)quiltView;
 
 /**
- *	@brief	Did end dragging.
+ *	@brief	瀑布流视图停止拖动
  *
- *	@param 	quiltView 	Quilt View object.
- *	@param 	decelerate 	Deceleration flag, YES indicates deceleration movement, or not decelerating motion
+ *	@param 	quiltView 	瀑布流视图
+ *	@param 	decelerate 	减速运动标识，YES表示进行减速运动，否则不进行减速运动
  */
 - (void)quiltViewDidEndDragging:(CMQuiltView *)quiltView willDecelerate:(BOOL)decelerate;
 
@@ -74,7 +74,7 @@
 @end
 
 /**
- *	@brief	Quilt View
+ *	@brief	瀑布流视图
  */
 @interface CMQuiltView : UIView <UIScrollViewDelegate,
                                 ICMQuiltItemViewConstructorDelegate>
@@ -103,56 +103,56 @@
 }
 
 /**
- *	@brief	Data source object.
+ *	@brief	数据源对象
  */
 @property (nonatomic,assign) id<QuiltViewDataSource> dataSource;
 
 /**
- *	@brief	Delegate object.
+ *	@brief	协议对象
  */
 @property (nonatomic,assign) id<QuiltViewDelegate> delegate;
 
 /**
- *	@brief	Header view.
+ *	@brief	表头视图
  */
 @property (nonatomic,retain) UIView *headerView;
 
 /**
- *	@brief	Content view.
+ *	@brief	内容视图
  */
 @property (nonatomic,readonly) UIScrollView *contentView;
 
 /**
- *	@brief	Item width.
+ *	@brief	项宽度
  */
 @property (nonatomic,readonly) CGFloat itemWidth;
 
 /**
- *	@brief	Initialize quilt view.
+ *	@brief	初始化瀑布流视图
  *
- *	@param 	frame 	Display rect.
- *	@param 	itemWidth 	Item width.
+ *	@param 	frame 	显示区域
+ *	@param 	itemWidth 	子项视图宽度
  *
- *	@return	Quilt view.
+ *	@return	瀑布流视图
  */
 - (id)initWithFrame:(CGRect)frame itemWidth:(CGFloat)itemWidth;
 
 /**
- *	@brief	Reload data.
+ *	@brief	重新加载数据
  */
 - (void)reloadData;
 
 /**
- *	@brief	Initialize quilt view，Used to recalculate all items.
+ *	@brief	初始化瀑布流，用于重新计算项目
  */
 - (void)clean;
 
 /**
- *	@brief	Dequeue reusable page.
+ *	@brief	根据标识值获取可用的瀑布流子项视图
  *
- *	@param 	identifier 	Item identifier.
+ *	@param 	identifier 	复用标识
  *
- *	@return	Item view object.
+ *	@return	子项视图对象
  */
 - (UIView<ICMQuiltItemView> *)dequeueReusablePageWithIdentifier:(NSString *)identifier;
 

@@ -1,16 +1,16 @@
 //
 //  Created by ShareSDK.cn on 13-1-14.
-//  Website:http://www.ShareSDK.cn
-//  Support E-mail:support@sharesdk.cn
-//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
-//  Business QQ:4006852216
+//  官网地址:http://www.ShareSDK.cn
+//  技术支持邮箱:support@sharesdk.cn
+//  官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
+//  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
 #import <UIKit/UIKit.h>
 #import "ICMGridItemView.h"
 
 /**
- *	@brief	Grid view cell.
+ *	@brief	表格视图单元格
  */
 @interface CMGridViewCell : UITableViewCell
 {
@@ -30,15 +30,15 @@
 }
 
 /**
- *	@brief	Update item data.
+ *	@brief	更新列表项类型以及列数量
  *
- *	@param 	itemType 	Item class.
- *	@param 	itemSize 	Item size.
- *	@param 	topPadding 	Top padding.
- *	@param 	rightPadding 	Right padding.
- *	@param 	bottomPadding 	Bottom padding.
- *	@param 	leftPadding 	Left padding.
- *	@param 	hGap 	Horizontal gap.
+ *	@param 	itemType 	列表项类型
+ *	@param 	itemSize 	列表项大小
+ *	@param 	topPadding 	顶部边距
+ *	@param 	rightPadding 	右边距
+ *	@param 	bottomPadding 	底部边距
+ *	@param 	leftPadding 	左边距
+ *	@param 	hGap 	水平间距
  */
 - (void)updateItemType:(Class)itemType
               itemSize:(CGSize)itemSize
@@ -50,19 +50,19 @@
 
 
 /**
- *	@brief	Get grid item.
+ *	@brief	获取表格项视图
  *
- *	@param 	index 	Item index.
+ *	@param 	index 	索引位置
  *
- *	@return	Item object.
+ *	@return	表格项视图对象
  */
 - (UIView<ICMGridItemView> *)getItemAtIndex:(NSInteger)index;
 
 
 /**
- *	@brief	Began to hide unused list items from the specified location
+ *	@brief	从指定位置开始隐藏不必要的列表项
  *
- *	@param 	index 	Item index.
+ *	@param 	index 	索引位置
  */
 - (void)hideItemFromIndex:(NSInteger)index;
 

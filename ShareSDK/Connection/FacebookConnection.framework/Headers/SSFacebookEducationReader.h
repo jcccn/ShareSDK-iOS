@@ -1,9 +1,9 @@
 //
 //  Created by ShareSDK.cn on 13-1-14.
-//  website:http://www.ShareSDK.cn
-//  Support E-mail:support@sharesdk.cn
-//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
-//  Business QQ:4006852216
+//  官网地址:http://www.ShareSDK.cn
+//  技术支持邮箱:support@sharesdk.cn
+//  官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
+//  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
 #import <Foundation/Foundation.h>
@@ -12,7 +12,7 @@
 #import "SSFacebookDegreeReader.h"
 
 /**
- *	@brief	Education Reader.
+ *	@brief	教育信息读取器
  */
 @interface SSFacebookEducationReader : NSObject
 {
@@ -21,45 +21,45 @@
 }
 
 /**
- *	@brief	Raw data.
+ *	@brief	源数据
  */
 @property (nonatomic,readonly) NSDictionary *sourceData;
 
 /**
- *	@brief	School reader.
+ *	@brief	学校信息
  */
 @property (nonatomic,readonly) SSFacebookSchoolReader *school;
 
 /**
- *	@brief	Year reader.
+ *	@brief	年份信息
  */
 @property (nonatomic,readonly) SSFacebookYearReader *year;
 
 /**
- *	@brief	Degree reader.
+ *	@brief	学历
  */
 @property (nonatomic,readonly) SSFacebookDegreeReader *degree;
 
 /**
- *	@brief	Type
+ *	@brief	类型
  */
 @property (nonatomic,readonly) NSString *type;
 
 /**
- *	@brief	Initialize reader.
+ *	@brief	初始化读取器
  *
- *	@param 	sourceData 	Raw data.
+ *	@param 	sourceData 	原数据
  *
- *	@return	Reader object.
+ *	@return	读取器实例对象
  */
 - (id)initWithSourceData:(NSDictionary *)sourceData;
 
 /**
- *	@brief	Create education reader.
+ *	@brief	创建教育信息读取器
  *
- *	@param 	sourceData 	Raw data.
+ *	@param 	sourceData 	原数据
  *
- *	@return	Reader object.
+ *	@return	读取器实例对象
  */
 + (SSFacebookEducationReader *)readerWithSourceData:(NSDictionary *)sourceData;
 

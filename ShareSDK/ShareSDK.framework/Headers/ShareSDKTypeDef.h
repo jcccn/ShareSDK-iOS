@@ -1,9 +1,9 @@
 //
 //  Created by ShareSDK.cn on 13-1-14.
-//  Website:http://www.ShareSDK.cn
-//  Support E-mail:support@sharesdk.cn
-//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
-//  Business QQ:4006852216
+//  官网地址:http://www.ShareSDK.cn
+//  技术支持邮箱:support@sharesdk.cn
+//  官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
+//  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
 #import <AGCommon/ICMErrorInfo.h>
@@ -12,7 +12,7 @@
 #define ShareSDKInterface_ShareSDKTypeDef_h
 
 /**
- *	@brief	Platform type.
+ *	@brief	分享类型
  */
 typedef enum
 {
@@ -57,7 +57,7 @@ typedef enum
 ShareType;
 
 /**
- *	@brief	Request method.
+ *	@brief	请求方式
  */
 typedef enum
 {
@@ -68,7 +68,7 @@ typedef enum
 ShareSDKRequestMethod;
 
 /**
- *	@brief	WeChat scene.
+ *	@brief	微信分享场景
  */
 typedef enum
 {
@@ -78,7 +78,7 @@ typedef enum
 ShareSDKWeChatScene;
 
 /**
- *	@brief	Authorized state.
+ *	@brief	授权状态
  */
 typedef enum
 {
@@ -90,7 +90,7 @@ typedef enum
 SSAuthState;
 
 /**
- *	@brief	Publish content state.
+ *	@brief	发布内容状态
  */
 typedef enum
 {
@@ -102,7 +102,7 @@ typedef enum
 SSPublishContentState;
 
 /**
- *	@brief	Response state.
+ *	@brief	响应状态
  */
 typedef enum
 {
@@ -114,7 +114,7 @@ typedef enum
 SSResponseState;
 
 /**
- *	@brief	Authorize view style.
+ *	@brief	授权视图样式
  */
 typedef enum
 {
@@ -125,7 +125,7 @@ typedef enum
 SSAuthViewStyle;
 
 /**
- *	@brief	Interface orientation.
+ *	@brief	视图方向
  */
 typedef enum {
     SSInterfaceOrientationMaskPortrait = (1 << UIInterfaceOrientationPortrait),
@@ -149,7 +149,7 @@ typedef enum
 SSRectEdge;
 
 /**
- *	@brief	User field type.
+ *	@brief	用户字段类型
  */
 typedef enum
 {
@@ -160,7 +160,7 @@ typedef enum
 SSUserFieldType;
 
 /**
- *	@brief	Share meida type，Only for WeChat QQ.
+ *	@brief	分享内容的消息类型，仅对微信、QQApi有效
  */
 typedef enum
 {
@@ -176,7 +176,7 @@ typedef enum
 SSPublishContentMediaType;
 
 /**
- *	@brief	Share view style.
+ *	@brief	分享视图样式
  */
 typedef enum
 {
@@ -187,7 +187,7 @@ typedef enum
 SSShareViewStyle;
 
 /**
- *	@brief	Evernote type.
+ *	@brief	印象笔记类型
  */
 typedef enum
 {
@@ -198,7 +198,7 @@ typedef enum
 SSEverNoteType;
 
 /**
- *	@brief	Obtain coins
+ *	@brief	获得金币行为
  */
 typedef enum
 {
@@ -209,7 +209,7 @@ typedef enum
 SSObtainCoinsAction;
 
 /**
- *	@brief	UI Style
+ *	@brief	UI风格
  */
 typedef enum
 {

@@ -1,9 +1,9 @@
 //
 //  Created by ShareSDK.cn on 13-1-14.
-//  website:http://www.ShareSDK.cn
-//  Support E-mail:support@sharesdk.cn
-//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
-//  Business QQ:4006852216
+//  官网地址:http://www.ShareSDK.cn
+//  技术支持邮箱:support@sharesdk.cn
+//  官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
+//  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
 #import <Foundation/Foundation.h>
@@ -13,7 +13,7 @@
 @class SSDouBanUserReader;
 
 /**
- *	@brief	Broadcast reader.
+ *	@brief	广播信息读取器
  */
 @interface SSDouBanStatusReader : NSObject
 {
@@ -22,116 +22,116 @@
 }
 
 /**
- *	@brief	Raw data.
+ *	@brief	源数据
  */
 @property (nonatomic,readonly) NSDictionary *sourceData;
 
 /**
- *	@brief	Can reply.
+ *	@brief	是否可被回应
  */
 @property (nonatomic,readonly) BOOL canReply;
 
 /**
- *	@brief	attachments is a json array format string, array elements called attachment,
- *          Each broadcast is currently only supports a single thing. Attachment is the behavior of each broadcast presentation that object. For example: xx recommended URL. the URL is this 'Attachment',
+ *	@brief	attachments是一个json array格式的字符串， array里面的元素称为物,
+ *          目前每条广播只支持单个物，物是每条广播表述的行为中的那个宾语，例如： xx推荐网址， 网址就是这个‘物’，
  */
 @property (nonatomic,readonly) NSArray *attachments;
 
 /**
- *	@brief	None
+ *	@brief	暂无
  */
 @property (nonatomic,readonly) NSString *category;
 
 /**
- *	@brief	Comments count.
+ *	@brief	回应数
  */
 @property (nonatomic,readonly) NSInteger commentsCount;
 
 /**
- *	@brief	Published broadcast time.
+ *	@brief	发广播的时间
  */
 @property (nonatomic,readonly) NSString *createdAt;
 
 /**
- *	@brief	None
+ *	@brief	暂无
  */
 @property (nonatomic,retain) SSDouBanEntityReader *entities;
 
 /**
- *	@brief	None
+ *	@brief	暂无
  */
 @property (nonatomic,readonly) BOOL hasPhoto;
 
 /**
- *	@brief	Broadcast id
+ *	@brief	广播id
  */
 @property (nonatomic,readonly) NSString *Id;
 
 /**
- *	@brief	None
+ *	@brief	暂无
  */
 @property (nonatomic,readonly) BOOL isFollow;
 
 /**
- *	@brief	Like count.
+ *	@brief	赞的数量
  */
 @property (nonatomic,readonly) NSInteger likeCount;
 
 /**
- *	@brief	Whether liked.
+ *	@brief	是否已经喜欢
  */
 @property (nonatomic,readonly) BOOL liked;
 
 /**
- *	@brief	None
+ *	@brief	暂无
  */
 @property (nonatomic,readonly) BOOL muted;
 
 /**
- *	@brief	reshared count.
+ *	@brief	转播数
  */
 @property (nonatomic,readonly) NSInteger resharedCount;
 
 /**
- *	@brief	app key corresponding application name and application url.
+ *	@brief	app key对应的应用名和应用url
  */
 @property (nonatomic,readonly) SSDouBanSourceReader *source;
 
 /**
- *	@brief	a piece of text in quotes web segment display. Content is generally user input.
+ *	@brief	web段在引号内展示的一段文本, 一般为用户输入的内容
  */
 @property (nonatomic,readonly) NSString *text;
 
 /**
- *	@brief	Title string.
+ *	@brief	广播的title
  */
 @property (nonatomic,readonly) NSString *title;
 
 /**
- *	@brief	None
+ *	@brief	暂无
  */
 @property (nonatomic,readonly) NSString *type;
 
 /**
- *	@brief	Posted Broadcaster.
+ *	@brief	发广播者
  */
 @property (nonatomic,readonly) SSDouBanUserReader *user;
 
 /**
- *	@brief	Initialize reader.
+ *	@brief	初始化读取器
  *
- *	@param 	sourceData 	Raw data.
+ *	@param 	sourceData 	原数据
  *
- *	@return	Reader object.
+ *	@return	读取器实例对象
  */
 - (id)initWithSourceData:(NSDictionary *)sourceData;
 
 /**
- *	@brief	Create Broadcast information reader.
+ *	@brief	创建广播信息读取器
  *
- *	@param 	sourceData 	Raw data.
+ *	@param 	sourceData 	原数据
  *
- *	@return	Reader object.
+ *	@return	读取器实例对象
  */
 + (SSDouBanStatusReader *)readerWithSourceData:(NSDictionary *)sourceData;
 

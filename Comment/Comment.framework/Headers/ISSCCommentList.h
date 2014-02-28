@@ -1,62 +1,62 @@
 //
 //  Created by ShareSDK.cn on 13-1-14.
-//  Website:http://www.ShareSDK.cn
-//  Support E-mail:support@sharesdk.cn
-//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
-//  Business QQ:4006852216
+//  官网地址:http://www.ShareSDK.cn
+//  技术支持邮箱:support@sharesdk.cn
+//  官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
+//  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
 #import <Foundation/Foundation.h>
 #import "ISSCComment.h"
 
 /**
- *	@brief	Update comment list result event.
+ *	@brief	更新评论列表返回事件
  */
 typedef void(^SSCUpdateCommentListResultEvent) (SSResponseState state, NSError *error);
 
 /**
- *	@brief	Get Comment detail information list result event.
+ *	@brief	获取评论详情返回事件
  */
 typedef void(^SSCGetCommentDetailResultEvent) (SSResponseState state, NSError *error);
 
 /**
- *	@brief	Comment List Protocol.
+ *	@brief	评论列表
  */
 @protocol ISSCCommentList <NSObject>
 
 /**
- *	@brief	Get list data.
+ *	@brief	获取列表数据
  *
- *	@return	Comment list.
+ *	@return	评论数组
  */
 - (NSArray *)data;
 
 /**
- *	@brief	Get order method
+ *	@brief	获取排序规则
  *
- *	@return	Order method
+ *	@return	排序规则
  */
 - (NSComparator)order;
 
 /**
- *	@brief	Set order method
+ *	@brief	设置列表排序规则
  *
- *	@param 	order 	Order method
+ *	@param 	order 	排序规则
  */
 - (void)setOrder:(NSComparator)order;
 
 /**
- *	@brief	Comments from the server requests a new list (and some contain only ID information)
+ *	@brief	从服务器请求新的评论列表（只包含ID和部分信息）
  *
- *	@param 	result 	Result handler.
+ *	@param 	result 	返回事件
  */
 - (void)update:(SSCUpdateCommentListResultEvent)resultHandler;
 
 /**
- *	@brief	Get Review Details list based on comment ids.
+ *	@brief	根据评论ID列表获取评论详情
  *
- *	@param 	ids 	Comment ids.
- *  @param  resultHandler  Result handler.
+ *	@param 	ids 	评论ID列表
+ *  @param  resultHandler  返回事件回调
  */
 - (void)getCommentsDetailWithIds:(NSArray *)ids
                           result:(SSCGetCommentDetailResultEvent)resultHandler;

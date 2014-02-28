@@ -1,9 +1,9 @@
 //
 //  Created by ShareSDK.cn on 13-1-14.
-//  Website:http://www.ShareSDK.cn
-//  Support E-mail:support@sharesdk.cn
-//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
-//  Business QQ:4006852216
+//  官网地址:http://www.ShareSDK.cn
+//  技术支持邮箱:support@sharesdk.cn
+//  官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
+//  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
 #import <UIKit/UIKit.h>
@@ -21,53 +21,53 @@
 #import "SSCLocationCoordinate2D.h"
 
 /**
- *	@brief	ShareSDK core service.
+ *	@brief	ShareSDK核心服务层
  */
 @interface ShareSDKCoreService : NSObject
 
 /**
- *	@brief	Use app key login
+ *	@brief	使用AppKey进行登录
  *
- *	@param 	appKey 	App key.
+ *	@param 	appKey 	应用标志
  *
- *	@return	Account information.
+ *	@return	登录帐户对象
  */
 + (id<ISSCAccount>)loginWithAppKey:(NSString *)appKey;
 
 /**
- *	@brief	Check whether the account has logged
+ *	@brief	检查帐号是否已经登录
  *
- *	@param 	account 	Account information.
+ *	@param 	account 	登录帐号
  *
- *	@return	YES means the login, NO indicates not logged in
+ *	@return	YES表示登录，NO表示尚未登录
  */
 + (BOOL)hasLogined:(id<ISSCAccount>)account;
 
 /**
- *	@brief	Create a parameters.
+ *	@brief	创建请求参数
  *
- *	@return	Parameters object.
+ *	@return	请求参数对象
  */
 + (id<ISSCParameters>)parameters;
 
 /**
- *	@brief	Create a parameters.
+ *	@brief	创建请求参数
  *
- *	@param 	query 	The URL query string.
+ *	@param 	query 	URL中的query字符串
  *
- *	@return	Parameters
+ *	@return	请求参数对象
  */
 + (id<ISSCParameters>)parametersWithQuery:(NSString *)query;
 
 /**
- *	@brief	Create OAuth request parameters.
+ *	@brief	创建OAuth请求参数
  *
- *	@param 	consumerKey 	Consumer key.
- *	@param 	consumerSecret 	Consumer secret.
- *  @param  oauthToken  OAuth token.
- *  @param  oauthSecret OAuth secret.
+ *	@param 	consumerKey 	消费者Key
+ *	@param 	consumerSecret 	消费者密钥
+ *  @param  oauthToken  OAuth令牌
+ *  @param  oauthSecret OAuth密钥
  *
- *	@return	OAuth parameters.
+ *	@return	OAuth请求参数
  */
 + (id<ISSCOAuthParameters>)oauthParameters:(NSString *)consumerKey
                             consumerSecret:(NSString *)consumerSecret
@@ -75,15 +75,15 @@
                                oauthSecret:(NSString *)oauthSecret;
 
 /**
- *	@brief	Create OAuth request parameters.
+ *	@brief	创建OAuth请求参数
  *
- *	@param 	consumerKey 	Consumer key.
- *	@param 	consumerSecret 	Consumer secret
- *  @param  oauthToken  OAuth token.
- *  @param  oauthSecret OAuth secret.
- *  @param  query   The URL query string
+ *	@param 	consumerKey 	消费者Key
+ *	@param 	consumerSecret 	消费者密钥
+ *  @param  oauthToken  OAuth令牌
+ *  @param  oauthSecret OAuth密钥
+ *  @param  query   URL中的query字符串
  *
- *	@return	OAuth parameters.
+ *	@return	OAuth请求参数
  */
 + (id<ISSCOAuthParameters>)oauthParameters:(NSString *)consumerKey
                             consumerSecret:(NSString *)consumerSecret
@@ -92,53 +92,53 @@
                                      query:(NSString *)query;
 
 /**
- *	@brief	Send request.
+ *	@brief	获取请求
  *
- *	@param 	account 	Account information.
+ *	@param 	account 	授权帐号
  *
- *	@return	Request object, return nil if it means that the account has not been authorized by
+ *	@return	请求对象,如果返回nil则表示帐户尚未通过授权
  */
 + (id<ISSCRequest>)requestWithAccount:(id<ISSCAccount>)account;
 
 /**
- *	@brief	Create attachment object.
+ *	@brief	创建附件
  *
- *	@param 	path 	File path.
+ *	@param 	path 	文件路径
  *
- *	@return	Attachment object.
+ *	@return	附件对象
  */
 + (id<ISSCAttachment>)attachmentWithPath:(NSString *)path;
 
 /**
- *	@brief	Create attachment object.
+ *	@brief	创建附件
  *
- *	@param 	url 	URL string.
+ *	@param 	url 	文件网络地址
  *
- *	@return	Attachment object.
+ *	@return	附件对象
  */
 + (id<ISSCAttachment>)attachmentWithUrl:(NSString *)url;
 
 /**
- *	@brief	Create attachment data.
+ *	@brief	创建附件
  *
- *	@param 	data 	File data.
- *	@param 	fileName 	File name.
- *	@param 	mimeType 	MIME type
+ *	@param 	data 	文件数据
+ *	@param 	fileName 	文件名称
+ *	@param 	mimeType 	MIME类型
  *
- *	@return	Attachment data.
+ *	@return	附件对象
  */
 + (id<ISSCAttachment>)attachmentWithData:(NSData *)data fileName:(NSString *)fileName mimeType:(NSString *)mimeType;
 
 /**
- *	@brief	OAuth signatures
+ *	@brief	OAuth签名
  *
- *	@param 	url 	URL string.
- *	@param 	method 	Request method.
- *	@param 	parameters 	Parameters.
- *	@param 	consumerSecret 	Consumer secret.
- *	@param 	oauthTokenSecret 	OAuth token secret.
- *
- *	@return	Sinature string
+ *	@param 	url 	URL
+ *	@param 	method 	请求方法GET或POST
+ *	@param 	parameters 	参数
+ *	@param 	consumerSecret 	消费者密钥
+ *	@param 	oauthTokenSecret 	OAuth令牌密钥
+ *  
+ *	@return	签名值
  */
 + (NSString *)oauthSignatureWithURL:(NSURL *)url
                              method:(NSString *)method
@@ -147,21 +147,21 @@
                    oauthTokenSecret:(NSString *)oauthTokenSecret;
 
 /**
- *	@brief	Get localizable string
+ *	@brief	获取SDK本地化字符串资源
  *
- *	@param 	name 	Name
- *	@param 	comment 	Comment
+ *	@param 	name 	名称
+ *	@param 	comment 	描述
  *
- *	@return	String object.
+ *	@return	字符串资源
  */
 + (NSString *)localizableString:(NSString *)name comment:(NSString *)comment;
 
 /**
- *	@brief	Get Image object
+ *	@brief	获取SDK的图片资源
  *
- *	@param 	name 	Bundle name.
+ *	@param 	name 	名称
  *
- *	@return	Image object.
+ *	@return	图片资源
  */
 + (UIImage *)imageNamed:(NSString *)name;
 

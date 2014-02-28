@@ -1,9 +1,9 @@
 //
 //  Created by ShareSDK.cn on 13-1-14.
-//  website:http://www.ShareSDK.cn
-//  Support E-mail:support@sharesdk.cn
-//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
-//  Business QQ:4006852216
+//  官网地址:http://www.ShareSDK.cn
+//  技术支持邮箱:support@sharesdk.cn
+//  官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
+//  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
 #import <Foundation/Foundation.h>
@@ -15,7 +15,7 @@
 #import <ShareSDK/ShareSDKPlugin.h>
 
 /**
- *	@brief	Facebook request method.
+ *	@brief	Facebook请求方式
  */
 typedef enum
 {
@@ -27,65 +27,65 @@ typedef enum
 SSFacebookRequestMethod;
 
 /**
- *	@brief	Add Friend Dialog diaplay handler.
+ *	@brief	显示添加好友对话框
  */
 typedef void(^SSFacebookShowAddFriendDialog) (UIViewController *viewController);
 
 /**
- *	@brief	Add Friend Dialog close handler.
+ *	@brief	关闭添加好友对话框
  */
 typedef void(^SSFacebookCloseAddFriendDialog) (UIViewController *viewController);
 
 /**
- *	@brief	Facebook App Protocol
+ *	@brief	Facebook应用协议
  */
 @protocol ISSFacebookApp <ISSPlatformApp>
 
 /**
- *	@brief	Get App key.
+ *	@brief	获取应用Key
  *
- *	@return	App key.
+ *	@return	应用Key
  */
 - (NSString *)appKey;
 
 /**
- *	@brief	Get app secret.
+ *	@brief	获取应用密钥
  *
- *	@return	App secret.
+ *	@return	应用密钥
  */
 - (NSString *)appSecret;
 
 /**
- *	@brief	Get SSO Login callback URL.
+ *	@brief	获取SSO回调地址
  *
- *	@return	URL string.
+ *	@return	SSO回调地址
  */
 - (NSString *)ssoCallbackUrl;
 
 /**
- *	@brief	Set add friend dialog Handler.
+ *	@brief	设置添加好友对话框处理器
  *
- *	@param 	showHandler 	Display handler.
- *  @param  closeHandler    Close handler.
+ *	@param 	showHandler 	显示处理器
+ *  @param  closeHandler    关闭处理器
  */
 - (void)setAddFriendDialogWithShowHandler:(SSFacebookShowAddFriendDialog)showHandler
                              closeHandler:(SSFacebookCloseAddFriendDialog)closeHandler;
 							 
 /**
- *	@brief	Set add friend dialog delegate.
+ *	@brief	设置添加好友对话框委托
  *
- *	@param 	delegate 	Delegate object.
+ *	@param 	delegate 	委托
  */
 - (void)setAddFriendDialogDelegate:(id<ISSViewDelegate>)delegate;
 
 /**
- *	@brief	Call API
+ *	@brief	调用开放平台API
  *
- *	@param 	path 	API path string.
- *	@param 	params 	Request parameters.
- *  @param  user    Authoried user. If the incoming nil indicates the default authorized users
- *  @param  result  Result handler.
- *  @param  fault   Fault handler.
+ *	@param 	path 	路径
+ *	@param 	params 	请求参数
+ *  @param  user    授权用户,如果传入nil则表示默认的授权用户
+ *  @param  result  返回回调
+ *  @param  fault   失败回调
  */
 - (void)api:(NSString *)path
      method:(SSFacebookRequestMethod)method
@@ -95,29 +95,29 @@ typedef void(^SSFacebookCloseAddFriendDialog) (UIViewController *viewController)
       fault:(void(^)(CMErrorInfo *error))fault;
 
 /**
- *	@brief	Send message
+ *	@brief	发布消息
  *
- *	@param 	message 	Message content.
- *  @param  result      Result handler.
+ *	@param 	message 	消息
+ *  @param  result      返回回调
  */
 - (void)feedWithMessage:(NSString *)message
                  result:(SSShareResultEvent)result;
 
 /**
- *	@brief	Send message.
+ *	@brief	发布消息
  *
- *	@param 	message 	Message content.
- *	@param 	source 	Image attachment object.
- *  @param  result  Result handler.
+ *	@param 	message 	消息
+ *	@param 	source 	附件图片
+ *  @param  result  返回回调
  */
 - (void)feedWithMessage:(NSString *)message
                  source:(id<ISSCAttachment>)source
                  result:(SSShareResultEvent)result;
 				 
 /**
- *	@brief	Get post information.
+ *	@brief	获取文章信息
  *
- *	@param 	postId 	Post id.
+ *	@param 	postId 	文章ID
  */
 - (void)getPostWithId:(NSString *)postId
                result:(void(^)(BOOL result, id post, CMErrorInfo *error))result;

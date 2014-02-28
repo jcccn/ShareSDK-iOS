@@ -1,9 +1,9 @@
 //
 //  Created by ShareSDK.cn on 13-1-14.
-//  website:http://www.ShareSDK.cn
-//  Support E-mail:support@sharesdk.cn
-//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
-//  Business QQ:4006852216
+//  官网地址:http://www.ShareSDK.cn
+//  技术支持邮箱:support@sharesdk.cn
+//  官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
+//  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
 #import <Foundation/Foundation.h>
@@ -13,50 +13,50 @@
 #import <ShareSDK/ShareSDKPlugin.h>
 
 /**
- *	@brief	WeChat App.
+ *	@brief	微信应用协议
  */
 @protocol ISSWeChatApp <ISSPlatformApp>
 
 /**
- *	@brief	Get app id.
+ *	@brief	获取应用ID
  *
- *	@return	App id.
+ *	@return	应用ID
  */
 - (NSString *)appId;
 
 /**
- *	@brief	Get a share scene.
+ *	@brief	获取分享场景
  *
- *	@return	Share scene.
+ *	@return	分享场景
  */
 - (SSWeChatScene)scene;
 
 /**
- *	@brief	Set a delegate.
+ *	@brief	设置委托
  *
- *	@param 	delegate 	Delegate object.
+ *	@param 	delegate 	委托对象
  */
 - (void)setDelegate:(id)delegate;
 
 /**
- *	@brief	Send a text message.
+ *	@brief	发送文本消息
  *
- *	@param 	content 	Content string.
- *	@param 	scene 	Scene
- *  @param  result  Result handler.
+ *	@param 	content 	内容
+ *	@param 	scene 	类型
+ *  @param  result  返回回调
  */
 - (void)sendText:(NSString *)content
           result:(SSShareResultEvent)result;
 
 /**
- *	@brief	Send a picture message.
+ *	@brief	发送图片消息
  *
- *  @param  title   Title string.
- *  @param  description     Picture description.
- *  @param  thumbPic    Thumbnail.
- *	@param 	pic 	Picture attachment.
- *	@param 	scene 	Scene.
- *  @param  result  Result handler.
+ *  @param  title   标题
+ *  @param  description 描述
+ *  @param  thumbPic    缩略图
+ *	@param 	pic 	图片
+ *	@param 	scene 	类型
+ *  @param  result  返回回调
  */
 - (void)sendPic:(NSString *)title
     description:(NSString *)description
@@ -65,14 +65,14 @@
          result:(SSShareResultEvent)result;
 
 /**
- *	@brief	Send a new message.
+ *	@brief	发送新闻消息
  *
- *	@param 	title 	Title string.
- *	@param 	content 	Content string.
- *	@param 	pic 	Thumbnail.
- *	@param 	url 	URL string.
- *	@param 	scene 	Scene.
- *  @param  result  Result handler.
+ *	@param 	title 	标题
+ *	@param 	content 	内容
+ *	@param 	pic 	预览图
+ *	@param 	url 	链接
+ *	@param 	scene 	类型
+ *  @param  result  返回回调
  */
 - (void)sendNews:(NSString *)title
          content:(NSString *)content
@@ -81,15 +81,15 @@
           result:(SSShareResultEvent)result;
 
 /**
- *	@brief	Send a music message.
+ *	@brief	发送音乐消息
  *
- *	@param 	title 	Title string.
- *	@param 	content 	Content string.
- *	@param 	pic 	Thumbnail.
- *	@param 	url 	URL string.
- *  @param  musicFileUrl    Music file URL.
- *	@param 	scene 	Scene.
- *  @param  result  Result handler.
+ *	@param 	title 	标题
+ *	@param 	content 	内容
+ *	@param 	pic 	预览图
+ *	@param 	url 	链接
+ *  @param  musicFileUrl    音乐文件路径
+ *	@param 	scene 	类型
+ *  @param  result  返回回调
  */
 - (void)sendMusic:(NSString *)title
           content:(NSString *)content
@@ -99,14 +99,14 @@
            result:(SSShareResultEvent)result;
 
 /**
- *	@brief	Send a video message.
+ *	@brief	发送视频消息
  *
- *	@param 	title 	Title string.
- *	@param 	content 	Content string.
- *	@param 	pic 	Thumbnail.
- *	@param 	url 	URL string.
- *	@param 	scene 	Scene.
- *  @param  result  Result handler.
+ *	@param 	title 	标题
+ *	@param 	content 	内容
+ *	@param 	pic 	预览图
+ *	@param 	url 	链接
+ *	@param 	scene 	类型
+ *  @param  result  返回回调
  */
 - (void)sendVideo:(NSString *)title
           content:(NSString *)content
@@ -115,16 +115,16 @@
            result:(SSShareResultEvent)result;
 
 /**
- *	@brief	Send app information.
+ *	@brief	发送App信息
  *
- *	@param 	title 	Title string.
- *	@param 	content 	Content string.
- *	@param 	pic 	Thumbnail
- *	@param 	url 	URL string.
- *	@param 	extInfo 	Extended information.
- *	@param 	fileData 	File data.
- *	@param 	scene 	Scene
- *  @param  result  Result handler.
+ *	@param 	title 	标题
+ *	@param 	content 	内容
+ *	@param 	pic 	预览图
+ *	@param 	url 	链接
+ *	@param 	extInfo 	扩展信息
+ *	@param 	fileData 	文件数据
+ *	@param 	scene 	类型
+ *  @param  result  返回回调
  */
 - (void)sendApp:(NSString *)title
         content:(NSString *)content
@@ -135,22 +135,22 @@
          result:(SSShareResultEvent)result;
 
 /**
- *	@brief	Send a Non-GIF image.
+ *	@brief	发送非Gif图
  *
- *	@param 	pic 	Thumbnail
- *	@param 	emoticonData 	Image data
- *  @param  result  Result handler.
+ *	@param 	pic 	预览图
+ *	@param 	emoticonData 	图片数据
+ *  @param  result  返回回调
  */
 - (void)sendNonGif:(id<ISSCAttachment>)pic
       emoticonData:(NSData *)emoticonData
             result:(SSShareResultEvent)result;
 
 /**
- *	@brief	Send a GIF image.
+ *	@brief	发送Gif图
  *
- *	@param 	pic 	Thumbnail
- *	@param 	emoticonData 	Image data.
- *  @param  result  Result handler.
+ *	@param 	pic 	预览图
+ *	@param 	emoticonData 	图片数据
+ *  @param  result  返回回调
  */
 - (void)sendGif:(id<ISSCAttachment>)pic
    emoticonData:(NSData *)emoticonData

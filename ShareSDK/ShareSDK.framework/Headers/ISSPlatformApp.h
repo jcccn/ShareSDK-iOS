@@ -1,9 +1,9 @@
 //
 //  Created by ShareSDK.cn on 13-1-14.
-//  Website:http://www.ShareSDK.cn
-//  Support E-mail:support@sharesdk.cn
-//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
-//  Business QQ:4006852216
+//  官网地址:http://www.ShareSDK.cn
+//  技术支持邮箱:support@sharesdk.cn
+//  官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
+//  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
 #import <Foundation/Foundation.h>
@@ -17,121 +17,122 @@
 @protocol ISSPlatformAuthSession;
 
 /**
- *	@brief	Get user info result event.
+ *	@brief	获取用户信息返回事件
  */
 typedef void(^SSGetUserInfoResultEvent) (SSResponseState state, id<ISSPlatformUser> user, CMErrorInfo *error);
 
 /**
- *	@brief	Add friend result event.
+ *	@brief	添加好友返回事件
  */
 typedef void(^SSAddFriendResultEvent) (SSResponseState state, id<ISSPlatformUser> user, CMErrorInfo *error);
 
 /**
- *	@brief	Get friends list result event
+ *	@brief	获取好友列表返回事件
  */
 typedef void(^SSFriendsResultEvent) (SSResponseState state, NSArray *users, long long curr, long long prev, long long next, BOOL hasNext, NSDictionary *extInfo, id<ICMErrorInfo> error);
 
 /**
- *	@brief	Share result event
+ *	@brief	分享返回事件
  */
 typedef void(^SSShareResultEvent) (SSResponseState state, id<ISSPlatformShareInfo> status, CMErrorInfo *error);
 
 /**
- *	@brief	App protocol
+ *	@brief	平台应用信息协议
  */
 @protocol ISSPlatformApp <NSObject>
 
 @required
 
 /**
- *	@brief	Get ShareSDK registered app information
+ *	@brief	获取ShareSDK注册账户信息
  *
- *	@return	App information
+ *	@return	ShareSDK注册账户信息
  */
 - (id<ISSCAccount>)account;
 
 /**
- *	@brief	Get an app platform
+ *	@brief	获取应用所属平台
  *
- *	@return	Platform object.
+ *	@return	平台信息对象
  */
 - (id<ISSPlatform>)platform;
 
 /**
- *	@brief	Get app key
+ *	@brief	获取应用标识
  *
- *	@return	App key.
+ *	@return	应用标识
  */
 - (NSString *)key;
 
 /**
- *	@brief	Get an app platform type
+ *	@brief	获取应用所属平台类型
  *
- *	@return	Platform type
+ *	@return	平台类型
  */
 - (ShareType)type;
 
 /**
- *	@brief	Get whether to support a key sharing identity. If YES indicates the content editing interface can be opened and share it with other platforms.
+ *	@brief	获取是否支持一键分享功能标识,如果为YES则表示可以打开内容编辑界面并与其他平台一起进行分享。
  *
- *	@return	YES indicate support，NO indicate not support
+ *	@return	YES 表示支持，NO 表示不支持
  */
 - (BOOL)isSupportOneKeyShare;
 
 /**
- *	@brief	The need for obtaining authorization to share.If YES then you need to detect whether sharing user has authorized.Not yet authorized the need for authorization. For client platforms to share this property generally returns NO
+ *	@brief	获取分享时是否需要进行授权，如果为YES则在分享时需要检测用户是否已经授权，尚未授权则需要进行授权。
+ *          对于使用客户端进行分享的平台此属性一般返回NO
  *
- *  @param  clientShare Sharing client identity，YES indicates priority for the client to share.
+ *  @param  clientShare 客户端分享标识，为YES表示优先使用客户端进行分享。
  *
- *	@return	YES indicates need, NO indicates that no
+ *	@return	YES 表示需要， NO 表示不需要
  */
 - (BOOL)isSharingNeedAuthWithClientShare:(BOOL)clientShare;
 
 /**
- *	@brief	Get current user
+ *	@brief	获取当前用户
  *
- *	@return	User info
+ *	@return	用户信息
  */
 - (id<ISSPlatformUser>)currentUser;
 
 /**
- *	@brief	Set current user
+ *	@brief	设置当前用户
  *
- *	@param 	currentUser 	User info
+ *	@param 	currentUser 	用户信息
  */
 - (void)setCurrentUser:(id<ISSPlatformUser>)currentUser;
 
 /**
- *	@brief	Get whether to convert the link enabled
+ *	@brief	获取是否转换链接使能状态
  *
- *	@return	YES indicates need convert link before sharing, NO indicates no conversion link
+ *	@return	使能状态，YES 表示在分享前需要转换链接，NO 表示不转换链接
  */
 - (BOOL)convertUrlEnabled;
 
 /**
- *	@brief	Get SSO authorized enabled.
+ *	@brief	获取SSO授权使能状态
  *
- *	@return	YES indicates allowing SSO priority for authorization, NO indicates disable use SSO authorization
+ *	@return	YES 表示允许优先使用SSO进行授权，NO 表示不允许SSO授权
  */
 - (BOOL)ssoEnabled;
 
 /**
- *	@brief	Set SSO authorized enabled
+ *	@brief	设置SSO授权使能状态
  *
- *	@param 	enabled 	YES indicates allowing SSO priority for authorization, NO indicates disable use SSO authorization
+ *	@param 	enabled 	YES 表示允许优先使用SSO进行授权，NO 表示不允许SSO授权
  */
 - (void)setSsoEnabled:(BOOL)enabled;
 
 /**
- *	@brief	Create an authorized credential object
+ *	@brief	创建授权凭证
  *
- *	@param 	uid 	User id
- *	@param 	token 	In OAuth, is oauth_token. In OAuth2, is access_token.
- *	@param 	secret 	Token secret，Only for OAuth authorization is oauth_token_secret.
- *	@param 	expired 	Expiration time, only for OAuth2 authorization, you need to return to a time in seconds.
- *	@param 	extInfo 	Extended information. Used to store other information in addition to the above information away.
+ *	@param 	uid 	授权用户标识
+ *	@param 	token 	访问令牌，在OAuth中为oauth_token，在OAuth2中为access_token
+ *	@param 	secret 	访问令牌密钥，仅用于OAuth授权中，为oauth_token_secret。
+ *	@param 	expired 	过期时间，仅用于OAuth2授权中，需要将返回的秒数转换为时间。
+ *	@param 	extInfo 	扩展信息。用于存放除上述信息外的其它信息。
  *
- *	@return	Credential object.
+ *	@return	授权凭证
  */
 - (id<ISSPlatformCredential>)credentialWithUid:(NSString *)uid
                                          token:(NSString *)token
@@ -140,105 +141,105 @@ typedef void(^SSShareResultEvent) (SSResponseState state, id<ISSPlatformShareInf
                                        extInfo:(NSDictionary *)extInfo;
 
 /**
- *	@brief	To create a user through authorized credential
+ *	@brief	通过授权凭证来创建用户
  *
- *	@param 	credential 	Credential
+ *	@param 	credential 	授权凭证
  *
- *	@return	User object.
+ *	@return	用户信息对象
  */
 - (id<ISSPlatformUser>)userWithCredential:(id<ISSPlatformCredential>)credential;
 
 /**
- *	@brief	To create a user through the user's raw data
+ *	@brief	通过用户的原始数据来创建用户
  *
- *	@param 	data 	Raw data. Platform users the same structure definition
+ *	@param 	data 	原始数据，与各个平台中的用户结构定义相同
  *
- *	@return	User object.
+ *	@return	用户信息对象
  */
 - (id<ISSPlatformUser>)userWithData:(NSDictionary *)data;
 
 /**
- *	@brief	To create a share info through the raw data
+ *	@brief	通过原始数据来创建分享信息
  *
- *	@param 	data 	Raw data. Platform share info the same structure definition
+ *	@param 	data 	原始数据，与各个平台中的分享信息结构一致
  *
- *	@return	Share info.
+ *	@return	分享信息对象
  */
 - (id<ISSPlatformShareInfo>)shareInfoWithData:(NSDictionary *)data;
 
 /**
- *	@brief	To authorize.
+ *	@brief	对用户进行授权。
  *
- *	@return	Authorized session，Returns nil indicates that the platform does not support the authorization
+ *	@return	授权会话，返回nil则表示该平台不支持授权功能
  */
 - (id<ISSPlatformAuthSession>)authorize;
 
 /**
- *	@brief	Register user.
+ *	@brief	注册用户
  *
- *	@param 	user 	User object.
+ *	@param 	user 	用户信息
  *
- *	@return	YES indicates the registration is successful, NO indicates registration failure
+ *	@return	YES 表示注册成功， NO 表示注册失败
  */
 - (BOOL)registerUser:(id<ISSPlatformUser>)user;
 
 /**
- *	@brief	Unregister user.
+ *	@brief	注销用户
  *
- *	@param 	user 	User object.
+ *	@param 	user 	用户信息
  *
- *	@return	YES indicates the unregistration is successful, NO indicates unregistration failure
+ *	@return	YES 表示注销成功， NO 表示注销失败
  */
 - (BOOL)unregisterUser:(id<ISSPlatformUser>)user;
 
 /**
- *	@brief	Get a list of registered users.
+ *	@brief	获取已注册的用户列表
  *
- *	@return	Users list array，whose elements are the object id<ISSPlatformUser>
+ *	@return	用户列表数组，其元素为id<ISSPlatformUser>对象
  */
 - (NSArray *)registeredUsers;
 
 /**
- *	@brief	Get a registered user.
+ *	@brief	获取注册用户
  *
- *	@param 	uid 	User id.
+ *	@param 	uid 	用户标识
  *
- *	@return	User object.
+ *	@return	用户信息
  */
 - (id<ISSPlatformUser>)registeredUserForUid:(NSString *)uid;
 
 /**
- *	@brief	Detecting whether the user needs to re-authorize.
+ *	@brief	检测用户是否需要重新授权
  *
- *	@param 	error 	Error info.
+ *	@param 	error 	错误信息
  *
- *	@return	YES indicates need for re-authorization, NO indicates that no re-authorization
+ *	@return	YES 表示需要重新授权，NO 表示不需要重新授权
  */
 - (BOOL)checkNeedReAuth:(id<ICMErrorInfo>)error;
 
 /**
- *	@brief	Determine whether the user-level error, this error can be displayed to the users
+ *	@brief	判断是否为用户级别错误，此级别错误可以显示给操作用户查看
  *
- *	@param 	error 	Error info.
+ *	@param 	error 	错误信息
  *
- *	@return	YES indicates a user-level error, NO if not.
+ *	@return	YES 表示是用户级别错误，NO 表示不是。
  */
 - (BOOL)isUserError:(id<ICMErrorInfo>)error;
 
 /**
- *	@brief	Get authorized user object.
+ *	@brief	获取授权用户信息
  *
- *  @param  resultHandler   Result handler
+ *  @param  resultHandler   返回回调处理
  */
 - (void)getAuthUserInfo:(SSGetUserInfoResultEvent)resultHandler;
 
 /**
- *	@brief	Get user info.
+ *	@brief	获取授权用户信息
  *
- *	@param 	uid 	User ID. Based on user identity to find user information. Parameters highest priority
- *	@param 	name 	User name. Based on the user name to find the user information. Parameters priority second only to the user identity
- *	@param 	url 	User home path. Based on the user home path to find the user information. Parameters lowest priority
- *  @param  resultHandler   Result handler
+ *	@param 	uid 	用户标识, 根据用户标识来查找用户信息，参数优先级别最高
+ *	@param 	name 	用户名称，根据用户名称来查找用户信息，参数优先级别仅次于用户标识
+ *	@param 	url 	用户主页路径，根据用户主页路径查找用户信息，参数优先级别最低
+ *  @param  resultHandler   返回回调处理
  */
 - (void)getUserInfoWithUid:(NSString *)uid
                     orName:(NSString *)name
@@ -246,12 +247,12 @@ typedef void(^SSShareResultEvent) (SSResponseState state, id<ISSPlatformShareInf
              resultHandler:(SSGetUserInfoResultEvent)resultHandler;
 
 /**
- *	@brief	Add Friend / concerns Users
+ *	@brief	添加好友/关注用户
  *
- *	@param 	uid 	User Id.
- *	@param 	name 	User name.
- *  @param  url     User path (only for WeChat concerned)
- *  @param  resultHandler   Result handler
+ *	@param 	uid 	用户标识
+ *	@param 	name 	用户名称
+ *  @param  url     用户路径(仅用于微信关注)
+ *  @param  resultHandler   返回回调处理
  */
 - (void)addFriendWithUid:(NSString *)uid
                   orName:(NSString *)name
@@ -259,53 +260,53 @@ typedef void(^SSShareResultEvent) (SSResponseState state, id<ISSPlatformShareInf
            resultHandler:(SSAddFriendResultEvent)resultHandler;
 
 /**
- *	@brief	Get friends list
+ *	@brief	获取好友列表
  *
- *	@param 	cursor 	Cursor
- *	@param 	count 	Friends quantity
- *	@param 	resultHandler 	Result handler
+ *	@param 	cursor 	游标位置
+ *	@param 	count 	数量
+ *	@param 	resultHandler 	返回回调处理
  */
 - (void)friendsWithCursor:(long long)cursor
                   count:(NSInteger)count
           resultHandler:(SSFriendsResultEvent)resultHandler;
 
 /**
- *	@brief	Share content
+ *	@brief	分享内容
  *
- *	@param 	contentEntity 	Share content entity
- *  @param  clientShare     Sharing client flag, YES indicates share content by client. Otherwise, the sharing in app.
- *	@param 	resultHandler 	Result handler
+ *	@param 	contentEntity 	分享内容实体
+ *  @param  clientShare     客户端分享标识，YES 表示使用客户端进行内容分享。否则直接应用内分享。
+ *	@param 	resultHandler 	返回回调处理
  */
 - (void)shareContent:(id<ISSPlatformShareContentEntity>)contentEntity
          clientShare:(BOOL)clientShare
        resultHandler:(SSShareResultEvent)resultHandler;
 
 /**
- *	@brief	Through a dictionary type to construct a share content entity.
+ *	@brief	通过一个字典类型来构造一个分享内容实体对象
  *
- *	@param 	dictonary 	Dicationary data.
+ *	@param 	dictonary 	字典结构数据
  *
- *	@return	Share content entity.
+ *	@return	分享内容实体对象
  */
 - (id<ISSPlatformShareContentEntity>)shareContentEntityWithDictonary:(NSDictionary *)dictonary;
 
 /**
- *	@brief	Convert share content to share entity。In this method, Attributes of the entity needs to be converted.
+ *	@brief	将分享内容转换为平台的分享内容实体，在此方法中需要对分享实体中的描述值对象进行转换。
  *
- *	@param 	content 	Share content object
+ *	@param 	content 	分享内容
  *
- *	@return	Share content entity object
+ *	@return	分享内容实体对象
  */
 - (id<ISSPlatformShareContentEntity>)convertShareContentEntityByContent:(id<ISSContent>)content;
 
 /**
- *	@brief	Handle open url.
+ *	@brief	处理请求打开链接
  *
- *	@param 	url 	url object
- *	@param 	sourceApplication 	source application
- *	@param 	annotation 	annotation
+ *	@param 	url 	链接
+ *	@param 	sourceApplication 	源应用
+ *	@param 	annotation 	源应用提供的信息
  *
- *	@return	YES indicates to accept the request, NO indicates did not accept the request
+ *	@return	YES 表示接受请求，NO 表示不接受请求
  */
 - (BOOL)handleOpenURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation;
 

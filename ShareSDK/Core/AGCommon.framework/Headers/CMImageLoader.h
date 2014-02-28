@@ -1,56 +1,56 @@
 //
 //  Created by ShareSDK.cn on 13-1-14.
-//  Website:http://www.ShareSDK.cn
-//  Support E-mail:support@sharesdk.cn
-//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
-//  Business QQ:4006852216
+//  官网地址:http://www.ShareSDK.cn
+//  技术支持邮箱:support@sharesdk.cn
+//  官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
+//  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
 #import <UIKit/UIKit.h>
 #import "CMEventDispatcher.h"
 
 /**
- *	@brief	Image load complete notification.
+ *	@brief	图片加载成功
  */
 #define NOTIF_IMAGE_LOAD_COMPLETE @"imageLoadComplete"
 
 /**
- *	@brief	Image load error notification.
+ *	@brief	图片加载异常
  */
 #define NOTIF_IMAGE_LOAD_ERROR @"imageLoadError"
 
 /**
- *	@brief	Image load progress notification.
+ *	@brief	图片加载进度
  */
 #define NOTIF_IMAGE_LOAD_PROGRESS @"imageLoadProgress"
 
 /**
- *	@brief	Image data key.
+ *	@brief	图片数据
  */
 #define NOTIF_KEY_IMAGE_DATA @"imageData"
 
 /**
- *	@brief	Error key.
+ *	@brief	异常
  */
 #define NOTIF_KEY_IMAGE_ERROR @"error"
 
 /**
- *	@brief	Image response key.
+ *	@brief	图片回复
  */
 #define NOTIF_KEY_IMAGE_RESPONSE @"response"
 
 /**
- *	@brief	Total bytes key.
+ *	@brief	总字节数
  */
 #define NOTIF_KEY_TOTAL_BYTES @"totalBytes"
 
 /**
- *	@brief	Loaded bytes key.
+ *	@brief	加载字节数
  */
 #define NOTIF_KEY_LOADED_BYTES @"loadedBytes"
 
 /**
- *	@brief	Image loader state.
+ *	@brief	加载器状态
  */
 typedef enum
 {
@@ -60,7 +60,7 @@ typedef enum
 }CMImageLoaderState;
 
 /**
- *	@brief	Image source type.
+ *	@brief	图片来源
  */
 typedef enum
 {
@@ -70,7 +70,7 @@ typedef enum
 }CMImageLoaderSourceType;
 
 /**
- *	@brief	Image clip type.
+ *	@brief	图片裁剪类型
  */
 typedef enum
 {
@@ -81,7 +81,7 @@ typedef enum
 }CMImageClipType;
 
 /**
- *	@brief	Image Loader，With pictures loaded state, the ImageCacheManager manage distribution.
+ *	@brief	图片加载器，带有图片加载状态，由ImageCacheManager管理分发。
  */
 @interface CMImageLoader : CMEventDispatcher
 {
@@ -107,89 +107,74 @@ typedef enum
 }
 
 /**
- *	@brief	Image object.
+ *	@brief	照片数据
  */
 @property (nonatomic,retain,readonly) UIImage *content;
 
 /**
- *	@brief	Loader state.
+ *	@brief	照片状态
  */
 @property (nonatomic,readonly) CMImageLoaderState state;
 
 /**
- *	@brief	Source type.
+ *	@brief	来源类型
  */
 @property (nonatomic,readonly) CMImageLoaderSourceType sourceType;
 
 /**
- *	@brief	Tag
+ *	@brief	标志
  */
 @property (nonatomic,retain) NSString *tag;
 
-/**
- *	@brief	Initialize Image Loader.
- *
- *	@param 	clipSize 	Clip size.
- *	@param 	clipType 	Clip type.
- *
- *	@return	Image Loader.
- */
-- (id)initWithClipSize:(CGSize)clipSize clipType:(CMImageClipType)clipType;
-
-/**
- *	@brief	Initialize Image Loader.
- *
- *	@param 	cornerRadius 	Corner radius.
- *
- *	@return	Image Loader object.
- */
-- (id)initWithCornerRadius:(CGFloat)cornerRadius;
-
-///#end
-- (id)initWithCornerRadius:(CGFloat)cornerRadius
-                      size:(CGSize)size;
-
-///#begin zh-cn
 /**
  *	@brief	初始化图片加载器
  *
  *	@param 	clipSize 	裁剪尺寸
  *	@param 	clipType 	裁剪类型
+ *
+ *	@return	加载器
+ */
+- (id)initWithClipSize:(CGSize)clipSize clipType:(CMImageClipType)clipType;
+
+/**
+ *	@brief	初始化图片加载器
+ *
  *	@param 	cornerRadius 	圆角
  *
  *	@return	加载器
  */
+- (id)initWithCornerRadius:(CGFloat)cornerRadius;
+
 /**
- *	@brief	Initialize Image Loader.
+ *	@brief	初始化图片加载器
  *
- *	@param 	clipSize 	Clip size.
- *	@param 	clipType 	Clip type.
- *	@param 	cornerRadius 	Corner radius.
+ *	@param 	cornerRadius 	圆角
+ *	@param 	size 	实际显示尺寸
  *
- *	@return	Image Loader object.
+ *	@return	加载器
  */
 - (id)initWithClipSize:(CGSize)clipSize
               clipType:(CMImageClipType)clipType
           cornerRadius:(CGFloat)cornerRadius;
 
 /**
- *	@brief	Load image by URL
+ *	@brief	加载网络图片对象
  *
- *	@param 	url 	Image URL string.
+ *	@param 	url 	图片URL
  */
 - (void)loadImageByUrl:(NSString *)url;
 
 /**
- *	@brief	Load image by file path
+ *	@brief	加载本地图片对象
  *
- *	@param 	filePath 	Image file path.
+ *	@param 	filePath 	图片路径
  */
 - (void)loadImageByFilePath:(NSString *)filePath;
 
 /**
- *	@brief	Load image by cache
+ *	@brief	加载缓存图片对象
  *
- *	@param 	image 	Image object.
+ *	@param 	image 	图片对象
  */
 - (void)loadImageByCache:(UIImage *)image;
 

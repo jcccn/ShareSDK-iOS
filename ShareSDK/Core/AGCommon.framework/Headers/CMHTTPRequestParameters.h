@@ -1,15 +1,15 @@
 //
 //  Created by ShareSDK.cn on 13-1-14.
-//  Website:http://www.ShareSDK.cn
-//  Support E-mail:support@sharesdk.cn
-//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
-//  Business QQ:4006852216
+//  官网地址:http://www.ShareSDK.cn
+//  技术支持邮箱:support@sharesdk.cn
+//  官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
+//  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
 #import <Foundation/Foundation.h>
 
 /**
- *	@brief	HTTP Request Parameters
+ *	@brief	HTTP请求参数列表类,用于快捷填充HTTP请求数据的工具类
  */
 @interface CMHTTPRequestParameters : NSObject
 {
@@ -18,100 +18,100 @@
 }
 
 /**
- *	@brief	Parameter dicationary.
+ *	@brief	参数字典
  */
 @property (nonatomic,readonly) NSDictionary *parameterDictionary;
 
 /**
- *	@brief	Initialize parameter.
+ *	@brief	初始化HTTP请求参数列表
  *
- *	@param 	url 	The URL object.
+ *	@param 	url 	请求的URL对象
  *
- *	@return	Request parameter object.
+ *	@return	请求参数列表对象
  */
 - (id)initWithURL:(NSURL *)url;
 
 /**
- *	@brief	Initialize parameter.
+ *	@brief	初始化HTTP请求参数列表
  *
- *	@param 	queryString 	The URL query string.
+ *	@param 	queryString 	请求的URL参数部分字符串
  *
- *	@return	Request Parameter object.
+ *	@return	请求参数列表对象
  */
 - (id)initWithQueryString:(NSString *)queryString;
 
 /**
- *	@brief	Add parameter.
+ *	@brief	添加参数
  *
- *	@param 	name 	Name
- *	@param 	value 	Value
+ *	@param 	name 	参数名称
+ *	@param 	value 	参数值
  */
 - (void)addParameterWithName:(NSString *)name value:(id)value;
 
 /**
- *	@brief	Adding multiple parameters
+ *	@brief	添加多个参数
  *
  *  @since  ver1.0.8
  *
- *	@param 	parameters 	Parameters object.
+ *	@param 	parameters 	请求参数列表对象
  */
 - (void)addParameters:(CMHTTPRequestParameters *)parameters;
 
 /**
- *	@brief	Adding multiple parameters
+ *	@brief	添加多个参数
  *
  *  @since  ver1.0.8
  *
- *	@param 	dictionary 	Parameters dicationary object.
+ *	@param 	dictionary 	请求参数字典
  */
 - (void)addParametersWithDictionary:(NSDictionary *)dictionary;
 
 /**
- *	@brief	Remove a parameter.
+ *	@brief	删除参数
  *
- *	@param 	name 	Name.
+ *	@param 	name 	参数名称
  */
 - (void)removeParameterWithName:(NSString *)name;
 
 /**
- *	@brief	Get parameter value.
+ *	@brief	获取参数值
  *
- *	@param 	name 	Name.
+ *	@param 	name 	参数名称
  *
- *	@return	Value.
+ *	@return	参数值
  */
 - (id)getValueForName:(NSString *)name;
 
 /**
- *	@brief	Remove all parameters.
+ *	@brief	清除所有参数
  */
 - (void)clear;
 
 /**
- *	@brief	Get request parameters binary data.
+ *	@brief	获取请求参数的二进制数据
  *
- *	@param 	encoding 	Encoding.
+ *	@param 	encoding 	编码
  *
- *	@return	Binary data object.
+ *	@return	二进制数据对象
  */
 - (NSData *)dataUsingEncoding:(NSStringEncoding)encoding;
 
 /**
- *	@brief	Get binary data of multipart form.
+ *	@brief	获取Multipart格式的二进制数据
  *
- *	@param 	encoding 	Encoding
- *  @param  boundary    Boundary string.
+ *	@param 	encoding 	编码
+ *  @param  boundary    分隔符号
  *
- *	@return	Binary data object.
+ *	@return	二进制数据对象
  */
 - (NSData *)multipartDataUsingEncoding:(NSStringEncoding)encoding boundary:(NSString *)boundary;
 
 /**
- *	@brief	Get request parameters string.
+ *	@brief	获取请求参数字符串
  *
- *  @param  encoding    Encoding
+ *  @param  encoding    编码
  *
- *	@return	String object.
+ *	@return	字符串对象
  */
 - (NSString *)stringUsingEncoding:(NSStringEncoding)encoding;
 

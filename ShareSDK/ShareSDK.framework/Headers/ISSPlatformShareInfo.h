@@ -1,59 +1,59 @@
 //
 //  Created by ShareSDK.cn on 13-1-14.
-//  Website:http://www.ShareSDK.cn
-//  Support E-mail:support@sharesdk.cn
-//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
-//  Business QQ:4006852216
+//  官网地址:http://www.ShareSDK.cn
+//  技术支持邮箱:support@sharesdk.cn
+//  官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
+//  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
 #import <Foundation/Foundation.h>
 
 /**
- *	@brief	Share info protocol
+ *	@brief	分享信息协议
  */
 @protocol ISSPlatformShareInfo <NSObject>
 
 @required
 
 /**
- *	@brief	Get sharing raw data, define the structure consistent with the platform
+ *	@brief	获取分享信息的原始数据,与各平台定义结构一致
  *
- *	@return	Raw data dicationary.
+ *	@return	原始数据
  */
 - (NSDictionary *)sourceData;
 
 /**
- *	@brief	Get share info id.
+ *	@brief	获取分享信息标识
  *
- *	@return	Share info id.
+ *	@return	分享信息标识
  */
 - (NSString *)sid;
 
 /**
- *	@brief	Get share content.
+ *	@brief	获取分享内容
  *
- *	@return	Content string.
+ *	@return	分享内容
  */
 - (NSString *)text;
 
 /**
- *	@brief	Get a list of url.
+ *	@brief	获取分享的链接列表
  *
- *	@return	urls list array.
+ *	@return	链接列表数组
  */
 - (NSArray *)urls;
 
 /**
- *	@brief	Get a list of image
+ *	@brief	获取分享的图片列表
  *
- *	@return	Images list array.
+ *	@return	图片列表数组
  */
 - (NSArray *)imgs;
 
 /**
- *	@brief	Get extended Information.
+ *	@brief	获取扩展信息
  *
- *	@return	Extended Information
+ *	@return	扩展信息
  */
 - (NSDictionary *)extInfo;
 

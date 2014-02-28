@@ -1,9 +1,9 @@
 //
 //  Created by ShareSDK.cn on 13-1-14.
-//  website:http://www.ShareSDK.cn
-//  Support E-mail:support@sharesdk.cn
-//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
-//  Business QQ:4006852216
+//  官网地址:http://www.ShareSDK.cn
+//  技术支持邮箱:support@sharesdk.cn
+//  官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
+//  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
 #import <Foundation/Foundation.h>
@@ -12,7 +12,7 @@
 
 
 /**
- *	@brief	Tweet Reader.
+ *	@brief	微博信息
  */
 @interface SSTencentWeiboTweetReader : NSObject
 {
@@ -21,130 +21,130 @@
 }
 
 /**
- *	@brief	Raw data.
+ *	@brief	源数据
  */
 @property (nonatomic,readonly) NSDictionary *sourceData;
 
 /**
- *	@brief	tweet id.
+ *	@brief	微博ID
  */
 @property (nonatomic,readonly) NSString *Id;
 
 /**
- *	@brief	Posted time.
+ *	@brief	发表时间
  */
 @property (nonatomic,readonly) CGFloat timestamp;
 
 /**
- *	@brief	City code.
+ *	@brief	城市码
  */
 @property (nonatomic,readonly) NSString *cityCode;
 
 /**
- *	@brief	Country code.
+ *	@brief	国家码
  */
 @property (nonatomic,readonly) NSString *countryCode;
 
 /**
- *	@brief	Emotion type.
+ *	@brief	心情类型
  */
 @property (nonatomic,readonly) NSInteger emotiontype;
 
 /**
- *	@brief	Emotion URL.
+ *	@brief	心情图片url
  */
 @property (nonatomic,readonly) NSString *emotionurl;
 
 /**
- *	@brief	Source.
+ *	@brief	来源
  */
 @property (nonatomic,readonly) NSString *from;
 
 /**
- *	@brief	From URL
+ *	@brief	来源url
  */
 @property (nonatomic,readonly) NSString *fromurl;
 
 /**
- *	@brief	Geographic information
+ *	@brief	地理位置信息
  */
 @property (nonatomic,readonly) NSString *geo;
 
 /**
- *	@brief	image URL list.
+ *	@brief	图片url列表
  */
 @property (nonatomic,readonly) NSArray *image;
 
 /**
- *	@brief	Latitude.
+ *	@brief	纬度
  */
 @property (nonatomic,readonly) NSString *latitude;
 
 /**
- *	@brief	Location.
+ *	@brief	发表者所在地
  */
 @property (nonatomic,readonly) NSString *location;
 
 /**
- *	@brief	Longitude
+ *	@brief	经度
  */
 @property (nonatomic,readonly) NSString *longitude;
 
 /**
- *	@brief	Music information.
+ *	@brief	音频信息
  */
 @property (nonatomic,readonly) SSTencentWeiboMusicReader *music;
 
 /**
- *	@brief	original text.
+ *	@brief	原始内容
  */
 @property (nonatomic,readonly) NSString *origtext;
 
 /**
- *	@brief	Province code.
+ *	@brief	省份码
  */
 @property (nonatomic,readonly) NSString *provinceCode;
 
 /**
- *	@brief	Whether their own hair tweet, 0 - no, 1 - Yes
+ *	@brief	是否自已发的的微博，0-不是，1-是
  */
 @property (nonatomic,readonly) BOOL isSelf;
 
 /**
- *	@brief	Tweet status, 0 - normal, 1 - system deletes 2 - audit, three - user deletes 4 - root delete
+ *	@brief	微博状态，0-正常，1-系统删除，2-审核中，3-用户删除，4-根删除
  */
 @property (nonatomic,readonly) NSInteger status;
 
 /**
- *	@brief	Content string.
+ *	@brief	微博内容
  */
 @property (nonatomic,readonly) NSString *text;
 
 /**
- *	@brief	Tweet type, 1 - Original Post 2 - reprint 3 - private letter 4 - Replies 5 - empty back, 6 - mentioned 7 - Review
+ *	@brief	微博类型，1-原创发表，2-转载，3-私信，4-回复，5-空回，6-提及，7-评论
  */
 @property (nonatomic,readonly) NSInteger type;
 
 /**
- *	@brief	Video information.
+ *	@brief	视频信息
  */
 @property (nonatomic,readonly) SSTencentWeiboVideoReader *video;
 
 /**
- *	@brief	Initialize reader.
+ *	@brief	初始化读取器
  *
- *	@param 	sourceData 	Raw data.
+ *	@param 	sourceData 	原数据
  *
- *	@return	Raw data.
+ *	@return	读取器实例对象
  */
 - (id)initWithSourceData:(NSDictionary *)sourceData;
 
 /**
- *	@brief	Create a tweet reader.
+ *	@brief	创建微博信息读取器
  *
- *	@param 	sourceData 	Raw data.
+ *	@param 	sourceData 	原数据
  *
- *	@return	tweet reader object.
+ *	@return	读取器实例对象
  */
 + (SSTencentWeiboTweetReader *)readerWithSourceData:(NSDictionary *)sourceData;
 

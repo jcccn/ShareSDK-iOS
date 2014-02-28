@@ -1,15 +1,15 @@
 //
 //  Created by ShareSDK.cn on 13-1-14.
-//  Website:http://www.ShareSDK.cn
-//  Support E-mail:support@sharesdk.cn
-//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
-//  Business QQ:4006852216
+//  官网地址:http://www.ShareSDK.cn
+//  技术支持邮箱:support@sharesdk.cn
+//  官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
+//  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
 #import "CMImageLoader.h"
 
 /**
- *	@brief Image Cache Manager，Primarily responsible for the image cache management
+ *	@brief 图片缓存管理器，主要负责图片缓存管理
  */
 @interface CMImageCacheManager : NSObject
 {
@@ -20,60 +20,60 @@
 }
 
 /**
- *	@brief	Get image object.
+ *	@brief	获取图片
  *
- *	@param 	url 	Image URL string，Can be local or network path
+ *	@param 	url 	图片路径，可以为本地或者网路路径
  *
- *	@return	Image Loader object.
+ *	@return	图片加载器
  */
 - (CMImageLoader *)getImage:(NSString *)url;
 
 /**
- *	@brief	Get image object.
+ *	@brief	获取图片
  *
- *	@param 	url 	Image URL string，Can be local or network path
- *	@param 	size 	Clip size.
- *	@param 	clipType 	Clip type.
+ *	@param 	url 	图片路径，可以为本地或者网络路径
+ *	@param 	size 	裁剪区域
+ *	@param 	clipType 	图片裁剪类型
  *
- *	@return	Image Loader object.
+ *	@return	图片加载器
  */
 - (CMImageLoader *)getImage:(NSString *)url
                      size:(CGSize)size
                  clipType:(CMImageClipType)clipType;
 
 /**
- *	@brief	Get image object.
+ *	@brief	获取图片
  *
- *	@param 	url 	Image URL string，Can be local or network path
- *	@param 	cornerRadius 	Corner radius.
+ *	@param 	url 	图片路径，可以为本地或者网络路径
+ *	@param 	cornerRadius 	圆角
  *
- *	@return	Image Loader object.
+ *	@return	图片加载器
  */
 - (CMImageLoader *)getImage:(NSString *)url
              cornerRadius:(CGFloat)cornerRadius;
 
 /**
- *	@brief	Get image object.
+ *	@brief	获取图片
  *
- *	@param 	url 	URL string.Can be local or network path
- *	@param 	cornerRadius 	Corner radius
- *	@param 	size 	The actual display size
+ *	@param 	url 	图片路径，可以为本地或者网络路径
+ *	@param 	cornerRadius 	圆角值，此值对应实际显示尺寸的圆角值
+ *	@param 	size 	实际显示尺寸
  *
- *	@return	Image Loader object.
+ *	@return	图片加载器
  */
 - (CMImageLoader *)getImage:(NSString *)url
              cornerRadius:(CGFloat)cornerRadius
                      size:(CGSize)size;
 
 /**
- *	@brief	Get image object.
+ *	@brief	获取图片
  *
- *	@param 	url 	Image URL string.
- *	@param 	cornerRadius 	Corner radius.
- *	@param 	size 	Clip size.
- *	@param 	clipType 	Clip type.
+ *	@param 	url 	图片路径，可以为本地或者网络路径
+ *	@param 	cornerRadius 	圆角
+ *	@param 	size 	裁减区域
+ *	@param 	clipType 	图片裁剪类型
  *
- *	@return	Image Loader object.
+ *	@return	图片加载器
  */
 - (CMImageLoader *)getImage:(NSString *)url
              cornerRadius:(CGFloat)cornerRadius
@@ -81,47 +81,47 @@
                  clipType:(CMImageClipType)clipType;
 
 /**
- *	@brief	Image cache to determine whether there is,call getImage: this method to get image.
+ *	@brief	判断图片缓存是否存在,使用getImage:得到的图片用此方法
  *
- *	@param 	url 	URL string.
+ *	@param 	url 	图片路径
  *
- *	@return	YES exists，NO not exists.
+ *	@return	YES表示存在，NO表示不存在
  */
 - (BOOL)existsImageCache:(NSString *)url;
 
 /**
- *	@brief	Image cache to determine whether there is,call getImage:size:clipType: this method to get image.
+ *	@brief	判断图片缓存是否存在,使用getImage:size:clipType:得到的图片用此方法
  *
- *	@param 	url 	Image URL string.
- *	@param 	size 	Clip size.
- *	@param 	clipType 	Clip type.
+ *	@param 	url 	图片路径
+ *	@param 	size 	裁剪区域
+ *	@param 	clipType 	图片裁剪类型
  *
- *	@return	YES exists，NO not exists.
+ *	@return	YES表示存在，NO表示不存在
  */
 - (BOOL)existsImageCache:(NSString *)url
                     size:(CGSize)size
                 clipType:(CMImageClipType)clipType;
 
 /**
- *	@brief	Image cache to determine whether there is,call getImage:cornerRadius: this method to get image.
+ *	@brief	判断图片缓存是否存在,使用getImage:cornerRadius:得到的图片用此方法
  *
- *	@param 	url 	URL string.
- *	@param 	cornerRadius 	corner radius.
+ *	@param 	url 	图片路径
+ *	@param 	cornerRadius 	圆角
  *
- *	@return	YES exists，NO not exists.
+ *	@return	YES表示存在，NO表示不存在
  */
 - (BOOL)existsImageCache:(NSString *)url
             cornerRadius:(CGFloat)cornerRadius;
 
 /**
- *	@brief	Image cache to determine whether there is,call getImage:cornerRadius:size:clipType: this method to get image.
+ *	@brief	判断图片缓存是否存在,使用getImage:cornerRadius:size:clipType:得到的图片用此方法
  *
- *	@param 	url 	URL string.
- *	@param 	size 	Clip size.
- *	@param 	clipType 	Clip type.
- *	@param 	cornerRadius 	Corner radius.
+ *	@param 	url 	图片路径
+ *	@param 	size 	裁剪尺寸
+ *	@param 	clipType 	裁剪类型
+ *	@param 	cornerRadius 	圆角
  *
- *	@return	YES：exists，NO：not exists.
+ *	@return	YES：存在，NO：不存在
  */
 - (BOOL)existsImageCache:(NSString *)url
                     size:(CGSize)size

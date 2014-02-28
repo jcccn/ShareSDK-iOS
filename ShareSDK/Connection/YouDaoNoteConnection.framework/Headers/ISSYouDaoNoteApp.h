@@ -1,9 +1,9 @@
 //
 //  Created by ShareSDK.cn on 13-1-14.
-//  website:http://www.ShareSDK.cn
-//  Support E-mail:support@sharesdk.cn
-//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
-//  Business QQ:4006852216
+//  官网地址:http://www.ShareSDK.cn
+//  技术支持邮箱:support@sharesdk.cn
+//  官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
+//  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
 #import <Foundation/Foundation.h>
@@ -15,7 +15,7 @@
 #import <ShareSDK/ShareSDKPlugin.h>
 
 /**
- *	@brief	Request Method
+ *	@brief	请求方式
  */
 typedef enum
 {
@@ -26,40 +26,40 @@ typedef enum
 SSYouDaoNoteRequestMethod;
 
 /**
- *	@brief	YouDaoNote App
+ *	@brief	有道云笔记应用
  */
 @protocol ISSYouDaoNoteApp <ISSPlatformApp>
 
 /**
- *	@brief	Get consumer key.
+ *	@brief	获取消费者Key
  *
- *	@return	Consumer key.
+ *	@return	消费者Key
  */
 - (NSString *)consumerKey;
 
 /**
- *	@brief	Get consumer secret.
+ *	@brief	获取消费者密钥
  *
- *	@return	Consumer secret.
+ *	@return	消费者密钥
  */
 - (NSString *)consumerSecret;
 
 /**
- *	@brief	Get redirect uri.
+ *	@brief	获取应用回调地址
  *
- *	@return	Redirect uri.
+ *	@return	应用回调地址
  */
 - (NSString *)redirectUri;
 
 /**
- *	@brief	Call API.
+ *	@brief	调用开放平台API
  *
- *	@param 	path 	API path string.
- *  @param  method  Request method.
- *	@param 	params  Request parameters.
- *  @param  user    Authorized users, it means that if the incoming nil default authorized users
- *  @param  result  Result handler.
- *  @param  fault   Fault handler.
+ *	@param 	path 	路径
+ *  @param  method  请求方法
+ *	@param 	params 	请求参数
+ *  @param  user    授权用户,如果传入nil则表示默认的授权用户
+ *  @param  result  返回回调
+ *  @param  fault   失败回调
  */
 - (void)api:(NSString *)path
      method:(SSYouDaoNoteRequestMethod)method
@@ -69,23 +69,23 @@ SSYouDaoNoteRequestMethod;
       fault:(void(^)(CMErrorInfo *error))fault;
 
 /**
- *	@brief	Upload resource.
+ *	@brief	上传附件
  *
- *	@param 	file 	File attachment.
- *  @param  result  Result handler.
+ *	@param 	file 	附件信息
+ *  @param  result  返回回调
  */
 - (void)uploadResource:(id<ISSCAttachment>)file
                 result:(void(^)(BOOL result, id resource, CMErrorInfo *error))result;
 
 /**
- *	@brief	Create a note.
+ *	@brief	创建笔记
  *
- *	@param 	content 	Content string.
- *	@param 	source 	Source.
- *	@param 	author 	Author.
- *	@param 	title 	Title string.
- *	@param 	notebook 	Notebook path.
- *  @param  result  Result handler.
+ *	@param 	content 	内容
+ *	@param 	source 	来源
+ *	@param 	author 	作者
+ *	@param 	title 	标题
+ *	@param 	notebook 	笔记本路径
+ *  @param  result  返回回调
  */
 - (void)createNote:(NSString *)content
             source:(NSString *)source

@@ -1,45 +1,45 @@
 //
 //  Created by ShareSDK.cn on 13-1-14.
-//  Website:http://www.ShareSDK.cn
-//  Support E-mail:support@sharesdk.cn
-//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
-//  Business QQ:4006852216
+//  官网地址:http://www.ShareSDK.cn
+//  技术支持邮箱:support@sharesdk.cn
+//  官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
+//  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
 #import <Foundation/Foundation.h>
 
 /**
- *	@brief	Parameters.
+ *	@brief	请求参数协议
  */
 @protocol ISSCParameters <NSObject>
 
 /**
- *	@brief	Add parameter.
+ *	@brief	添加参数
  *
- *	@param 	name 	Parameter name.
- *	@param 	value 	Parameter value.
+ *	@param 	name 	参数名称
+ *	@param 	value 	参数值
  */
 - (void)addParameter:(NSString *)name value:(id)value;
 
 /**
- *	@brief	Add file parameter.
+ *	@brief	添加文件参数
  *
- *	@param 	name 	Parameter name.
- *	@param 	filePath 	File path.
- *  @param  mimeType    MIME type.
+ *	@param 	name 	参数名称
+ *	@param 	filePath 	参数值
+ *  @param  mimeType    MIME类型
  */
 - (void)addParameter:(NSString *)name
             filePath:(id)filePath
             mimeType:(NSString *)mimeType;
 
 /**
- *	@brief	Add file parameter.
+ *	@brief	添加文件参数
  *
- *	@param 	name 	Parameter name.
- *	@param 	fileName 	File name.
- *	@param 	data 	File data.
- *	@param 	mimeType 	MIME type.
- *	@param 	transferEncoding 	Transfer encoding, can be set to nil
+ *	@param 	name 	参数名称
+ *	@param 	fileName 	文件名称
+ *	@param 	data 	文件数据
+ *	@param 	mimeType 	MIME类型
+ *	@param 	transferEncoding 	传输编码，不指定可以设置为nil
  */
 - (void)addParameter:(NSString *)name
             fileName:(NSString *)fileName
@@ -48,72 +48,72 @@
     transferEncoding:(NSString *)transferEncoding;
 
 /**
- *	@brief	Adding multiple parameters
+ *	@brief	添加多个参数
  *
- *	@param 	parameters 	Parameters object.
+ *	@param 	parameters 	参数对象
  */
 - (void)addParameters:(id<ISSCParameters>)parameters;
 
 /**
- *	@brief	Adding multiple parameters
+ *	@brief	添加多个参数
  *
- *	@param 	dictionary 	Dicationary value.
+ *	@param 	dictionary 	参数字典
  */
 - (void)addParametersWithDictionary:(NSDictionary *)dictionary;
 
 /**
- *	@brief	Remove all parameters.
+ *	@brief	清除参数
  */
 - (void)clear;
 
 /**
- *	@brief	Get parameter value
+ *	@brief	获取参数值
  *
- *	@param 	name 	Parameter name.
+ *	@param 	name 	参数名称
  *
- *	@return	Paremeter value
+ *	@return	参数值
  */
 - (id)parameterWithName:(NSString *)name;
 
 /**
- *	@brief	Get parameters number.
+ *	@brief	获取参数数量
  *
- *	@return	Number of parameters
+ *	@return	参数数量
  */
 - (NSInteger)parameterCount;
 
 /**
- *	@brief	Get parameters dictionary.
+ *	@brief	获取字典结构数据
  *
- *	@return	Dication object.
+ *	@return	字典数据
  */
 - (NSDictionary *)dictionaryValue;
 
 /**
- *	@brief	Get parameters string.
+ *	@brief	获取参数组织的字符串
  *
- *	@param 	encoding 	Encoding.
+ *	@param 	encoding 	编码
  *
- *	@return	String object.
+ *	@return	字符串
  */
 - (NSString *)stringValue:(NSStringEncoding)encoding;
 
 /**
- *	@brief	Get parameters binary data.
+ *	@brief	获取参数组织的二进制数据
  *
- *	@param 	encoding 	Encoding.
+ *	@param 	encoding 	编码
  *
- *	@return	Binary data.
+ *	@return	二进制数据
  */
 - (NSData *)dataValue:(NSStringEncoding)encoding;
 
 /**
- *	@brief	Get parameters binary data.
+ *	@brief	获取参数组织的二进制数据
  *
- *	@param 	encoding 	Encoding
- *	@param 	boundary 	Boundary string for multipart forms
+ *	@param 	encoding 	编码
+ *	@param 	boundary 	分隔字符串，用于multipart形式
  *
- *	@return	 Binary data.
+ *	@return	 二进制数据
  */
 - (NSData *)dataValue:(NSStringEncoding)encoding boundary:(NSString *)boundary;
 

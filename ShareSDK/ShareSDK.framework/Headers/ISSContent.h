@@ -1,9 +1,9 @@
 //
 //  Created by ShareSDK.cn on 13-1-14.
-//  website:http://www.ShareSDK.cn
-//  Support E-mail:support@sharesdk.cn
-//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
-//  Business QQ:4006852216
+//  官网地址:http://www.ShareSDK.cn
+//  技术支持邮箱:support@sharesdk.cn
+//  官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
+//  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
 #import <Foundation/Foundation.h>
@@ -12,175 +12,175 @@
 #import "ISSPlatformShareContentEntity.h"
 
 /**
- *	@brief	Share content protocol
+ *	@brief	分享内容协议
  */
 @protocol ISSContent <NSObject>
 
 /**
- *	@brief	Get metadata
+ *	@brief	获取元数据
  *
- *	@param 	name 	Metadata name
+ *	@param 	name 	名称
  *
- *	@return	Metadata value
+ *	@return	数据值
  */
 - (id)getMetadata:(NSString *)name;
 
 /**
- *	@brief	Set metadata
+ *	@brief	设置元数据
  *
- *	@param 	name 	Metadata name
- *	@param 	value 	Metadata value
+ *	@param 	name 	名称
+ *	@param 	value 	数据值
  */
 - (void)setMetadata:(NSString *)name value:(id)value;
 
 /**
- *	@brief	Remove metadata.
+ *	@brief	删除元数据
  *
- *	@param 	name 	Metadata name
+ *	@param 	name 	名称
  */
 - (void)removeMetadata:(NSString *)name;
 
 /**
- *	@brief	Get title(suitable platform：QZone、Renren、WeChat、QQ)
+ *	@brief	获取标题(适用平台：QQ空间、人人、微信、QQ)
  *
- *	@return	title string
+ *	@return	标题
  */
 - (NSString *)title;
 
 /**
- *	@brief	Set title.
+ *	@brief	设置标题
  *
- *	@param 	title 	Title string.
+ *	@param 	title 	标题
  */
 - (void)setTitle:(NSString *)title;
 
 /**
- *	@brief	Get URL(suitable platform：QZone、Renren、Instapaper、WeChat、QQ)
+ *	@brief	获取URL(适用平台：QQ空间、人人、Instapaper、微信、QQ)
  *
- *	@return	URL string
+ *	@return	URL
  */
 - (NSString *)url;
 
 /**
- *	@brief	Set URL.
+ *	@brief	设置URL
  *
- *	@param 	url 	URL string
+ *	@param 	url 	URL
  */
 - (void)setUrl:(NSString *)url;
 
 /**
- *	@brief	Get share description(suitable platform：Renren)
+ *	@brief	获取分享内容主体(适用平台：人人)
  *
- *	@return	Share description string.
+ *	@return	分享内容主体
  */
 - (NSString *)desc;
 
 /**
- *	@brief	Set share description.
+ *	@brief	设置分享内容主体
  *
- *	@param 	desc 	Share description string.
+ *	@param 	desc 	分享内容主体
  */
 - (void)setDesc:(NSString *)desc;
 
 /**
- *	@brief	Get media type（suitable platform：WeChat、QQ）
+ *	@brief	获取分享类型（适用平台：微信、QQ）
  *
- *	@return	Media type
+ *	@return	分享类型
  */
 - (SSPublishContentMediaType)mediaType;
 
 /**
- *	@brief	Set media type.
+ *	@brief	设置分享类型
  *
- *	@param 	mediaType 	Media type.
+ *	@param 	mediaType 	分享类型
  */
 - (void)setMediaType:(SSPublishContentMediaType)mediaType;
 
 /**
- *	@brief	Get share content(suitable platform：Sina Weibo、Tencent Weibo、NetEase、Sohu、DouBan、Renren、KaiXin、YouDaoNote、Facebook、Twitter、Mail、Print、SMS、WeChat、QQ、Copy)
+ *	@brief	获取分享内容(适用平台：新浪、腾讯、网易、搜狐、豆瓣、人人、开心、有道云笔记、facebook、twitter、邮件、打印、短信、微信、QQ、拷贝)
  *
- *	@return	share content string.
+ *	@return	分享内容
  */
 - (NSString *)content;
 
 /**
- *	@brief	Set share content
+ *	@brief	设置分享内容
  *
- *	@param 	content     Share content string.
+ *	@param 	content 	分享内容
  */
 - (void)setContent:(NSString *)content;
 
 /**
- *	@brief	Get default share content，Used when there is no set content。
- *          (suitable platform：Sina Weibo、Tencent Weibo、NetEase、Sohu、DouBan、Renren、KaiXin、YouDaoNote、Facebook、Twitter、Mail、Print、SMS、WeChat、QQ、Copy)
+ *	@brief	获取默认分享内容，在没有设置content时使用。
+ *          (适用平台：新浪、腾讯、网易、搜狐、豆瓣、人人、开心、有道云笔记、facebook、twitter、邮件、打印、短信、微信、QQ、拷贝)
  *
- *	@return	Default share content string.
+ *	@return	默认分享内容
  */
 - (NSString *)defaultContent;
 
 /**
- *	@brief	Set default share content.
+ *	@brief	设置默认分享内容
  *
- *	@param 	defaultContent 	Default share content string.
+ *	@param 	defaultContent 	默认分享内容
  */
 - (void)setDefaultContent:(NSString *)defaultContent;
 
 /**
- *	@brief	Get share image.（uitable platform：Sina Weibo、Tencent Weibo、NetEase、Sohu、DouBan、Renren、KaiXin、Facebook、Twitter、Mai、Print、WeChat、QQ）
+ *	@brief	获取分享图片（适用平台：新浪、腾讯、网易、搜狐、豆瓣、人人、开心、facebook、twitter、邮件、打印、微信、QQ）
  *
- *	@return	image attachment object.
+ *	@return	分享图片
  */
 - (id<ISSCAttachment>)image;
 
 /**
- *	@brief	Set share image.
+ *	@brief	设置分享图片
  *
- *	@param 	image 	image attachment object.
+ *	@param 	image 	分享图片
  */
 - (void)setImage:(id<ISSCAttachment>)image;
 
 /**
- *	@brief	Get location
+ *	@brief	获取地理位置
  *
- *	@return	Location object.
+ *	@return	地理位置
  */
 - (SSCLocationCoordinate2D *)locationCoordinate;
 
 /**
- *	@brief	Set location.
+ *	@brief	设置地理位置
  *
- *	@param 	locationCoordinate 	Location object
+ *	@param 	locationCoordinate 	地理位置
  */
 - (void)setLocationCoordinate:(SSCLocationCoordinate2D *)locationCoordinate;
 
 /**
- *	@brief	Get group id.(uitable platform：VK)
+ *	@brief	获取分组标识
  *
- *	@return	Group id string.
+ *	@return	分组标识
  */
 - (NSString *)groupId;
 
 /**
- *	@brief	Set group id.
+ *	@brief	设置分组标识
  *
- *	@return	Group id string.
+ *	@param 	groupId 	分组标识
  */
 - (void)setGroupId:(NSString *)groupId;
 
 /**
- *	@brief	Get share content entity.
+ *	@brief	获取分享内容实体
  *
- *	@param 	type 	Platform type.
+ *	@param 	type 	平台类型
  *
- *	@return	share content entity.
+ *	@return	分享内容实体
  */
 - (id<ISSPlatformShareContentEntity>)shareContentEntityWithType:(ShareType)type;
 
 /**
- *	@brief	Set share content entity.
+ *	@brief	设置分享内容实体
  *
- *	@param 	shareContentEntity 	Share content entity.
- *	@param 	type 	Platform type.
+ *	@param 	shareContentEntity 	分享内容实体
+ *	@param 	type 	平台类型
  */
 - (void)setShareContentEntity:(id<ISSPlatformShareContentEntity>)shareContentEntity
                          type:(ShareType)type;
@@ -189,17 +189,17 @@
 #pragma mark ContentUnti
 
 /**
- *	@brief	add WeChat session content unit，When custom WeChat share content use this method，If the parameter is set to INHERIT_VALUE. will using the parent parameter value.
+ *	@brief	添加微信好友内容单元，制定微信分享时的内容使用此参数，如果参数设置为INHERIT_VALUE则默认使用父级类型相关参数
  *
- *	@param 	type 	Media type. Please see SSPublishContentMediaType
- *	@param 	content 	Share content string.
- *	@param 	title 	Title string
- *	@param 	url 	URL string
- *	@param 	image 	Image attachment object
- *  @param  musicFileUrl    Music file URL
- *  @param  extInfo     Extension information
- *  @param  fileData    File data
- *  @param  emoticonData    Emoticon Data，Used to store Gif picture data
+ *	@param 	type 	分享类型,请参考SSPublishContentMediaType
+ *	@param 	content 	分享内容
+ *	@param 	title 	标题
+ *	@param 	url 	URL地址
+ *	@param 	image 	分享图片
+ *  @param  musicFileUrl    音乐文件路径
+ *  @param  extInfo     扩展信息
+ *  @param  fileData    文件数据
+ *  @param  emoticonData    表情数据，用于存放Gif和非Gif图片数据
  */
 - (void)addWeixinSessionUnitWithType:(NSNumber *)type
                              content:(NSString *)content
@@ -212,17 +212,17 @@
                         emoticonData:(NSData *)emoticonData;
 
 /**
- *	@brief	add WeChat Timeline content unit，When custom WeChat share content use this method，If the parameter is set to INHERIT_VALUE. will using the parent parameter value.
+ *	@brief	添加微信朋友圈内容单元，制定微信分享时的内容使用此参数，如果参数设置为INHERIT_VALUE则默认使用父级类型相关参数
  *
- *	@param 	type 	Media type. Please see SSPublishContentMediaType
- *	@param 	content 	Share content string.
- *	@param 	title 	Title string
- *	@param 	url 	URL string
- *	@param 	image 	Image attachment object
- *  @param  musicFileUrl    Music file URL
- *  @param  extInfo     Extension information
- *  @param  fileData    File data
- *  @param  emoticonData    Emoticon Data，Used to store Gif picture data
+ *	@param 	type 	分享类型,请参考SSPublishContentMediaType
+ *	@param 	content 	分享内容
+ *	@param 	title 	标题
+ *	@param 	url 	URL地址
+ *	@param 	image 	分享图片
+ *  @param  musicFileUrl    音乐文件路径
+ *  @param  extInfo     扩展信息
+ *  @param  fileData    文件数据
+ *  @param  emoticonData    表情数据，用于存放Gif和非Gif图片数据
  */
 - (void)addWeixinTimelineUnitWithType:(NSNumber *)type
                               content:(NSString *)content
@@ -235,13 +235,13 @@
                          emoticonData:(NSData *)emoticonData;
 
 /**
- *	@brief	add QQ content unit，When custom QQ share content use this method，If the parameter is set to INHERIT_VALUE. will using the parent parameter value.
+ *	@brief	添加QQ内容单元，制定QQ分享时的内容使用此参数，如果参数设置为INHERIT_VALUE则默认使用父级类型相关参数
  *
- *	@param 	type 	Media type. Please see SSPublishContentMediaType
- *	@param 	content 	Share content string.
- *	@param 	title 	Title string
- *	@param 	url 	URL string
- *	@param 	image 	Image attachment object
+ *	@param 	type 	分享类型,请参考SSPublishContentMediaType
+ *	@param 	content 	分享内容
+ *	@param 	title 	标题
+ *	@param 	url 	URL地址
+ *	@param 	image 	分享图片
  */
 - (void)addQQUnitWithType:(NSNumber *)type
                   content:(NSString *)content
@@ -251,25 +251,25 @@
 
 
 /**
- *	@brief	add SMS content unit. When custom SMS share content use this method，If the parameter is set to INHERIT_VALUE. will using the parent parameter value.
+ *	@brief	添加短信内容单元，制定短信分享时的内容使用此参数，如果参数设置为INHERIT_VALUE则默认使用父级类型相关参数
  *
- *	@param 	content 	Share content string
+ *	@param 	content 	分享内容
  */
 - (void)addSMSUnitWithContent:(NSString *)content;
 
 /**
- *	@brief	add QZone content unit， When custom QZone share content use this method，If the parameter is set to INHERIT_VALUE. will using the parent parameter value.
+ *	@brief	添加QQ空间内容单元，制定QQ空间分享时的内容使用此参数，如果参数设置为INHERIT_VALUE则默认使用父级类型相关参数
  *
- *	@param 	title 	Title string
- *	@param 	url 	URL string
- *	@param 	site 	Shared Source website name.Please fill in the website domain name when applying for registration.
- *	@param 	fromUrl 	Shared source site corresponding website url.
- *	@param 	comment 	Comment content string.
- *	@param 	summary 	Share content summary
- *	@param 	image 	Image attachment object
- *	@param 	type 	Content type:，4 indicate web page；5 indicate video
- *	@param 	playUrl 	SWF play url.，In the type of 5 must be filled
- *	@param 	nswb 	Synchronized to Tencent Weibo, equal to 1 are not synchronized, non-1 represents a synchronization
+ *	@param 	title 	标题
+ *	@param 	url 	链接地址
+ *	@param 	site 	分享的来源网站名称，请填写网站申请接入时注册的网站名称。
+ *	@param 	fromUrl 	分享的来源网站对应的网站地址url
+ *	@param 	comment 	评论内容
+ *	@param 	summary 	分享分享内容概述
+ *	@param 	image 	分享图片
+ *	@param 	type 	内容类型，4表示网页；5表示视频
+ *	@param 	playUrl 	视频的swf播放地址，在type为5时必须填写
+ *	@param 	nswb 	是否同步到微博，等于1表示不同步，非1表示同步
  */
 - (void)addQQSpaceUnitWithTitle:(NSString *)title
                             url:(NSString *)url
@@ -283,13 +283,13 @@
                            nswb:(NSNumber *)nswb;
 
 /**
- *	@brief	Add YouDaoNote content unit.
+ *	@brief	添加有道云笔记内容单元。
  *
- *	@param 	content 	Content string
- *	@param 	title   Title string
- *	@param 	author 	Author
- *	@param 	source 	Source
- *	@param 	attachments 	Attachments array
+ *	@param 	content 	内容
+ *	@param 	title 	标题
+ *	@param 	author 	作者
+ *	@param 	source 	来源
+ *	@param 	attachments 	附件列表
  */
 - (void)addYouDaoNoteUnitWithContent:(NSString *)content
                                title:(NSString *)title
@@ -298,28 +298,28 @@
                          attachments:(NSArray *)attachments;
 
 /**
- *	@brief	Add Instapaper content unit
+ *	@brief	添加Instapaper分享内容
  *
- *	@param 	url 	URL string
- *	@param 	title 	Title string，passing nil when there is no title
- *	@param 	description 	Description, passing nil when there is no description
+ *	@param 	url 	URL路径
+ *	@param 	title 	标题，无标题时传入nil
+ *	@param 	description 	描述，无描述时传入nil
  */
 - (void)addInstapaperContentWithUrl:(NSString *)url
                               title:(NSString *)title
                         description:(NSString *)description;
 
 /**
- *	@brief	Add Mail content unit，When custom Mail share content use this method，If the parameter is set to INHERIT_VALUE. will using the parent parameter value.
+ *	@brief	添加邮件内容单元，制定邮件分享时的内容使用此参数，如果参数设置为INHERIT_VALUE则默认使用父级类型相关参数
  *
  *  @since  ver1.2.4
  *
- *	@param 	subject 	Subject string
- *	@param 	content 	Content string
- *	@param 	isHTML      Content format:YES indicate body is HTML format。NO indicate body is Normal text
- *  @param  attachments     Attachments Array
- *  @param  to      Recipient e-mail address list
- *  @param  cc      Cc-mail address list
- *  @param  bcc     Bcc e-mail address list
+ *	@param 	subject 	邮件主题
+ *	@param 	content 	邮件内容
+ *	@param 	isHTML      邮件内容格式：YES：HTML格式。NO：普通文本格式
+ *  @param  attachments     附件列表
+ *  @param  to      收件人邮箱地址列表
+ *  @param  cc      抄送邮箱地址列表
+ *  @param  bcc     密送邮箱地址列表
  */
 - (void)addMailUnitWithSubject:(NSString *)subject
                        content:(NSString *)content
@@ -330,14 +330,14 @@
                            bcc:(NSArray *)bcc;
 
 /**
- *	@brief	Add Renren content unit
+ *	@brief	添加人人网
  *
- *	@param 	name 	Title. Note: Up to 30 characters.
- *	@param 	description 	Body content. Note: Up to 200 characters.
- *	@param 	url 	Link
- *	@param 	message 	User input custom content. Note: Up to 200 characters.
- *	@param 	image 	Image attachment object
- *	@param 	captions 	Subtitle. Note: Up to 20 characters
+ *	@param 	name 	标题 注意：最多30个字符
+ *	@param 	description 	主体内容 注意：最多200个字符。
+ *	@param 	url 	指向的链接
+ *	@param 	message 	用户输入的自定义内容。注意：最多200个字符。
+ *	@param 	image 	分享图片对象
+ *	@param 	captions 	副标题 注意：最多20个字符
  */
 - (void)addRenRenUnitWithName:(NSString *)name
                   description:(NSString *)description
@@ -347,21 +347,21 @@
                       caption:(NSString *)captions;
 
 /**
- *	@brief	Add Sohu SuiShenKan content unit.
+ *	@brief	添加搜狐随身看内容单元
  *
- *	@param 	url 	Bookmark link
+ *	@param 	url 	书签的URL
  */
 - (void)addSohuKanUnitWithUrl:(NSString *)url;
 
 /**
- *	@brief	Add Pocket content unit.
+ *	@brief	添加Pocket内容单元
  *
  *  @since  ver2.2.0
  *
- *	@param 	url 	Share link.
- *	@param 	title 	Title, if the linked content Untitled used.
- *	@param 	tags 	With a comma-separated list of tags
- *	@param 	tweetId 	Tweet ID
+ *	@param 	url 	链接
+ *	@param 	title 	标题，如果链接内容无标题时使用
+ *	@param 	tags 	带逗号分隔的标签列表
+ *	@param 	tweetId 	推文ID
  */
 - (void)addPocketUnitWithUrl:(NSString *)url
                        title:(NSString *)title
@@ -369,26 +369,26 @@
                      tweetId:(NSString *)tweetId;
 
 /**
- *	@brief	Add EverNote content unit
+ *	@brief	添加印象笔记内容单元
  *
- *	@param 	content 	Content string
- *	@param 	title 	Title string
- *	@param 	resources 	Image resource list，Element is ISSAttachment protocol object。If the parameter is set to INHERIT_VALUE. will using the parent's image parameter value.
+ *	@param 	content 	内容
+ *	@param 	title 	标题
+ *	@param 	resources 	图片资源列表，元素为ISSAttachment协议对象。如果设置为INHERIT_VALUE则继承父级内容的image。
  */
 - (void)addEvernoteUnitWithContent:(NSString *)content
                              title:(NSString *)title
                          resources:(NSArray *)resources;
 
 /**
- *	@brief	Add EverNote content unit
+ *	@brief	添加印象笔记内容单元
  *
  *  @since  ver2.9.0
  *
- *	@param 	content 	Content string
- *	@param 	title 	Title string
- *	@param 	resources 	Image resource list，Element is ISSAttachment protocol object。If the parameter is set to INHERIT_VALUE. will using the parent's image parameter value.
- *  @param  notebookGuid    Notebook guid
- *  @param  tagsGuid        Tag guid list.
+ *	@param 	content 	内容
+ *	@param 	title 	标题
+ *	@param 	resources 	图片资源列表，元素为ISSAttachment协议对象。如果设置为INHERIT_VALUE则继承父级内容的image。
+ *  @param  notebookGuid    笔记本ID
+ *  @param  tagsGuid    标签ID列表
  */
 - (void)addEvernoteUnitWithContent:(NSString *)content
                              title:(NSString *)title
@@ -397,48 +397,48 @@
                           tagsGuid:(NSArray *)tagsGuid;
 
 /**
- *	@brief	Add Sina Weibo content unit.
+ *	@brief	添加新浪微博内容单元
  *
  *  @since  ver2.2.0
  *
- *	@param 	content 	Content string.
- *	@param 	image 	Image attachment object.
+ *	@param 	content 	内容
+ *	@param 	image 	图片
  */
 - (void)addSinaWeiboUnitWithContent:(NSString *)content
                               image:(id<ISSCAttachment>)image;
 
 /**
- *	@brief	Add Sina Weibo content unit
+ *	@brief	添加新浪微博内容单元
  *
  *  @since  ver2.4.1
  *
- *	@param 	content 	Content string.
- *	@param 	image 	Image attachment object.
- *  @param  locationCoordinate 	Location info.
+ *	@param 	content 	内容
+ *	@param 	image 	图片
+ *  @param  locationCoordinate 	地理位置
  */
 - (void)addSinaWeiboUnitWithContent:(NSString *)content
                               image:(id<ISSCAttachment>)image
                           locationCoordinate:(SSCLocationCoordinate2D *)locationCoordinate;
 
 /**
- *	@brief	Add Tencent Weibo content unit
+ *	@brief	添加腾讯微博内容单元
  *
  *  @since  ver2.2.0
  *
- *	@param 	content 	Content string.
- *	@param 	image 	Image attachment object.
+ *	@param 	content 	内容
+ *	@param 	image 	图片
  */
 - (void)addTencentWeiboUnitWithContent:(NSString *)content
                                  image:(id<ISSCAttachment>)image;
 
 /**
- *	@brief	Add Tencent Weibo content unit
+ *	@brief	添加腾讯微博内容单元
  *
  *  @since  ver2.4.1
  *
- *	@param 	aContent 	Content string
- *	@param 	aImage 	Image attachment object.
- *	@param 	locationCoordinate 	Location info.
+ *	@param 	aContent 	内容
+ *	@param 	aImage 	图片
+ *	@param 	locationCoordinate 	地理位置
  */
 - (void)addTencentWeiboUnitWithContent:(NSString *)content
                                  image:(id<ISSCAttachment>)image
@@ -446,117 +446,117 @@
 
 
 /**
- *	@brief	Add Sohu Weibo content unit
+ *	@brief	添加搜狐微博内容单元
  *
  *  @since  ver2.2.0
  *
- *	@param 	content 	Content string.
- *	@param 	image 	Image attachment object.
+ *	@param 	content 	内容
+ *	@param 	image 	图片
  */
 - (void)addSohuWeiboUnitWithContent:(NSString *)content
                               image:(id<ISSCAttachment>)image;
 
 /**
- *	@brief	Add NetEase Weibo content unit
+ *	@brief	添加网易微博内容单元
  *
  *  @since  ver2.2.0
  *
- *	@param 	content 	Content string.
- *	@param 	image 	Image attachment object.
+ *	@param 	content 	内容
+ *	@param 	image 	图片
  */
 - (void)add163WeiboUnitWithContent:(NSString *)content
                              image:(id<ISSCAttachment>)image;
 
 /**
- *	@brief	Add Copy content unit
+ *	@brief	添加拷贝内容单元
  *
  *  @since  ver2.2.0
  *
- *	@param 	content 	Content string.
- *	@param 	image 	Image attachment object.
+ *	@param 	content 	内容
+ *	@param 	image 	图片
  */
 - (void)addCopyUnitWithContent:(NSString *)content
                          image:(id<ISSCAttachment>)image;
 
 /**
- *	@brief	Add Print content unit
+ *	@brief	添加打印内容单元
  *
  *  @since  ver2.2.0
  *
- *	@param 	content 	Content string.
- *	@param 	image 	Image attachment object.
+ *	@param 	content 	内容
+ *	@param 	image 	图片
  */
 - (void)addAirPrintWithContent:(NSString *)content
                          image:(id<ISSCAttachment>)image;
 
 /**
- *	@brief	Add Douban content unit
+ *	@brief	添加豆瓣内容单元
  *
  *  @since  ver2.2.0
  *
- *	@param 	content 	Content string.
- *	@param 	image   Image attachment object.
+ *	@param 	content 	内容
+ *	@param 	image 	图片
  */
 - (void)addDouBanWithContent:(NSString *)content
                        image:(id<ISSCAttachment>)image;
 
 /**
- *	@brief	Add Facebook content unit
+ *	@brief	添加Facebook内容单元
  *
  *  @since  ver2.2.0
  *
- *	@param 	content 	Content string
- *	@param 	image 	Image attachment object.
+ *	@param 	content 	内容
+ *	@param 	image 	图片
  */
 - (void)addFacebookWithContent:(NSString *)content
                          image:(id<ISSCAttachment>)image;
 
 /**
- *	@brief	Add Twitter content unit
+ *	@brief	添加Twitter内容单元
  *
  *  @since  ver2.2.0
  *
- *	@param 	content 	Content string.
- *	@param 	image 	Image attachment object.
+ *	@param 	content 	内容
+ *	@param 	image 	图片
  */
 - (void)addTwitterWithContent:(NSString *)content
                         image:(id<ISSCAttachment>)image;
 
 /**
- *	@brief	Add Twitter content unit
+ *	@brief	添加Twitter内容单元
  *
  *  @since  ver2.4.1
  *
- *	@param 	content 	Content string.
- *	@param 	image 	Image attachment object.
- *	@param 	locationCoordinate 	Location info.
+ *	@param 	content 	内容
+ *	@param 	image 	图片
+ *	@param 	locationCoordinate 	地理位置
  */
 - (void)addTwitterWithContent:(NSString *)content
                         image:(id<ISSCAttachment>)image
            locationCoordinate:(SSCLocationCoordinate2D *)locationCoordinate;
 
 /**
- *	@brief	Add KaiXin content unit
+ *	@brief	添加开心网内容单元
  *
  *  @since  ver2.2.0
  *
- *	@param 	content 	Content string.
- *	@param 	image 	Image attachment object.
+ *	@param 	content 	内容
+ *	@param 	image 	图片
  */
 - (void)addKaiXinUnitWithContent:(NSString *)content
                            image:(id<ISSCAttachment>)image;
 
 /**
- *	@brief	Add LinkedIn content unit
+ *	@brief	添加LinkedIn内容单元
  *
  *  @since  ver2.4.0
  *
- *	@param 	comment 	Comments for sharing content
- *	@param 	title 	Title string
- *	@param 	description 	Content description
- *	@param 	url 	Url string
- *	@param 	image   Image attachment object（Pictures only allows sharing network）
- *	@param 	visibility  Visible, the default is anyone
+ *	@param 	comment 	对分享内容的评论
+ *	@param 	title 	标题
+ *	@param 	description 	内容描述
+ *	@param 	url 	内容链接地址
+ *	@param 	image   内容相关图片（只允许分享网络图片）
+ *	@param 	visibility  可见，默认为anyone
  */
 - (void)addLinkedInUnitWithComment:(NSString *)comment
                              title:(NSString *)title
@@ -565,17 +565,17 @@
                              image:(id<ISSCAttachment>)image
                         visibility:(NSString *)visibility;
 /**
- *	@brief	Add Google+ content unit
+ *	@brief	添加Google+内容单元
  *
  *  @since  ver2.4.0
  *
- *	@param 	text 	Content string.
- *  @param  image   Share pictures, if you set this parameter, with links to related parameters will be invalid（contains：url、deepLinkId、title、description、thumbnail）。
- *	@param 	url 	Url string
- *	@param 	deepLinkId 	Deep link
- *	@param 	title 	Deep link title string
- *	@param 	description 	Deep link description
- *	@param 	thumbnail   Thumbnails
+ *	@param 	text 	分享内容
+ *  @param  image   分享图片，如果设置此参数，则跟链接相关参数将无效（包括：url、deepLinkId、title、description、thumbnail）。
+ *	@param 	url 	链接
+ *	@param 	deepLinkId 	深链接ID
+ *	@param 	title 	深链接标题
+ *	@param 	description 	深链接描述
+ *	@param 	thumbnail   缩略图
  */
 - (void)addGooglePlusUnitWithText:(NSString *)text
                             image:(id<ISSCAttachment>)image
@@ -585,31 +585,31 @@
                       description:(NSString *)description
                         thumbnail:(NSString *)thumbnail;
 /**
- *	@brief	Add Pinterest content unit
+ *	@brief	添加Pinterest内容单元
  *
  *  @since  ver2.4.1
  *
- *	@param 	image 	Image attachment object.
- *	@param 	url 	Url string.
- *	@param 	description 	Description.
+ *	@param 	image 	图片
+ *	@param 	url 	链接
+ *	@param 	description 	描述
  */
 - (void)addPinterestUnitWithImage:(id<ISSCAttachment>)image
                               url:(NSString *)url
                       description:(NSString *)description;
 
 /**
- *	@brief	Add Flickr content unit
+ *	@brief	添加Flickr内容单元
  *
- *	@param 	photo 	Image attachment object.
- *	@param 	title 	Title string.
- *	@param 	description 	Image description。HTML may contain a limited。
- *	@param 	tags 	Suitable for space-separated list of labels photo.
- *	@param 	isPublic 	Set to 0 for no, 1 indicate yes. Specify who can view photos.
- *	@param 	isFriend 	Set to 0 for no, 1 indicate yes. Specify who can view photos.
- *	@param 	isFamily 	Set to 0 for no, 1 indicate yes. Specify who can view photos.
- *	@param 	safetyLevel 	Set to 1 is "safe level", 2 is "PG", 3 is "X-rated."
- *	@param 	contentType 	Set to 1 is the "Photo", 2 is "screen shots", 3 is "Other."
- *	@param 	hidden 	Set to 1 is the "Photo", 2 is "screen shots", 3 is "Other."
+ *	@param 	photo 	图片对象
+ *	@param 	title 	标题
+ *	@param 	description 	相片描述。可能包含某受限的 HTML。
+ *	@param 	tags 	適用於相片的以空格分隔的標籤清單。
+ *	@param 	isPublic 	設定為 0 表示否，1 表示是。指定誰可以檢視相片。
+ *	@param 	isFriend 	設定為 0 表示否，1 表示是。指定誰可以檢視相片。
+ *	@param 	isFamily 	設定為 0 表示否，1 表示是。指定誰可以檢視相片。
+ *	@param 	safetyLevel 	設置 1 為「安全級」、2 為「輔導級」、3 為「限制級」。
+ *	@param 	contentType 	設置 1 為「相片」、2 為「螢幕截圖」、3 為「其他」。
+ *	@param 	hidden 	設置 1 為「相片」、2 為「螢幕截圖」、3 為「其他」。
  */
 - (void)addFlickrUnitWithPhoto:(id<ISSCAttachment>)photo
                          title:(NSString *)title
@@ -623,13 +623,13 @@
                         hidden:(NSNumber *)hidden;
 
 /**
- *	@brief	Add Tumblr content unit
+ *	@brief	添加Tumblr内容单元
  *
- *	@param 	text 	Content string, Can with HTML tags.
- *	@param 	title 	Title string.
- *	@param 	image 	Image attachment object
- *	@param 	url 	Jump Links
- *	@param 	blogName 	Blog name, or nil when sent to the main blog
+ *	@param 	text 	内容，可以带有HTML标签
+ *	@param 	title 	标题
+ *	@param 	image 	图片
+ *	@param 	url 	点击后跳转的链接
+ *	@param 	blogName 	博客名称，为nil时表示发去主博客
  */
 - (void)addTumblrUnitWithText:(NSString *)text
                         title:(NSString *)title
@@ -638,21 +638,21 @@
                      blogName:(NSString *)blogName;
 
 /**
- *	@brief	Add Dropbox content unit.
+ *	@brief	添加Dropbox内容单元
  *
- *	@param 	file 	File attachment object.
+ *	@param 	file 	文件
  */
 - (void)addDropboxUnitWithFile:(id<ISSCAttachment>)file;
 
 /**
- *	@brief	Add VKontakte content unit
+ *	@brief	添加VKontakte内容单元
  *
- *	@param 	message 	Message string.
- *	@param 	attachments 	Attachment list
- *	@param 	url 	Url string.
- *	@param 	groupId 	Group Id
- *	@param 	friendsOnly 	Whether to allow only friends to view
- *	@param 	locationCoordinate 	Location info
+ *	@param 	message 	消息
+ *	@param 	attachments 	附件列表
+ *	@param 	url 	链接地址
+ *	@param 	groupId 	分组标识
+ *	@param 	friendsOnly 	是否仅允许好友查看
+ *	@param 	locationCoordinate 	地理位置信息
  */
 - (void)addVKontakteUnitWithMessage:(NSString *)message
                         attachments:(NSArray *)attachments
@@ -662,28 +662,28 @@
                  locationCoordinate:(SSCLocationCoordinate2D *)locationCoordinate;
 
 /**
- *	@brief	Add Instagram content unit
+ *	@brief	添加Instagram内容单元
  *
- *	@param 	title 	Title string
- *	@param 	image 	Image attachment object
+ *	@param 	title 	标题
+ *	@param 	image 	图片
  */
 - (void)addInstagramUnitWithTitle:(NSString *)title
                             image:(id<ISSCAttachment>)image;
 
 /**
- *	@brief	Add YiXin session content unit，When custom YiXin session share content use this method，If the parameter is set to INHERIT_VALUE. will using the parent parameter value.
+ *	@brief	添加易信好友内容单元，制定微信分享时的内容使用此参数，如果参数设置为INHERIT_VALUE则默认使用父级类型相关参数
  *
  *  @since ver2.7.0
  *
- *	@param 	type 	Media type,Please see SSPublishContentMediaType
- *	@param 	content 	Content string
- *	@param 	title 	Title string
- *	@param 	url 	URL string
- *  @param  thumbImage  Thumbnails
- *	@param 	image 	Image attachment object
- *  @param  musicFileUrl    Music file url string.
- *  @param  extInfo     Extended Information
- *  @param  fileData    File data
+ *	@param 	type 	分享类型,请参考SSPublishContentMediaType
+ *	@param 	content 	分享内容
+ *	@param 	title 	标题
+ *	@param 	url 	URL地址
+ *  @param  thumbImage  缩略图
+ *	@param 	image 	分享图片
+ *  @param  musicFileUrl    音乐文件路径
+ *  @param  extInfo     扩展信息
+ *  @param  fileData    文件数据
  */
 - (void)addYiXinSessionUnitWithType:(NSNumber *)type
                             content:(NSString *)content
@@ -696,19 +696,19 @@
                            fileData:(NSData *)fileData;
 
 /**
- *	@brief	Add YiXin timeline content unit，When custom YiXin timeline share content use this method，If the parameter is set to INHERIT_VALUE. will using the parent parameter value.
+ *	@brief	添加易信朋友圈内容单元，制定微信分享时的内容使用此参数，如果参数设置为INHERIT_VALUE则默认使用父级类型相关参数
  *
  *  @since ver2.7.0
  *
- *	@param 	type 	Media type,Please see SSPublishContentMediaType
- *	@param 	content 	Content string
- *	@param 	title 	Title string
- *	@param 	url 	URL string
- *  @param  thumbImage  Thumbnails
- *	@param 	image 	Image attachment object
- *  @param  musicFileUrl    Music file url string.
- *  @param  extInfo     Extended Information
- *  @param  fileData    File data
+ *	@param 	type 	分享类型,请参考SSPublishContentMediaType
+ *	@param 	content 	分享内容
+ *	@param 	title 	标题
+ *	@param 	url 	URL地址
+ *  @param  thumbImage  缩略图
+ *	@param 	image 	分享图片
+ *  @param  musicFileUrl    音乐文件路径
+ *  @param  extInfo     扩展信息
+ *  @param  fileData    文件数据
  */
 - (void)addYiXinTimelineUnitWithType:(NSNumber *)type
                              content:(NSString *)content
@@ -721,20 +721,20 @@
                             fileData:(NSData *)fileData;
 
 /**
- *	@brief	Add WeChat session content unit，When custom WeChat session share content use this method，If the parameter is set to INHERIT_VALUE. will using the parent parameter value.
+ *	@brief	添加微信好友内容单元，制定微信分享时的内容使用此参数，如果参数设置为INHERIT_VALUE则默认使用父级类型相关参数
  *
  *  @since  ver2.7.0    增加缩略图参数
  *
- *	@param 	type 	Media type,Please see SSPublishContentMediaType
- *	@param 	content 	Content string
- *	@param 	title 	Title string
- *	@param 	url 	URL string
- *  @param  thumbImage  Thumbnails
- *	@param 	image 	Image attachment object
- *  @param  musicFileUrl    Music file url string.
- *  @param  extInfo     Extended Information
- *  @param  fileData    File data
- *  @param  emoticonData    Emoticon Data，Used to store Gif picture data
+ *	@param 	type 	分享类型,请参考SSPublishContentMediaType
+ *	@param 	content 	分享内容
+ *	@param 	title 	标题
+ *	@param 	url 	URL地址
+ *  @param  thumbImage  缩略图
+ *	@param 	image 	分享图片
+ *  @param  musicFileUrl    音乐文件路径
+ *  @param  extInfo     扩展信息
+ *  @param  fileData    文件数据
+ *  @param  emoticonData    表情数据，用于存放Gif和非Gif图片数据
  */
 - (void)addWeixinSessionUnitWithType:(NSNumber *)type
                              content:(NSString *)content
@@ -748,20 +748,20 @@
                         emoticonData:(NSData *)emoticonData;
 
 /**
- *	@brief	Add WeChat timeline content unit，When custom WeChat timeline share content use this method，If the parameter is set to INHERIT_VALUE. will using the parent parameter value.
+ *	@brief	添加微信朋友圈内容单元，制定微信分享时的内容使用此参数，如果参数设置为INHERIT_VALUE则默认使用父级类型相关参数
  *
  *  @since  ver2.7.0    增加缩略图参数
  *
- *	@param 	type 	Media type,Please see SSPublishContentMediaType
- *	@param 	content 	Content string
- *	@param 	title 	Title string
- *	@param 	url 	URL string
- *  @param  thumbImage  Thumbnails
- *	@param 	image 	Image attachment object
- *  @param  musicFileUrl    Music file url string.
- *  @param  extInfo     Extended Information
- *  @param  fileData    File data
- *  @param  emoticonData    Emoticon Data，Used to store Gif picture data
+ *	@param 	type 	分享类型,请参考SSPublishContentMediaType
+ *	@param 	content 	分享内容
+ *	@param 	title 	标题
+ *	@param 	url 	URL地址
+ *  @param  thumbImage  缩略图
+ *	@param 	image 	分享图片
+ *  @param  musicFileUrl    音乐文件路径
+ *  @param  extInfo     扩展信息
+ *  @param  fileData    文件数据
+ *  @param  emoticonData    表情数据，用于存放Gif和非Gif图片数据
  */
 - (void)addWeixinTimelineUnitWithType:(NSNumber *)type
                               content:(NSString *)content
@@ -775,18 +775,18 @@
                          emoticonData:(NSData *)emoticonData;
 
 /**
- *	@brief	Add WeChat Favorite content unit，When custom WeChat timeline share content use this method，If the parameter is set to INHERIT_VALUE. will using the parent parameter value.
+ *	@brief	添加微信收藏内容单元，制定微信分享时的内容使用此参数，如果参数设置为INHERIT_VALUE则默认使用父级类型相关参数
  *
- *	@param 	type 	Media type,Please see SSPublishContentMediaType
- *	@param 	content 	Content string
- *	@param 	title 	Title string
- *	@param 	url 	URL string
- *  @param  thumbImage  Thumbnails
- *	@param 	image 	Image attachment object
- *  @param  musicFileUrl    Music file url string.
- *  @param  extInfo     Extended Information
- *  @param  fileData    File data
- *  @param  emoticonData    Emoticon Data，Used to store Gif picture data
+ *	@param 	type 	分享类型,请参考SSPublishContentMediaType
+ *	@param 	content 	分享内容
+ *	@param 	title 	标题
+ *	@param 	url 	URL地址
+ *  @param  thumbImage  缩略图
+ *	@param 	image 	分享图片
+ *  @param  musicFileUrl    音乐文件路径
+ *  @param  extInfo     扩展信息
+ *  @param  fileData    文件数据
+ *  @param  emoticonData    表情数据，用于存放Gif和非Gif图片数据
  */
 - (void)addWeixinFavUnitWithType:(NSNumber *)type
                          content:(NSString *)content

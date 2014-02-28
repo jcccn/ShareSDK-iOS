@@ -1,9 +1,9 @@
 //
 //  Created by ShareSDK.cn on 13-1-14.
-//  website:http://www.ShareSDK.cn
-//  Support E-mail:support@sharesdk.cn
-//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
-//  Business QQ:4006852216
+//  官网地址:http://www.ShareSDK.cn
+//  技术支持邮箱:support@sharesdk.cn
+//  官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
+//  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
 #import <Foundation/Foundation.h>
@@ -14,7 +14,7 @@
 @class SSTwitterUserReader;
 
 /**
- *	@brief	Tweets Reader.
+ *	@brief	Tweets信息读取器
  */
 @interface SSTwitterTweetsReader : NSObject
 {
@@ -23,47 +23,47 @@
 }
 
 /**
- *	@brief	Raw data.
+ *	@brief	源数据
  */
 @property (nonatomic,readonly) NSDictionary *sourceData;
 
 /**
- *	@brief	Unused
+ *	@brief	未使用
  */
 @property (nonatomic,readonly) id annotations;
 
 /**
- *	@brief	a contributors list.
+ *	@brief	一个贡献用户对象的集合
  */
 @property (nonatomic,readonly) NSArray *contributors;
 
 /**
- *	@brief	Said the report by the user or client application that Tweets location
+ *	@brief	表示由用户或客户端应用程序报告该Tweets的地理位置
  */
 @property (nonatomic,readonly) SSTwitterCoordinatesReader *coordinates;
 
 /**
- *	@brief	Tweets created time.
+ *	@brief	Tweets的创建时间
  */
 @property (nonatomic,readonly) NSString *createdAt;
 
 /**
- *	@brief	Current user retweet, is true only if the interface supports include_my_retweet parameter sets the parameter display,
+ *	@brief	当前用户转发Tweet，仅当支持include_my_retweet参数的接口中设置该参数为true时显示，
  */
 @property (nonatomic,readonly) id currentUserRetweet;
 
 /**
- *	@brief	Entities information.
+ *	@brief	实体信息
  */
 @property (nonatomic,readonly) SSTwitterEntitiesReader *entities;
 
 /**
- *	@brief	Whether favorited.
+ *	@brief	是否收藏
  */
 @property (nonatomic,readonly) BOOL favorited;
 
 /**
- *	@brief	Deprecated，Instead of using coordinates
+ *	@brief	已过期，用coordinates代替
  */
 @property (nonatomic,readonly) id geo;
 
@@ -73,42 +73,42 @@
 @property (nonatomic,readonly) long long Id;
 
 /**
- *	@brief	Tweet ID string.
+ *	@brief	Tweet ID字符串
  */
 @property (nonatomic,readonly) NSString *idStr;
 
 /**
- *	@brief	in reply to screen name.
+ *	@brief	源Tweet的用户屏幕名称
  */
 @property (nonatomic,readonly) NSString *inReplyToScreenName;
 
 /**
- *	@brief	in reply to status id.
+ *	@brief	源Tweet的ID
  */
 @property (nonatomic,readonly) long long inReplyToStatusId;
 
 /**
- *	@brief	in reply to status id string.
+ *	@brief	源Tweet的ID字符串
  */
 @property (nonatomic,readonly) NSString *inReplyToStatusIdStr;
 
 /**
- *	@brief	in reply to user id.
+ *	@brief	源Tweet的用户ID
  */
 @property (nonatomic,readonly) long long inReplyToUserId;
 
 /**
- *	@brief	in reply to user id string.
+ *	@brief	源Tweet的用户ID字符串
  */
 @property (nonatomic,readonly) NSString *inReplyToUserIdStr;
 
 /**
- *	@brief	Place information.
+ *	@brief	Tweet关联地点
  */
 @property (nonatomic,readonly) SSTwitterPlacesReader *place;
 
 /**
- *	@brief	Indicating whether the contents contain sensitive content
+ *	@brief	指示内容是否包含敏感内容
  */
 @property (nonatomic,readonly) BOOL possiblySensitive;
 
@@ -118,32 +118,32 @@
 @property (nonatomic,readonly) id scopes;
 
 /**
- *	@brief	Retweet count.
+ *	@brief	转推数量
  */
 @property (nonatomic,readonly) NSInteger retweetCount;
 
 /**
- *	@brief	Retweet flag, which means that the current user Retweet this Tweet
+ *	@brief	转推标识，表示当前用户是否转推该Tweet
  */
 @property (nonatomic,readonly) BOOL retweeted;
 
 /**
- *	@brief	Tweet source.
+ *	@brief	Tweet来源
  */
 @property (nonatomic,readonly) NSString *source;
 
 /**
- *	@brief	Content string.
+ *	@brief	内容
  */
 @property (nonatomic,readonly) NSString *text;
 
 /**
- *	@brief	Does it mean that the parameter value was truncated text
+ *	@brief	表示text参数的值是否被截断
  */
 @property (nonatomic,readonly) BOOL truncated;
 
 /**
- *	@brief	User information.
+ *	@brief	发布用户
  */
 @property (nonatomic,readonly) SSTwitterUserReader *user;
 
@@ -163,20 +163,20 @@
 @property (nonatomic,readonly) NSString *withheldScope;
 
 /**
- *	@brief	Initialize reader.
+ *	@brief	初始化读取器
  *
- *	@param 	sourceData 	Raw data.
+ *	@param 	sourceData 	原数据
  *
- *	@return	reader object.
+ *	@return	读取器实例对象
  */
 - (id)initWithSourceData:(NSDictionary *)sourceData;
 
 /**
- *	@brief	Create a tweets reader.
+ *	@brief	创建Tweets信息读取器
  *
- *	@param 	sourceData 	Raw data.
+ *	@param 	sourceData 	原数据
  *
- *	@return	Reader object.
+ *	@return	读取器实例对象
  */
 + (SSTwitterTweetsReader *)readerWithSourceData:(NSDictionary *)sourceData;
 

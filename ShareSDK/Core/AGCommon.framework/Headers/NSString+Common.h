@@ -1,159 +1,157 @@
 //
 //  Created by ShareSDK.cn on 13-1-14.
-//  Website:http://www.ShareSDK.cn
-//  Support E-mail:support@sharesdk.cn
-//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
-//  Business QQ:4006852216
+//  官网地址:http://www.ShareSDK.cn
+//  技术支持邮箱:support@sharesdk.cn
+//  官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
+//  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
 #import <Foundation/Foundation.h>
 
 /**
- *	@brief	NSString Category
+ *	@brief	字符串类目
  */
 @interface NSString (Common)
 
 /**
- *	@brief	Get GUID string.
+ *	@brief	获取GUID字符串
  *
- *	@return	GUID string.
-*/
+ *	@return	GUID字符串
+ */
 + (NSString *)guidString;
 
 /**
- *	@brief	compare version string.
+ *	@brief	比较版本字符串
  *
- *	@param 	other 	Need to compare the version string.
+ *	@param 	other 	需要对比的版本号
  *
- *	@return NSOrderedAscending means greater than the specified version.
- *          NSOrderedSame means two versions of the same.
- *          NSOrderedDescending means less than the specified version
+ *	@return	NSOrderedAscending 表示大于指定版本 NSOrderedSame 表示两个版本相同  NSOrderedDescending 表示小于指定版本
  */
 - (NSComparisonResult)versionStringCompare:(NSString *)other;
 
 /**
- *	@brief	Use SHA1 encryption
+ *	@brief	使用SHA1算法进行签名
  *
  *  @since  ver1.0.6
  *
- *	@return	The encrypted string.
+ *	@return	签名后字符串
  */
 - (NSString *)sha1String;
 
 /**
- *	@brief	Use MD5 encryption (16-bit)
+ *	@brief	使用MD5算法进行签名（16位）
  *
- *	@return	The encrypted string.
+ *	@return	签名后字符串
  */
 - (NSString *)md5HexDigestString;
 
 /**
- *	@brief	Use MD5 encryption (32-bit)
+ *	@brief	使用MD5算法进行签名（32位）
  *
- *	@return	The encrypted string.
+ *	@return	签名后字符串
  */
 - (NSString *)md5DHexDigestString;
 
 /**
- *	@brief	Use HMac-SHA1 encryption.
+ *	@brief	使用HMac-SHA1进行签名
  *
- *	@param 	key 	Key
+ *	@param 	key 	密钥
  *
- *	@return	The encrypted string.
+ *	@return	签名后字符串
  */
 - (NSString *)hmacSha1StringWithKey:(NSString *)key;
 
 /**
- *	@brief	Use HMac-SHA1 encryption.
+ *	@brief	使用HMac-SHA1进行签名
  *
- *	@param 	key 	Key
+ *	@param 	key 	密钥
  *
- *	@return	The encrypted data.
+ *	@return	签名后的数据
  */
 - (NSData *)dataUsinghmacSha1StringWithKey:(NSString *)key;
 
 /**
- *	@brief	Determine whether the URL string
+ *	@brief	判断是否为URL字符串
  *
- *	@return	YES：is URL string. NO：Not a URL string.
+ *	@return	YES：是 NO：否
  */
 - (BOOL)isURLString;
 
 /**
- *	@brief	To determine whether a string contains a URL
+ *	@brief	判断是否包含URL字符串
  *
- *	@return	YES indicates contains; NO indicates not contains.
+ *	@return	YES 是 NO 否
  */
 - (BOOL)containURL;
 
 /**
- *	@brief	use URL encode
+ *	@brief	URL编码
  *
- *	@param 	encoding 	Encoding
+ *	@param 	encoding 	编码标准
  *
- *	@return	The encode string.
+ *	@return	编码后字符串
  */
 - (NSString *)urlEncode:(NSStringEncoding)encoding;
 
 /**
- *	@brief	use URL decode
+ *	@brief	URL解码
  *
- *	@param 	encoding 	Encoding
+ *	@param 	encoding 	编码标准
  *
- *	@return	The decode string.
+ *	@return	解码后字符串
  */
 - (NSString *)urlDecode:(NSStringEncoding)encoding;
 
 /**
- *	@brief	use BASE64 encode
+ *	@brief	BASE64编码
  *
- *	@param 	encoding 	Encoding
+ *	@param 	encoding 	编码标准
  *
- *	@return	The encode string.
+ *	@return	编码后字符串
  */
 - (NSString *)base64Encode:(NSStringEncoding)encoding;
 
 /**
- *	@brief	use BASE64 decode
+ *	@brief	BASE64解码
  *
- *	@param 	encoding 	Encoding
+ *	@param 	encoding 	编码标准
  *
- *	@return	The decode string.
+ *	@return	解码后字符串
  */
 - (NSString *)base64Decode:(NSStringEncoding)encoding;
 
 /**
- *	@brief	Get Pinyin string
+ *	@brief	取得汉字拼音字符串
  *
- *	@return	Pinyin string.
+ *	@return	拼音字符串
  */
 - (NSString *)pinyinString;
 
 /**
- *	@brief	Get the first characters the Pinyin of the first letter
+ *	@brief	取得第一个汉字的拼音首字母
  *
- *	@return	The Pinyin of the first letter
+ *	@return	拼音首字母
  */
 - (NSString *)pinyinFirstLetter;
 
 /**
- *	@brief	Converted to hexadecimal
+ *	@brief	转换为16进制数
  *
- *	@return	Hexadecimal value.
+ *	@return	16进制数
  */
 - (long long)hexValue;
 
 /**
- *	@brief	Convert hex string to NSData
+ *	@brief	转换16进制字符串为NSData
  *
- *	@return	Binary data object.
+ *	@return	二进制数据对象
  */
 - (NSData *)dataForHexString;
 
 /**
- *	@brief	Use Base64 decode
+ *	@brief	使用Base64进行解码得到二进制数据对象
  *
- *	@return	Binary data object.
+ *	@return	二进制数据对象
  */
 - (NSData *)dataUsingBase64Decode;
 

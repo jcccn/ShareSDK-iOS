@@ -1,51 +1,51 @@
 //
 //  Created by ShareSDK.cn on 13-1-14.
-//  Website:http://www.ShareSDK.cn
-//  Support E-mail:support@sharesdk.cn
-//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
-//  Business QQ:4006852216
+//  官网地址:http://www.ShareSDK.cn
+//  技术支持邮箱:support@sharesdk.cn
+//  官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
+//  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
 #import <Foundation/Foundation.h>
 #import "CMEventDispatcher.h"
 
 /**
- *	@brief	HTTP result notification.
+ *	@brief	HTTP返回通知
  */
 #define NOTIF_HTTP_RESULT @"httpResult"
 
 /**
- *	@brief	HTTP error notification.
+ *	@brief	HTTP错误通知
  */
 #define NOTIF_HTTP_ERROR @"httpError"
 
 /**
- *	@brief	Cache data notification.
+ *	@brief	缓存数据
  */
 #define NOTIF_HTTP_CACHE_DATA @"httpCacheData"
 
 /**
- *	@brief	Response key.
+ *	@brief	回复对象
  */
 #define NOTIF_HTTP_KEY_RESPONSE @"nhkResponse"
 
 /**
- *	@brief	Response data key.
+ *	@brief	回复数据
  */
 #define NOTIF_HTTP_KEY_RESPONSE_DATA @"nhkResponseData"
 
 /**
- *	@brief	Error key.
+ *	@brief	请求异常
  */
 #define NOTIF_HTTP_KEY_ERROR @"nhkError"
 
 /**
- *	@brief	User data key.
+ *	@brief	附加数据标识
  */
 #define NOTIF_HTTP_KEY_USER_DATA @"nhkUserData"
 
 /**
- *	@brief	Cache data key.
+ *	@brief	缓存数据标识
  */
 #define NOTIF_HTTP_KEY_CACHE_DATA @"nhkCacheData"
 
@@ -53,49 +53,49 @@
 @class CMHTTPToken;
 
 /**
- *	@brief	HTTP Worker.
+ *	@brief	Http处理器
  */
 @protocol ICMHTTPWorker <NSObject>
 
 @required
 
 /**
- *	@brief	HTTP result
+ *	@brief	http返回
  *
- *	@param 	token Token object.
+ *	@param 	token 令牌
  */
 - (void)httpResult:(CMHTTPToken *)token;
 
 /**
- *	@brief	HTTP cache data result.
+ *	@brief	http缓存返回
  *
- *	@param 	token 	Token object.
- *  @param  cacheData   Cache data
+ *	@param 	token 	令牌
+ *  @param  cacheData   缓存数据
  */
 - (void)httpCacheResult:(CMHTTPToken *)token cacheData:(NSString *)cacheData;
 
 /**
- *	@brief	HTTP fault
+ *	@brief	http错误
  *
- *	@param 	token Token object.
+ *	@param 	token 令牌
  */
 - (void)httpFault:(CMHTTPToken *)token;
 
 /**
- *	@brief	Whether to allow access to cache data
+ *	@brief	是否允许获取缓存数据
  *
- *	@param 	token 	Token object.
+ *	@param 	token 	令牌
  *
- *	@return	YES means allowing access to, NO indicates get data from the specified URL
+ *	@return	YES 表示允许获取，NO 表示从指定URL中获取数据
  */
 - (BOOL)httpShouldGetCacheData:(CMHTTPToken *)token;
 
 /**
- *	@brief	Get cache data.
+ *	@brief	获取缓存数据
  *
- *	@param 	token 	Token.
+ *	@param 	token 	令牌
  *
- *	@return	Cache data string.
+ *	@return	缓存数据
  */
 - (NSString *)httpCacheData:(CMHTTPToken *)token;
 
@@ -103,7 +103,7 @@
 @end
 
 /**
- *	@brief	HTTP Token.
+ *	@brief	HTTP令牌
  */
 @interface CMHTTPToken : CMEventDispatcher <NSURLConnectionDelegate,
                                             NSURLConnectionDataDelegate>
@@ -122,69 +122,69 @@
 }
 
 /**
- *	@brief	Use cache response, YES indicates used， NO indicates no used.
+ *	@brief	使用缓存回复, YES 表示使用， NO 表示不使用
  */
 @property (nonatomic) BOOL useCacheResponse;
 
 /**
- *	@brief	Request object.
+ *	@brief	请求对象
  */
 @property (nonatomic,readonly) NSMutableURLRequest *request;
 
 /**
- *	@brief	Response object.
+ *	@brief	请求回复对象
  */
 @property (nonatomic,readonly) NSHTTPURLResponse *response;
 
 /**
- *	@brief	Response data.
+ *	@brief	回复数据
  */
 @property (nonatomic,readonly) NSData *responseData;
 
 /**
- *	@brief	Error information.
+ *	@brief	请求错误对象
  */
 @property (nonatomic,readonly) NSError *error;
 
 /**
- *	@brief	User data.
+ *	@brief	附加数据
  */
 @property (nonatomic,readonly) id userData;
 
 /**
- *	@brief	Create a HTTP token.
+ *	@brief	获取HTTP令牌
  *
- *	@param 	urlString 	URL String.
- *	@param 	userData 	User data.
- *	@param 	worker 	Worker, if the parameter is not passed for default handling. Note: that this parameter will be internal references, do not pass the parent object of the Token object.
+ *	@param 	urlString 	请求地址字符串
+ *	@param 	userData 	附加数据
+ *	@param 	worker 	处理器，如果传入该参数则不进行默认处理。注意，此参数会在内部引用，切勿传入该Token对象的父级对象。
  *
- *	@return	HTTP Token object.
+ *	@return	HTTP令牌
  */
 + (CMHTTPToken *)tokenWithUrlString:(NSString *)urlString
                          userData:(id)userData
                            worker:(id<ICMHTTPWorker>)worker;
 
 /**
- *	@brief	Greate a HTTP token.
+ *	@brief	获取HTTP令牌
  *
- *	@param 	url 	URL object.
- *	@param 	userData 	User data.
- *	@param 	worker 	Worker, if the parameter is not passed for default handling. Note: that this parameter will be internal references, do not pass the parent object of the Token object.
+ *	@param 	url 	请求地址
+ *	@param 	userData 	附加数据
+ *	@param 	worker 	处理器，如果传入该参数则不进行默认处理。注意，此参数会在内部引用，切勿传入该Token对象的父级对象。
  *
- *	@return	HTTP Token object.
+ *	@return	HTTP令牌
  */
 + (CMHTTPToken *)tokenWithUrl:(NSURL *)url
                    userData:(id)userData
                      worker:(id<ICMHTTPWorker>)worker;
 
 /**
- *	@brief	Create a HTTP Token.
+ *	@brief	获取HTTP令牌
  *
- *	@param 	request 	Request object.
- *	@param 	userData 	User data.
- *	@param 	worker 	Worker, if the parameter is not passed for default handling. Note: that this parameter will be internal references, do not pass the parent object of the Token object.
+ *	@param 	request 	请求对象
+ *	@param 	userData 	附加数据
+ *	@param 	worker 	处理器，如果传入该参数则不进行默认处理。注意，此参数会在内部引用，切勿传入该Token对象的父级对象。
  *
- *	@return	HTTP Token object.
+ *	@return	HTTP令牌
  */
 + (CMHTTPToken *)tokenWithRequest:(NSMutableURLRequest *)request
                        userData:(id)userData
@@ -192,60 +192,60 @@
 
 
 /**
- *	@brief	Initialize token.
+ *	@brief	初始化令牌
  *
- *	@param 	url 	URL object.
- *	@param 	userData 	User data.
- *	@param 	worker 	Worker, if the parameter is not passed for default handling. Note: that this parameter will be internal references, do not pass the parent object of the Token object.
+ *	@param 	url 	请求地址
+ *	@param 	userData 	附加数据
+ *	@param 	worker 	处理器，如果传入该参数则不进行默认处理。注意，此参数会在内部引用，切勿传入该Token对象的父级对象。
  *
- *	@return	Token object.
+ *	@return	令牌对象
  */
 - (id)initWithURL:(NSURL *)url
          userData:(id)userData
            worker:(id<ICMHTTPWorker>)worker;
 
 /**
- *	@brief	Initialize token.
+ *	@brief	初始化令牌
  *
- *	@param 	urlString 	URL string.
- *	@param 	userData 	User data.
- *	@param 	worker 	Worker, if the parameter is not passed for default handling. Note: that this parameter will be internal references, do not pass the parent object of the Token object.
+ *	@param 	urlString 	请求地址字符串
+ *	@param 	userData 	附加数据
+ *	@param 	worker 	处理器，如果传入该参数则不进行默认处理。注意，此参数会在内部引用，切勿传入该Token对象的父级对象。
  *
- *	@return	Token object.
+ *	@return	令牌对象
  */
 - (id)initWithURLString:(NSString *)urlString
                userData:(id)userData
                  worker:(id<ICMHTTPWorker>)worker;
 
 /**
- *	@brief	Initialize token.
+ *	@brief	初始化令牌
  *
- *	@param 	request 	Request object.
- *	@param 	userData 	User data.
- *  @param  worker      Worker, if the parameter is not passed for default handling. Note: that this parameter will be internal references, do not pass the parent object of the Token object.
+ *	@param 	request 	请求对象
+ *	@param 	userData 	附加数据
+ *  @param  worker      处理器，如果传入该参数则不进行默认处理。注意，此参数会在内部引用，切勿传入该Token对象的父级对象。
  *
- *	@return	Token object.
+ *	@return	令牌对象
  */
 - (id)initWithRequest:(NSMutableURLRequest *)request
              userData:(id)userData
                worker:(id<ICMHTTPWorker>)worker;
 
 /**
- *	@brief	Start request.
+ *	@brief	开始请求
  */
 - (void)start;
 
 /**
- *	@brief	Cancel request.
+ *	@brief	取消请求
  */
 - (void)cancelRequest;
 
 /**
- *	@brief	Get response string.
+ *	@brief	获取回复数据字符串
  *
- *	@param 	encoding 	Encoding
+ *	@param 	encoding 	编码
  *
- *	@return	Response string.
+ *	@return	数据字符串
  */
 - (NSString *)responseString:(NSStringEncoding)encoding;
 

@@ -1,9 +1,9 @@
 //
 //  Created by ShareSDK.cn on 13-1-14.
-//  Website:http://www.ShareSDK.cn
-//  Support E-mail:support@sharesdk.cn
-//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
-//  Business QQ:4006852216
+//  官网地址:http://www.ShareSDK.cn
+//  技术支持邮箱:support@sharesdk.cn
+//  官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
+//  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
 #import <UIKit/UIKit.h>
@@ -12,28 +12,28 @@
 @class CMHTableView;
 
 /**
- *	@brief	Horizontal table view data source.
+ *	@brief	水平排版表格数据源
  */
 @protocol CMHTableViewDataSource <NSObject>
 
 @required
 
 /**
- *	@brief	Return items count.
+ *	@brief	返回表格的列表项数量
  *
- *	@param 	tableView 	Table view object.
+ *	@param 	tableView 	表格视图
  *
- *	@return	item number of table view.
+ *	@return	列表项数量
  */
 - (NSInteger)itemNumberOfTableView:(CMHTableView *)tableView;
 
 /**
- *	@brief	Return a table view item.
+ *	@brief	返回列表项视图
  *
- *	@param 	tableView 	Table view object.
- *	@param 	indexPath 	Index path.
+ *	@param 	tableView 	表格视图
+ *	@param 	indexPath 	索引位置
  *
- *	@return	Item object.
+ *	@return	列表项视图
  */
 - (UIView<ICMHTableViewItem> *)tableView:(CMHTableView *)tableView itemForIndexPath:(NSIndexPath *)indexPath;
 
@@ -41,28 +41,28 @@
 @end
 
 /**
- *	@brief	Horizontal table view delegate.
+ *	@brief	水平排版表格委托
  */
 @protocol CMHTableViewDelegate <NSObject>
 
 @optional
 
 /**
- *	@brief	Get item width.
+ *	@brief	返回列表项宽度
  *
- *	@param 	tableView 	Table view object.
- *	@param 	indexPath 	Index path.
+ *	@param 	tableView 	表格视图
+ *	@param 	indexPath 	索引位置
  *
- *	@return	Item width.
+ *	@return	列表项宽度
  */
 - (CGFloat)tableView:(CMHTableView *)tableView itemWidthForIndexPath:(NSIndexPath *)indexPath;
 
 /**
- *	@brief	item will display
+ *	@brief	子项将要显示
  *
- *	@param 	tableView 	Table view object.
- *  @param  item    Item view.
- *	@param 	indexPath 	Index path.
+ *	@param 	tableView 	表格视图
+ *  @param  item    子项视图
+ *	@param 	indexPath 	索引位置
  */
 - (void)tableView:(CMHTableView *)tableView willDisplayItem:(UIView<ICMHTableViewItem> *)item indexPath:(NSIndexPath *)indexPath;
 
@@ -70,7 +70,7 @@
 @end
 
 /**
- *	@brief	Horizontal Table View
+ *	@brief	水平排版表格
  */
 @interface CMHTableView : UIView <UIScrollViewDelegate>
 {
@@ -89,36 +89,36 @@
 }
 
 /**
- *	@brief	Data source.
+ *	@brief	数据源
  */
 @property (nonatomic,assign) id<CMHTableViewDataSource> dataSource;
 
 /**
- *	@brief	Delegate object.
+ *	@brief	委托
  */
 @property (nonatomic,assign) id<CMHTableViewDelegate> delegate;
 
 /**
- *	@brief	Item width.
+ *	@brief	列表项宽度
  */
 @property (nonatomic) CGFloat itemWidth;
 
 /**
- *	@brief	Show horizontal scroll indicator.
+ *	@brief	显示水平方向滚动条
  */
 @property (nonatomic) BOOL showsHorizontalScrollIndicator;
 
 /**
- *	@brief	Reload data.
+ *	@brief	重新刷新数据
  */
 - (void)reloadData;
 
 /**
- *	@brief	Dequeue a reusable item.
+ *	@brief	根据标识值获取可用的子项视图
  *
- *	@param 	identifier 	Item identifier.
+ *	@param 	identifier 	复用标识
  *
- *	@return	Item object.
+ *	@return	子项视图对象
  */
 - (UIView<ICMHTableViewItem> *)dequeueReusableItemWithIdentifier:(NSString *)identifier;
 

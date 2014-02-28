@@ -1,9 +1,9 @@
 //
 //  Created by ShareSDK.cn on 13-1-14.
-//  website:http://www.ShareSDK.cn
-//  Support E-mail:support@sharesdk.cn
-//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
-//  Business QQ:4006852216
+//  官网地址:http://www.ShareSDK.cn
+//  技术支持邮箱:support@sharesdk.cn
+//  官方微信:ShareSDK   （如果发布新版本的话，我们将会第一时间通过微信将版本更新内容推送给您。如果使用过程中有任何问题，也可以通过微信与我们取得联系，我们将会在24小时内给予回复）
+//  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
 #import <Foundation/Foundation.h>
@@ -16,7 +16,7 @@
 #import <ShareSDK/ShareSDKPlugin.h>
 
 /**
- *	@brief	Evernote request method
+ *	@brief	印象笔记请求方式
  */
 typedef enum
 {
@@ -27,42 +27,42 @@ typedef enum
 SSEverNoteRequestMethod;
 
 /**
- *	@brief	Evernot app protocol
+ *	@brief	印象笔记应用协议
  */
 @protocol ISSEverNoteApp <ISSPlatformApp>
 
 /**
- *	@brief	Get consumer key.
+ *	@brief	获取消费者Key
  *
- *	@return	Consumer key.
+ *	@return	消费者Key
  */
 - (NSString *)consumerKey;
 
 /**
- *	@brief	Get consumer secret
+ *	@brief	获取消费者密钥
  *
- *	@return	Consumer secret.
+ *	@return	消费者密钥
  */
 - (NSString *)consumerSecret;
 
 /**
- *	@brief	Create note.
+ *	@brief	创建纯文本笔记
  *
- *	@param 	content 	Content string.
- *  @param  title       Title string.
- *  @param  result      Result handler.
+ *	@param 	content 	内容
+ *  @param  title       标题
+ *  @param  result      返回回调
  */
 - (void)createNote:(NSString *)content
              title:(NSString *)title
             result:(SSShareResultEvent)result;
 
 /**
- *	@brief	Create note.
+ *	@brief	创建图文笔记
  *
- *	@param 	content 	Content string.
- *  @param  title       Title string.
- *  @param  resources      Resources list.
- *  @param  result      Result handler.
+ *	@param 	content 	内容
+ *  @param  title       标题
+ *  @param  resources      图片资源列表
+ *  @param  result      返回回调
  */
 - (void)createNote:(NSString *)content
              title:(NSString *)title
@@ -71,16 +71,15 @@ SSEverNoteRequestMethod;
 
 
 /**
- *	@brief	Create note.
+ *	@brief	创建图文笔记
  *
  *  @since  v2.9.0
  *
- *	@param 	content 	Content string.
- *  @param  title       Title string.
- *  @param  resources      Resources list.
- *  @param  notebookGuid    Notebook guid string.
- *  @param  tagsGuid    Tag guid list.
- *  @param  result      Result handler.
+ *	@param 	content 	内容
+ *  @param  title       标题
+ *  @param  resources      图片资源列表
+ *  @param  notebookGuid    笔记本ID
+ *  @param  result      返回回调
  */
 - (void)createNote:(NSString *)content
              title:(NSString *)title
@@ -90,21 +89,21 @@ SSEverNoteRequestMethod;
             result:(SSShareResultEvent)result;
 
 /**
- *	@brief	Create a tag.
+ *	@brief	创建标签
  *
- *	@param 	tagName 	Tag name.
- *	@param 	parentGuid 	Parent tag id.
- *	@param 	result 	Result handler.
+ *	@param 	tagName 	标签名称
+ *	@param 	parentGuid 	父级标签ID
+ *	@param 	result 	返回回调
  */
 - (void)createTagWithName:(NSString *)tagName
                parentGuid:(NSString *)parentGuid
                    result:(void(^)(SSResponseState state, SSEverNoteTagReader *tag, id<ICMErrorInfo> error))result;
 
 /**
- *	@brief	Get tag list.
+ *	@brief	获取标签列表
  *
- *  @param  notebookGuid    Notebook guid.
- *  @param  result  Result handler.
+ *  @param  notebookGuid    笔记本ID
+ *  @param  result  返回回调
  */
 - (void)getTagsWithNotebookGuid:(NSString *)notebookGuid
                          result:(void(^)(SSResponseState state, NSArray *tags, id<ICMErrorInfo> error))result;
