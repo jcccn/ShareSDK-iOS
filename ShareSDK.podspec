@@ -24,9 +24,18 @@ Pod::Spec.new do |s|
     ns.dependency 'ShareSDK/Mail'
     ns.dependency 'ShareSDK/SinaWeibo'
     ns.dependency 'ShareSDK/TencentWeibo'
+    ns.dependency 'ShareSDK/WeChat'
     ns.dependency 'ShareSDK/QZone'
     ns.dependency 'ShareSDK/QQConnect'
-    ns.dependency 'ShareSDK/WeChat'
+    ns.dependency 'ShareSDK/EverNote'
+    ns.dependency 'ShareSDK/YouDaoNote'
+    ns.dependency 'ShareSDK/Pocket'
+  end
+
+  s.subspec 'International' do |is|
+    is.requires_arc = true
+    is.dependency 'ShareSDK/Normal'
+    is.dependency 'ShareSDK/GooglePlus'
   end
 
   s.subspec 'Core' do |cs|
@@ -105,6 +114,13 @@ Pod::Spec.new do |s|
   s.subspec 'Pocket' do |pockets|
     pockets.requires_arc = true
     pockets.vendored_frameworks = 'ShareSDK/Connection/PocketConnection.framework'
+  end
+
+  s.subspec 'GooglePlus' do |googlepluss|
+    googlepluss.requires_arc = true
+    googlepluss.frameworks = 'Security', 'CoreMotion', 'CoreLocation', 'MediaPlayer', 'CoreText', 'AssetsLibrary'
+    googlepluss.vendored_frameworks = 'ShareSDK/Connection/GooglePlusConnection.framework', 'ShareSDK/Extend/GooglePlusSDK/GoogleOpenSource.framework', 'ShareSDK/Extend/GooglePlusSDK/GooglePlus.framework'
+    googlepluss.resources = "ShareSDK/Extend/GooglePlusSDK/GooglePlus.bundle"
   end
 
 end
