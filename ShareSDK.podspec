@@ -22,6 +22,7 @@ Pod::Spec.new do |s|
     ns.dependency 'ShareSDK/UI'
     ns.dependency 'ShareSDK/Copy'
     ns.dependency 'ShareSDK/Mail'
+    ns.dependency 'ShareSDK/SMS'
     ns.dependency 'ShareSDK/SinaWeibo'
     ns.dependency 'ShareSDK/TencentWeibo'
     ns.dependency 'ShareSDK/WeChat'
@@ -62,6 +63,12 @@ Pod::Spec.new do |s|
     mails.requires_arc = true
     mails.frameworks = 'UIKit', 'MessageUI'
     mails.vendored_frameworks = 'ShareSDK/Connection/MailConnection.framework'
+  end
+
+  s.subspec 'SMS' do |smss|
+    smss.requires_arc = true
+    smss.frameworks = 'UIKit', 'MessageUI'
+    smss.vendored_frameworks = 'ShareSDK/Connection/SMSConnection.framework'
   end
 
   s.subspec 'SinaWeibo' do |sinaweibos|
