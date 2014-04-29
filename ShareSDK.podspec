@@ -16,18 +16,27 @@ Pod::Spec.new do |s|
 
   ### Subspecs
 
+  s.subspec 'Weibo' do |ws|
+    ws.requires_arc = true
+    ws.dependency 'ShareSDK/Core'
+    ws.dependency 'ShareSDK/UI'
+    ws.dependency 'ShareSDK/SinaWeibo'
+    ws.dependency 'ShareSDK/TencentWeibo'
+  end
+
+  s.subspec 'Lite' do |ls|
+    ls.requires_arc = true
+    ls.dependency 'ShareSDK/Weibo'
+    ls.dependency 'ShareSDK/Copy'
+    ls.dependency 'ShareSDK/Mail'
+    ls.dependency 'ShareSDK/WeChat'
+    ls.dependency 'ShareSDK/QZone'
+    ls.dependency 'ShareSDK/QQConnect'
+  end
+
   s.subspec 'Normal' do |ns|
     ns.requires_arc = true
-    ns.dependency 'ShareSDK/Core'
-    ns.dependency 'ShareSDK/UI'
-    ns.dependency 'ShareSDK/Copy'
-    ns.dependency 'ShareSDK/Mail'
-    ns.dependency 'ShareSDK/SMS'
-    ns.dependency 'ShareSDK/SinaWeibo'
-    ns.dependency 'ShareSDK/TencentWeibo'
-    ns.dependency 'ShareSDK/WeChat'
-    ns.dependency 'ShareSDK/QZone'
-    ns.dependency 'ShareSDK/QQConnect'
+    ns.dependency 'ShareSDK/Lite'
     ns.dependency 'ShareSDK/EverNote'
     ns.dependency 'ShareSDK/YouDaoNote'
     ns.dependency 'ShareSDK/Pocket'
