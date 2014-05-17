@@ -46,6 +46,8 @@ Pod::Spec.new do |s|
     is.requires_arc = true
     is.dependency 'ShareSDK/Normal'
     is.dependency 'ShareSDK/GooglePlus'
+    is.dependency 'ShareSDK/Facebook'
+    is.dependency 'ShareSDK/Twitter'
   end
 
   s.subspec 'Core' do |cs|
@@ -137,6 +139,16 @@ Pod::Spec.new do |s|
     googlepluss.frameworks = 'Security', 'CoreMotion', 'CoreLocation', 'MediaPlayer', 'CoreText', 'AssetsLibrary'
     googlepluss.vendored_frameworks = 'ShareSDK/Connection/GooglePlusConnection.framework', 'ShareSDK/Extend/GooglePlusSDK/GoogleOpenSource.framework', 'ShareSDK/Extend/GooglePlusSDK/GooglePlus.framework'
     googlepluss.resources = "ShareSDK/Extend/GooglePlusSDK/GooglePlus.bundle"
+  end
+
+  s.subspec 'Facebook' do |fbs|
+    fbs.requires_arc = true
+    fbs.vendored_frameworks = 'ShareSDK/Connection/FacebookConnection.framework'
+  end
+
+  s.subspec 'Twitter' do |tts|
+    tts.requires_arc = true
+    tts.vendored_frameworks = 'ShareSDK/Connection/TwitterConnection.framework'
   end
 
 end
