@@ -60,15 +60,19 @@ Pod::Spec.new do |s|
 
   s.subspec 'UI' do |uis|
     uis.requires_arc = true
+    uis.default_subspec = 'Full'
 
-    uis.dependency 'ShareSDK/UI/Flat'
-    uis.dependency 'ShareSDK/UI/iPadDefault'
-    uis.dependency 'ShareSDK/UI/iPadSimple'
-    uis.dependency 'ShareSDK/UI/iPhoneDefault'
-    uis.dependency 'ShareSDK/UI/iPhoneSimple'
-    uis.dependency 'ShareSDK/UI/iPhoneAppRecommend'
-    uis.dependency 'ShareSDK/UI/ShareActionSheet'
-
+    uis.subspec 'Full' do |uifulls|
+      uifulls.requires_arc = true
+      uifulls.dependency 'ShareSDK/UI/Flat'
+      uifulls.dependency 'ShareSDK/UI/iPadDefault'
+      uifulls.dependency 'ShareSDK/UI/iPadSimple'
+      uifulls.dependency 'ShareSDK/UI/iPhoneDefault'
+      uifulls.dependency 'ShareSDK/UI/iPhoneSimple'
+      uifulls.dependency 'ShareSDK/UI/iPhoneAppRecommend'
+      uifulls.dependency 'ShareSDK/UI/ShareActionSheet'
+    end
+  
     uis.subspec 'Flat' do |uiflats|
       uiflats.requires_arc = true
       uiflats.vendored_frameworks = 'ShareSDK/UI/ShareSDKFlatShareViewUI.framework'
