@@ -1,3 +1,4 @@
+///#begin zh-cn
 //
 //  Created by ShareSDK.cn on 13-1-14.
 //  官网地址:http://www.ShareSDK.cn
@@ -6,18 +7,38 @@
 //  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
+///#end
+///#begin en
+//
+//  Created by ShareSDK.cn on 13-1-14.
+//  Website:http://www.ShareSDK.cn
+//  Support E-mail:support@sharesdk.cn
+//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
+//  Business QQ:4006852216
+//  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
+//
+///#end
+
 #import <UIKit/UIKit.h>
 #import "ICMQuiltItemView.h"
 
 @class CMQuiltView;
 
+///#begin zh-cn
 /**
  *	@brief	瀑布流视图数据源
  */
+///#end
+///#begin en
+/**
+ *	@brief	Quilt View Data Source.
+ */
+///#end
 @protocol QuiltViewDataSource <NSObject>
 
 @required
 
+///#begin zh-cn
 /**
  *	@brief	返回子项数量
  *
@@ -25,8 +46,19 @@
  *
  *	@return	子项数量
  */
+///#end
+///#begin en
+/**
+ *	@brief	Return number of item.
+ *
+ *	@param 	quiltView 	Quilt View object.
+ *
+ *	@return	Items number.
+ */
+///#end
 - (NSInteger)quiltViewNumberOfItem:(CMQuiltView *)quiltView;
 
+///#begin zh-cn
 /**
  *	@brief	返回子项内容
  *
@@ -35,17 +67,36 @@
  *
  *	@return	子项对象
  */
+///#end
+///#begin en
+/**
+ *	@brief	Return item view.
+ *
+ *	@param 	QuiltView 	Quilt View object.
+ *	@param 	indexPath 	Index path.
+ *
+ *	@return	Item view.
+ */
+///#end
 - (UIView<ICMQuiltItemView> *)quiltView:(CMQuiltView *)quiltView itemForIndexPath:(NSIndexPath *)indexPath;
 
 @end
 
+///#begin zh-cn
 /**
  *	@brief	瀑布流视图协议
  */
+///#end
+///#begin en
+/**
+ *	@brief	Quilt View Delegate.
+ */
+///#end
 @protocol QuiltViewDelegate <NSObject>
 
 @optional
 
+///#begin zh-cn
 /**
  *	@brief	子项视图将要显示
  *
@@ -53,29 +104,65 @@
  *	@param 	itemView 	子项视图
  *	@param 	indexPath 	索引位置
  */
+///#end
+///#begin en
+/**
+ *	@brief	Will display item view.
+ *
+ *	@param 	quiltView 	Quilt View object.
+ *	@param 	itemView 	Item view.
+ *	@param 	indexPath 	Index path.
+ */
+///#end
 - (void)quiltView:(CMQuiltView *)quiltView willDisplayItemView:(UIView<ICMQuiltItemView> *)itemView indexPath:(NSIndexPath *)indexPath;
 
+///#begin zh-cn
 /**
  *	@brief	瀑布流视图滚动
  *
  *	@param 	quiltView 	瀑布流视图
  */
+///#end
+///#begin en
+/**
+ *	@brief	Did scroll.
+ *
+ *	@param 	quiltView 	Quilt View object.
+ */
+///#end
 - (void)quiltViewDidScroll:(CMQuiltView *)quiltView;
 
+///#begin zh-cn
 /**
  *	@brief	瀑布流视图停止拖动
  *
  *	@param 	quiltView 	瀑布流视图
  *	@param 	decelerate 	减速运动标识，YES表示进行减速运动，否则不进行减速运动
  */
+///#end
+///#begin en
+/**
+ *	@brief	Did end dragging.
+ *
+ *	@param 	quiltView 	Quilt View object.
+ *	@param 	decelerate 	Deceleration flag, YES indicates deceleration movement, or not decelerating motion
+ */
+///#end
 - (void)quiltViewDidEndDragging:(CMQuiltView *)quiltView willDecelerate:(BOOL)decelerate;
 
 
 @end
 
+///#begin zh-cn
 /**
  *	@brief	瀑布流视图
  */
+///#end
+///#begin en
+/**
+ *	@brief	Quilt View
+ */
+///#end
 @interface CMQuiltView : UIView <UIScrollViewDelegate,
                                 ICMQuiltItemViewConstructorDelegate>
 {
@@ -102,31 +189,67 @@
     UIView *_headerView;
 }
 
+///#begin zh-cn
 /**
  *	@brief	数据源对象
  */
+///#end
+///#begin en
+/**
+ *	@brief	Data source object.
+ */
+///#end
 @property (nonatomic,assign) id<QuiltViewDataSource> dataSource;
 
+///#begin zh-cn
 /**
  *	@brief	协议对象
  */
+///#end
+///#begin en
+/**
+ *	@brief	Delegate object.
+ */
+///#end
 @property (nonatomic,assign) id<QuiltViewDelegate> delegate;
 
+///#begin zh-cn
 /**
  *	@brief	表头视图
  */
+///#end
+///#begin en
+/**
+ *	@brief	Header view.
+ */
+///#end
 @property (nonatomic,retain) UIView *headerView;
 
+///#begin zh-cn
 /**
  *	@brief	内容视图
  */
+///#end
+///#begin en
+/**
+ *	@brief	Content view.
+ */
+///#end
 @property (nonatomic,readonly) UIScrollView *contentView;
 
+///#begin zh-cn
 /**
  *	@brief	项宽度
  */
+///#end
+///#begin en
+/**
+ *	@brief	Item width.
+ */
+///#end
 @property (nonatomic,readonly) CGFloat itemWidth;
 
+///#begin zh-cn
 /**
  *	@brief	初始化瀑布流视图
  *
@@ -135,18 +258,44 @@
  *
  *	@return	瀑布流视图
  */
+///#end
+///#begin en
+/**
+ *	@brief	Initialize quilt view.
+ *
+ *	@param 	frame 	Display rect.
+ *	@param 	itemWidth 	Item width.
+ *
+ *	@return	Quilt view.
+ */
+///#end
 - (id)initWithFrame:(CGRect)frame itemWidth:(CGFloat)itemWidth;
 
+///#begin zh-cn
 /**
  *	@brief	重新加载数据
  */
+///#end
+///#begin en
+/**
+ *	@brief	Reload data.
+ */
+///#end
 - (void)reloadData;
 
+///#begin zh-cn
 /**
  *	@brief	初始化瀑布流，用于重新计算项目
  */
+///#end
+///#begin en
+/**
+ *	@brief	Initialize quilt view，Used to recalculate all items.
+ */
+///#end
 - (void)clean;
 
+///#begin zh-cn
 /**
  *	@brief	根据标识值获取可用的瀑布流子项视图
  *
@@ -154,6 +303,16 @@
  *
  *	@return	子项视图对象
  */
+///#end
+///#begin en
+/**
+ *	@brief	Dequeue reusable page.
+ *
+ *	@param 	identifier 	Item identifier.
+ *
+ *	@return	Item view object.
+ */
+///#end
 - (UIView<ICMQuiltItemView> *)dequeueReusablePageWithIdentifier:(NSString *)identifier;
 
 

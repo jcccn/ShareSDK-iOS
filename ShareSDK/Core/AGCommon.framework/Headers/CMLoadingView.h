@@ -1,3 +1,4 @@
+///#begin zh-cn
 //
 //  Created by ShareSDK.cn on 13-1-14.
 //  官网地址:http://www.ShareSDK.cn
@@ -6,11 +7,30 @@
 //  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
+///#end
+///#begin en
+//
+//  Created by ShareSDK.cn on 13-1-14.
+//  Website:http://www.ShareSDK.cn
+//  Support E-mail:support@sharesdk.cn
+//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
+//  Business QQ:4006852216
+//  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
+//
+///#end
+
 #import <UIKit/UIKit.h>
 
+///#begin zh-cn
 /**
  *	@brief	加载视图
  */
+///#end
+///#begin en
+/**
+ *	@brief	Loading View.
+ */
+///#end
 @interface CMLoadingView : UIView
 {
     UIView *_backgroundView;
@@ -21,26 +41,56 @@
     
 }
 
+///#begin zh-cn
 /**
  *	@brief	提示信息
  */
+///#end
+///#begin en
+/**
+ *	@brief	Message content.
+ */
+///#end
 @property (nonatomic,copy) NSString *text;
 
+///#begin zh-cn
 /**
  *	@brief	显示
  */
+///#end
+///#begin en
+/**
+ *	@brief	Display.
+ */
+///#end
 - (void)show;
 
+///#begin zh-cn
 /**
  *	@brief	显示到指定视图中
  *
  *	@param 	view 	视图
  */
+///#end
+///#begin en
+/**
+ *	@brief	Display to the specified view
+ *
+ *	@param 	view 	View object.
+ */
+///#end
 - (void)showInView:(UIView *)view;
 
+///#begin zh-cn
 /**
  *	@brief	隐藏
  */
+///#end
+///#begin en
+/**
+ *	@brief	hide view.
+ */
+///#end
 - (void)hide;
 
 @end

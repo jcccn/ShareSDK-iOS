@@ -8,7 +8,7 @@
 //
 #import <ShareSDK/ShareSDK.h>
 #import <CommonCrypto/CommonCrypto.h>
-#import "SSHTTPClient.h"
+#import "SRHTTPClient.h"
 
 /**
  *	@brief	网络类型
@@ -254,7 +254,7 @@ SSNetworkType;
  *
  *	@return	HTTP客户端对象
  */
-+ (SSHTTPClient *)httpClientWithRequest:(NSMutableURLRequest *)request;
++ (SRHTTPClient *)httpClientWithRequest:(NSMutableURLRequest *)request;
 
 /**
  *	@brief	创建HTTP客户端
@@ -263,7 +263,7 @@ SSNetworkType;
  *
  *	@return	HTTP客户端对象
  */
-+ (SSHTTPClient *)httpClientWithURL:(NSURL *)url;
++ (SRHTTPClient *)httpClientWithURL:(NSURL *)url;
 
 /**
  *	@brief	创建HTTP客户端
@@ -272,7 +272,7 @@ SSNetworkType;
  *
  *	@return	HTTP客户端对象
  */
-+ (SSHTTPClient *)httpClientWithURLString:(NSString *)urlString;
++ (SRHTTPClient *)httpClientWithURLString:(NSString *)urlString;
 
 #pragma mark - JSON
 

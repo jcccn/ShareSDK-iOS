@@ -1,3 +1,4 @@
+///#begin zh-cn
 //
 //  Created by ShareSDK.cn on 13-1-14.
 //  官网地址:http://www.ShareSDK.cn
@@ -6,22 +7,51 @@
 //  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
+///#end
+///#begin en
+//
+//  Created by ShareSDK.cn on 13-1-14.
+//  Website:http://www.ShareSDK.cn
+//  Support E-mail:support@sharesdk.cn
+//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
+//  Business QQ:4006852216
+//  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
+//
+///#end
+
 #import <Foundation/Foundation.h>
 
+///#begin zh-cn
 /**
  *	@brief	页面内容视图接口，实现此接口则可作为PageView的内容页
  */
+///#end
+///#begin en
+/**
+ *	@brief	Page content view protocol，Implement this protocol can be used as page content view.
+ */
+///#end
 @protocol ICMPageContentView <NSObject>
 
 @required
 
+///#begin zh-cn
 /**
  *	@brief	获取复用标识
  *
  *	@return	复用标识
  */
+///#end
+///#begin en
+/**
+ *	@brief	Get reuse identifier.
+ *
+ *	@return	Reuse identifier.
+ */
+///#end
 - (NSString *)reuseIdentifier;
 
+///#begin zh-cn
 /**
  *	@brief	根据引用标识初始化
  *
@@ -30,6 +60,17 @@
  *
  *	@return	对象
  */
+///#end
+///#begin en
+/**
+ *	@brief	Initialize page content view.
+ *
+ *	@param 	reuseIdentifier 	Reuse identifier
+ *  @param  frame   Display rect.
+ *
+ *	@return	Page content view object.
+ */
+///#end
 - (id)initWithReuseIdentifier:(NSString *)reuseIdentifier frame:(CGRect)frame;
 
 @end

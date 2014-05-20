@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'ShareSDK'
-  s.version  = '2.8.7'
+  s.version  = '2.8.8'
   s.summary  = 'ShareSDK is a SNS share kit.'
   s.homepage = 'https://github.com/jcccn/ShareSDK-iOS'
   s.author   = { 'Chuncheng Jiang' => 'jccuestc@gmail.com' }
@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
                    © 2013 ShareSDK.cn , All Rights Reserved
                  LICENSE
                }
-  s.source   = { :git => 'https://github.com/jcccn/ShareSDK-iOS.git', :tag => '2.8.7' }
+  s.source   = { :git => 'https://github.com/jcccn/ShareSDK-iOS.git', :tag => '2.8.8' }
   s.platform     = :ios, '5.0'
   s.requires_arc = true
 
