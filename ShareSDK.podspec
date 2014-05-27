@@ -55,7 +55,7 @@ Pod::Spec.new do |s|
     cs.frameworks = 'SystemConfiguration', 'QuartzCore', 'CoreTelephony'
     cs.libraries  = 'icucore', 'z.1.2.5'
     cs.vendored_frameworks = 'ShareSDK/ShareSDK.framework', 'ShareSDK/Core/AGCommon.framework', 'ShareSDK/Core/ShareSDKCoreService.framework'
-    cs.resources = ["ShareSDK/Core/Resource.bundle", "ShareSDK/Core/en.lproj/*.strings", "ShareSDK/Core/zh-Hans.lproj/*.strings"]
+    cs.resources = ["ShareSDK/Core/Resource.bundle", "ShareSDK/Core/zh-Hans.lproj/*.strings"]
   end
 
   s.subspec 'UI' do |uis|
