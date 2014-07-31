@@ -1,3 +1,4 @@
+///#begin zh-cn
 //
 //  Created by ShareSDK.cn on 13-1-14.
 //  官网地址:http://www.ShareSDK.cn
@@ -6,12 +7,31 @@
 //  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
+///#end
+///#begin en
+//
+//  Created by ShareSDK.cn on 13-1-14.
+//  website:http://www.ShareSDK.cn
+//  Support E-mail:support@sharesdk.cn
+//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
+//  Business QQ:4006852216
+//  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
+//
+///#end
+
 #import <Foundation/Foundation.h>
 #import <ShareSDK/ShareSDKPlugin.h>
 
+///#begin zh-cn
 /**
  *	@brief	分享内容实体
  */
+///#end
+///#begin en
+/**
+ *	@brief	Share Content Entity.
+ */
+///#end
 @interface SSTwitterShareContentEntity : NSObject <ISSPlatformShareContentEntity,
                                                    NSCoding>
 {
@@ -19,26 +39,56 @@
     NSMutableDictionary *_dict;
 }
 
+///#begin zh-cn
 /**
  *	@brief	分享内容
  */
+///#end
+///#begin en
+/**
+ *	@brief	Content string.
+ */
+///#end
 @property (nonatomic,copy) NSString *content;
 
+///#begin zh-cn
 /**
  *	@brief	分享图片
  */
+///#end
+///#begin en
+/**
+ *	@brief	Image attachment.
+ */
+///#end
 @property (nonatomic,retain) id<ISSCAttachment> image;
 
+///#begin zh-cn
 /**
  *	@brief	地理位置信息
  */
+///#end
+///#begin en
+/**
+ *	@brief	Location coordinate.
+ */
+///#end
 @property (nonatomic,retain) SSCLocationCoordinate2D *locationCoordinate;
 
+///#begin zh-cn
 /**
  *	@brief	通过分享内容解析实体数据
  *
  *	@param 	content 	分享内容
  */
+///#end
+///#begin en
+/**
+ *	@brief	Parsed entity data by sharing content
+ *
+ *	@param 	content 	Content object.
+ */
+///#end
 - (void)parseWithContent:(id<ISSContent>)content;
 
 @end

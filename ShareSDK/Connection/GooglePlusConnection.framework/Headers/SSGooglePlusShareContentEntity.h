@@ -1,3 +1,4 @@
+///#begin zh-cn
 //
 //  Created by ShareSDK.cn on 13-1-14.
 //  官网地址:http://www.ShareSDK.cn
@@ -6,12 +7,31 @@
 //  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
+///#end
+///#begin en
+//
+//  Created by ShareSDK.cn on 13-1-14.
+//  website:http://www.ShareSDK.cn
+//  Support E-mail:support@sharesdk.cn
+//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
+//  Business QQ:4006852216
+//  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
+//
+///#end
+
 #import <Foundation/Foundation.h>
 #import <ShareSDK/ShareSDKPlugin.h>
 
+///#begin zh-cn
 /**
  *	@brief	分享内容实体
  */
+///#end
+///#begin en
+/**
+ *	@brief	Share Content Entity.
+ */
+///#end
 @interface SSGooglePlusShareContentEntity : NSObject <ISSPlatformShareContentEntity,
                                                       NSCoding>
 {
@@ -19,46 +39,104 @@
     NSMutableDictionary *_dict;
 }
 
+///#begin zh-cn
 /**
  *	@brief	内容
  */
+///#end
+///#begin en
+/**
+ *	@brief	Content string.
+ */
+///#end
 @property (nonatomic,copy) NSString *text;
 
+///#begin zh-cn
 /**
  *	@brief	图片
  */
+///#end
+///#begin en
+/**
+ *	@brief	Image attachment object.
+ */
+///#end
 @property (nonatomic,copy) id<ISSCAttachment> image;
 
+///#begin zh-cn
 /**
  *	@brief	链接
  */
+///#end
+///#begin en
+/**
+ *	@brief	URL string.
+ */
+///#end
 @property (nonatomic,copy) NSString *url;
 
+///#begin zh-cn
 /**
  *	@brief	深链接描述
  */
+///#end
+///#begin en
+/**
+ *	@brief	Deep link description.
+ */
+///#end
 @property (nonatomic,copy) NSString *description;
 
+///#begin zh-cn
 /**
  *	@brief	深链接标题
  */
+///#end
+///#begin en
+/**
+ *	@brief	Deep link title.
+ */
+///#end
 @property (nonatomic,copy) NSString *title;
 
+///#begin zh-cn
 /**
  *	@brief	缩略图
  */
+///#end
+///#begin en
+/**
+ *	@brief	Thumbnail path.
+ */
+///#end
 @property (nonatomic,retain) NSString *thumbnail;
 
+///#begin zh-cn
 /**
  *	@brief	深链接ID
  */
+///#end
+///#begin en
+/**
+ *	@brief	Deep link id.
+ */
+///#end
 @property (nonatomic,copy) NSString *deepLinkId;
 
+///#begin zh-cn
 /**
  *	@brief	通过分享内容解析实体数据
  *
  *	@param 	content 	分享内容
  */
+///#end
+///#begin en
+/**
+ *	@brief	By sharing content parsed entity data
+ *
+ *	@param 	content 	Share content object.
+ */
+///#end
 - (void)parseWithContent:(id<ISSContent>)content;
 
 @end

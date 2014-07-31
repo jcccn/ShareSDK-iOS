@@ -1,3 +1,4 @@
+///#begin zh-cn
 //
 //  Created by ShareSDK.cn on 13-1-14.
 //  官网地址:http://www.ShareSDK.cn
@@ -6,27 +7,67 @@
 //  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
+///#end
+///#begin en
+//
+//  Created by ShareSDK.cn on 13-1-14.
+//  Website:http://www.ShareSDK.cn
+//  Support E-mail:support@sharesdk.cn
+//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
+//  Business QQ:4006852216
+//  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
+//
+///#end
+
 #import <Foundation/Foundation.h>
 #import "ShareSDKEventHandlerDef.h"
 
+///#begin zh-cn
 /**
  *	@brief	分享菜单项协议
  */
+///#end
+///#begin en
+/**
+ *	@brief	Share menu item protocol
+ */
+///#end
 @protocol ISSShareActionSheetItem <NSObject>
 
+///#begin zh-cn
 /**
  *	@brief	标题
  */
+///#end
+///#begin en
+/**
+ *	@brief	Title
+ */
+///#end
 - (NSString *)title;
 
+///#begin zh-cn
 /**
  *	@brief	图标
  */
+///#end
+///#begin en
+/**
+ *	@brief	Icon image.
+ */
+///#end
 - (UIImage *)icon;
 
+///#begin zh-cn
 /**
  *	@brief	点击事件处理器
  */
+///#end
+///#begin en
+/**
+ *	@brief	Click menu item handler.
+ */
+///#end
 - (SSShareActionSheetItemClickHandler)clickHandler;
 
 @end

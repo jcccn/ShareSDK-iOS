@@ -1,3 +1,4 @@
+///#begin zh-cn
 //
 //  Created by ShareSDK.cn on 13-1-14.
 //  官网地址:http://www.ShareSDK.cn
@@ -6,6 +7,18 @@
 //  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
+///#end
+///#begin en
+//
+//  Created by ShareSDK.cn on 13-1-14.
+//  website:http://www.ShareSDK.cn
+//  Support E-mail:support@sharesdk.cn
+//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
+//  Business QQ:4006852216
+//  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
+//
+///#end
+
 #import <Foundation/Foundation.h>
 #import <ShareSDKCoreService/ShareSDKCoreService.h>
 #import "SSGooglePlusUser.h"
@@ -14,9 +27,16 @@
 #import "SSGooglePlusShareInfo.h"
 #import <ShareSDK/ShareSDKPlugin.h>
 
+///#begin zh-cn
 /**
  *	@brief	Google+请求方式
  */
+///#end
+///#begin en
+/**
+ *	@brief	Google+ request method
+ */
+///#end
 typedef enum
 {
 	SSGooglePlusRequestMethodGet = 0, /**< GET方式 */
@@ -25,39 +45,83 @@ typedef enum
 }
 SSGooglePlusRequestMethod;
 
+///#begin zh-cn
 /**
  *	@brief	Google+应用协议
  */
+///#end
+///#begin en
+/**
+ *	@brief	Google+ app protocol
+ */
+///#end
 @protocol ISSGooglePlusApp <ISSPlatformApp>
 
+///#begin zh-cn
 /**
  *	@brief	获取应用Key
  *
  *	@return	应用Key
  */
+///#end
+///#begin en
+/**
+ *	@brief	Get client key.
+ *
+ *	@return	Client key.
+ */
+///#end
 - (NSString *)clientId;
 
+///#begin zh-cn
 /**
  *	@brief	获取应用密钥
  *
  *	@return	应用密钥
  */
+///#end
+///#begin en
+/**
+ *	@brief	Get client secret.
+ *
+ *	@return	Client secret.
+ */
+///#end
 - (NSString *)clientSecret;
 
+///#begin zh-cn
 /**
  *	@brief	获取应用回调地址
  *
  *	@return	应用回调地址
  */
+///#end
+///#begin en
+/**
+ *	@brief	Get app redirect url.
+ *
+ *	@return	Redirect url.
+ */
+///#end
 - (NSString *)redirectUri;
 
+///#begin zh-cn
 /**
  *	@brief	获取SSO回调地址列表
  *
  *	@return	回调地址列表
  */
+///#end
+///#begin en
+/**
+ *	@brief	Get SSO callback URL.
+ *
+ *	@return	callback URL string.
+ */
+///#end
 - (NSString *)ssoCallbackUrl;
 
+///#begin zh-cn
 /**
  *	@brief	调用开放平台API
  *
@@ -67,6 +131,18 @@ SSGooglePlusRequestMethod;
  *  @param  result  返回回调
  *  @param  fault   失败回调
  */
+///#end
+///#begin en
+/**
+ *	@brief	Call api.
+ *
+ *	@param 	path 	API path string.
+ *	@param 	params 	Request parameters，Can ISSParameter or NSDictionary, (NSDictionary only way to submit POST)
+ *  @param  user    Authorized users, it means that if the incoming nil default authorized users
+ *  @param  result  Result handler.
+ *  @param  fault   Fault handler.
+ */
+///#end
 - (void)api:(NSString *)path
      method:(SSGooglePlusRequestMethod)method
      params:(id)params
@@ -74,6 +150,7 @@ SSGooglePlusRequestMethod;
      result:(void(^)(id responder))result
       fault:(void(^)(CMErrorInfo *error))fault;
 
+///#begin zh-cn
 /**
  *	@brief	分享内容
  *
@@ -81,10 +158,21 @@ SSGooglePlusRequestMethod;
  *	@param 	text        分享内容
  *  @param  result  分享返回回调
  */
+///#end
+///#begin en
+/**
+ *	@brief	Share content.
+ *
+ *	@param 	url 	URL string.
+ *	@param 	text        Content string.
+ *  @param  result  Result handler.
+ */
+///#end
 - (void)shareWithUrl:(NSString *)url
                 text:(NSString *)text
               result:(SSShareResultEvent)result;
 
+///#begin zh-cn
 /**
  *	@brief	分享内容
  *
@@ -97,6 +185,21 @@ SSGooglePlusRequestMethod;
  *	@param 	thumbnail 	深链接缩略图
  *  @param  result  分享返回回调
  */
+///#end
+///#begin en
+/**
+ *	@brief	Share content.
+ *
+ *	@param 	url 	URL string.
+ *	@param 	text        Content string.
+ *  @param  image   Image attachment object.
+ *	@param 	deepLinkId  Deep link id.
+ *	@param 	title 	Deep link title.
+ *	@param 	description 	Deep link description
+ *	@param 	thumbnail 	Deep link thumbnail.
+ *  @param  result  Result handler.
+ */
+///#end
 - (void)shareWithUrl:(NSString *)url
                 text:(NSString *)text
                image:(id<ISSCAttachment>)image

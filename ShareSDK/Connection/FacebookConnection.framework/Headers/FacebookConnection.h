@@ -1,3 +1,4 @@
+///#begin zh-cn
 //
 //  Created by ShareSDK.cn on 13-1-14.
 //  官网地址:http://www.ShareSDK.cn
@@ -6,15 +7,35 @@
 //  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
+///#end
+///#begin en
+//
+//  Created by ShareSDK.cn on 13-1-14.
+//  website:http://www.ShareSDK.cn
+//  Support E-mail:support@sharesdk.cn
+//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
+//  Business QQ:4006852216
+//  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
+//
+///#end
+
 #import <UIKit/UIKit.h>
 #import "ISSFacebookApp.h"
 #import <ShareSDK/ShareSDKPlugin.h>
 
+///#begin zh-cn
 /**
  *	@brief	Facebook链接器
  */
+///#end
+///#begin en
+/**
+ *	@brief	Facebook Connection.
+ */
+///#end
 @interface FacebookConnection : NSObject <ISSPlatform>
 
+///#begin zh-cn
 /**
  *	@brief	创建应用配置信息
  *
@@ -23,6 +44,17 @@
  *
  *	@return	应用配置信息
  */
+///#end
+///#begin en
+/**
+ *	@brief	Create an application configuration information.
+ *
+ *	@param 	apiKey 	Application key.
+ *	@param 	appSecret 	Application secret.
+ *
+ *	@return	Application configuration information.
+ */
+///#end
 - (NSDictionary *)appInfoWithApiKey:(NSString *)apiKey
                           appSecret:(NSString *)appSecret;
 

@@ -1,3 +1,4 @@
+///#begin zh-cn
 //
 //  Created by ShareSDK.cn on 13-1-14.
 //  官网地址:http://www.ShareSDK.cn
@@ -6,13 +7,32 @@
 //  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
+///#end
+///#begin en
+//
+//  Created by ShareSDK.cn on 13-1-14.
+//  website:http://www.ShareSDK.cn
+//  Support E-mail:support@sharesdk.cn
+//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
+//  Business QQ:4006852216
+//  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
+//
+///#end
+
 #import <Foundation/Foundation.h>
 #import <ShareSDKCoreService/SSCDataObject.h>
 #import <ShareSDK/ShareSDKPlugin.h>
 
+///#begin zh-cn
 /**
  *	@brief	授权凭证
  */
+///#end
+///#begin en
+/**
+ *	@brief	Credential
+ */
+///#end
 @interface SSInstagramCredential : NSObject <ISSPlatformCredential,
                                              NSCoding>
 {
@@ -23,31 +43,67 @@
     NSDictionary *_extInfo;
 }
 
+///#begin zh-cn
 /**
  *	@brief	扩展数据
  */
+///#end
+///#begin en
+/**
+ *	@brief	Extended Data
+ */
+///#end
 @property (nonatomic,retain) NSDictionary *extInfo;
 
+///#begin zh-cn
 /**
  *	@brief	用户ID
  */
+///#end
+///#begin en
+/**
+ *	@brief	User id.
+ */
+///#end
 @property (nonatomic,copy) NSString *uid;
 
+///#begin zh-cn
 /**
  *	@brief	Access Token
  */
+///#end
+///#begin en
+/**
+ *	@brief	Access Token
+ */
+///#end
 @property (nonatomic,copy) NSString *token;
 
+///#begin zh-cn
 /**
  *	@brief	过期时间
  */
+///#end
+///#begin en
+/**
+ *	@brief	Expires.
+ */
+///#end
 @property (nonatomic,retain) NSDate *expired;
 
+///#begin zh-cn
 /**
  *	@brief	判断授权数据是否有效
  */
+///#end
+///#begin en
+/**
+ *	@brief	Determine the validity of the authorization data
+ */
+///#end
 @property (nonatomic,readonly) BOOL available;
 
+///#begin zh-cn
 /**
  *	@brief	使用原始数据创建授权凭证
  *
@@ -55,6 +111,16 @@
  *
  *	@return	授权凭证
  */
+///#end
+///#begin en
+/**
+ *	@brief	Create a credential.
+ *
+ *	@param 	sourceData 	Raw data.
+ *
+ *	@return	Credential object.
+ */
+///#end
 + (SSInstagramCredential *)credentialWithSourceData:(NSDictionary *)sourceData;
 
 @end

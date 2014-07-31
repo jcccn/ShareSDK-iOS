@@ -1,3 +1,4 @@
+///#begin zh-cn
 //
 //  Created by ShareSDK.cn on 13-1-14.
 //  官网地址:http://www.ShareSDK.cn
@@ -6,6 +7,18 @@
 //  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
+///#end
+///#begin en
+//
+//  Created by ShareSDK.cn on 13-1-14.
+//  website:http://www.ShareSDK.cn
+//  Support E-mail:support@sharesdk.cn
+//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
+//  Business QQ:4006852216
+//  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
+//
+///#end
+
 #import <Foundation/Foundation.h>
 #import <ShareSDKCoreService/ShareSDKCoreService.h>
 #import "SSKaiXinUser.h"
@@ -13,9 +26,16 @@
 #import "SSKaiXinRecord.h"
 #import <ShareSDK/ShareSDKPlugin.h>
 
+///#begin zh-cn
 /**
  *	@brief	请求方式
  */
+///#end
+///#begin en
+/**
+ *	@brief	Request method
+ */
+///#end
 typedef enum
 {
 	SSKaiXinRequestMethodGet = 0, /**< GET方式 */
@@ -24,32 +44,67 @@ typedef enum
 }
 SSKaiXinRequestMethod;
 
+///#begin zh-cn
 /**
  *	@brief	开心网应用协议
  */
+///#end
+///#begin en
+/**
+ *	@brief	KaiXin App Protocol.
+ */
+///#end
 @protocol ISSKaiXinApp <ISSPlatformApp>
 
+///#begin zh-cn
 /**
  *	@brief	获取应用Key
  *
  *	@return	应用Key
  */
+///#end
+///#begin en
+/**
+ *	@brief	Get app key.
+ *
+ *	@return	App key.
+ */
+///#end
 - (NSString *)apiKey;
 
+///#begin zh-cn
 /**
  *	@brief	获取应用密钥
  *
  *	@return	应用密钥
  */
+///#end
+///#begin en
+/**
+ *	@brief	Get secret key.
+ *
+ *	@return	Secret key.
+ */
+///#end
 - (NSString *)secretKey;
 
+///#begin zh-cn
 /**
  *	@brief	获取应用回调地址
  *
  *	@return	应用回调地址
  */
+///#end
+///#begin en
+/**
+ *	@brief	Get redirect uri.
+ *
+ *	@return	Redirect uri.
+ */
+///#end
 - (NSString *)redirectUri;
 
+///#begin zh-cn
 /**
  *	@brief	调用开放平台API
  *
@@ -60,6 +115,19 @@ SSKaiXinRequestMethod;
  *  @param  result  返回回调
  *  @param  fault   失败回调
  */
+///#end
+///#begin en
+/**
+ *	@brief	Call API.
+ *
+ *	@param 	path 	API path.
+ *  @param  method  Request method.
+ *	@param 	params 	Request parameters.
+ *  @param  user    Authorized users, it means that if the incoming nil default authorized users
+ *  @param  result  Result handler.
+ *  @param  fault   Fault handler.
+ */
+///#end
 - (void)api:(NSString *)path
      method:(SSKaiXinRequestMethod)method
      params:(id<ISSCParameters>)params
@@ -67,6 +135,7 @@ SSKaiXinRequestMethod;
      result:(void(^)(id responder))result
       fault:(void(^)(CMErrorInfo *error))fault;
 
+///#begin zh-cn
 /**
  *	@brief	发布一条记录(可以带一张图片)
  *
@@ -74,10 +143,21 @@ SSKaiXinRequestMethod;
  *	@param 	pic 	图片
  *  @param  result  回调方法
  */
+///#end
+///#begin en
+/**
+ *	@brief	add record(Can take a picture)
+ *
+ *	@param 	content 	Content string.
+ *	@param 	pic 	Pictrue attachment.
+ *  @param  result  Result handler.
+ */
+///#end
 - (void)addRecordWithContent:(NSString *)content
                          pic:(id<ISSCAttachment>)pic
                       result:(SSShareResultEvent)result;
 
+///#begin zh-cn
 /**
  *	@brief	获取我的记录列表
  *
@@ -87,6 +167,18 @@ SSKaiXinRequestMethod;
  *                      全部/原创/转发/签名/公开/仅好友可见/仅自己可见/好友的好友可见
  *  @param  result  回调方法
  */
+///#end
+///#begin en
+/**
+ *	@brief	Get my records.
+ *
+ *	@param 	start 	Get the number of start, Default is 0
+ *	@param 	num 	Get count，Default is 20
+ *	@param 	category 	Category，0/1/2/3/4/5/6/7
+ *                      All / Original / forward / signature / public / only friends can see / visible only own / friends of friends visible
+ *  @param  result  Result handler.
+ */
+///#end
 - (void)getMyRecordsWithStart:(NSInteger)start
                           num:(NSInteger)num
                      category:(NSInteger)category

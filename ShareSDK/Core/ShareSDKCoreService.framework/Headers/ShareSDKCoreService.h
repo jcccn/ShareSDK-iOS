@@ -1,3 +1,4 @@
+///#begin zh-cn
 //
 //  Created by ShareSDK.cn on 13-1-14.
 //  官网地址:http://www.ShareSDK.cn
@@ -6,6 +7,18 @@
 //  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
+///#end
+///#begin en
+//
+//  Created by ShareSDK.cn on 13-1-14.
+//  Website:http://www.ShareSDK.cn
+//  Support E-mail:support@sharesdk.cn
+//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
+//  Business QQ:4006852216
+//  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
+//
+///#end
+
 #import <UIKit/UIKit.h>
 #import "ISSCAccount.h"
 #import "ISSCRequest.h"
@@ -20,11 +33,19 @@
 #import "ISSCDataObject.h"
 #import "SSCLocationCoordinate2D.h"
 
+///#begin zh-cn
 /**
  *	@brief	ShareSDK核心服务层
  */
+///#end
+///#begin en
+/**
+ *	@brief	ShareSDK core service.
+ */
+///#end
 @interface ShareSDKCoreService : NSObject
 
+///#begin zh-cn
 /**
  *	@brief	使用AppKey进行登录
  *
@@ -32,8 +53,19 @@
  *
  *	@return	登录帐户对象
  */
+///#end
+///#begin en
+/**
+ *	@brief	Use app key login
+ *
+ *	@param 	appKey 	App key.
+ *
+ *	@return	Account information.
+ */
+///#end
 + (id<ISSCAccount>)loginWithAppKey:(NSString *)appKey;
 
+///#begin zh-cn
 /**
  *	@brief	检查帐号是否已经登录
  *
@@ -41,15 +73,35 @@
  *
  *	@return	YES表示登录，NO表示尚未登录
  */
+///#end
+///#begin en
+/**
+ *	@brief	Check whether the account has logged
+ *
+ *	@param 	account 	Account information.
+ *
+ *	@return	YES means the login, NO indicates not logged in
+ */
+///#end
 + (BOOL)hasLogined:(id<ISSCAccount>)account;
 
+///#begin zh-cn
 /**
  *	@brief	创建请求参数
  *
  *	@return	请求参数对象
  */
+///#end
+///#begin en
+/**
+ *	@brief	Create a parameters.
+ *
+ *	@return	Parameters object.
+ */
+///#end
 + (id<ISSCParameters>)parameters;
 
+///#begin zh-cn
 /**
  *	@brief	创建请求参数
  *
@@ -57,8 +109,19 @@
  *
  *	@return	请求参数对象
  */
+///#end
+///#begin en
+/**
+ *	@brief	Create a parameters.
+ *
+ *	@param 	query 	The URL query string.
+ *
+ *	@return	Parameters
+ */
+///#end
 + (id<ISSCParameters>)parametersWithQuery:(NSString *)query;
 
+///#begin zh-cn
 /**
  *	@brief	创建OAuth请求参数
  *
@@ -69,11 +132,25 @@
  *
  *	@return	OAuth请求参数
  */
+///#end
+///#begin en
+/**
+ *	@brief	Create OAuth request parameters.
+ *
+ *	@param 	consumerKey 	Consumer key.
+ *	@param 	consumerSecret 	Consumer secret.
+ *  @param  oauthToken  OAuth token.
+ *  @param  oauthSecret OAuth secret.
+ *
+ *	@return	OAuth parameters.
+ */
+///#end
 + (id<ISSCOAuthParameters>)oauthParameters:(NSString *)consumerKey
                             consumerSecret:(NSString *)consumerSecret
                                 oauthToken:(NSString *)oauthToken
                                oauthSecret:(NSString *)oauthSecret;
 
+///#begin zh-cn
 /**
  *	@brief	创建OAuth请求参数
  *
@@ -85,12 +162,27 @@
  *
  *	@return	OAuth请求参数
  */
+///#end
+///#begin en
+/**
+ *	@brief	Create OAuth request parameters.
+ *
+ *	@param 	consumerKey 	Consumer key.
+ *	@param 	consumerSecret 	Consumer secret
+ *  @param  oauthToken  OAuth token.
+ *  @param  oauthSecret OAuth secret.
+ *  @param  query   The URL query string
+ *
+ *	@return	OAuth parameters.
+ */
+///#end
 + (id<ISSCOAuthParameters>)oauthParameters:(NSString *)consumerKey
                             consumerSecret:(NSString *)consumerSecret
                                 oauthToken:(NSString *)oauthToken
                                oauthSecret:(NSString *)oauthSecret
                                      query:(NSString *)query;
 
+///#begin zh-cn
 /**
  *	@brief	获取请求
  *
@@ -98,8 +190,19 @@
  *
  *	@return	请求对象,如果返回nil则表示帐户尚未通过授权
  */
+///#end
+///#begin en
+/**
+ *	@brief	Send request.
+ *
+ *	@param 	account 	Account information.
+ *
+ *	@return	Request object, return nil if it means that the account has not been authorized by
+ */
+///#end
 + (id<ISSCRequest>)requestWithAccount:(id<ISSCAccount>)account;
 
+///#begin zh-cn
 /**
  *	@brief	创建附件
  *
@@ -107,8 +210,19 @@
  *
  *	@return	附件对象
  */
+///#end
+///#begin en
+/**
+ *	@brief	Create attachment object.
+ *
+ *	@param 	path 	File path.
+ *
+ *	@return	Attachment object.
+ */
+///#end
 + (id<ISSCAttachment>)attachmentWithPath:(NSString *)path;
 
+///#begin zh-cn
 /**
  *	@brief	创建附件
  *
@@ -116,8 +230,19 @@
  *
  *	@return	附件对象
  */
+///#end
+///#begin en
+/**
+ *	@brief	Create attachment object.
+ *
+ *	@param 	url 	URL string.
+ *
+ *	@return	Attachment object.
+ */
+///#end
 + (id<ISSCAttachment>)attachmentWithUrl:(NSString *)url;
 
+///#begin zh-cn
 /**
  *	@brief	创建附件
  *
@@ -127,8 +252,21 @@
  *
  *	@return	附件对象
  */
+///#end
+///#begin en
+/**
+ *	@brief	Create attachment data.
+ *
+ *	@param 	data 	File data.
+ *	@param 	fileName 	File name.
+ *	@param 	mimeType 	MIME type
+ *
+ *	@return	Attachment data.
+ */
+///#end
 + (id<ISSCAttachment>)attachmentWithData:(NSData *)data fileName:(NSString *)fileName mimeType:(NSString *)mimeType;
 
+///#begin zh-cn
 /**
  *	@brief	OAuth签名
  *
@@ -140,12 +278,27 @@
  *  
  *	@return	签名值
  */
+///#end
+///#begin en
+/**
+ *	@brief	OAuth signatures
+ *
+ *	@param 	url 	URL string.
+ *	@param 	method 	Request method.
+ *	@param 	parameters 	Parameters.
+ *	@param 	consumerSecret 	Consumer secret.
+ *	@param 	oauthTokenSecret 	OAuth token secret.
+ *
+ *	@return	Sinature string
+ */
+///#end
 + (NSString *)oauthSignatureWithURL:(NSURL *)url
                              method:(NSString *)method
                          parameters:(id<ISSCParameters>)parameters
                      consumerSecret:(NSString *)consumerSecret
                    oauthTokenSecret:(NSString *)oauthTokenSecret;
 
+///#begin zh-cn
 /**
  *	@brief	获取SDK本地化字符串资源
  *
@@ -154,8 +307,20 @@
  *
  *	@return	字符串资源
  */
+///#end
+///#begin en
+/**
+ *	@brief	Get localizable string
+ *
+ *	@param 	name 	Name
+ *	@param 	comment 	Comment
+ *
+ *	@return	String object.
+ */
+///#end
 + (NSString *)localizableString:(NSString *)name comment:(NSString *)comment;
 
+///#begin zh-cn
 /**
  *	@brief	获取SDK的图片资源
  *
@@ -163,6 +328,16 @@
  *
  *	@return	图片资源
  */
+///#end
+///#begin en
+/**
+ *	@brief	Get Image object
+ *
+ *	@param 	name 	Bundle name.
+ *
+ *	@return	Image object.
+ */
+///#end
 + (UIImage *)imageNamed:(NSString *)name;
 
 

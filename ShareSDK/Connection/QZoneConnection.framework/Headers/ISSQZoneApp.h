@@ -1,3 +1,4 @@
+///#begin zh-cn
 //
 //  Created by ShareSDK.cn on 13-1-14.
 //  官网地址:http://www.ShareSDK.cn
@@ -6,6 +7,18 @@
 //  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
+///#end
+///#begin en
+//
+//  Created by ShareSDK.cn on 13-1-14.
+//  website:http://www.ShareSDK.cn
+//  Support E-mail:support@sharesdk.cn
+//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
+//  Business QQ:4006852216
+//  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
+//
+///#end
+
 #import <Foundation/Foundation.h>
 #import <ShareSDKCoreService/ShareSDKCoreService.h>
 #import "SSQZoneUser.h"
@@ -13,9 +26,16 @@
 #import "SSQZoneShareInfo.h"
 #import <ShareSDK/ShareSDKPlugin.h>
 
+///#begin zh-cn
 /**
  *	@brief	请求方式
  */
+///#end
+///#begin en
+/**
+ *	@brief	Request method
+ */
+///#end
 typedef enum
 {
 	SSQZoneRequestMethodGet = 0, /**< GET方式 */
@@ -24,32 +44,67 @@ typedef enum
 }
 SSQZoneRequestMethod;
 
+///#begin zh-cn
 /**
  *	@brief	QQ空间应用
  */
+///#end
+///#begin en
+/**
+ *	@brief	QZone App.
+ */
+///#end
 @protocol ISSQZoneApp <ISSPlatformApp>
 
+///#begin zh-cn
 /**
  *	@brief	获取应用Key
  *
  *	@return	应用Key
  */
+///#end
+///#begin en
+/**
+ *	@brief	Get app key.
+ *
+ *	@return	App key.
+ */
+///#end
 - (NSString *)appKey;
 
+///#begin zh-cn
 /**
  *	@brief	获取应用ID
  *
  *	@return	应用ID
  */
+///#end
+///#begin en
+/**
+ *	@brief	Get app id.
+ *
+ *	@return	App id.
+ */
+///#end
 - (NSString *)appId;
 
+///#begin zh-cn
 /**
  *	@brief	获取SSO回调地址
  *
  *	@return	SSO回调地址
  */
+///#end
+///#begin en
+/**
+ *	@brief	Get SSO callback URL address.
+ *
+ *	@return	SSO callback url address.
+ */
+///#end
 - (NSString *)ssoCallbackUrl;
 
+///#begin zh-cn
 /**
  *	@brief	调用开放平台API
  *
@@ -60,6 +115,19 @@ SSQZoneRequestMethod;
  *  @param  result  返回回调
  *  @param  fault   失败回调
  */
+///#end
+///#begin en
+/**
+ *	@brief	Call API
+ *
+ *	@param 	path 	API path string.
+ *  @param  method  Request method.
+ *	@param 	params 	Request parameters.
+ *  @param  user    Authorized users, it means that if the incoming nil default authorized users
+ *  @param  result  Result handler.
+ *  @param  fault   Fault handler.
+ */
+///#end
 - (void)api:(NSString *)path
      method:(SSQZoneRequestMethod)method
      params:(id<ISSCParameters>)params
@@ -67,6 +135,7 @@ SSQZoneRequestMethod;
      result:(void(^)(id responder))result
       fault:(void(^)(CMErrorInfo *error))fault;
 
+///#begin zh-cn
 /**
  *	@brief	上传照片
  *
@@ -75,12 +144,24 @@ SSQZoneRequestMethod;
  *	@param 	title 	标题
  *	@param 	albumid 	相册ID，为nil则表示默认相册
  */
+///#end
+///#begin en
+/**
+ *	@brief	Upload picture.
+ *
+ *	@param 	pic 	Picture attachment object.
+ *	@param 	desc 	Description.
+ *	@param 	title 	Title string.
+ *	@param 	albumid 	Album ID，The default is nil indicates album
+ */
+///#end
 - (void)uploadPic:(id<ISSCAttachment>)pic
              desc:(NSString *)desc
             title:(NSString *)title
           albumid:(NSString *)albumid
            result:(void(^)(BOOL result, id image, CMErrorInfo *error))result;
 
+///#begin zh-cn
 /**
  *	@brief	添加分享
  *
@@ -96,6 +177,24 @@ SSQZoneRequestMethod;
  *	@param 	nswb 	值为1时，表示分享不默认同步到微博，其他值或者不传此参数表示默认同步到微博。
  *  @param  result  返回回调
  */
+///#end
+///#begin en
+/**
+ *	@brief	Add share information.
+ *
+ *	@param 	title 	Title, the longest 36 characters, the excess will be truncated.
+ *	@param 	url 	Sharing website where links to resources, click after the jump to a third party website
+ *	@param 	site 	Site name when sharing the source site, please fill out the application access to registration site name.
+ *	@param 	fromUrl 	Shared source site corresponding website address url
+ *	@param 	comment 	User Content, the longest 40 characters, the excess will be truncated.
+ *	@param 	summary 	Summary of content sharing web resources, or a summary description of the page, the longest 80 characters, the excess will be truncated.
+ *	@param 	images 	Representative image links shared web resources.
+ *	@param 	type 	Share types of content. 4 indicate that the page; 5 shows a video (type = 5, you must pass playurl).
+ *	@param 	playUrl 	Length is limited to 256 bytes. Type = 5 only when effective, which means that the video playback swf address.
+ *	@param 	nswb 	A value of 1, which means that the default is not synchronized to Tencent Weibo, other values ​​or do not pass this parameter indicates the default synchronized to Tencent Weibo.
+ *  @param  result  Result handler.
+ */
+///#end
 - (void)addShareWithTitle:(NSString *)title
                       url:(NSString *)url
                      site:(NSString *)site
@@ -108,6 +207,7 @@ SSQZoneRequestMethod;
                      nswb:(NSNumber *)nswb
                    result:(SSShareResultEvent)result;
 
+///#begin zh-cn
 /**
  *	@brief	定向分享
  *
@@ -120,6 +220,21 @@ SSQZoneRequestMethod;
  *	@param 	act 	默认为“进入应用”
  *	@param 	result 	返回回调
  */
+///#end
+///#begin en
+/**
+ *	@brief	Send story.
+ *
+ *	@param 	title 	Title string.
+ *	@param 	description 	Description.
+ *	@param 	shareUrl 	Share url.
+ *	@param 	pics 	a image list.
+ *	@param 	summary 	Summary string.
+ *	@param 	url 	URL string.
+ *	@param 	act 	Default is “进入应用”
+ *	@param 	result 	Result handler.
+ */
+///#end
 - (void)sendStoryWithTitle:(NSString *)title
                description:(NSString *)description
                   shareUrl:(NSString *)shareUrl

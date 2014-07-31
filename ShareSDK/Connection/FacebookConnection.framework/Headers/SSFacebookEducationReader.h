@@ -1,3 +1,4 @@
+///#begin zh-cn
 //
 //  Created by ShareSDK.cn on 13-1-14.
 //  官网地址:http://www.ShareSDK.cn
@@ -6,45 +7,100 @@
 //  商务QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
+///#end
+///#begin en
+//
+//  Created by ShareSDK.cn on 13-1-14.
+//  website:http://www.ShareSDK.cn
+//  Support E-mail:support@sharesdk.cn
+//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
+//  Business QQ:4006852216
+//  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
+//
+///#end
+
 #import <Foundation/Foundation.h>
 #import "SSFacebookSchoolReader.h"
 #import "SSFacebookYearReader.h"
 #import "SSFacebookDegreeReader.h"
 
+///#begin zh-cn
 /**
  *	@brief	教育信息读取器
  */
+///#end
+///#begin en
+/**
+ *	@brief	Education Reader.
+ */
+///#end
 @interface SSFacebookEducationReader : NSObject
 {
 @private
     NSDictionary *_sourceData;
 }
 
+///#begin zh-cn
 /**
  *	@brief	源数据
  */
+///#end
+///#begin en
+/**
+ *	@brief	Raw data.
+ */
+///#end
 @property (nonatomic,readonly) NSDictionary *sourceData;
 
+///#begin zh-cn
 /**
  *	@brief	学校信息
  */
+///#end
+///#begin en
+/**
+ *	@brief	School reader.
+ */
+///#end
 @property (nonatomic,readonly) SSFacebookSchoolReader *school;
 
+///#begin zh-cn
 /**
  *	@brief	年份信息
  */
+///#end
+///#begin en
+/**
+ *	@brief	Year reader.
+ */
+///#end
 @property (nonatomic,readonly) SSFacebookYearReader *year;
 
+///#begin zh-cn
 /**
  *	@brief	学历
  */
+///#end
+///#begin en
+/**
+ *	@brief	Degree reader.
+ */
+///#end
 @property (nonatomic,readonly) SSFacebookDegreeReader *degree;
 
+///#begin zh-cn
 /**
  *	@brief	类型
  */
+///#end
+///#begin en
+/**
+ *	@brief	Type
+ */
+///#end
 @property (nonatomic,readonly) NSString *type;
 
+///#begin zh-cn
 /**
  *	@brief	初始化读取器
  *
@@ -52,8 +108,19 @@
  *
  *	@return	读取器实例对象
  */
+///#end
+///#begin en
+/**
+ *	@brief	Initialize reader.
+ *
+ *	@param 	sourceData 	Raw data.
+ *
+ *	@return	Reader object.
+ */
+///#end
 - (id)initWithSourceData:(NSDictionary *)sourceData;
 
+///#begin zh-cn
 /**
  *	@brief	创建教育信息读取器
  *
@@ -61,6 +128,16 @@
  *
  *	@return	读取器实例对象
  */
+///#end
+///#begin en
+/**
+ *	@brief	Create education reader.
+ *
+ *	@param 	sourceData 	Raw data.
+ *
+ *	@return	Reader object.
+ */
+///#end
 + (SSFacebookEducationReader *)readerWithSourceData:(NSDictionary *)sourceData;
 
 @end
