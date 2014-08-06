@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'ShareSDK'
-  s.version  = '2.8.8'
+  s.version  = '2.9.2'
   s.summary  = 'ShareSDK is a SNS share kit.'
   s.homepage = 'https://github.com/jcccn/ShareSDK-iOS'
   s.author   = { 'Chuncheng Jiang' => 'jccuestc@gmail.com' }
@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
                    © 2013 ShareSDK.cn , All Rights Reserved
                  LICENSE
                }
-  s.source   = { :git => 'https://github.com/jcccn/ShareSDK-iOS.git', :tag => '2.8.8' }
+  s.source   = { :git => 'https://github.com/jcccn/ShareSDK-iOS.git', :tag => '2.9.2' }
   s.platform     = :ios, '5.0'
   s.requires_arc = true
 
@@ -215,5 +215,13 @@ Pod::Spec.new do |s|
     tts.dependency 'ShareSDK/Core'
     tts.vendored_frameworks = 'ShareSDK/Connection/TwitterConnection.framework'
   end
+
+  s.subspec 'Comment' do |comments|
+    comments.requires_arc = true
+    comments.dependency 'ShareSDK/Core'
+    comments.vendored_frameworks = 'Comment/Comment.framework'
+    comments.resources = 'Comment/Comment.bundle'
+  end
+
 
 end
