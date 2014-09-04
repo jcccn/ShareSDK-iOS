@@ -92,7 +92,7 @@
  *	@return	Color object.
  */
 ///#end
-+ (UIColor *)colorWithString:(NSString *)string;
++ (UIColor *)cmColorWithString:(NSString *)string;
 
 
 
