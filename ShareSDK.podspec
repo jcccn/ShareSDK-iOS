@@ -157,7 +157,7 @@ Pod::Spec.new do |s|
     wechats.requires_arc = true
     wechats.dependency 'ShareSDK/Core'
     wechats.source_files   = 'ShareSDK/Extend/WeChatSDK/WXApi.h', 'ShareSDK/Extend/WeChatSDK/WXApiObject.h'
-    wechats.vendored_frameworks = 'ShareSDK/Connection/WeChatConnection.framework', 'ShareSDK/Extend/QQConnectSDK/TencentOpenAPI.framework'
+    wechats.vendored_frameworks = 'ShareSDK/Connection/WeChatConnection.framework'
     wechats.vendored_libraries = 'ShareSDK/Extend/WeChatSDK/libWeChatSDK.a'
   end
 
@@ -166,7 +166,8 @@ Pod::Spec.new do |s|
     qzones.dependency 'ShareSDK/Core'
     qzones.frameworks = 'Security'
     qzones.libraries  = 'stdc++', 'sqlite3'
-    qzones.vendored_frameworks = 'ShareSDK/Connection/QZoneConnection.framework'
+    qzones.vendored_frameworks = 'ShareSDK/Connection/QZoneConnection.framework', 'ShareSDK/Extend/QQConnectSDK/TencentOpenAPI.framework'
+    qzones.resources = "ShareSDK/Extend/QQConnectSDK/TencentOpenApi_IOS_Bundle.bundle"
   end
 
   s.subspec 'QQConnect' do |qqconnects|
