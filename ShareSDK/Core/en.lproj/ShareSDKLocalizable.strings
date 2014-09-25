@@ -61,6 +61,10 @@
 "ERROR_CODE_LINE_INVALID_UIPASTBOARD" = "Invalid UIPasteboard object";
 "ERROR_DESC_WHATSAPP_NOT_INSTALL" = "WhatsApp is not installed";
 "ERROR_DESC_WHATSAPP_SEND_FAIL" = "Failed to send";
+"ERROR_DESC_KAKAOTALK_NOT_INSTALL" = "KakaoTalk is not installed";
+"ERROR_DESC_KAKAOTALK_SEND_FAIL" = "Failed to send";
+"ERROR_DESC_KAKAOSTORY_NOT_INSTALL" = "KakaoStory is not installed";
+"ERROR_DESC_KAKAOSTORY_SEND_FAIL" = "Failed to send";
 
 "ShareType_1" = "Sina Weibo";
 "ShareType_2" = "腾讯微博";
@@ -100,6 +104,9 @@
 "ShareType_41" = "明道";
 "ShareType_42" = "Line";
 "ShareType_43" = "WhatsApp";
+"ShareType_44" = "KakaoTalk";
+"ShareType_45" = "KakaoStory";
+
 
 "ALTER_VIEW_TITLE" = "Message";
 "ALTER_VIEW_I_KNOWN_BUTTON" = "I know";
@@ -164,6 +171,7 @@
 "AUTH_VIEW_TITLE_15" = "Instagram";
 "AUTH_VIEW_TITLE_16" = "LinkedIn";
 "AUTH_VIEW_TITLE_17" = "Tumblr";
+"AUTH_VIEW_TITLE_22" = "WeChat";
 "AUTH_VIEW_TITLE_25" = "Instapaper";
 "AUTH_VIEW_TITLE_26" = "Pocket";
 "AUTH_VIEW_TITLE_27" = "有道云笔记";

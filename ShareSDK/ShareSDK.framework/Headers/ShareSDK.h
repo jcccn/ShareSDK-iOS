@@ -24,11 +24,13 @@
 #import "NSArray+ShareSDK.h"
 #import "ShareSDKTypeDef.h"
 #import "ShareSDKEventHandlerDef.h"
+
 #import "ShareSDKDef.h"
 #import "ISSAuthOptions.h"
 #import "ISSViewDelegate.h"
 #import "ISSPage.h"
 #import "ISSContent.h"
+
 #import "ISSShareActionSheet.h"
 #import "ISSShareOptions.h"
 #import "ISSShareViewDelegate.h"
@@ -189,7 +191,6 @@
  */
 ///#end
 + (void)useAppTrusteeship:(BOOL)enabled;
-
 
 #pragma mark 初始化
 
@@ -674,6 +675,7 @@
  *          http://open.weixin.qq.com上注册应用，并将相关信息填写以下字段
  *
  *	@param 	appId 	应用ID
+ *  @param 	appSecret 	应用密钥
  *	@param 	wechatCls 	微信Api类型，引入WXApi.h后，将[WXApi class]传入此参数
  */
 ///#end
@@ -683,10 +685,15 @@
  *          Go to http://open.weixin.qq.com register app，Then fill in the relevant information into the field below
  *
  *	@param 	appId 	App id.
+ *  @param 	appSecret 	应用密钥
  *	@param 	wechatCls 	WXApi class，You should import WXApi.h，then passed [WXApi class] this parameter.
  */
 ///#end
 + (void)connectWeChatWithAppId:(NSString *)appId
+                     wechatCls:(Class)wechatCls;
+
++ (void)connectWeChatWithAppId:(NSString *)appId
+                     appSecret:(NSString *)appSecret
                      wechatCls:(Class)wechatCls;
 
 ///#begin zh-cn
@@ -1217,6 +1224,40 @@
  */
 ///#end
 + (void)connectWhatsApp;
+
+///#begin zh-cn
+/**
+ *	@brief	链接KaKao Talk以使用相关功能。
+ *
+ *  @since  ver2.10.0
+ *
+ */
+///#end
+///#begin en
+/**
+ *	@brief	Initialize KaKao Talk platform，This platform need import KaKaoTalkConnection.framework
+ *
+ *	@since  ver2.10.0
+ */
+///#end
++ (void)connectKaKaoTalk;
+
+///#begin zh-cn
+/**
+ *	@brief	链接KaKao Story以使用相关功能。
+ *
+ *  @since  ver2.10.0
+ *
+ */
+///#end
+///#begin en
+/**
+ *	@brief	Initialize KaKao Story platform，This platform need import KaKaoTalkConnection.framework
+ *
+ *	@since  ver2.10.0
+ */
+///#end
++ (void)connectKaKaoStory;
 
 ///#begin zh-cn
 /**

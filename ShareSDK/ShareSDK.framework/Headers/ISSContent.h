@@ -1647,6 +1647,89 @@
                              video:(id<ISSCAttachment>)video;
 
 
+///#begin zh-cn
+/**
+ *  添加KaKaoTalk内容单元。定制KaKaoTalk分享时内容使用此方法。如果参数设置为INHERIT_VALUE则默认使用父级类型相关参数
+ *
+ *  @param type               分享内容类型，支持SSPublishContentMediaTypeText,SSPublishContentMediaTypeNews,SSPublishContentMediaTypeApp
+ *  @param content            分享内容
+ *  @param title              标题
+ *  @param url                链接地址
+ *  @param appName            应用名
+ *  @param appVersion         应用版本
+ *  @param appBundleId        应用的Bundle ID
+ *  @param iosDownloadUrl     iOS的应用下载地址
+ *  @param androidDownloadUrl Android的应用下载地址
+ *  @param executeUrl         运行应用的URL
+ */
+///#end
+///#begin en
+/**
+ *  Add KaKaoTalk content unit，When custom KaKaoTalk share content use this method，If the parameter is set to INHERIT_VALUE. will using the parent parameter value.
+ *
+ *  @param type               Share type，Only support SSPublishContentMediaTypeText,SSPublishContentMediaTypeNews,SSPublishContentMediaTypeApp
+ *  @param content            Content string
+ *  @param title              Title
+ *  @param url                URL string
+ *  @param appName            Application name
+ *  @param appVersion         Application version
+ *  @param appBundleId        Bundle ID of Application
+ *  @param iosDownloadUrl     Application download URL for iOS
+ *  @param androidDownloadUrl Application download URL for Android
+ *  @param executeUrl         Execute URL
+ */
+///#end
+- (void)addKaKaoTalkUnitWithType:(NSNumber *)type
+                         content:(NSString *)content
+                           title:(NSString *)title
+                             url:(NSString *)url
+                         appName:(NSString *)appName
+                      appVersion:(NSString *)appVersion
+                     appBundleId:(NSString *)appBundleId
+                  iosDownloadUrl:(NSString *)iosDownloadUrl
+              androidDownloadUrl:(NSString *)androidDownloadUrl
+                      executeUrl:(NSString *)executeUrl;
+
+///#begin zh-cn
+/**
+ *  添加KaKaoStory内容单元。定制KaKaoStory分享时内容使用此方法。如果参数设置为INHERIT_VALUE则默认使用父级类型相关参数
+ *
+ *  @param type        分享内容类型，支持SSPublishContentMediaTypeText,SSPublishContentMediaTypeNews,SSPublishContentMediaTypeMusic,SSPublishContentMediaTypeVideo
+ *  @param content     分享内容
+ *  @param title       标题
+ *  @param fileUrl     文件地址
+ *  @param description 描述
+ *  @param image       配图
+ *  @param appName     应用名
+ *  @param appVersion  应用版本
+ *  @param appBundleId appBundleID
+ */
+///#end
+///#begin en
+/**
+ *  Add KaKaoStory content unit，When custom KaKaoStory share content use this method，If the parameter is set to INHERIT_VALUE. will using the parent parameter value.
+ *
+ *  @param type        Share type，Only Support SSPublishContentMediaTypeText,SSPublishContentMediaTypeNews,SSPublishContentMediaTypeMusic,SSPublishContentMediaTypeVideo
+ *  @param content     Content string
+ *  @param title       Title
+ *  @param fileUrl     File's URL
+ *  @param description Description string
+ *  @param image       Image object
+ *  @param appName     Application name
+ *  @param appVersion  Application version
+ *  @param appBundleId Bundle ID of Application
+ */
+///#end
+- (void)addKaKaoStoryUnitWithType:(NSNumber *)type
+                          content:(NSString *)content
+                            title:(NSString *)title
+                          fileUrl:(NSString *)fileUrl
+                      description:(NSString *)description
+                            image:(id<ISSCAttachment>)image
+                          appName:(NSString *)appName
+                       appVersion:(NSString *)appVersion
+                      appBundleId:(NSString *)appBundleId;
+
 
 
 @end

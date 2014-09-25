@@ -75,6 +75,8 @@ typedef enum
     ShareTypeMingDao = 41,          /**< 明道 */
     ShareTypeLine = 42,             /**< Line */
     ShareTypeWhatsApp = 43,         /**< Whats App */
+    ShareTypeKaKaoTalk = 44,        /**< KaKao Talk */
+    ShareTypeKaKaoStory = 45,       /**< KaKao Story */
     ShareTypeAny = 99               /**< 任意平台 */
 }
 ShareType;
