@@ -26,22 +26,22 @@
     NSString *_baseUrl;
     NSArray *_roles;
     SSCLogManager *_logManager; //日志管理器
-    
     BOOL _ssoEnabled;           //SSO使能
+    
     BOOL _convertUrlEnabled;    //是否转换链接
     BOOL _statEnabled;          //统计开关
     BOOL _statDevEnabled;       //设备信息统计开关
     BOOL _statUserEnabled;      //用户信息统计开关
     BOOL _statShareEnabled;     //分享信息统计开关
-    BOOL _useAppTrusteeship;    //使用应用信息托管
     
+    BOOL _useAppTrusteeship;    //使用应用信息托管
     BOOL _sendingDeviceInfo;    //发送设备信息标志
     BOOL _sendingProcessInfo;   //发送进程信息标志
     BOOL _isGetDate;            //获取时间标识，正在获取为YES， 否则为NO。
     NSTimeInterval _diffTime;   //与服务器的时间差值
+    
     NSTimeInterval _time;       //运行时间
     NSTimeInterval _startupLogTime;    //写入启动时间
-    
     dispatch_queue_t _uploadProcQueue;      //上传进程信息队列
 }
 

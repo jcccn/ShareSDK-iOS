@@ -74,7 +74,6 @@
  */
 - (void)setAccessToken:(NSString *)accessToken;
 
-
 /**
  *	@brief	获取过期时间
  *

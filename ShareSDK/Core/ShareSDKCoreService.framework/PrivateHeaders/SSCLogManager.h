@@ -36,12 +36,13 @@
     BOOL _sending;
     NSTimer *_timer;
     NSTimeInterval _bufferTimestamp;                //缓存的刷新时间
+    
     NSTimeInterval _startupSendTimestamp;           
     NSMutableArray *_buffer;
     NSInteger _id;
     SSCServerRequest *_request;
-    
     dispatch_queue_t _logQueue;
+    
     dispatch_semaphore_t _semaphore;                //信号量，当调用Startup后释放信号
 }
 

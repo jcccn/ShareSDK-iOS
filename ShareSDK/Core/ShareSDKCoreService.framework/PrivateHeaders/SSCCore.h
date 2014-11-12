@@ -23,7 +23,6 @@
     NSMutableDictionary *_accounts;
     NSMutableDictionary *_commonObjects;
     NSString *_deviceKey;
-    
     CMCacheManager *_cacheManager;    //图片缓存管理器
     SSCUrlCachePool *_urlCachePool;     //URL缓存池
     NSInteger _urlCachePoolRefCount;    //URL缓存池引用次数，如果引用次数为零则释放池
