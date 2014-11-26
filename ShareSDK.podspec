@@ -159,7 +159,7 @@ Pod::Spec.new do |s|
   s.subspec 'TencentWeibo' do |tencentweibos|
     tencentweibos.requires_arc = true
     tencentweibos.dependency 'ShareSDK/Core'
-    tencentweibos.source_files   = 'ShareSDK/Extend/TencentWeiboSDK/WeiboApi.h'
+    tencentweibos.source_files   = 'ShareSDK/Extend/TencentWeiboSDK/WeiboApi.h', 'ShareSDK/Extend/TencentWeiboSDK/WeiboApiObject.h'
     tencentweibos.vendored_frameworks = 'ShareSDK/Connection/TencentWeiboConnection.framework'
     tencentweibos.vendored_libraries = 'ShareSDK/Extend/TencentWeiboSDK/libTCWeiboSDK.a'
   end
