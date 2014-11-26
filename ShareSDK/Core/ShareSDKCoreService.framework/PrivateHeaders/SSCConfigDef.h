@@ -27,7 +27,7 @@
 /**
  *	@brief	SDK版本
  */
-#define SDK_VERSION 42
+#define SDK_VERSION 44
 
 /**
  *	@brief	平台类型
@@ -78,19 +78,16 @@
  *	@brief	图片服务器路径
  */
 #define BASE_IMG_URL @"http://up.sharesdk.cn"
-//#define BASE_IMG_URL @"http://192.168.1.189:8080"
+//#define BASE_IMG_URL2 @"http://192.168.1.188:8080"
 
 /**
  *	@brief	新接口路径
  */
 #define BASE_URL_2 @"http://api2.sharesdk.cn:80"
-//#define BASE_URL_2 @"http://api2.sharesdk.cn:5566"
-//#define BASE_URL_2 @"http://192.168.1.188:8080"
 
 /**
  *	@brief	转换短链服务域名，v2.10.1 改成：http://l.mob.com/url/ShareSdkMapping.do
  */
-//#define SHORT_CONVERT_URL @"http://s.sharesdk.cn"
 #define SHORT_CONVERT_URL @"http://l.mob.com"
 
 
