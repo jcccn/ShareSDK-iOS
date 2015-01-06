@@ -81,7 +81,7 @@ typedef enum
 	SSCShareTypeDouBan = 5, /**< 豆瓣社区 */
 	SSCShareTypeQQSpace = 6, /**< QQ空间 */
 	SSCShareTypeRenren = 7, /**< 人人网 */
-	SSCShareTypeKaixin = 8, /**< 开心网 SSC*/
+	SSCShareTypeKaixin = 8, /**< 开心网 */
 	SSCShareTypePengyou = 9, /**< 朋友网 */
 	SSCShareTypeFacebook = 10, /**< Facebook */
 	SSCShareTypeTwitter = 11, /**< Twitter */
@@ -103,18 +103,6 @@ typedef enum
     SSCShareTypeYouDaoNote = 27,     /**< 有道云笔记 */
     SSCShareTypeSohuKan = 28,       /**< 搜狐随身看 */
     SSCShareTYpePinterest = 30,     /**< Pinterest */
-    SSCShareTypeFlickr = 34,           /**< Flickr */
-    SSCShareTypeDropbox = 35,          /**< Dropbox */
-    SSCShareTypeVKontakte = 36,        /**< VKontakte */
-    SSCShareTypeWeixiFav = 37,         /**< 微信收藏 */
-    SSCShareTypeYiXinSession = 38,     /**< 易信好友 */
-    SSCShareTypeYiXinTimeline = 39,    /**< 易信朋友圈 */
-    SSCShareTypeYiXinFav = 40,         /**< 易信收藏 */
-    SSCShareTypeMingDao = 41,          /**< 明道 */
-    SSCShareTypeLine = 42,             /**< Line */
-    SSCShareTypeWhatsApp = 43,         /**< Whats App */
-    SSCShareTypeKaKaoTalk = 44,        /**< KaKao Talk */
-    SSCShareTypeKaKaoStory = 45,       /**< KaKao Story */
     SSCShareTypeAny = 99   /**< 任意平台 */
 }
 SSCShareType;
