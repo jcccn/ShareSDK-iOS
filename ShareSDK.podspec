@@ -47,9 +47,8 @@ Pod::Spec.new do |s|
 
   s.subspec 'Normal' do |ns|
     ns.requires_arc = true
-    ns.dependency 'ShareSDK/Lite'
+    ns.dependency 'ShareSDK/Frequent'
     ns.dependency 'ShareSDK/EverNote'
-    ns.dependency 'ShareSDK/YouDaoNote'
     ns.dependency 'ShareSDK/Pocket'
   end
 
@@ -150,6 +149,7 @@ Pod::Spec.new do |s|
   s.subspec 'SinaWeibo' do |sinaweibos|
     sinaweibos.requires_arc = true
     sinaweibos.dependency 'ShareSDK/Core'
+    sinaweibos.frameworks = 'ImageIO'
     sinaweibos.source_files   = 'ShareSDK/Extend/SinaWeiboSDK/WeiboSDK.h'
     sinaweibos.vendored_frameworks = 'ShareSDK/Connection/SinaWeiboConnection.framework'
     sinaweibos.vendored_libraries = 'ShareSDK/Extend/SinaWeiboSDK/libSinaWeiboSDK.a'
@@ -175,11 +175,8 @@ Pod::Spec.new do |s|
 
   s.subspec 'QZone' do |qzones|
     qzones.requires_arc = true
-    qzones.dependency 'ShareSDK/Core'
-    qzones.frameworks = 'Security'
-    qzones.libraries  = 'stdc++', 'sqlite3'
-    qzones.vendored_frameworks = 'ShareSDK/Connection/QZoneConnection.framework', 'ShareSDK/Extend/QQConnectSDK/TencentOpenAPI.framework'
-    qzones.resources = "ShareSDK/Extend/QQConnectSDK/TencentOpenApi_IOS_Bundle.bundle"
+    qzones.dependency 'ShareSDK/QQConnect'
+    qzones.vendored_frameworks = 'ShareSDK/Connection/QZoneConnection.framework'
   end
 
   s.subspec 'QQConnect' do |qqconnects|
