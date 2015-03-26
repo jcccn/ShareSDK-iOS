@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'ShareSDK'
-  s.version  = '2.10.6'
+  s.version  = '2.10.7'
   s.summary  = 'ShareSDK is a SNS share kit.'
   s.homepage = 'https://github.com/jcccn/ShareSDK-iOS'
   s.author   = { 'Chuncheng Jiang' => 'jccuestc@gmail.com' }
@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
                    Copyright © 2012-2014 mob All Rights Reserved 掌淘网络 版权所有
                  LICENSE
                }
-  s.source   = { :git => 'https://github.com/jcccn/ShareSDK-iOS.git', :tag => '2.10.6' }
+  s.source   = { :git => 'https://github.com/jcccn/ShareSDK-iOS.git', :tag => '2.10.7' }
   s.platform     = :ios, '5.1.1'
   s.requires_arc = true
 
@@ -36,7 +36,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'Frequent' do |fs|
     fs.requires_arc = true
-    fs.dependency 'ShareSDK/Weibo'
+    fs.dependency 'ShareSDK/SinaWeibo'
     fs.dependency 'ShareSDK/WeChat'
     fs.dependency 'ShareSDK/QQConnect'
     fs.dependency 'ShareSDK/QZone'
