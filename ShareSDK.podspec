@@ -42,6 +42,7 @@ Pod::Spec.new do |s|
     fs.dependency 'ShareSDK/QZone'
     fs.dependency 'ShareSDK/Copy'
     fs.dependency 'ShareSDK/Mail'
+    fs.dependency 'ShareSDK/UI/ShareActionSheet'
     fs.dependency 'ShareSDK/UI/Flat'
   end
 
