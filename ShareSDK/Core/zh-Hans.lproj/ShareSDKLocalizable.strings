@@ -178,3 +178,23 @@
 
 "AWARD_BACK_ITEM_TITLE" = "关闭";
 "AD_SKIP_BUTTON" = "跳过";
+
+"Share_Recommendaiton_Title" = "分享宝盒";
+"Share_Successfully" = "分享成功";
+"Share_Fail" = "分享失败";
+"Share_To_More_Platform" = "分享到更多平台";
+"They_Are_Sharing" = "他们正在分享";
+"Share_Recommendation_From" = "分享至";
+"Sharing_Summary_Close" = "关闭";
+"Return" = "返回";
+"There_Are" = "您有";
+"Friend_Using_The_App" = "位好友正在使用这个应用";
+"Views" = "人看过";
+"Just_Now" = "刚刚";
+"Min_Ago" = "分钟前";
+"Hour_Ago" = "小时前";
+"Yesterday" = "昨天";
+"Today_News" = "今日新闻";
+"Load_More" = "点击加载更多";
+"Type_News" = "新闻"; 
+

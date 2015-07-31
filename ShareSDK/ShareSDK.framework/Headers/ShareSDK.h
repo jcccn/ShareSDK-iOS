@@ -39,7 +39,7 @@
 
 ///#begin zh-cn
 /**
- *	@brief	ShareSDK类，为整个SDK的顶层接口类，所有功能都由此类进行提供（包括分享、授权等等）v2.11.0
+ *	@brief	ShareSDK类，为整个SDK的顶层接口类，所有功能都由此类进行提供（包括分享、授权等等）v2.11.1
  */
 ///#end
 ///#begin en
@@ -148,7 +148,7 @@
  *	@param 	statEnabled 	YES indicates the use of statistical functions, NO indicates they did not use statistical functions
  */
 ///#end
-+ (void)statEnabled:(BOOL)statEnabled;
++ (void)statEnabled:(BOOL)statEnabled __deprecated;
 
 ///#begin zh-cn
 /**
@@ -3240,6 +3240,19 @@
              statusBarTips:(BOOL)statusBarTips
                    targets:(NSArray *)targets
                     result:(SSPublishContentEventHandler)result;
+
+#pragma mark - 分享推荐页面
+
+/**
+ *  显示自定义cell模块，用法类似如下
+ *  
+    [ShareSDK onShowWidgets:^NSArray *{
+        UIView *view1 = [[UIView alloc] initWithFrame:CGRectZero];
+        UIView *view2 = [[UIView alloc] initWithFrame:CGRectZero];
+        return @[view1, view2];
+    }];
+ */
++ (void)onShowWidgets:(NSArray *(^)())block;
 
 
 @end

@@ -174,3 +174,21 @@
 "AWARD_BACK_ITEM_TITLE" = "Close";
 "AD_SKIP_BUTTON" = "skip";
 
+"Share_Recommendaiton_Title" = "Sharing Summary";
+"Share_Successfully" = "Shared successfully";
+"Share_Fail" = "Shared Failed";
+"Share_To_More_Platform" = "Share to more platforms";
+"They_Are_Sharing" = "They are sharing";
+"Share_Recommendation_From" = "Share to";
+"Sharing_Summary_Close" = "Close";
+"Return" = "Return";
+"There_Are" = "You have";
+"Friend_Using_The_App" = "friends are using this app";
+"Views" = "Views";
+"Just_Now" = "Just now";
+"Min_Ago" = "min ago";
+"Hour_Ago" = "hour ago";
+"Yesterday" = "Yesterday";
+"Today_News" = "Today's News";
+"Load_More" = "More";
+"Type_News" = "News";

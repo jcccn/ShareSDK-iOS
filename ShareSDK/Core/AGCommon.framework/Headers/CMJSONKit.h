@@ -114,21 +114,21 @@ typedef struct AG_SKParseState AG_SKParseState; // Opaque internal, private type
 #pragma mark Deserializing methods
 
 @interface NSString (AG_SKJSONDeserializing)
-- (id)objectFromJSONString;
-- (id)objectFromJSONStringWithParseOptions:(AG_SKParseOptionFlags)parseOptionFlags;
-- (id)objectFromJSONStringWithParseOptions:(AG_SKParseOptionFlags)parseOptionFlags error:(NSError **)error;
-- (id)mutableObjectFromJSONString;
-- (id)mutableObjectFromJSONStringWithParseOptions:(AG_SKParseOptionFlags)parseOptionFlags;
-- (id)mutableObjectFromJSONStringWithParseOptions:(AG_SKParseOptionFlags)parseOptionFlags error:(NSError **)error;
+- (id)AG_SKObjectFromJSONString;
+- (id)AG_SKObjectFromJSONStringWithParseOptions:(AG_SKParseOptionFlags)parseOptionFlags;
+- (id)AG_SKObjectFromJSONStringWithParseOptions:(AG_SKParseOptionFlags)parseOptionFlags error:(NSError **)error;
+- (id)AG_SKMutableObjectFromJSONString;
+- (id)AG_SKMutableObjectFromJSONStringWithParseOptions:(AG_SKParseOptionFlags)parseOptionFlags;
+- (id)AG_SKMutableObjectFromJSONStringWithParseOptions:(AG_SKParseOptionFlags)parseOptionFlags error:(NSError **)error;
 @end
 
 @interface NSData (AG_SKJSONDeserializing)
-- (id)objectFromJSONData;
-- (id)objectFromJSONDataWithParseOptions:(AG_SKParseOptionFlags)parseOptionFlags;
-- (id)objectFromJSONDataWithParseOptions:(AG_SKParseOptionFlags)parseOptionFlags error:(NSError **)error;
-- (id)mutableObjectFromJSONData;
-- (id)mutableObjectFromJSONDataWithParseOptions:(AG_SKParseOptionFlags)parseOptionFlags;
-- (id)mutableObjectFromJSONDataWithParseOptions:(AG_SKParseOptionFlags)parseOptionFlags error:(NSError **)error;
+- (id)AG_SKObjectFromJSONData;
+- (id)AG_SKObjectFromJSONDataWithParseOptions:(AG_SKParseOptionFlags)parseOptionFlags;
+- (id)AG_SKObjectFromJSONDataWithParseOptions:(AG_SKParseOptionFlags)parseOptionFlags error:(NSError **)error;
+- (id)AG_SKMutableObjectFromJSONData;
+- (id)AG_SKMutableObjectFromJSONDataWithParseOptions:(AG_SKParseOptionFlags)parseOptionFlags;
+- (id)AG_SKMutableObjectFromJSONDataWithParseOptions:(AG_SKParseOptionFlags)parseOptionFlags error:(NSError **)error;
 @end
 
 #pragma mark Serializing methods
@@ -138,42 +138,42 @@ typedef struct AG_SKParseState AG_SKParseState; // Opaque internal, private type
 // Normally, a string that is serialized to JSON has quotation marks surrounding it, which you may or may not want when serializing a single string, and can be controlled with includeQuotes:
 // includeQuotes:YES `a "test"...` -> `"a \"test\"..."`
 // includeQuotes:NO  `a "test"...` -> `a \"test\"...`
-- (NSData *)JSONData;     // Invokes JSONDataWithOptions:JKSerializeOptionNone   includeQuotes:YES
-- (NSData *)JSONDataWithOptions:(AG_SKSerializeOptionFlags)serializeOptions includeQuotes:(BOOL)includeQuotes error:(NSError **)error;
-- (NSString *)JSONString; // Invokes JSONStringWithOptions:JKSerializeOptionNone includeQuotes:YES
-- (NSString *)JSONStringWithOptions:(AG_SKSerializeOptionFlags)serializeOptions includeQuotes:(BOOL)includeQuotes error:(NSError **)error;
+- (NSData *)AG_SKJSONData;     // Invokes JSONDataWithOptions:JKSerializeOptionNone   includeQuotes:YES
+- (NSData *)AG_SKJSONDataWithOptions:(AG_SKSerializeOptionFlags)serializeOptions includeQuotes:(BOOL)includeQuotes error:(NSError **)error;
+- (NSString *)AG_SKJSONString; // Invokes JSONStringWithOptions:JKSerializeOptionNone includeQuotes:YES
+- (NSString *)AG_SKJSONStringWithOptions:(AG_SKSerializeOptionFlags)serializeOptions includeQuotes:(BOOL)includeQuotes error:(NSError **)error;
 @end
 
 @interface NSArray (AG_SKJSONSerializing)
-- (NSData *)JSONData;
-- (NSData *)JSONDataWithOptions:(AG_SKSerializeOptionFlags)serializeOptions error:(NSError **)error;
-- (NSData *)JSONDataWithOptions:(AG_SKSerializeOptionFlags)serializeOptions serializeUnsupportedClassesUsingDelegate:(id)delegate selector:(SEL)selector error:(NSError **)error;
-- (NSString *)JSONString;
-- (NSString *)JSONStringWithOptions:(AG_SKSerializeOptionFlags)serializeOptions error:(NSError **)error;
-- (NSString *)JSONStringWithOptions:(AG_SKSerializeOptionFlags)serializeOptions serializeUnsupportedClassesUsingDelegate:(id)delegate selector:(SEL)selector error:(NSError **)error;
+- (NSData *)AG_SKJSONData;
+- (NSData *)AG_SKJSONDataWithOptions:(AG_SKSerializeOptionFlags)serializeOptions error:(NSError **)error;
+- (NSData *)AG_SKJSONDataWithOptions:(AG_SKSerializeOptionFlags)serializeOptions serializeUnsupportedClassesUsingDelegate:(id)delegate selector:(SEL)selector error:(NSError **)error;
+- (NSString *)AG_SKJSONString;
+- (NSString *)AG_SKJSONStringWithOptions:(AG_SKSerializeOptionFlags)serializeOptions error:(NSError **)error;
+- (NSString *)AG_SKJSONStringWithOptions:(AG_SKSerializeOptionFlags)serializeOptions serializeUnsupportedClassesUsingDelegate:(id)delegate selector:(SEL)selector error:(NSError **)error;
 @end
 
 @interface NSDictionary (AG_SKJSONSerializing)
-- (NSData *)JSONData;
-- (NSData *)JSONDataWithOptions:(AG_SKSerializeOptionFlags)serializeOptions error:(NSError **)error;
-- (NSData *)JSONDataWithOptions:(AG_SKSerializeOptionFlags)serializeOptions serializeUnsupportedClassesUsingDelegate:(id)delegate selector:(SEL)selector error:(NSError **)error;
-- (NSString *)JSONString;
-- (NSString *)JSONStringWithOptions:(AG_SKSerializeOptionFlags)serializeOptions error:(NSError **)error;
-- (NSString *)JSONStringWithOptions:(AG_SKSerializeOptionFlags)serializeOptions serializeUnsupportedClassesUsingDelegate:(id)delegate selector:(SEL)selector error:(NSError **)error;
+- (NSData *)AG_SKJSONData;
+- (NSData *)AG_SKJSONDataWithOptions:(AG_SKSerializeOptionFlags)serializeOptions error:(NSError **)error;
+- (NSData *)AG_SKJSONDataWithOptions:(AG_SKSerializeOptionFlags)serializeOptions serializeUnsupportedClassesUsingDelegate:(id)delegate selector:(SEL)selector error:(NSError **)error;
+- (NSString *)AG_SKJSONString;
+- (NSString *)AG_SKJSONStringWithOptions:(AG_SKSerializeOptionFlags)serializeOptions error:(NSError **)error;
+- (NSString *)AG_SKJSONStringWithOptions:(AG_SKSerializeOptionFlags)serializeOptions serializeUnsupportedClassesUsingDelegate:(id)delegate selector:(SEL)selector error:(NSError **)error;
 @end
 
 #ifdef __BLOCKS__
 
 @interface NSArray (AG_SKJSONSerializingBlockAdditions)
-- (NSData *)JSONDataWithOptions:(AG_SKSerializeOptionFlags)serializeOptions serializeUnsupportedClassesUsingBlock:(id(^)(id object))block error:(NSError **)error;
-- (NSString *)JSONStringWithOptions:(AG_SKSerializeOptionFlags)serializeOptions serializeUnsupportedClassesUsingBlock:(id(^)(id object))block error:(NSError **)error;
+- (NSData *)AG_SKJSONDataWithOptions:(AG_SKSerializeOptionFlags)serializeOptions serializeUnsupportedClassesUsingBlock:(id(^)(id object))block error:(NSError **)error;
+- (NSString *)AG_SKJSONStringWithOptions:(AG_SKSerializeOptionFlags)serializeOptions serializeUnsupportedClassesUsingBlock:(id(^)(id object))block error:(NSError **)error;
 @end
 
 @interface NSDictionary (AG_SKJSONSerializingBlockAdditions)
-- (NSData *)JSONDataWithOptions:(AG_SKSerializeOptionFlags)serializeOptions serializeUnsupportedClassesUsingBlock:(id(^)(id object))block error:(NSError **)error;
-- (NSString *)JSONStringWithOptions:(AG_SKSerializeOptionFlags)serializeOptions serializeUnsupportedClassesUsingBlock:(id(^)(id object))block error:(NSError **)error;
+- (NSData *)AG_SKJSONDataWithOptions:(AG_SKSerializeOptionFlags)serializeOptions serializeUnsupportedClassesUsingBlock:(id(^)(id object))block error:(NSError **)error;
+- (NSString *)AG_SKJSONStringWithOptions:(AG_SKSerializeOptionFlags)serializeOptions serializeUnsupportedClassesUsingBlock:(id(^)(id object))block error:(NSError **)error;
 
-- (NSData *)JSONDataWithUnsupportedClassesUsingBlock:(id(^)(id object))block error:(NSError **)error;
+- (NSData *)AG_SKJSONDataWithUnsupportedClassesUsingBlock:(id(^)(id object))block error:(NSError **)error;
 @end
   
 #endif
