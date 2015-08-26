@@ -65,7 +65,7 @@ Pod::Spec.new do |s|
     cs.requires_arc = true
     cs.frameworks = 'SystemConfiguration', 'QuartzCore', 'CoreTelephony'
     cs.libraries  = 'icucore', 'z.1.2.5'
-    cs.vendored_frameworks = 'ShareSDK/ShareSDK.framework', 'ShareSDK/Core/AGCommon.framework', 'ShareSDK/Core/ShareSDKCoreService.framework'
+    cs.vendored_frameworks = 'ShareSDK/ShareSDK.framework', 'ShareSDK/Core/MOBFoundation.framework', 'ShareSDK/Core/AGCommon.framework', 'ShareSDK/Core/ShareSDKCoreService.framework'
     cs.resources = ["ShareSDK/Core/Resource.bundle", "ShareSDK/Core/zh-Hans.lproj/*.strings"]
   end
 
@@ -151,7 +151,7 @@ Pod::Spec.new do |s|
     sinaweibos.requires_arc = true
     sinaweibos.dependency 'ShareSDK/Core'
     sinaweibos.frameworks = 'ImageIO'
-    sinaweibos.source_files   = 'ShareSDK/Extend/SinaWeiboSDK/WeiboSDK.h'
+    sinaweibos.source_files   = "ShareSDK/Extend/SinaWeiboSDK/*.h"
     sinaweibos.vendored_frameworks = 'ShareSDK/Connection/SinaWeiboConnection.framework'
     sinaweibos.vendored_libraries = 'ShareSDK/Extend/SinaWeiboSDK/libSinaWeiboSDK.a'
     sinaweibos.resources = "ShareSDK/Extend/SinaWeiboSDK/WeiboSDK.bundle"
