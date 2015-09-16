@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'ShareSDK'
-  s.version  = '2.11.2'
+  s.version  = '2.12.0'
   s.summary  = 'ShareSDK is a SNS share kit.'
   s.homepage = 'https://github.com/jcccn/ShareSDK-iOS'
   s.author   = { 'Chuncheng Jiang' => 'jccuestc@gmail.com' }
@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
                    Copyright © 2012-2015 mob All Rights Reserved 掌淘网络 版权所有
                  LICENSE
                }
-  s.source   = { :git => 'https://github.com/jcccn/ShareSDK-iOS.git', :tag => '2.11.2' }
+  s.source   = { :git => 'https://github.com/jcccn/ShareSDK-iOS.git', :tag => '2.12.0' }
   s.platform     = :ios, '5.1.1'
   s.requires_arc = true
 
@@ -153,7 +153,7 @@ Pod::Spec.new do |s|
     sinaweibos.frameworks = 'ImageIO'
     sinaweibos.source_files   = "ShareSDK/Extend/SinaWeiboSDK/*.h"
     sinaweibos.vendored_frameworks = 'ShareSDK/Connection/SinaWeiboConnection.framework'
-    sinaweibos.vendored_libraries = 'ShareSDK/Extend/SinaWeiboSDK/libSinaWeiboSDK.a'
+    sinaweibos.vendored_libraries = 'ShareSDK/Extend/SinaWeiboSDK/libWeiboSDK.a'
     sinaweibos.resources = "ShareSDK/Extend/SinaWeiboSDK/WeiboSDK.bundle"
   end
 

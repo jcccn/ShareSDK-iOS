@@ -19,52 +19,42 @@
 //
 ///#end
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import "ISSQQApp.h"
 #import <ShareSDK/ShareSDKPlugin.h>
 
 ///#begin zh-cn
 /**
- *	@brief	分享内容实体
+ *	@brief	QQ链接器
  */
 ///#end
 ///#begin en
 /**
- *	@brief	Share Content Entity.
+ *	@brief	QQ Connection.
  */
 ///#end
-@interface SSSohuShareContentEntity : NSObject <ISSPlatformShareContentEntity,
-                                                NSCoding>
-{
-@private
-    NSMutableDictionary *_dict;
-}
+@interface QQConnection : NSObject <ISSPlatform>
 
 ///#begin zh-cn
 /**
- *	@brief	书签源链接
+ *	@brief	创建应用配置信息
+ *
+ *	@param 	appId 	应用标识
+ *	@param 	scene 	分享场景
+ *
+ *	@return	应用配置信息
  */
 ///#end
 ///#begin en
 /**
- *	@brief	Bookmark URL string.
- */
-///#end
-@property (nonatomic,copy) NSString *url;
-
-///#begin zh-cn
-/**
- *	@brief	通过分享内容解析实体数据
+ *	@brief	Create an app configuration information.
  *
- *	@param 	content 	分享内容
- */
-///#end
-///#begin en
-/**
- *	@brief	Parsed entity data by sharing content
+ *	@param 	appId 	App id.
+ *	@param 	scene 	Scene.
  *
- *	@param 	content 	Share content object.
+ *	@return	App configuration information.
  */
 ///#end
-- (void)parseWithContent:(id<ISSContent>)content;
+- (NSDictionary *)appInfoWithAppId:(NSString *)appId;
 
 @end

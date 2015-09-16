@@ -19,21 +19,20 @@
 //
 ///#end
 
-#import <UIKit/UIKit.h>
-#import "ISSSMSApp.h"
-#import <ShareSDK/ShareSDKPlugin.h>
+#import <Foundation/Foundation.h>
+#import <AGCommon/CMErrorInfo.h>
 
 ///#begin zh-cn
 /**
- *	@brief	短信链接器
+ *	@brief	QQ错误信息
  */
 ///#end
 ///#begin en
 /**
- *	@brief	SMS Connection.
+ *	@brief	Error information.
  */
 ///#end
-@interface SMSConnection : NSObject <ISSPlatform>
+@interface SSQQErrorInfo : CMErrorInfo
 
 
 @end
