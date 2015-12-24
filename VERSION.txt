@@ -1,3 +1,16 @@
+版本：V 2.12.2 2015-12-15
+1、QQ好友分享，新增音乐、视频URL的播放键功能（分享地址是音频、视频URL时，在缩略图处有个播放按钮）。
+2、新增KakaoTalk、KakaoStory的第三方登录功能。
+3、优化CocoaPods命令，对公共库MOBFoundation.framework单独支持CocoaPods，取消ShareSDK直接包含MOBFoundation.framework（请看详细更新说明）。
+4、更新Dropbox的分享、授权功能。
+5、更新微信、腾讯开放平台、新浪微博SDK到最新（支持bitcode）。
+以下用户建议更新：
+1、需要使用QQ好友分享音乐、视频URL的播放键功能的用户。
+2、需要使用KakaoTalk、KakaoStory的第三方登录功能的用户。
+3、使用CocoaPods集成最新版ShareSDK的用户（重要）。
+4、需要集成Dropbox平台的用户。
+5、需要集成微信、QQ、新浪微博且需要支持bitcode的用户。
+
 版本：V 2.12.1 2015-10-28
 1、更新腾讯开放平台SDK到最新，修复在iOS9下QQ空间网页授权可能加载不出授权页面。
 2、删除腾讯开放平台SDK中的info.plist文件，避免在Xcode7下打包时报错。
