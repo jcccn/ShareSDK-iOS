@@ -22,17 +22,9 @@
 #import <Foundation/Foundation.h>
 #import "ISSCComment.h"
 
-///#begin zh-cn
-/**
- *	@brief	更新评论列表返回事件
- */
-///#end
-///#begin en
-/**
- *	@brief	Update comment list result event.
- */
-///#end
-typedef void(^SSCUpdateCommentListResultEvent) (SSResponseState state, NSError *error);
+
+//获得下一页评论列表返回事件
+typedef void(^SSCGetNextPageCommentListResultEvent) (SSCResponseState state, NSError *error);
 
 ///#begin zh-cn
 /**
@@ -44,7 +36,7 @@ typedef void(^SSCUpdateCommentListResultEvent) (SSResponseState state, NSError *
  *	@brief	Get Comment detail information list result event.
  */
 ///#end
-typedef void(^SSCGetCommentDetailResultEvent) (SSResponseState state, NSError *error);
+typedef void(^SSCGetCommentDetailResultEvent) (SSCResponseState state, NSError *error);
 
 ///#begin zh-cn
 /**
@@ -74,37 +66,41 @@ typedef void(^SSCGetCommentDetailResultEvent) (SSResponseState state, NSError *e
 ///#end
 - (NSArray *)data;
 
+
+/**
+ *  排序枚举
+ */
 ///#begin zh-cn
 /**
- *	@brief	获取排序规则
+ *	@brief	排序枚举
  *
- *	@return	排序规则
+ *	@return	排序枚举
  */
 ///#end
 ///#begin en
 /**
- *	@brief	Get order method
+ *	@brief	Order Enum.
  *
- *	@return	Order method
+ *	@return	Order Enum.
  */
 ///#end
-- (NSComparator)order;
+- (SSCCommentListOrderName)orderName;
 
 ///#begin zh-cn
 /**
- *	@brief	设置列表排序规则
+ *	@brief	是否有下一页
  *
- *	@param 	order 	排序规则
+ *	@return	是否有下一页
  */
 ///#end
 ///#begin en
 /**
- *	@brief	Set order method
+ *	@brief	boolean hasNext.
  *
- *	@param 	order 	Order method
+ *	@return	boolean hasNext.
  */
 ///#end
-- (void)setOrder:(NSComparator)order;
+- (BOOL)hasNext;
 
 ///#begin zh-cn
 /**
@@ -120,7 +116,23 @@ typedef void(^SSCGetCommentDetailResultEvent) (SSResponseState state, NSError *e
  *	@param 	result 	Result handler.
  */
 ///#end
-- (void)update:(SSCUpdateCommentListResultEvent)resultHandler;
+- (void)update:(SSCGetNextPageCommentListResultEvent)resultHandler;
+
+///#begin zh-cn
+/**
+ *	@brief	从服务器请求新的分页评论列表（只包含ID和部分信息）
+ *
+ *	@param 	result 	返回事件
+ */
+///#end
+///#begin en
+/**
+ *	@brief	paging Comments from the server requests a new list (and some contain only ID information)
+ *
+ *	@param 	result 	Result handler.
+ */
+///#end
+- (void)getNextPageCommentList:(SSCGetNextPageCommentListResultEvent)resultHandler;
 
 ///#begin zh-cn
 /**

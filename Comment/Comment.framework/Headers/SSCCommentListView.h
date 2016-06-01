@@ -67,7 +67,7 @@
  *
  *	@param 	contentId 	内容标识
  *  @param  title   标题
- *  @param  order   排序方法
+ *  @param  order   排序枚举
  *	@param 	frame 	显示范围
  *
  *	@return	视图对象
@@ -79,7 +79,7 @@
  *
  *	@param 	contentId 	Content id.
  *  @param  title   Title
- *  @param  order   Order method
+ *  @param  order   Order Enum
  *	@param 	frame 	Display rect.
  *
  *	@return	Comment list view.
@@ -87,7 +87,7 @@
 ///#end
 - (id)initWithContentId:(NSString *)contentId
                   title:(NSString *)title
-                  order:(NSComparator)order
+                  order:(SSCCommentListOrderName)order
                   frame:(CGRect)frame;
 
 ///#begin zh-cn

@@ -13,16 +13,16 @@
 //  Created by ShareSDK.cn on 13-1-14.
 //  Website:http://www.ShareSDK.cn
 //  Support E-mail:support@sharesdk.cn
-//  WeChat ID:ShareSDK   （If publish a new version, we will push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
+//  WeChat ID:ShareSDK   （If publish a new version, we will be push the updates content of version to you. If you have any questions about the ShareSDK, you can get in touch through the WeChat with us, we will respond within 24 hours）
 //  Business QQ:4006852216
 //  Copyright (c) 2013年 ShareSDK.cn. All rights reserved.
 //
 ///#end
 
-#import <ShareSDK/ShareSDK.h>
-
 #ifndef Comment_SSCommentTypeDef_h
 #define Comment_SSCommentTypeDef_h
+
+#import "SSCTypeDef.h"
 
 @protocol ISSCTopic;
 @protocol ISSCComment;
@@ -54,7 +54,19 @@ SSCCommentListOrderName;
  *	@brief	Get Comment ids result event.
  */
 ///#end
-typedef void(^SSCGetCommentIdsResultEvent) (SSResponseState state, NSArray *commentIds, NSError *error);
+typedef void(^SSCGetCommentIdsResultEvent) (SSCResponseState state, NSArray *commentIds, NSError *error);
+
+///#begin zh-cn
+/**
+ *	@brief	获取下一页评论ID列表返回事件
+ */
+///#end
+///#begin en
+/**
+ *	@brief	Get nextpage Comment ids result event.
+ */
+///#end
+typedef void(^SSCGetNextPageCommentIdsResultEvent) (SSCResponseState state, NSArray *commentIds, NSString *nextId,NSError *error);
 
 ///#begin zh-cn
 /**
@@ -66,7 +78,7 @@ typedef void(^SSCGetCommentIdsResultEvent) (SSResponseState state, NSArray *comm
  *	@brief	Get comment information result event.
  */
 ///#end
-typedef void(^SSCGetCommentInfoResultEvent) (SSResponseState state, NSArray *commentList, NSError *error);
+typedef void(^SSCGetCommentInfoResultEvent) (SSCResponseState state, NSArray *commentList, NSError *error);
 
 ///#begin zh-cn
 /**
@@ -78,7 +90,7 @@ typedef void(^SSCGetCommentInfoResultEvent) (SSResponseState state, NSArray *com
  *	@brief	Get topic result event.
  */
 ///#end
-typedef void(^SSCGetTopicResultEvent) (SSResponseState state, id<ISSCTopic> topic, NSError *error);
+typedef void(^SSCGetTopicResultEvent) (SSCResponseState state, id<ISSCTopic> topic, NSError *error);
 
 ///#begin zh-cn
 /**
@@ -90,7 +102,7 @@ typedef void(^SSCGetTopicResultEvent) (SSResponseState state, id<ISSCTopic> topi
  *	@brief	Reply content / comment result event.
  */
 ///#end
-typedef void(^SSCReplyResultEvent) (SSResponseState state, id<ISSCComment> comment, NSError *error);
+typedef void(^SSCReplyResultEvent) (SSCResponseState state, id<ISSCComment> comment, NSError *error);
 
 ///#begin zh-cn
 /**
@@ -102,7 +114,19 @@ typedef void(^SSCReplyResultEvent) (SSResponseState state, id<ISSCComment> comme
  *	@brief	Liked content / comment result event.
  */
 ///#end
-typedef void(^SSCLikeResultEvent) (SSResponseState state, NSError *error);
+typedef void(^SSCLikeResultEvent) (SSCResponseState state, NSError *error);
+
+///#begin zh-cn
+/**
+ *	@brief	称赞列表/评论返回事件
+ */
+///#end
+///#begin en
+/**
+ *	@brief	like List / comment result event.
+ */
+///#end
+typedef void(^SSCLikeListResultEvent) (SSCResponseState state, NSArray *likeList,NSError *error);
 
 ///#begin zh-cn
 /**
@@ -114,7 +138,7 @@ typedef void(^SSCLikeResultEvent) (SSResponseState state, NSError *error);
  *	@brief	Share content / comment result event.
  */
 ///#end
-typedef void(^SSCShareResultEvent) (SSResponseState state, NSError *error);
+typedef void(^SSCShareResultEvent) (SSCResponseState state, NSError *error);
 
 ///#begin zh-cn
 /**
@@ -126,7 +150,7 @@ typedef void(^SSCShareResultEvent) (SSResponseState state, NSError *error);
  *	@brief	Comment list page back event. When you click the Back button on the toolbar callback
  */
 ///#end
-typedef void(^SSCCommentListPageBackEvent) ();
+typedef void(^SSCCommentListPageBackEvent) (id obj);
 
 ///#begin zh-cn
 /**

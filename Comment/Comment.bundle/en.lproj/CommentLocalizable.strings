@@ -2,54 +2,66 @@
   CommentLocalizable.strings
   Comment
 
-  Created by 刘靖煌 on 15/8/3.
-  Copyright (c) 2015年 掌淘科技. All rights reserved.
+  Created by 冯 鸿杰 on 13-11-18.
+  Copyright (c) 2013年 掌淘科技. All rights reserved.
 */
 
-"MENU_ITEM_HOT_LIST" = "Hot comment";
-"MENU_ITEM_LATEST_LIST" = "New Comment";
+"MENU_ITEM_HOT_LIST" = "Hottest";
+"MENU_ITEM_LATEST_LIST" = "Newest";
 
-"BUTTON_COMMENT" = "Make a comment";
+"BUTTON_COMMENT" = "Comment";
 "BUTTON_CANCEL" = "Cancel";
 "BUTTON_SEND" = "Send";
 "BUTTON_REPLY" = "Reply";
 "BUTTON_COPY" = "Copy";
 "BUTTON_SHARE" = "Share";
-"BUTTON_KNOWN" = "Get it";
-"BUTTON_ADD_ACCOUNT" = "Add more account";
+"BUTTON_KNOWN" = "Known";
+"BUTTON_ADD_ACCOUNT" = "Add account";
 
 "TITLE_ACCOUNT_LOGIN" = "Login";
-"TITLE_SELECT_ACCOUNT" = "Choose the way to login";
+"TITLE_SELECT_ACCOUNT" = "Select Account";
 "TITLE_COMMENT" = "Comment";
 "TITLE_TIP" = "Tip";
 
-"PLACEHOLDER_DEFAULT_CONTENT" = "Make a comment";
-"PLACEHOLDER_REPLY_CONTENT" = "reply to %@";
+"PLACEHOLDER_DEFAULT_CONTENT" = "Comment";
+"PLACEHOLDER_REPLY_CONTENT" = "Reply%@comment";
 
 "TEXT_ANONYMOUS_USER" = "Anonymous user";
-"TEXT_LOAD_MORE" = "Loading more ...";
-"TEXT_CONTENT_OUT_OF_LENGTH" = "The character of comment is no more than 140";
-"TEXT_SHARE_SUCCESS" = "Shared successfully";
-"TEXT_SHARE_FAIL" = "Shared failed";
+"TEXT_LOAD_MORE" = "Loading...";
+"TEXT_CONTENT_OUT_OF_LENGTH" = "Content out of length";
+"TEXT_SHARE_SUCCESS" = "Share Success";
+"TEXT_SHARE_FAIL" = "Share Fail";
+"TEXT_LIKE_SUCCESS" = "Like Successfully";
+"TEXT_LIKE_FAIL" = "Like Failed";
 "TEXT_DATE_RECENT" = "Just now";
-"TEXT_DATE_MINUTE_AGO" = "%.0f min ago";
-"TEXT_DATE_HOUR_AGO" = "%.0f hour age";
-"TEXT_SHARE_TO" = "Share to :";
-"TEXT_BIND_FAIL" = "Binding failure!";
-"TEXT_SENDING" = "Sending ...";
-"TEXT_COMMENT_SUC" = "Comment successfully!";
-"TEXT_COMMENT_FAI" = "Comment failed!";
-"TEXT_CLICK_GET_MORE" = "Click to show more";
-"TEXT_BIND_ACCOUNT" = "Binding account";
-"TEXT_CHANGE_ACCOUNT" = "Change account";
-"TEXT_COMMENT_SEND_FREQUENT" = "Request too frequently ！Please try again later";
-"TEXT_COMMENT_IN_REVIEW" = "Submitted successfully,waiting for the approval";
-"TEXT_COMMENT_SHIELDED" = "The comment has been blocked";
-"TEXT_BIND_ACCOUNT_FAIL" = "Binding account failure";
+"TEXT_DATE_MINUTE_AGO" = "%.0f minute ago";
+"TEXT_DATE_HOUR_AGO" = "%.0f hour ago";
+"TEXT_DATE_MINUTES_AGO" = "%.0f minutes ago";
+"TEXT_DATE_HOURS_AGO" = "%.0f hours ago";
+"TEXT_SHARE_TO" = "share to:";
+"TEXT_BIND_FAIL" = "Bind Fail!";
+"TEXT_SENDING" = "sending...";
+"TEXT_COMMENT_SUC" = "comment Success!";
+"TEXT_COMMENT_FAI" = "comment Fail!";
+"TEXT_CLICK_GET_MORE" = "Click get more";
+"TEXT_BIND_ACCOUNT" = "Bind account";
+"TEXT_CHANGE_ACCOUNT" = "Chang account";
+"TEXT_COMMENT_SEND_FREQUENT" = "send frequent";
+"TEXT_COMMENT_IN_REVIEW" = "In review";
+"TEXT_COMMENT_SHIELDED" = "Comment shielded";
+"TEXT_BIND_ACCOUNT_FAIL" = "Bind account fail";
 
 "FILTER_MSG_0" = "Content containing sensitive character";
-"FILTER_MSG_1" = "Character length is not enough";
+"FILTER_MSG_1" = "Character length less than";
 "FILTER_MSG_2" = "Character length is too long";
 "FILTER_MSG_3" = "Repeated characters too much";
-"FILTER_MSG_4" = "Too many link accessing the content";
+"FILTER_MSG_4" = "Too many people accessing the content";
 "FILTER_MSG_5" = "Please type in Chinese";
+
+"Pull down to refresh..." = "Pull down to refresh...";
+"Release to refresh..." = "Release to refresh...";
+"Loading..." = "Loading...";
+"Last Updated" = "Last Updated";
+"TEXT_ARTICLE_TITLE" = "The article title";
+
+"ERROR_DESC_COMMENT_INVALID_PARAM" = "comment invalid param";

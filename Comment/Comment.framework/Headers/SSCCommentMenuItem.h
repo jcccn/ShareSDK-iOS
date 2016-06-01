@@ -20,6 +20,8 @@
 ///#end
 
 #import <Foundation/Foundation.h>
+#import "SSCommentTypeDef.h"
+#import "ISSCCommentList.h"
 
 ///#begin zh-cn
 /**
@@ -47,14 +49,26 @@
 
 ///#begin zh-cn
 /**
- *	@brief	排序
+ *	@brief	排序枚举
  */
 ///#end
 ///#begin en
 /**
- *	@brief	Order.
+ *	@brief	Order Enum.
  */
 ///#end
-@property (nonatomic,copy) NSComparator order;
+@property (nonatomic, assign) SSCCommentListOrderName orderName;
+
+///#begin zh-cn
+/**
+ *	@brief	评论列表
+ */
+///#end
+///#begin en
+/**
+ *	@brief	commentList.
+ */
+///#end
+@property (nonatomic, strong) id<ISSCCommentList> commentList;
 
 @end

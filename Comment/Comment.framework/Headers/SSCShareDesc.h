@@ -20,6 +20,7 @@
 ///#end
 
 #import <Foundation/Foundation.h>
+#import "SSCDefine.h"
 
 ///#begin zh-cn
 /**
@@ -47,42 +48,6 @@
 
 ///#begin zh-cn
 /**
- *	@brief	分享内容实体
- */
-///#end
-///#begin en
-/**
- *	@brief	Share content entity.
- */
-///#end
-@property (nonatomic,retain) id<ISSContent> contentEntity;
-
-///#begin zh-cn
-/**
- *	@brief	授权选项
- */
-///#end
-///#begin en
-/**
- *	@brief	Auth options.
- */
-///#end
-@property (nonatomic,retain) id<ISSAuthOptions> authOptions;
-
-///#begin zh-cn
-/**
- *	@brief	分享选项
- */
-///#end
-///#begin en
-/**
- *	@brief	Share options.
- */
-///#end
-@property (nonatomic,retain) id<ISSShareOptions> shareOptions;
-
-///#begin zh-cn
-/**
  *	@brief	分享事件处理器
  */
 ///#end
@@ -91,7 +56,7 @@
  *	@brief	Share event handler.
  */
 ///#end
-@property (nonatomic,copy) SSPublishContentEventHandler shareEventHandler;
+@property (nonatomic,copy) SSCPublishContentEventHandler shareEventHandler;
 
 
 @end

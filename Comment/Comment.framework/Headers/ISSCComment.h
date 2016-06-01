@@ -20,7 +20,6 @@
 ///#end
 
 #import <Foundation/Foundation.h>
-#import <ShareSDK/ShareSDK.h>
 #import "SSCommentTypeDef.h"
 
 ///#begin zh-cn
@@ -65,7 +64,7 @@
  *	@return	Platform type.
  */
 ///#end
-- (ShareType)platType;
+- (CSSDKPlatformType)platType;
 
 ///#begin zh-cn
 /**
@@ -197,6 +196,22 @@
 
 ///#begin zh-cn
 /**
+ *	@brief	获取楼层id列表
+ *
+ *	@return	楼层id列表
+ */
+///#end
+///#begin en
+/**
+ *	@brief	Get a floor id list.
+ *
+ *	@return	floor id list.
+ */
+///#end
+- (NSArray *)floorIds;
+
+///#begin zh-cn
+/**
  *	@brief	获取楼层列表
  *
  *	@return	楼层列表
@@ -243,4 +258,19 @@
 ///#end
 - (NSInteger)status;
 
+///#begin zh-cn
+/**
+ *	@brief	获取数据哈希值
+ *
+ *	@return	获取数据哈希值
+ */
+///#end
+///#begin en
+/**
+ *	@brief	Get comment data hash.
+ *
+ *	@return	comment data hash
+ */
+///#end
+- (NSString *)dataHash;
 @end
